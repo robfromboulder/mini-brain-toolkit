@@ -5,7 +5,7 @@ A **mini-brain** is a small set of Markdown files that captures the *why* behind
 
 Most knowledge systems grow forever: wikis, second brains, agent memories, all expanding until no one trusts them. A mini-brain does the opposite. By design, it shrinks toward what matters, staying small enough to trust and to use every day. A Claude session or AI agent can intelligently load mini-brain knowledge into context to plan a feature or track down a bug. Company leaders and new engineers can interactively chat with the mini-brain instead of just reading docs and code.
 
-This toolkit has two workflows: one creates a new mini-brain for a project, the other checks an existing mini-brain against the pattern and suggests improvements. The toolkit is itself a mini-brain, so this repo is also a working example.
+This toolkit has two workflows: one creates a new mini-brain for a project, the other checks an existing mini-brain against the pattern and suggests improvements. The toolkit is itself a mini-brain and a good example.
 
 ## Usage
 
