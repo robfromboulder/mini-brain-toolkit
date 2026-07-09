@@ -19,7 +19,7 @@ This toolkit has two workflows: one creates a new mini-brain for a project, the 
 
 > Read ../mini-brain-toolkit/MBT_CHECK_BRAIN for instructions and assess ../some-repo
 
-👆 scores the repo against the pattern's principles and reports ranked, concrete opportunities — without modifying it
+👆 scores the repo against the pattern's principles and suggests improvements
 
 #### Ask about the toolkit itself:
 
