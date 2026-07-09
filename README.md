@@ -1,9 +1,11 @@
 # mini-brain-toolkit 🧠
-Cognitive documentation for self-improving systems
+Mini-brains for self-improving software
 
-A **mini-brain** is a small, curated set of Markdown documents that holds a project's un-derivable knowledge — the decisions, the reasons behind them, the paths tried and rejected — kept deliberately small so an AI agent or a new teammate can get oriented in minutes and trust what they read. It captures only what the code, git history, and tickets *can't* tell you, and it shrinks toward that irreducible core rather than growing without bound.
+A **mini-brain** is a small set of Markdown files that captures the *why* behind a project: what problems the project tries to solve (and how), what tradeoffs were considered, why a decision went one way vs another, what was tried and discarded along the way, and what constraints weren't obvious at first. Your code, git history, and tickets rarely hold all this background detail — but this is crucial to understanding how to debug or improve your software.
 
-This toolkit defines the mini-brain pattern so it can be applied agentically: to stand up a new mini-brain, or to evaluate an existing repo against the pattern. This toolkit is itself a mini-brain — its own subject is the pattern — so the repo doubles as a worked example.
+Most knowledge systems grow forever: wikis, second brains, agent memories, all expanding until no one trusts them. A mini-brain does the opposite. By design, it shrinks toward what matters, staying small enough to trust and to use every day. A Claude session or AI agent can intelligently load mini-brain knowledge into context to plan a feature or track down a bug. Company leaders and new engineers can interactively chat with the mini-brain instead of just reading docs and code.
+
+This toolkit has two workflows: one creates a new mini-brain for a project, the other checks an existing mini-brain against the pattern and suggests improvements. The toolkit is itself a mini-brain, so this repo is also a working example.
 
 ## Usage
 
@@ -11,7 +13,7 @@ This toolkit defines the mini-brain pattern so it can be applied agentically: to
 
 > Read ../mini-brain-toolkit/MBT_CREATE_BRAIN for instructions and set up a mini-brain for &lt;my project&gt;
 
-👆 walks an intake conversation, picks a namespace token, and produces the seed file set from `templates/`
+👆 asks about your project, picks a namespace token, and produces the seed file set from `templates/`
 
 #### Check an existing mini-brain (or a repo you suspect should have one):
 
