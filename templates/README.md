@@ -6,7 +6,7 @@ This is not a "second brain" with the goal of capturing all <project> knowledge 
 
 ## Knowledge files
 
-All knowledge is stored in Markdown files. Each file captures an orthogonal dimension of knowledge about <project>: its scope, technical approach, working features, work log, and so on.
+All knowledge is stored in Markdown files. Each file captures an orthogonal dimension of knowledge about <project>: its scope, technical approach, work in progress, session history, and so on.
 
 CLAUDE.md provides a read index so that Claude can discover and apply knowledge that is relevant to the active chat session.
 

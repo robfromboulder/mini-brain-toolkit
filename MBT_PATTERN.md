@@ -1,6 +1,6 @@
 # Mini-Brain Toolkit: The Mini-Brain Pattern
 
-> V5, 2026-07-09.
+> V6, 2026-07-13.
 
 This document is the operational definition of a mini-brain: what it *is*, the file set it's made of, and the lifecycle that keeps it true and small.
 
@@ -34,9 +34,9 @@ Ten principles define the pattern, ordered from most to least important. `MBT_CH
 
 7. **Version and date every canonical document.** Open each canonical document with `> V<N>, YYYY-MM-DD.` Bump the number and set the date on each substantive edit. This gives readers a citable version and a freshness signal; full history stays in version control, not in duplicate in-tree copies. The append-only log is exempt.
 
-8. **Keep work-in-progress separate from settled knowledge.** Put experiments and a feature's in-flight documents in a `working/` area, apart from the canonical documents a reader is meant to trust. Nothing in `working/` is authoritative until it is folded into a canonical document.
+8. **Keep work-in-progress separate from settled knowledge.** Put experiments and a work item's in-flight documents in a `working/` area, apart from the canonical documents a reader is meant to trust. Nothing in `working/` is authoritative until it is folded into a canonical document.
 
-9. **Open and close each unit of work the same way.** Use one defined ritual to scaffold a feature's working documents at the start, and a matching ritual at the end to fold their durable lessons into the canonical documents and retire (move, not delete) the working files. This keeps every effort's structure identical and stops its lessons from being stranded.
+9. **Open and close each unit of work the same way.** Use one defined ritual to scaffold a work item's working documents at the start, and a matching ritual at the end to fold their durable lessons into the canonical documents and retire (move, not delete) the working files. This keeps every effort's structure identical and stops its lessons from being stranded.
 
 10. **Reflect on a schedule to keep the brain true and small.** Run a periodic maintenance pass that re-checks claims against current reality, merges overlapping content, deletes what has become re-derivable, and flags gaps. Without it, a brain only grows and drifts from the truth.
 
@@ -62,7 +62,7 @@ The minimum viable brain. `MBT_CREATE_BRAIN.md` produces exactly this from `temp
 | `<PREFIX>_LOG.md` | Append-only session log — the lineage (principle 4). | Yes |
 | `<PREFIX>_SESSION_CLOSEOUT.md` | The authoritative format/rules for LOG entries. | Yes |
 | `archive/` | Source material and retired docs. | — |
-| `working/` | Experiments and in-flight feature docs (principle 8). | — |
+| `working/` | Experiments and in-flight work-item docs (principle 8). | — |
 
 SCOPE and APPROACH are deliberately **orthogonal** (principle 3): SCOPE describes the problem space without bias toward any solution; APPROACH makes the case for a specific design against that neutral problem statement. Keeping them separate is what lets each be judged on its own terms.
 
@@ -72,15 +72,15 @@ Same file set, now filled. SCOPE and APPROACH are authored (often distilled from
 
 ### Stage 3 — Mature lifecycle
 
-Added when a brain tracks real feature work across many sessions and needs rituals to stay coherent (principles 9 and 10).
+Added when a brain tracks real work items across many sessions and needs rituals to stay coherent (principles 9 and 10).
 
 | File | Role |
 |---|---|
-| `<PREFIX>_FEATURE_SETUP.md` | Scaffolds a feature's `working/<FEATURE>_*` docs from an intake conversation. |
-| `<PREFIX>_FEATURE_CLOSEOUT.md` | Folds a merged feature's working docs into the canonical store; retires them to `archive/`. |
+| `<PREFIX>_WORK_SETUP.md` | Scaffolds a work item's `working/<WORK>_*` docs from an intake conversation. |
+| `<PREFIX>_WORK_CLOSEOUT.md` | Folds a concluded work item's working docs into the canonical store; retires them to `archive/`. |
 | `<PREFIX>_DREAM_CYCLE.md` | The periodic reflection pass: structural checks, claim verification, findings extraction. |
 | `<PREFIX>_DREAM_LOG.md` | Append-only log of dream-cycle runs. |
-| Per-feature working set | `working/<FEATURE>_{PLAN,FINDINGS,LOG,TASKS,CLAUDE,TESTING}.md` — unversioned, out of the read index. |
+| Per-work-item working set | `working/<WORK>_{PLAN,FINDINGS,LOG,TASKS,CLAUDE,TESTING}.md` — unversioned, out of the read index. |
 
 Brains that serve more than one target platform also split some docs by platform (`<PLATFORM>_<PREFIX>_*`), keeping shared findings in the un-prefixed file and platform-specific ones in the platform files.
 
@@ -89,7 +89,7 @@ Brains that serve more than one target platform also split some docs by platform
 ## 4. The lifecycle
 
 - **A session** starts by reading `CLAUDE.md` and only the indexed files the question needs. It ends (when there's durable lineage worth keeping) by appending one entry to the LOG per `<PREFIX>_SESSION_CLOSEOUT.md`.
-- **A feature** opens with `FEATURE_SETUP` (scaffold `working/` docs), runs across sessions logging to its own `<FEATURE>_LOG.md`, and closes with `FEATURE_CLOSEOUT` (fold durable knowledge into canonical docs, move working files to `archive/`).
+- **A work item** — a feature, bug fix, or hardening effort — opens with `WORK_SETUP` (scaffold `working/` docs), runs across sessions logging to its own `<WORK>_LOG.md`, and closes with `WORK_CLOSEOUT` (fold durable knowledge into canonical docs, move working files to `archive/`).
 - **Maintenance** runs on a cadence via `DREAM_CYCLE`: verify SCOPE's factual claims against the code, refresh APPROACH's external assumptions, promote LOG entries into FINDINGS, prune what's now re-derivable, and flag anything that needs human judgment.
 
 The through-line across all three: knowledge is captured as lineage in the LOG, distilled into the living docs on a known cadence, and continuously pruned toward the irreducible core.

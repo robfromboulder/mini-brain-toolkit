@@ -1,4 +1,4 @@
-# <Feature Name>: Decision Record
+# <Work-Item Name>: Decision Record
 
 ## Problem
 
@@ -24,4 +24,4 @@
 
 ## Reversals
 
-<If this feature makes an existing canonical claim false, name the exact claim and file here. `<PREFIX>_FEATURE_CLOSEOUT.md` will reconcile it in place at merge. Delete this section if nothing is reversed.>
+<If this work item makes an existing canonical claim false, name the exact claim and file here. `<PREFIX>_WORK_CLOSEOUT.md` will reconcile it in place at merge. Delete this section if nothing is reversed.>

@@ -32,7 +32,7 @@ Fix any failures. Report what was found and fixed.
 
 `<PREFIX>_SCOPE.md` makes factual claims about the codebase. These go stale when the code changes without a document update.
 
-**Extract claims** from SCOPE — implementation details (class/method names, config, constants, counts), architectural facts (trust boundaries, message flow), **absence claims** ("no control does X" — the most fragile, they break silently when a feature is added, so prioritize them), and control/behavior descriptions.
+**Extract claims** from SCOPE — implementation details (class/method names, config, constants, counts), architectural facts (trust boundaries, message flow), **absence claims** ("no control does X" — the most fragile, they break silently when a capability is added, so prioritize them), and control/behavior descriptions.
 
 **Verify** by spawning Explore agents with specific claim lists grouped by section. Brief each with the exact claim text and the identifiers it contains; agents search by name, not location, since code moves and gets renamed. Ask each for (a) still true? and (b) easily derivable from code? Check against the main/current release branch, not feature branches.
 
@@ -54,7 +54,7 @@ Fix any failures. Report what was found and fixed.
 
 Session logs (`<PREFIX>_LOG.md`) accumulate decisions and discoveries; some should be promoted to `<PREFIX>_FINDINGS.md`. Two activities: **extraction** (find LOG candidates not yet promoted, reconcile contradictions) and **reflow** (maintain FINDINGS as a coherent body — merge overlap, fix section drift, prune stale-now-obvious). Run extraction first, then reflow.
 
-Most per-feature knowledge should already have been promoted at feature closeout, so treat extraction as a verification/backstop pass. Delegate the read-heavy work to an Explore agent that reads the full FINDINGS and LOG files and reports: extraction candidates, contradictions/supersessions, internal contradictions, and reflow issues.
+Most per-work-item knowledge should already have been promoted at work closeout, so treat extraction as a verification/backstop pass. Delegate the read-heavy work to an Explore agent that reads the full FINDINGS and LOG files and reports: extraction candidates, contradictions/supersessions, internal contradictions, and reflow issues.
 
 **Extraction.** Look for decisions where one option won for non-obvious reasons, discoveries that reframed the problem, constraints that would surprise a future developer, and approaches tried and failed (negative findings are valuable). Grep FINDINGS for each candidate's key terms: a **duplicate** is skipped; a **contradiction/supersession** is a rewrite in place (bump the version), not a second finding beside the old one.
 

@@ -1,6 +1,6 @@
 # Mini-Brain Toolkit: Research Agenda
 
-> V3, 2026-07-09.
+> V4, 2026-07-13.
 
 This document is the forward-looking research agenda for the mini-brain pattern: where it could go next, and how it sits among the other systems doing related work. Nothing here is a committed decision — it holds the open gaps and the threads worth pulling. It is self-contained: the full comparative survey, tables, and sources live here, not in any other file.
 
@@ -110,11 +110,11 @@ Ideas for extending the pattern, grouped by horizon. Each is a one-line pointer;
 - *Verification recipes over stored facts* — store *how to re-derive* a volatile number (a grep, a test name) plus *why it matters*, not the number.
 - *Claim-to-code dependency index* — each claim records the files/symbols it depends on; the dream only re-verifies claims whose ground truth moved.
 - *Test-binding* — a finding cites the test that would fail if it became false, so the codebase becomes the enforcer.
-- *Open-questions registry* + *rejected-approaches graveyard* — promote consciously-deferred decisions and dead ends out of per-feature docs into a queryable canonical record, so future work doesn't re-litigate settled questions.
+- *Open-questions registry* + *rejected-approaches graveyard* — promote consciously-deferred decisions and dead ends out of per-work-item docs into a queryable canonical record, so future work doesn't re-litigate settled questions.
 - *Pre-merge consistency gate* + *review-as-capture* — catch drift at the source (a lightweight closeout subset in CI) and route PR-review surprises back into capture.
 
 **Longer-term — the dream cycle studying itself, and multi-user.**
-- *Instruction-drift detection* — check that the setup/closeout/dream templates still match what features actually produce.
+- *Instruction-drift detection* — check that the setup/closeout/dream templates still match what work items actually produce.
 - *Sleep pressure; nap vs. deep sleep* — let merge activity modulate how often and how deeply the brain dreams.
 - *Surprise as the capture trigger* — mark prediction-error moments in the log and preferentially promote them.
 - *Readiness probes* — keep a curated set of questions (never cached answers) the dream must answer with high confidence from brain + code; a question it can't answer is the finding.
@@ -128,5 +128,5 @@ Ideas for extending the pattern, grouped by horizon. Each is a one-line pointer;
 - **Which roadmap items survive the shrink test?** Several ideas (provenance, freshness, confidence tags) *add* per-finding structure. Each must earn its keep against principle 1 — does it capture something non-re-derivable, or is it metadata the git history already implies? The comparison in §1 is partly in service of answering this: adopt a form only where it beats what version control already gives for free.
 - **Does the pattern's differentiator hold as the field matures?** Tracked as §1.3 thread 2; escalate to an `MBT_APPROACH.md` positioning change only if a deeper compare shows "shrink-by-design" is no longer distinctive.
 - **How do we operationalize "is this still ours to hold?"** The negative-space self-audit (§2) implies a second drift axis: content that has quietly become derivable from code should be shed, not just re-verified. Where does that check live in the dream cycle's checklist, and how does it avoid false positives on knowledge that only *looks* re-derivable?
-- **How is the readiness-probe set composed?** One global list, or composed from per-feature questions contributed at closeout — and store questions only, never cached answers, or it becomes a second copy of FINDINGS waiting to drift. The name is also unsettled ("readiness probes" / "confidence checks"). Interacts with the toolkit-vs-brain question below.
+- **How is the readiness-probe set composed?** One global list, or composed from per-work-item questions contributed at closeout — and store questions only, never cached answers, or it becomes a second copy of FINDINGS waiting to drift. The name is also unsettled ("readiness probes" / "confidence checks"). Interacts with the toolkit-vs-brain question below.
 - **How much of this belongs in the toolkit vs. in an individual brain?** Some items (test-binding, freshness ledger) are per-brain conventions the templates would carry; others (instruction-drift detection) are toolkit-level. The line is unsettled and interacts with `MBT_SCOPE.md` 4.1 (universal vs. exemplar-specific machinery).

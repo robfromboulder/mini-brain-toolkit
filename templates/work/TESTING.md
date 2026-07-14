@@ -1,6 +1,6 @@
-# <Feature Name>: Manual Test Plan
+# <Work-Item Name>: Manual Test Plan
 
-Checks run by hand for this feature (UI, API calls, data checks). At closeout these fold into the canonical testing doc.
+Checks run by hand for this work item (UI, API calls, data checks). At closeout these fold into the canonical testing doc.
 
 ## Setup
 

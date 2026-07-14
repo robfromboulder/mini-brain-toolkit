@@ -1,12 +1,12 @@
-# <Feature Name>: Implementation Plan
+# <Work-Item Name>: Implementation Plan
 
 ## Objective
 
-<one paragraph from the intake chat: what the feature does and the high-level approach. Close with the "no new X" constraints if any — e.g. "No new infrastructure, no database changes.">
+<one paragraph from the intake chat: what the work item does and the high-level approach. Close with the "no new X" constraints if any — e.g. "No new infrastructure, no database changes.">
 
 ## Context
 
-See `<FEATURE>_FINDINGS.md` in this directory for the decision record and alternatives considered.
+See `<WORK>_FINDINGS.md` in this directory for the decision record and alternatives considered.
 
 Key references in the main mini-brain:
 - `<PREFIX>_SCOPE.md` — problem space this fits into
@@ -25,7 +25,7 @@ Key references in the main mini-brain:
 
 ## Testing approach
 
-<automated: unit vs. integration, new test classes anticipated, what regression suite must stay green. Manual steps live in `<FEATURE>_TESTING.md`.>
+<automated: unit vs. integration, new test classes anticipated, what regression suite must stay green. Manual steps live in `<WORK>_TESTING.md`.>
 
 ## Implementation sequence
 

@@ -1,4 +1,4 @@
-# <Feature Name>: Session Log
+# <Work-Item Name>: Session Log
 
 Running log of implementation sessions. Each session appends after a `---` separator.
 

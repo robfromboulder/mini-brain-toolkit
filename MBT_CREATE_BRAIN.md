@@ -1,6 +1,6 @@
 # Mini-Brain Toolkit: Create a New Mini-Brain
 
-> V5, 2026-07-09.
+> V6, 2026-07-13.
 
 This document is the procedure for standing up a new mini-brain from `templates/`.
 
@@ -74,12 +74,12 @@ Record the reasoning and course-corrections of this authoring work in the LOG at
 
 ## 5. Grow into the mature lifecycle (stage 3)
 
-Add these **only when the work justifies them** (see `MBT_PATTERN.md` §3) — typically when the brain starts tracking feature branches across many sessions. Each is copied from `templates/`, namespaced, added to the read index, and bumps `CLAUDE.md`.
+Add these **only when the work justifies them** (see `MBT_PATTERN.md` §3) — typically when the brain starts tracking work items across many sessions. Each is copied from `templates/`, namespaced, added to the read index, and bumps `CLAUDE.md`.
 
-- `templates/FEATURE_SETUP.md` → `<PREFIX>_FEATURE_SETUP.md` and `templates/FEATURE_CLOSEOUT.md` → `<PREFIX>_FEATURE_CLOSEOUT.md` — the open/close bookends for feature work. They reference the per-feature working set in `templates/feature/`.
+- `templates/WORK_SETUP.md` → `<PREFIX>_WORK_SETUP.md` and `templates/WORK_CLOSEOUT.md` → `<PREFIX>_WORK_CLOSEOUT.md` — the open/close bookends for work items (a feature, bug fix, or hardening effort). They reference the per-work-item working set in `templates/work/`.
 - `templates/DREAM_CYCLE.md` → `<PREFIX>_DREAM_CYCLE.md` plus a `<PREFIX>_DREAM_LOG.md` (header only) — the periodic reflection pass.
 
-Don't scaffold these into a stage-1 brain. An empty dream cycle and unused feature bookends are read-index clutter that the reader must skip; add them the first time a real feature or a real drift-review need appears.
+Don't scaffold these into a stage-1 brain. An empty dream cycle and unused work-item bookends are read-index clutter that the reader must skip; add them the first time a real work item or a real drift-review need appears.
 
 ---
 

@@ -1,6 +1,6 @@
 # Mini-Brain Toolkit: Check an Existing Mini-Brain
 
-> V4, 2026-07-09.
+> V5, 2026-07-13.
 
 This document is the procedure for evaluating an existing mini-brain against the pattern and surfacing where it could improve — whether the brain was built from this toolkit or grew on its own.
 
@@ -35,7 +35,7 @@ Walk the ten principles from `MBT_PATTERN.md` §2 one at a time, in order. For e
 | 9 | Standard open/close of a work unit | A setup ritual and a matching closeout that harvests durable lessons into canonical docs and retires (moves, not deletes) scratch files. Contrast: every effort reinventing structure and stranding its insights. |
 | 10 | Scheduled reflection pass | A defined, recurring review of the *memory itself* that both prunes re-derivable content and looks for gaps. Contrast: a store only ever added to. |
 
-Principles 9 and 10 are stage-3 machinery — mark them **not applicable** (not **absent**) for a seed or content-stage brain that legitimately doesn't need them yet. The signal is need, not a checkbox: a brain tracking many feature branches with no closeout ritual is a real gap; a small single-purpose brain without one is fine.
+Principles 9 and 10 are stage-3 machinery — mark them **not applicable** (not **absent**) for a seed or content-stage brain that legitimately doesn't need them yet. The signal is need, not a checkbox: a brain tracking many work items with no closeout ritual is a real gap; a small single-purpose brain without one is fine.
 
 ---
 
@@ -43,7 +43,7 @@ Principles 9 and 10 are stage-3 machinery — mark them **not applicable** (not 
 
 Structure can be present while the content rots. Spot-check the two things that decay silently — delegate the read-heavy parts to Explore agents so the active context stays free for judgment:
 
-- **SCOPE factual drift.** Pull a handful of falsifiable claims from the scope doc (class/tool/config names, counts, and especially *absence* claims like "no control does X") and check them against the actual codebase. Absence claims break silently when features are added — prioritize them. Report claims that no longer hold.
+- **SCOPE factual drift.** Pull a handful of falsifiable claims from the scope doc (class/tool/config names, counts, and especially *absence* claims like "no control does X") and check them against the actual codebase. Absence claims break silently when capabilities are added — prioritize them. Report claims that no longer hold.
 - **Re-derivable content.** Skim the canonical docs for passages that merely restate what the current code plainly shows. These are pruning candidates (principle 1) — the brain would be *more* trustworthy smaller.
 
 Also run the structural checks below; they're mechanical and catch the cheap, common failures.

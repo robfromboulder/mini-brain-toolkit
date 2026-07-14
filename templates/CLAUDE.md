@@ -16,13 +16,13 @@ All paths are relative to this repo root (`CLAUDE.md`'s directory). Before readi
 | Session log — why we chose what we chose | `<PREFIX>_LOG.md` (read from last `---`; large) |
 | Session log update format and rules | `<PREFIX>_SESSION_CLOSEOUT.md` (read when asked to update the session log) |
 
-Only files in this table are current. `archive/` holds source material, retired/absorbed docs, and closed feature working files — ignore it unless asked.
+Only files in this table are current. `archive/` holds source material, retired/absorbed docs, and closed work-item working files — ignore it unless asked.
 
-`working/` holds experiments and a feature branch's in-flight `<FEATURE>_*` docs. When a feature merges, fold them into the canonical docs and **move** (not delete) them to `archive/`.
+`working/` holds experiments and a work item's in-flight `<WORK>_*` docs. When a work item concludes, fold them into the canonical docs and **move** (not delete) them to `archive/`.
 
 <!-- As the brain matures (see MBT_CREATE_BRAIN.md §5), add the lifecycle docs to this index:
-| Feature setup — scaffold a feature's working docs | `<PREFIX>_FEATURE_SETUP.md` |
-| Feature closeout — fold working docs into the mini-brain | `<PREFIX>_FEATURE_CLOSEOUT.md` |
+| Work setup — scaffold a work item's working docs | `<PREFIX>_WORK_SETUP.md` |
+| Work closeout — fold working docs into the mini-brain | `<PREFIX>_WORK_CLOSEOUT.md` |
 | Periodic health check and content refresh | `<PREFIX>_DREAM_CYCLE.md` |
 | Dream cycle session log | `<PREFIX>_DREAM_LOG.md` |
 -->
