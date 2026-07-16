@@ -2,15 +2,19 @@
 
 > V1, <date>.
 
-Follow these instructions when the user asks the mini-brain to dream and improve itself — the periodic reflection pass that keeps the brain true and small (principle 8).
+Follow these instructions when the user asks the mini-brain to dream and improve itself — the periodic reflection pass that keeps the brain true and small (principle 10).
 
 **Important:** Read `CLAUDE.md` first for file conventions — those govern all edits made during this cycle.
 
 **Guiding principle:** When in doubt, flag for the user rather than auto-correcting. This cycle detects drift and corrects factual staleness. Strategy and framing changes require human judgment. Version control provides rollback safety, so be thorough about detecting problems — but conservative about changing analytical conclusions.
 
+**Confidence discipline.** As you draw each conclusion — *before* writing the edit — state a confidence from 1–100. It is a proxy for how many unknowns remain, not a grade. A score below ~70 is a signal to search harder or to flag rather than edit, and obligates you to name the specific unknowns capping it (an unverifiable claim, an inconclusive agent, a thin search). Never round up to look finished. Carry the final scores into the Phase 5 self-evaluation.
+
 **Context management:** Structural checks (Phase 1) and external-currency checks (Phase 3) have bounded context footprints and are handled directly. Heavy reads — full codebase searches, full LOG and FINDINGS files (Phases 2 and 4) — should be delegated to Explore agents. The active context handles agent briefing, result synthesis, editorial judgments, and all file edits.
 
 **Error recovery:** None. If an Explore agent returns inconclusive results, a file is unexpectedly missing, a claim can't be verified, or any step produces an outcome the instructions don't cover — stop the cycle and report the error to the user. Do not retry, work around, or silently skip. A stopped cycle is a signal that the instructions need updating, not that the executor needs to improvise.
+
+**Before you begin — orient against the last cycle.** Read the last entry in `<PREFIX>_DREAM_LOG.md` (grep the final `---`). Carry forward: (a) what the last cycle flagged as *needs human decision* — resolved, still open, or now actionable; (b) what it said it would change about these instructions; (c) which phases found nothing last time — if nothing relevant has changed since, calibrate effort there instead of re-deriving from scratch. This makes the dream log an input, not only an output, and is what lets a cycle notice it is re-treading. First run (empty log): note it and proceed.
 
 ---
 
@@ -38,13 +42,18 @@ Fix any failures. Report what was found and fixed.
 
 **Update.** Stale claims: correct to current state, preserving the document's analytical framing. Invalidated absence claims: don't just flip "no X" to "X exists" — describe what was added and the gap that remains. Codebase-derivable detail with no analytical value: consider removing rather than maintaining. Confirmed-accurate claims: note them as verified in the Phase 5 report.
 
-**Do not** add new threat categories or trust boundaries (that's scoping work), delete analytical content because a premise changed (update the premise, then check the analysis still follows), or rewrite conclusions — flag for the user if a factual change undermines one.
+**Do not** add new goals, scope categories, or boundaries (that's scoping work), delete analytical content because a premise changed (update the premise, then check the analysis still follows), or rewrite conclusions — flag for the user if a factual change undermines one.
 
 ---
 
 ## Phase 3: Approach currency
 
-`<PREFIX>_APPROACH.md` references specifics that change independently of the codebase — vendor status, versions, pricing, licensing, market conditions, new entrants. Use web search to verify these where the approach depends on them. Factual corrections (versions, dates, pricing): update in place. Status changes affecting a *recommended* choice: flag for the user. New entrants: note them without promoting to primary without explicit direction. Do not change strategic framing — flag if market changes suggest reconsidering it.
+`<PREFIX>_APPROACH.md` may depend on specifics that change independently of the codebase. Two flavors — check whichever the approach actually commits to:
+
+- **Technical currency** — versions of frameworks/libraries the design pins, protocol/spec versions, runtime/platform/model availability, breaking API changes.
+- **Vendor/market** — vendor status (acquisitions, shutdowns, pivots), pricing, licensing changes, new entrants.
+
+Use web search to verify. Factual corrections (versions, dates, pricing): update in place. Status/version changes affecting a *recommended* choice: flag for the user. New entrants or alternatives: note without promoting to primary without explicit direction. Do not change strategic framing — flag if a change suggests reconsidering it.
 
 (If the brain's APPROACH has no external dependencies, this phase is a no-op — say so and move on.)
 
@@ -67,3 +76,9 @@ Most per-work-item knowledge should already have been promoted at work closeout,
 Present a summary after all phases complete: **structural fixes** (Phase 1, or "none"); **files updated** (Phases 2–4, each as `file V<old> → V<new> — one-line summary`); **confirmed accurate** (grouped by section, not enumerated); **needs human decision** (factual changes that affect strategy/scope/framing); **new findings extracted**; **findings reflow** (structural changes applied, substance items flagged). If a phase found nothing, say so in one line — don't pad.
 
 **Cycle log.** After the report, append an entry to `<PREFIX>_DREAM_LOG.md` using the standard LOG entry format from `<PREFIX>_SESSION_CLOSEOUT.md`. Cover: which phases ran/were skipped and why; what broke or surprised (the raw signal for instruction improvements); how many Explore agents were spawned and whether their results were useful; and what you'd change about these instructions based on this run.
+
+**Self-evaluation.** Close the entry by scoring the *cycle's own performance*, not only its findings — this is the signal for whether dreaming is converging or spinning, and what makes runs comparable across cycles and over time:
+- **Confidence per headline conclusion (1–100)** — one per phase that draws a conclusion (e.g. Phase 2 "SCOPE matches current code"; Phase 3 "APPROACH's external assumptions are current"). For any score below ~70, name the unknowns that cap it.
+- **New ground vs. re-tread** — classify this run against the last: *net-new* (surfaced findings/changes the last run didn't), *incremental*, or *re-tread* (same ground, no movement), with one line of evidence.
+- **Depth achieved** — did each phase run to its intent, or run shallow (agent inconclusive, source unavailable, halted)? Name any that did.
+- **Diminishing returns** — if this is the Nth consecutive *re-tread* run with no findings and no edits, say so and recommend either dreaming less often or that the brain has reached a fixed point on current inputs (a real result, not a failure).

@@ -1,6 +1,6 @@
 # Mini-Brain Toolkit: Mini-Brain Files
 
-> V6, 2026-07-13.
+> V7, 2026-07-15.
 
 ---
 
@@ -19,6 +19,8 @@ All paths are relative to this repo root (`CLAUDE.md`'s directory). Before readi
 | Key implementation findings (invisible from the files) | `MBT_FINDINGS.md` |
 | Session log — why we chose what we chose | `MBT_LOG.md` (read from last `---`; large) |
 | Session log update format and rules | `MBT_SESSION_CLOSEOUT.md` (read when asked to update the session log) |
+| Dream cycle — periodic self-improvement pass | `MBT_DREAM_CYCLE.md` (read when asked to dream) |
+| Dream cycle session log | `MBT_DREAM_LOG.md` |
 
 Only files in this table are current. `templates/` holds the base files `MBT_CREATE_BRAIN.md` copies; `archive/` holds source material and retired docs — ignore both unless asked.
 
