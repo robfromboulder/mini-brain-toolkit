@@ -1,6 +1,6 @@
 # Mini-Brain Toolkit: The Mini-Brain Pattern
 
-> V6, 2026-07-13.
+> V7, 2026-07-15.
 
 This document is the operational definition of a mini-brain: what it *is*, the file set it's made of, and the lifecycle that keeps it true and small.
 
@@ -32,7 +32,7 @@ Ten principles define the pattern, ordered from most to least important. `MBT_CH
 
 6. **Namespace every knowledge file with a SCREAMING_SNAKE_CASE token.** Prefix each file with one uppercase token unique to the brain (`GUARDRAILS_SCOPE.md`, `NEBULA_APPROACH.md`). The token makes the brain's files unmistakable in a mixed directory and prevents collisions when two brains load in the same session. `CLAUDE.md` and `README.md` are exempt.
 
-7. **Version and date every canonical document.** Open each canonical document with `> V<N>, YYYY-MM-DD.` Bump the number and set the date on each substantive edit. This gives readers a citable version and a freshness signal; full history stays in version control, not in duplicate in-tree copies. The append-only log is exempt.
+7. **Version and date every canonical document.** Open each canonical document with `> V<N>, YYYY-MM-DD.` Bump the number and set the date on each substantive edit. This gives readers a citable version and a freshness signal; full history stays in version control, not in duplicate in-tree copies. The append-only log and task checklists (`*_TASKS.md`) are exempt.
 
 8. **Keep work-in-progress separate from settled knowledge.** Put experiments and a work item's in-flight documents in a `working/` area, apart from the canonical documents a reader is meant to trust. Nothing in `working/` is authoritative until it is folded into a canonical document.
 
