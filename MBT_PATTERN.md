@@ -1,6 +1,6 @@
 # Mini-Brain Toolkit: The Mini-Brain Pattern
 
-> V7, 2026-07-15.
+> V8, 2026-07-16.
 
 This document is the operational definition of a mini-brain: what it *is*, the file set it's made of, and the lifecycle that keeps it true and small.
 
@@ -24,7 +24,7 @@ Ten principles define the pattern, ordered from most to least important. `MBT_CH
 
 2. **Store the mini-brain in its own repository, separate from the code it describes.** The brain records how and why the product was built, so it must not be embedded in, versioned with, or shipped as part of the product. It sits beside the product repositories, is loaded on demand, and outlives any single one of them.
 
-3. **Organize knowledge into orthogonal documents.** Give each document one dimension of the project — problem, approach, findings, session history — with no overlap between documents. Orthogonality lets each question map to exactly one file, lets each document be judged on its own terms, and keeps any one file small enough to load without the rest.
+3. **Organize knowledge into orthogonal documents.** Give each document one dimension of the project — problem, approach, findings, session history — with no overlap between documents. Orthogonality lets each question map to exactly one file, lets each document be judged on its own terms, and keeps any one file small enough to load without the rest. That orthogonality has to hold in the prose, not just at the file boundaries: each document describes its own dimension without narrating its neighbors, and a reader reaches another document as a whole unit through the read index — not by reaching into its sections or threading cross-references through the body. (These numbered principles are a deliberate exception; most documents should expose no such independently-citable parts, or the read-index partitioning collapses back toward a wiki.)
 
 4. **Separate the append-only log from the distilled documents.** Keep one time-stamped log that records what happened each session and is never edited after the fact. Keep the rest — the *canonical documents* — as living current-state summaries, rewritten freely as understanding improves. The log preserves lineage; the canonical documents preserve conclusions.
 
