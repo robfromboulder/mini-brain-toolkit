@@ -1,6 +1,6 @@
 # Mini-Brain Toolkit: Mini-Brain Files
 
-> V10, 2026-07-16.
+> V11, 2026-07-24.
 
 ---
 
@@ -61,6 +61,20 @@ Absent a declared exemption, full orthogonality holds; a different project would
 **No harness memory.** Don't use the persistent memory feature. All persistent project information belongs in the markdown files in this directory.
 
 ---
+
+## Writing Docs and Instructions
+
+All prose in this repo is read like a proof or a program, not a wiki. The reader is adversarial: every token is load-bearing, and every spare one is a question they must resolve.
+
+- **Say it once.** Each fact has exactly one home. Duplication isn't emphasis; it's a second copy to keep in sync and a sign the first statement didn't land.
+- **Define before use.** Introduce a thing where the reader first needs it, in dependency order. A forward pointer ("see Step 3", "as below") means the content is in the wrong place — move it, don't link to it.
+- **No sideways narration.** A section explains its own subject and never recaps a sibling's ("as covered in X", "see Y"). Intra-unit pointers are fine; navigation between units re-couples things meant to stand alone.
+- **Every claim earns its keep.** State only what the reader must act on and what you could defend if challenged. Decorative rationale, benefits, and history are cut.
+- **Resolve, don't provoke.** A detail that raises a question it doesn't answer is a net loss — prefer omission to a half-explanation.
+- **One job per sentence.** A sentence tells the reader what to do or explains why — never several at once.
+- **No hard wrapping.** Write each markdown paragraph and list item as one continuous line and let it soft-wrap; manual line breaks inside a paragraph make noisy diffs and fight reflow.
+
+When a line's contribution isn't obvious, it isn't contributing — delete it.
 
 ## Commit Conventions
 
