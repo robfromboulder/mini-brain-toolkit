@@ -1,6 +1,6 @@
 # Mini-Brain Toolkit: The Mini-Brain Pattern
 
-> V8, 2026-07-16.
+> V10, 2026-07-24.
 
 This document is the operational definition of a mini-brain: what it *is*, the file set it's made of, and the lifecycle that keeps it true and small.
 
@@ -18,7 +18,7 @@ The reader is usually an AI agent loading files into a limited context window, a
 
 ## 2. The principles
 
-Ten principles define the pattern, ordered from most to least important. `MBT_CHECK_BRAIN.md` scores a repo against them; `MBT_CREATE_BRAIN.md` builds them in. Each is a target, not a gate — partial adherence is normal.
+Ten principles define the pattern, ordered from most to least important. Each is a target, not a gate — partial adherence is normal.
 
 1. **Keep only what can't be re-derived.** Record the decisions, reasons, rejected paths, and lessons that the code, its version-control history, and the project's tickets do not already contain. Leave everything derivable where it lives. Expect the brain to shrink as content becomes re-derivable — that is health, not decay.
 
@@ -40,8 +40,6 @@ Ten principles define the pattern, ordered from most to least important. `MBT_CH
 
 10. **Reflect on a schedule to keep the brain true and small.** Run a periodic maintenance pass that re-checks claims against current reality, merges overlapping content, deletes what has become re-derivable, and flags gaps. Without it, a brain only grows and drifts from the truth.
 
-In short: a mini-brain **lives in its own repository and stores only what the code can't tell you, split into orthogonal documents with the log kept apart from the distilled documents, fronted by a read index, and pruned on a schedule so it stays both true and small.**
-
 ---
 
 ## 3. The file set
@@ -50,7 +48,7 @@ A mini-brain grows in three stages. Not every brain reaches stage 3, and that's 
 
 ### Stage 1 — Seed (every brain starts here)
 
-The minimum viable brain. `MBT_CREATE_BRAIN.md` produces exactly this from `templates/`.
+The minimum viable brain.
 
 | File | Role | Namespaced? |
 |---|---|---|
@@ -64,7 +62,7 @@ The minimum viable brain. `MBT_CREATE_BRAIN.md` produces exactly this from `temp
 | `archive/` | Source material and retired docs. | — |
 | `working/` | Experiments and in-flight work-item docs (principle 8). | — |
 
-SCOPE and APPROACH are deliberately **orthogonal** (principle 3): SCOPE describes the problem space without bias toward any solution; APPROACH makes the case for a specific design against that neutral problem statement. Keeping them separate is what lets each be judged on its own terms.
+SCOPE and APPROACH are deliberately **orthogonal** (principle 3): SCOPE describes the problem space without bias toward any solution; APPROACH makes the case for a specific design against that neutral problem statement.
 
 ### Stage 2 — Content
 
@@ -78,7 +76,7 @@ Added when a brain tracks real work items across many sessions and needs rituals
 |---|---|
 | `<PREFIX>_WORK_SETUP.md` | Scaffolds a work item's `working/<WORK>_*` docs from an intake conversation. |
 | `<PREFIX>_WORK_CLOSEOUT.md` | Folds a concluded work item's working docs into the canonical store; retires them to `archive/`. |
-| `<PREFIX>_DREAM_CYCLE.md` | The periodic reflection pass: structural checks, claim verification, findings extraction. |
+| `<PREFIX>_DREAM_CYCLE.md` | The periodic reflection pass. |
 | `<PREFIX>_DREAM_LOG.md` | Append-only log of dream-cycle runs. |
 | Per-work-item working set | `working/<WORK>_{PLAN,FINDINGS,LOG,TASKS,CLAUDE,TESTING}.md` — unversioned, out of the read index. |
 
@@ -89,7 +87,7 @@ Brains that serve more than one target platform also split some docs by platform
 ## 4. The lifecycle
 
 - **A session** starts by reading `CLAUDE.md` and only the indexed files the question needs. It ends (when there's durable lineage worth keeping) by appending one entry to the LOG per `<PREFIX>_SESSION_CLOSEOUT.md`.
-- **A work item** — a feature, bug fix, or hardening effort — opens with `WORK_SETUP` (scaffold `working/` docs), runs across sessions logging to its own `<WORK>_LOG.md`, and closes with `WORK_CLOSEOUT` (fold durable knowledge into canonical docs, move working files to `archive/`).
+- **A work item** — a feature, bug fix, or hardening effort — opens with `WORK_SETUP`, runs across sessions logging to its own `<WORK>_LOG.md`, and closes with `WORK_CLOSEOUT`.
 - **Maintenance** runs on a cadence via `DREAM_CYCLE`: verify SCOPE's factual claims against the code, refresh APPROACH's external assumptions, promote LOG entries into FINDINGS, prune what's now re-derivable, and flag anything that needs human judgment.
 
 The through-line across all three: knowledge is captured as lineage in the LOG, distilled into the living docs on a known cadence, and continuously pruned toward the irreducible core.

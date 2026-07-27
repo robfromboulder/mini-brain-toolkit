@@ -1,6 +1,6 @@
 # Mini-Brain Toolkit: Check an Existing Mini-Brain
 
-> V5, 2026-07-13.
+> V8, 2026-07-24.
 
 This document is the procedure for evaluating an existing mini-brain against the pattern and surfacing where it could improve — whether the brain was built from this toolkit or grew on its own.
 
@@ -12,15 +12,15 @@ This document is the procedure for evaluating an existing mini-brain against the
 
 ## 1. Orient
 
-Read the target's entrypoint first (`CLAUDE.md` or equivalent), then list the repo top-level and its `archive/`/`working/` dirs. Identify: the namespace token in use, which canonical docs exist, whether there's a session log, and what stage the brain is at (`MBT_PATTERN.md` §3: seed / content / mature). Read the canonical docs' first lines (not their full bodies yet) to see version headers and purpose. This is a bounded, low-context pass — save heavy full-file reads for §3.
+Read the target's entrypoint first (`CLAUDE.md` or equivalent), then list the repo top-level and its `archive/`/`working/` dirs. Identify: the namespace token in use, which canonical docs exist, whether there's a session log, and what stage the brain is at (per `MBT_PATTERN.md`: seed / content / mature). Read the canonical docs' first lines (not their full bodies yet) to see version headers and purpose. This is a bounded, low-context pass — save heavy full-file reads for §3.
 
-If the repo has no entrypoint and no namespaced docs, it may not be a mini-brain at all — say so, and offer `MBT_CREATE_BRAIN.md` instead of forcing a principle-by-principle scoring.
+If the repo has no entrypoint and no namespaced docs, it may not be a mini-brain — or the path may be wrong. Say so and stop: report that the target doesn't look like a mini-brain, ask the user to confirm the location, and do nothing else — don't score it, and don't scaffold what's missing.
 
 ---
 
 ## 2. Score against the principles
 
-Walk the ten principles from `MBT_PATTERN.md` §2 one at a time, in order. For each, give a verdict — **present / partial / absent / not applicable** — with a one-line note on what you actually saw, and (when not present) the concrete opportunity. The table below is a checking aid; if it and `MBT_PATTERN.md` §2 ever diverge, §2 is authoritative.
+Walk the ten principles from `MBT_PATTERN.md` one at a time, in order. For each, give a verdict — **present / partial / absent / not applicable** — with a one-line note on what you actually saw, and (when not present) the concrete opportunity. The table below is a checking aid, not the authority.
 
 | # | Principle | What to look for |
 |---|---|---|
@@ -60,13 +60,13 @@ Also run the structural checks below; they're mechanical and catch the cheap, co
 
 ## 4. Report
 
-Produce a written assessment (do not modify the target). Structure it:
+Produce a written assessment. Structure it:
 
 - **Summary** — the brain's stage, its namespace, and a one-line overall read (what kind of shape it's in).
 - **What's working** — the principles it embodies well. Lead here.
 - **Principle scorecard** — the table from §2 with each verdict and note.
 - **Structural findings** — anything the §3 checks flagged, most-actionable first.
 - **Substance findings** — drifted SCOPE claims and pruning candidates, if any.
-- **Recommended next steps** — ranked, concrete opportunities. Frame each as "this brain does X well but Y would help because …", tied to a principle. If a step is "adopt lifecycle machinery," point at `MBT_CREATE_BRAIN.md` §5 and the relevant `templates/` file.
+- **Recommended next steps** — ranked, concrete opportunities. Frame each as "this brain does X well but Y would help because …", tied to a principle. If a step is "adopt lifecycle machinery," name the specific machinery and point at the relevant `templates/` file.
 
 Keep it proportionate: a healthy brain gets a short report that says so. Reserve length for real, actionable gaps.

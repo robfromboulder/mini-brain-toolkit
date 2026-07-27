@@ -1,6 +1,6 @@
 # Mini-Brain Toolkit: Mini-Brain Files
 
-> V11, 2026-07-24.
+> V12, 2026-07-24.
 
 ---
 
@@ -51,6 +51,8 @@ Only files in this table are current. `templates/` holds the base files `MBT_CRE
 | `MBT_SCOPE.md` | *none* | The problem statement stands alone; it precedes and outlives any design. |
 | `MBT_APPROACH.md` | `MBT_SCOPE.md` only | A design legitimately responds to the problem it addresses — never reaching down into implementation. |
 | `MBT_FINDINGS.md` | *none* | Implementation decisions that did *not* shape the approach — downstream of it, so nothing upstream to cite. |
+| `MBT_PATTERN.md` | *none* | The canonical definition stands alone; it precedes the procedures that enact it and the research that extends it, and reaches down to neither. |
+| `MBT_RESEARCH.md` | *none* | The conclusions the two registries feed upward into; naming them would reach *downstream*, and it needs nothing else. |
 | `MBT_COMPARABLES.md` | `MBT_RESEARCH.md` only | A fact registry serves the conclusions it feeds; it may name that conclusions doc (upstream) and nothing else. |
 | `MBT_BIOLOGY.md` | `MBT_RESEARCH.md` only | Same, for the cognitive-science grounding registry. |
 
@@ -68,7 +70,7 @@ All prose in this repo is read like a proof or a program, not a wiki. The reader
 
 - **Say it once.** Each fact has exactly one home. Duplication isn't emphasis; it's a second copy to keep in sync and a sign the first statement didn't land.
 - **Define before use.** Introduce a thing where the reader first needs it, in dependency order. A forward pointer ("see Step 3", "as below") means the content is in the wrong place — move it, don't link to it.
-- **No sideways narration.** A section explains its own subject and never recaps a sibling's ("as covered in X", "see Y"). Intra-unit pointers are fine; navigation between units re-couples things meant to stand alone.
+- **No sideways narration.** A section explains its own subject and never recaps a sibling section's; pointing (`§3`) is fine, restating is not. Across files, the Orthogonal content rule above governs.
 - **Every claim earns its keep.** State only what the reader must act on and what you could defend if challenged. Decorative rationale, benefits, and history are cut.
 - **Resolve, don't provoke.** A detail that raises a question it doesn't answer is a net loss — prefer omission to a half-explanation.
 - **One job per sentence.** A sentence tells the reader what to do or explains why — never several at once.

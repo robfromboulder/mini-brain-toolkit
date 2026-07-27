@@ -1,10 +1,10 @@
 # Mini-Brain Toolkit: Create a New Mini-Brain
 
-> V6, 2026-07-13.
+> V9, 2026-07-24.
 
 This document is the procedure for standing up a new mini-brain from `templates/`.
 
-The output of a first run is a **stage-1 seed** (see `MBT_PATTERN.md` §3): a working brain with an entrypoint, empty canonical docs, and the working/archive structure — ready to be filled. Filling SCOPE and APPROACH (stage 2) and adding lifecycle machinery (stage 3) are later steps in this same document, run when the work justifies them, never ahead of need.
+The output of a first run is a **stage-1 seed** (the first of the stages defined in `MBT_PATTERN.md`): a working brain with an entrypoint, empty canonical docs, and the working/archive structure — ready to be filled. Filling SCOPE and APPROACH (stage 2) and adding lifecycle machinery (stage 3) are later steps in this same document.
 
 This procedure is **additive and idempotent**: it creates only what's missing and never overwrites existing work, so it's safe to re-run as the brain grows.
 
@@ -16,11 +16,11 @@ Before creating anything, settle these with the user. Establishment turns a deci
 
 - **Project** — what the brain is *about*. One line: the system whose un-derivable knowledge this will hold.
 - **Namespace token** — the SCREAMING_SNAKE_CASE token every knowledge file carries (principle 6). Short, distinctive, unlikely to collide with another brain loaded in the same session. Mirror the project name where natural (`orchard` → `ORCHARD`); pick an acronym when the name is long (`customer-data-platform` → `CDP`). Confirm it with the user — it touches every filename and is churn to change later.
-- **Location** — the repo (principle 2: the brain is its own repository, not a folder inside the product). Convention is a sibling repo named `mini-<project>-brain`, so a coding session in the product repo can load it with `Read ../mini-<project>-brain/CLAUDE for instructions`.
+- **Location** — the repo (principle 2: the brain is its own repository, not a folder inside the product). Convention is a sibling repo named `mini-<project>-brain`, so a coding session in the product repo can load it with `Read ../mini-<project>-brain/CLAUDE.md for instructions`.
 - **Source material (optional)** — existing docs the SCOPE/APPROACH will be distilled from (design docs, PRDs, tickets, prior wikis). If they exist, they go in `archive/` as source, not into the canonical docs verbatim.
 - **Platforms (optional)** — if the project targets more than one platform that will need platform-specific docs later, note it now; it affects the namespace layering (`<PLATFORM>_<PREFIX>_*` etc.) but not the seed.
 
-Don't gather more than this for a seed. SCOPE and APPROACH content is filled in §4, not here.
+Don't gather more than this for a seed.
 
 ---
 
@@ -29,7 +29,7 @@ Don't gather more than this for a seed. SCOPE and APPROACH content is filled in 
 Before writing, list the target directory. Classify each seed file:
 
 - **Missing** — create it from the template (§3).
-- **Exists** — leave it. Never overwrite. If it's an empty/partial canonical doc, it will be filled in §4, not recreated here.
+- **Exists** — leave it. Never overwrite.
 
 A brand-new repo has nothing but perhaps a `README.md`, `LICENSE`, and `.git`; all seed files are created. A repo you're formalizing (e.g. a stray `NOTES.md`) gets only its missing pieces, and existing notes are treated as source material to fold in later, not clobbered.
 
@@ -66,7 +66,7 @@ Seeding produces skeletons; this step turns them into content. Do it in order �
 
 **SCOPE — the problem, objectively.** Author `<PREFIX>_SCOPE.md`: problem statement, current state, goals (as outcomes, not deliverables), what's not in scope, and open questions. Keep it **solution-neutral** — it describes the problem space so any approach can be judged against it. If distilling from source material in `archive/`, strip strategy/tactics/vendor choices out of the goals; those belong in APPROACH. Then **fact-check every falsifiable claim against the actual codebase** — a scope authored from management docs drifts from the code in predictable ways (it overstates uniformity, mislabels by name, lags the code's evolution). Correct what the code contradicts; bump the version.
 
-**APPROACH — the chosen design.** Author `<PREFIX>_APPROACH.md`: strategic approach, architecture, key design decisions (with alternatives weighed), and what gets built. This is where solution commitments live. Cite SCOPE goals by section so each design choice traces to a problem it solves. Keep APPROACH and SCOPE orthogonal: if you find yourself faulting SCOPE for not matching an APPROACH decision, that's importing solution bias into the problem statement — stop.
+**APPROACH — the chosen design.** Author `<PREFIX>_APPROACH.md`: strategic approach, architecture, key design decisions (with alternatives weighed), and what gets built. This is where solution commitments live. Trace each design choice to the SCOPE goal it serves, cited by name. Keep APPROACH and SCOPE orthogonal: if you find yourself faulting SCOPE for not matching an APPROACH decision, that's importing solution bias into the problem statement — stop.
 
 Record the reasoning and course-corrections of this authoring work in the LOG at session closeout (§6). The *decisions* that are invisible from the resulting docs go in FINDINGS as they arise.
 
@@ -74,19 +74,19 @@ Record the reasoning and course-corrections of this authoring work in the LOG at
 
 ## 5. Grow into the mature lifecycle (stage 3)
 
-Add these **only when the work justifies them** (see `MBT_PATTERN.md` §3) — typically when the brain starts tracking work items across many sessions. Each is copied from `templates/`, namespaced, added to the read index, and bumps `CLAUDE.md`.
+Add these **only when the work justifies them** (the stage model in `MBT_PATTERN.md`) — typically when the brain starts tracking work items across many sessions. Each is copied from `templates/`, namespaced, added to the read index, and bumps `CLAUDE.md`.
 
 - `templates/WORK_SETUP.md` → `<PREFIX>_WORK_SETUP.md` and `templates/WORK_CLOSEOUT.md` → `<PREFIX>_WORK_CLOSEOUT.md` — the open/close bookends for work items (a feature, bug fix, or hardening effort). They reference the per-work-item working set in `templates/work/`.
 - `templates/DREAM_CYCLE.md` → `<PREFIX>_DREAM_CYCLE.md` plus a `<PREFIX>_DREAM_LOG.md` (header only) — the periodic reflection pass.
 
-Don't scaffold these into a stage-1 brain. An empty dream cycle and unused work-item bookends are read-index clutter that the reader must skip; add them the first time a real work item or a real drift-review need appears.
+Don't scaffold these into a stage-1 brain; add them the first time a real work item or a real drift-review need appears.
 
 ---
 
 ## 6. Close out and hand off
 
 1. Append the first LOG entry per `<PREFIX>_SESSION_CLOSEOUT.md`, recording what this establishment session did and decided (namespace choice, source material, fact-check corrections).
-2. Run the structural check from `MBT_CHECK_BRAIN.md` §"Structural checks" — read index ↔ disk, version headers, cross-references, namespace prefix — and fix anything it flags.
+2. Run a structural check — read index ↔ disk, version headers, cross-references, namespace prefix — and fix anything it flags.
 3. Report to the user: the namespace token used, which files were **created** vs. already **existed**, what stage the brain is at, and the natural next step (fill SCOPE, or add lifecycle machinery).
 
 Do not commit unless the user asks. If the repo is on its default branch, branch first.

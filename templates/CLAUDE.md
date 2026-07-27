@@ -20,7 +20,7 @@ Only files in this table are current. `archive/` holds source material, retired/
 
 `working/` holds experiments and a work item's in-flight `<WORK>_*` docs. When a work item concludes, fold them into the canonical docs and **move** (not delete) them to `archive/`.
 
-<!-- As the brain matures (see MBT_CREATE_BRAIN.md §5), add the lifecycle docs to this index:
+<!-- As the brain matures, add the lifecycle docs to this index:
 | Work setup — scaffold a work item's working docs | `<PREFIX>_WORK_SETUP.md` |
 | Work closeout — fold working docs into the mini-brain | `<PREFIX>_WORK_CLOSEOUT.md` |
 | Periodic health check and content refresh | `<PREFIX>_DREAM_CYCLE.md` |
@@ -67,7 +67,7 @@ All prose in this repo is read like a proof or a program, not a wiki. The reader
 
 - **Say it once.** Each fact has exactly one home. Duplication isn't emphasis; it's a second copy to keep in sync and a sign the first statement didn't land.
 - **Define before use.** Introduce a thing where the reader first needs it, in dependency order. A forward pointer ("see Step 3", "as below") means the content is in the wrong place — move it, don't link to it.
-- **No sideways narration.** A section explains its own subject and never recaps a sibling's ("as covered in X", "see Y"). Intra-unit pointers are fine; navigation between units re-couples things meant to stand alone.
+- **No sideways narration.** A section explains its own subject and never recaps a sibling section's; pointing (`§3`) is fine, restating is not. Across files, the Orthogonal content rule above governs.
 - **Every claim earns its keep.** State only what the reader must act on and what you could defend if challenged. Decorative rationale, benefits, and history are cut.
 - **Resolve, don't provoke.** A detail that raises a question it doesn't answer is a net loss — prefer omission to a half-explanation.
 - **One job per sentence.** A sentence tells the reader what to do or explains why — never several at once.

@@ -1,10 +1,8 @@
 # Mini-Brain Toolkit: Scoping Statement
 
-> V4, 2026-07-09.
+> V6, 2026-07-24.
 
 This document defines the problem that the mini-brain toolkit addresses, separately from design decisions and implementation details, as an objective and unbiased resource.
-
-The mini-brain pattern has emerged organically across several projects as a way to hold a project's un-derivable knowledge in a small, curated set of plain-text files. It works, but at the time this toolkit was conceived it existed only as tacit convention plus one philosophical write-up — portable to no one who hadn't already seen the exemplars. Section 1 makes that gap precise.
 
 ---
 
@@ -40,15 +38,15 @@ Every file in the pattern's file set should have a maintained base template with
 
 ### 2.5 Exemplify the pattern it defines
 
-The toolkit should itself be a mini-brain, following its own conventions at the sophistication of a healthy content-stage brain. Dogfooding makes the repo a worked example a reader can inspect, and it is the strongest possible test that the pattern and templates are usable in practice.
+The toolkit should itself be a mini-brain, following its own conventions at the sophistication of a healthy content-stage brain.
 
 ---
 
 ## 3. What Is Not In Scope
 
 - **A general knowledge-management or "second-brain" system.** The toolkit serves the mini-brain pattern specifically — small, curated, shrink-toward-irreducible. Comprehensive knowledge capture is the opposite bet and is out of scope.
-- **Automated or machine-managed capture.** The pattern is deliberately human-curated. Auto-extracting memories, vector stores, and background ingestion belong to a different family of tools (surveyed in `MBT_RESEARCH.md`) and are explicitly not what this toolkit provides.
-- **Executable tooling — CLI, plugins, packaged automation.** The toolkit is agentic instructions plus templates, consumed by an agent reading markdown. A distributable CLI or IDE integration is a separate concern; `MBT_RESEARCH.md` tracks it, this scope does not include it.
+- **Automated or machine-managed capture.** The pattern is deliberately human-curated. Auto-extracting memories, vector stores, and background ingestion belong to a different family of tools and are explicitly not what this toolkit provides.
+- **Executable tooling — CLI, plugins, packaged automation.** The toolkit is agentic instructions plus templates, consumed by an agent reading markdown. A distributable CLI or IDE integration is a separate concern; this scope does not include it.
 - **Automatic migration of existing brains.** Assessment recommends; it does not rewrite a target brain in place. Bringing an existing brain up to the current pattern is a human-directed activity, not an automated one.
 - **Prescribing project-specific content.** The toolkit defines structure and procedure, not what any given project's scope, approach, or findings should say.
 
