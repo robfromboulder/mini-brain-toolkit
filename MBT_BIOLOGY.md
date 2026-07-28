@@ -24,7 +24,7 @@ The pattern's mechanisms mapped to their biological analogs, with each mapping's
 
 ## 2. Target fields
 
-One subsection per field. Each carries: the key research (with `reviewed` date), the pattern's relationship to it, a candidate mechanism's status where one exists, and the new research a currency pass should hunt for.
+One subsection per field. Each carries: the key research (with `reviewed` date), the pattern's relationship to it, a candidate mechanism's status where one exists, and the new research the next follow-on pass should hunt for.
 
 ### 2.1 Systems consolidation (complementary learning systems)
 

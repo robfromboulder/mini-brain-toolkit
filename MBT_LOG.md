@@ -103,3 +103,42 @@ Rob's session, with Claude as co-author. It set out to score three candidate dif
 - Show mechanism, not category: "a periodic agent-run pass" lost the reader; "verifying all claims against the codebase" convinced them. The concrete list *is* the argument.
 - Adoption-side differentiators (nothing-extra, team-shaped) are the wrapper that makes the content-side differentiator (shrink-by-design) land; stated alone, shrink reads as philosophy.
 - A README claim is a toolkit obligation: "you'll be asked to save what the session decided" was true of one project's local practice until the hook template made it true of the toolkit. Positioning work surfaces shipping gaps.
+
+---
+
+# Repositioning fallout in the research docs, the follow-on-research rename, and dream-cycle cost containment (2026-07-27)
+
+**Session ID**: `8f53a437-1774-4746-9d97-c4e259b182f5`
+
+Rob's session, with Claude as co-author. It opened as a review of how the README repositioning lands on the comparison docs and grew into four deliverables: the research agenda absorbing the new positioning as comparison surfaces to defend, a repo-wide retirement of "currency check" in favor of "follow-on research" and "freshness," a rewrite of the research agenda as a standalone document free of run-history narration, and cost-containment controls folded into the dream cycle after a post-mortem of the expensive dry run. Committed at closeout.
+
+## Turn by turn
+
+- Rob asked how the repositioning commit impacts the comparison docs. Claude found no facts invalidated — the impact was one-sided: the outward positioning staked three claims (just-chat capture, team-owned via PR, self-improving) while the research agenda only defended shrink-by-design. Each new pillar already had a nearest threat sitting in the registry: Copilot Memory (frictionless but uncurated — a review/approve step there would attack a headline pillar), and Letta's git-backed Context Repositories (makes team-shared, PR-reviewed memory natural; the landscape had never been scored per-user vs. team-shared). Also surfaced: the hook makes the instruction-file family our delivery channel, not just our anti-pole; the README's speed/autonomy claims rest on evidence gaps the agenda itself admits; and a tension between the README's "every brain does follow-on research" and the agenda's "a product brain's research pass is a plain currency check."
+- Rob said address it all, and resolved the tension: dream cycles are core to the pattern even though young brains defer them, and follow-on research with curiosity about what it doesn't know is what every brain's dream does — only the registries are toolkit-specific, because this brain's field happens to be the memory-systems landscape. Claude added the two-layer positioning and a fifth comparison thread (stress-test the adoption pillars), widened the Copilot/Letta/CLAUDE.md watch signals, and swept the terminology.
+- Rob then flagged that the research agenda narrated its own history — a first deep pass, dated headlines, "done" markers — pointing at dream-cycle runs whose logs were deliberately not kept (the dry run). Claude confirmed the dream log holds only its header and rewrote the agenda as standing conclusions: run-status markers became "Standing result:" / "Open," provenance sentences and dated headlines went, external world-facts with dates stayed.
+- Rob asked for a cost evaluation of the dream cycle with a dry run if needed. Claude traced the file history: the expensive run happened under the original instructions, whose research phase was a from-scratch field survey with agent fan-out per family; the registry refactor the following day was already the cost fix, converting the phase to a delta pass. A dry run of the structural phase (all checks pass, effectively free) plus sizing showed the residual risks: every registry date is identical (the fossil of the one big run), so "select the stalest" selects everything; no numeric agent budget anywhere; agent-mandatory delegation for reads of a few hundred lines; the research phase unconditional; the disconfirmation gate readable as extra searches; and the empty dream log disconnecting the instructions' own effort-calibration loop.
+- Rob challenged the proposed cap: a full re-baseline shouldn't take multiple cycles of hoping for coverage. Claude's answer — the cap is a default, and the invocation is the override point — held, plus two softeners: a capped rotation self-converges in about three cycles via the verified dates, and a full re-baseline under the delta workflow is change-checking, not the synthesis that made the first run expensive.
+- Rob approved folding everything in. Claude added to the dream cycle: a ~10 sub-agent budget per routine cycle (exceeding it is a report flag), the ~5-stalest triage cap with the full-re-baseline override, a nap gate (skip the research phase when all registry dates are fresher than ~30 days and nothing is flagged), fetch-before-agent for change-checks, size-conditional delegation at roughly 500 lines (also in the template), the disconfirmation-is-not-extra-fan-out clarification, and keep-the-log-even-for-dry-runs. The roadmap's sleep-pressure item was marked partly operationalized.
+- Rob had Claude add a dream-cycle entry to the README's usage section, then reverted it: dreaming is for contributors, not end users of the toolkit.
+
+## Decisions
+
+- **"Follow-on research," not "currency check"** — Rob's call, on connotation ("currency" reads as foreign-exchange) and substance: the phrase pair "follow-on research" / "curious about what it doesn't know" is the pattern's real claim. "Freshness" took over where the meaning is genuinely re-checking dates. Swept through the research agenda, both registries, the dream cycle, and the template — the dream cycle's research phase is now named "Follow-on research."
+- **Every brain dreams with curiosity; only the registries are toolkit-specific** — Rob's call, resolving the README-vs-agenda tension in the README's favor. A product brain's follow-on research targets whatever its project depends on; the adversarial attack-the-thesis mandate stays exclusive to this research brain.
+- **The research agenda stands alone** — Rob's call: no references to its own revision history or to dream-cycle runs whose logs weren't kept. Conclusions are stated as standing results; the freshness trail lives in the registries' verified/reviewed dates.
+- **Budget as default, invocation as override** — Rob probed, Claude recommended, Rob accepted: routine dreams check the ~5 stalest entries and stay under ~10 sub-agents; asking for a full re-baseline lifts the cap and the nap gate for that run.
+- **Dream cycle stays out of the README** — Rob's call after seeing it added: contributor-facing machinery, wrong audience for the usage section.
+- Version calls: one bump per uncommitted change-set even across multiple editing rounds (research agenda, comparables registry, and dream cycle each absorbed several rounds under a single bump); the biology registry's terminology rename was classified editorial, no bump.
+
+## What didn't work
+
+- The README dream-cycle usage entry — written, then reverted the same session for audience mismatch.
+- "Select the stalest" as the sole triage rule — defeated by its own history: one big baseline run left every entry equally stale, so the rule selected everything. Uniform dates need a numeric cap, not a comparative.
+
+## Lessons
+
+- A positioning rewrite creates research obligations: every new outward claim is a comparison surface that needs its own stress test, and existing registry watch signals change stakes when positioning changes — a review/approve step in a competitor went from side-note to pillar threat without the competitor doing anything.
+- Run-history framing in a conclusions doc rots the moment the runs' logs aren't kept. Conclusions docs should state standing results; provenance and freshness belong in the registries.
+- The expensive dream was the one-time baseline build, not the steady state — but qualitative cost guardrails ("keep the fan-out small") don't survive contact with edge cases like uniform staleness; numeric defaults with explicit user overrides do.
+- Discarding a dream log entry discards the mechanism that makes the next cycle cheaper: orientation and effort calibration read exactly that log.

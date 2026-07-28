@@ -1,6 +1,6 @@
 # Mini-Brain Toolkit: Research Agenda
 
-> V8, 2026-07-16.
+> V9, 2026-07-27.
 
 This document is the forward-looking research agenda for the mini-brain pattern: where it could go next, and the *conclusions* of how it sits among related work. Nothing here is a committed decision — it holds the open gaps and the threads worth pulling.
 
@@ -16,7 +16,7 @@ The lead thread is the comparative analysis (§1), which is the one most worth i
 
 ### 1.1 Where we stand today
 
-The neighborhood has been surveyed across four families — coding-agent instruction conventions (CLAUDE.md, AGENTS.md, Cursor/Copilot rules), production agent-memory systems (Mem0, Letta/MemGPT, Zep/Graphiti, LangMem, MemOS), academic reflection/memory (Generative Agents, Reflexion, A-MEM, MemoryBank), and human knowledge patterns (ADRs, Zettelkasten, docs-as-code, Karpathy's LLM wiki). Three conclusions carry the most weight and are the baseline any deeper comparison starts from:
+The neighborhood divides into four families — coding-agent instruction conventions (CLAUDE.md, AGENTS.md, Cursor/Copilot rules), production agent-memory systems (Mem0, Letta/MemGPT, Zep/Graphiti, LangMem, MemOS), academic reflection/memory (Generative Agents, Reflexion, A-MEM, MemoryBank), and human knowledge patterns (ADRs, Zettelkasten, docs-as-code, Karpathy's LLM wiki). Three conclusions carry the most weight and are the baseline any deeper comparison starts from:
 
 - **Popularity and similarity to us are anti-correlated.** The most-adopted tools (Copilot instructions, Cursor rules, Mem0) are the *least* like the mini-brain; the things most like it (ADRs, Karpathy's wiki, A-MEM, Generative-Agents reflection) are niche or academic.
 - **Almost everyone accumulates automatically and is machine-managed** — the exact inverse of the mini-brain axiom: human-curated, deliberately shrinking, store-only-the-non-re-derivable.
@@ -24,12 +24,14 @@ The neighborhood has been surveyed across four families — coding-agent instruc
 
 The best one-line positioning: *durable reflection memory for an AI coding agent, expressed as docs-as-code, governed by ADR-like rationale capture and an irreducible-core / minimize-tokens constraint.* Two anchors for a newcomer: **ADRs for the intent, Generative-Agents reflection for the mechanism — the mini-brain sits where they meet.**
 
+That one-liner is the *content-side* core. The outward positioning wraps it in adoption-side pillars: capture is just chatting (conversational, sealed by a proactive closeout at natural stopping points), the brain is team-owned (a shared repo whose changes land as reviewed PRs), and the brain is self-improving (it dreams: verify, prune, follow-on research). The pillars are comparison surfaces in their own right, stress-tested as thread 5 in §1.3.
+
 ### 1.2 The landscape — conclusions
 
 The conclusions the landscape data supports, grouped by the four families:
 
 - **The column nobody else shares is "forgets/shrinks by design" via human editorial judgment.** Cognee has an explicit `forget` API, Vektor Memory achieves ~97% automatic reduction, and Zep invalidates facts — but all three do it *mechanically*. The three major platforms (Mem0, Letta, Zep) all moved *away* from forgetting in their latest releases.
-- **Per family, in one line each:** coding-agent conventions — highest adoption, lowest similarity; they inject *how to act*, not *why*, and AGENTS.md is the explicit anti-mini-brain (spec excludes rationale/lineage). Production memory systems — mostly opaque and machine-managed; they validate the episodic→semantic shape but invert our curation-and-shrink stance. Academic reflection/memory — the seminal mechanisms our dream cycle echoes (Generative Agents, A-MEM, Auto-Dreamer), all automatic. Human knowledge patterns — closest to our content/intent (ADRs) and workflow (Karpathy's wiki), but human-reader and monotonic.
+- **Per family, in one line each:** coding-agent conventions — highest adoption, lowest similarity; they inject *how to act*, not *why*, and AGENTS.md is the explicit anti-mini-brain (spec excludes rationale/lineage) — yet the family is also our delivery channel, since the brain's hook rides as a merged section in each project repo's instruction file: a carrier, not just a contrast. Production memory systems — mostly opaque and machine-managed; they validate the episodic→semantic shape but invert our curation-and-shrink stance. Academic reflection/memory — the seminal mechanisms our dream cycle echoes (Generative Agents, A-MEM, Auto-Dreamer), all automatic. Human knowledge patterns — closest to our content/intent (ADRs) and workflow (Karpathy's wiki), but human-reader and monotonic.
 
 **Ranked on two axes (because they diverge):**
 - **By adoption** (most→least): Copilot instructions → Cursor rules → CLAUDE.md → AGENTS.md → Mem0 → Cognee ≈ Zep → Letta → ADRs (eng-ubiquitous) → Obsidian/Zettelkasten → MemOS → LangMem → Vektor → A-MEM → MemoryBank/Generative Agents. (Cline/Kilo Memory Bank deprecated; Roo Code archived — 2026.)
@@ -41,12 +43,13 @@ Two ingredients make it more than a relabel: (1) the **shrink-toward-irreducible
 
 ### 1.3 The deeper comparison — method and standing results
 
-The first deep pass ran in the July 2026 dream cycle, executing all four threads below; the systems registry has been refreshed with primary-source data and the conclusions follow each thread. Future runs should attack the thesis from a different angle and re-verify only the *stale* entries rather than re-running the whole landscape.
+The deep comparison runs as five threads. Threads 1–4 carry standing results; thread 5 is open. Each pass attacks the thesis from a fresh angle and re-verifies only the *stale* registry entries rather than re-running the whole landscape.
 
-1. **Refresh the landscape against primary sources.** Done July 2026. Major shifts: Mem0 V3 regressed to ADD-only (accumulates forever), Letta pivoted to git-backed "Context Repositories," Zep CE discontinued, Cognee emerged as a major player (~28k★), AGENTS.md donated to Linux Foundation, Copilot Memory shipped with code-citation-based invalidation. "Context engineering" displaced "prompt engineering" as the field's label.
-2. **Stress-test the "shrink-by-design" claim.** Done July 2026. **The differentiator holds.** Closest threats: Vektor Memory (97% automatic reduction), Claude Code Auto Dream (200-line budget), "Memory as Metabolism" paper (eigenvector-centrality-based pruning). Each shares one element — none combine human editorial curation + deliberate shrinking + irreducible-core convergence. One published counterargument found: Folkman's "Your CLAUDE.md should grow, not shrink" — conflates lossy automated summarization with editorial distillation, but the underlying concern (context collapse from aggressive compression) deserves engagement.
-3. **Move from system-level to feature-level.** Done July 2026. Best-in-class per capability: provenance (Zep/Graphiti bi-temporal), governance metadata (MemClaw/Caura four-tier trust), memory-to-code invalidation (Copilot Memory code citations — **the most significant competitive gap**; the STALE benchmark shows even the best automated approaches achieve only 55.2% accuracy), episodic-to-semantic consolidation (structural strength for us; validated by SimpleMem's deferred-consolidation outperformance of Mem0).
-4. **Look for empirical evidence, not just taxonomy.** Done July 2026. Key findings in §1.5. "Less is more" is well-supported empirically. Stale information is actively harmful. Deferred consolidation outperforms eager. LLM-driven continuous consolidation degrades quality. **Critical gap: no direct human-curated-vs-automated A/B test exists at the mini-brain's level of operation.**
+1. **Refresh the landscape against primary sources.** Standing result: Mem0 V3 regressed to ADD-only (accumulates forever), Letta pivoted to git-backed "Context Repositories," Zep CE discontinued, Cognee emerged as a major player (~28k★), AGENTS.md donated to Linux Foundation, Copilot Memory shipped with code-citation-based invalidation. "Context engineering" displaced "prompt engineering" as the field's label.
+2. **Stress-test the "shrink-by-design" claim.** Standing result: **the differentiator holds.** Closest threats: Vektor Memory (97% automatic reduction), Claude Code Auto Dream (200-line budget), "Memory as Metabolism" paper (eigenvector-centrality-based pruning). Each shares one element — none combine human editorial curation + deliberate shrinking + irreducible-core convergence. One published counterargument: Folkman's "Your CLAUDE.md should grow, not shrink" — conflates lossy automated summarization with editorial distillation, but the underlying concern (context collapse from aggressive compression) deserves engagement.
+3. **Move from system-level to feature-level.** Standing result — best-in-class per capability: provenance (Zep/Graphiti bi-temporal), governance metadata (MemClaw/Caura four-tier trust), memory-to-code invalidation (Copilot Memory code citations — **the most significant competitive gap**; the STALE benchmark shows even the best automated approaches achieve only 55.2% accuracy), episodic-to-semantic consolidation (structural strength for us; validated by SimpleMem's deferred-consolidation outperformance of Mem0).
+4. **Look for empirical evidence, not just taxonomy.** Standing result (evidence in §1.5): "less is more" is well-supported empirically. Stale information is actively harmful. Deferred consolidation outperforms eager. LLM-driven continuous consolidation degrades quality. **Critical gap: no direct human-curated-vs-automated A/B test exists at the mini-brain's level of operation.**
+5. **Stress-test the adoption-side pillars.** Open — no standing result. The outward positioning stakes *just-chat capture* and *team-owned memory* alongside shrink-by-design; each needs the thread-2 treatment. (a) *Just-chat capture* — conversational capture with human sign-off at a proactive closeout. Copilot Memory and Claude Code Auto Dream are equally frictionless but uncurated, so the question is whether frictionless **plus** curated is occupied; a review/approve step shipping in either would attack a headline pillar, not a side property. (b) *Team-owned memory via PR review* — Letta's git-backed Context Repositories are the nearest threat, since git-backed makes team-shared and PR-reviewed natural; the landscape has never been scored on a per-user vs. team-shared axis, and this pillar makes that axis load-bearing. Fold into thread 2's next run: *self-improving with follow-on research* — the dream analogs consolidate and prune, but none claim curiosity about what the brain doesn't know; verify it as a differentiator candidate.
 
 ### 1.4 Borrowable forms (without borrowing the growth bias)
 
@@ -65,7 +68,7 @@ The one comparison already resolved and not worth re-opening: **git vs. Obsidian
 
 ### 1.5 Empirical evidence
 
-Evidence relevant to the mini-brain's core hypotheses, assembled from the July 2026 dream cycle. No prior evidence review existed.
+Evidence relevant to the mini-brain's core hypotheses.
 
 **Supporting "less is more" / "shrink toward irreducible":**
 - Microsoft "Less Context, Better Agents" (Jun 2026, arXiv:2606.10209): context pruned to last 5 tool calls outperformed full context with 63.9% fewer tokens.
@@ -93,6 +96,8 @@ Evidence relevant to the mini-brain's core hypotheses, assembled from the July 2
 3. No "dream cycle" effectiveness measurement.
 4. No coding-specific memory benchmark beyond single-task SWE-bench.
 
+The outward positioning asserts faster iteration and triage and more autonomous agent changes — claims resting on gaps 1 and 2, which makes those gaps the evidence our own claims are waiting on.
+
 ---
 
 ## 2. Capability roadmap
@@ -102,7 +107,7 @@ Ideas for extending the pattern, grouped by horizon. Each is a one-line pointer;
 **Near-term — enrich what's already captured.**
 - *Provenance in findings* — tag each finding with the PR/session that birthed it.
 - *Confidence tags* — mark findings `settled` / `provisional` / `contested`; the dream cycle revisits the shaky ones.
-- *Freshness ledger* — record the commit/date each verifiable claim was last checked; the dream prioritizes the stalest. **Partly operationalized:** the research registries now carry `verified` and `reviewed` dates so the dream cycle's research-currency pass diffs rather than re-derives; not yet applied to internal findings.
+- *Freshness ledger* — record the commit/date each verifiable claim was last checked; the dream prioritizes the stalest. **Partly operationalized:** the research registries carry `verified` and `reviewed` dates so the dream cycle's follow-on research diffs rather than re-derives; not yet applied to internal findings.
 
 **Mid-term — let the codebase enforce the memory.**
 - *Verification recipes over stored facts* — store *how to re-derive* a volatile number (a grep, a test name) plus *why it matters*, not the number.
@@ -113,21 +118,21 @@ Ideas for extending the pattern, grouped by horizon. Each is a one-line pointer;
 
 **Longer-term — the dream cycle studying itself, and multi-user.**
 - *Instruction-drift detection* — check that the setup/closeout/dream templates still match what work items actually produce.
-- *Sleep pressure; nap vs. deep sleep* — let merge activity modulate how often and how deeply the brain dreams. (The dream cycle's delta workflow is the precondition: a cheap "is anything stale?" check over the registries is what a cadence gate would trigger on.)
+- *Sleep pressure; nap vs. deep sleep* — let merge activity modulate how often and how deeply the brain dreams. **Partly operationalized:** the dream cycle gates its research phase on registry staleness, so a fresh brain naps; merge-activity modulation of cadence and depth remains open.
 - *Surprise as the capture trigger* — mark prediction-error moments in the log and preferentially promote them.
 - *Readiness probes* — keep a curated set of questions (never cached answers) the dream must answer with high confidence from brain + code; a question it can't answer is the finding.
 - *Negative-space self-audit* — the generative twin of the dream's reactive check: generate the "questions the repo can't answer" set against the current branch, then sort brain content three ways — questions the brain answers (confirmed load-bearing), questions it misses (capture gap), and content now answerable from code alone (shed it). This adds a second drift axis beyond "is this still true?": "is this still *ours to hold*?"
-- *Multi-user evolution* — role-lensed recall over one canonical store (PM reads deferred-decisions + approach; support reads "what this doesn't solve" + field log; eng reads threat model + findings), new episodic streams (support tickets, QA repros, customer conversations) that consolidate into the same findings, and classification built into capture rather than bolted on. The framing: the brain is a **boundary object** — episodic stays personal (NOTES remain attributed to who saw it), semantic goes collective (findings are shared), so one artifact serves each role's lens without forking the brain. Transactive memory: the team need not all know everything, only collectively know it and where it lives.
+- *Multi-user evolution* — the team-shared substrate (one repo, PR-reviewed changes) is already shipped; this item is the machinery beyond it: role-lensed recall over one canonical store (PM reads deferred-decisions + approach; support reads "what this doesn't solve" + field log; eng reads threat model + findings), new episodic streams (support tickets, QA repros, customer conversations) that consolidate into the same findings, and classification built into capture rather than bolted on. The framing: the brain is a **boundary object** — episodic stays personal (NOTES remain attributed to who saw it), semantic goes collective (findings are shared), so one artifact serves each role's lens without forking the brain. Transactive memory: the team need not all know everything, only collectively know it and where it lives.
 
 ---
 
 ## 3. Open questions
 
 - **Which roadmap items survive the shrink test?** Several ideas (provenance, freshness, confidence tags) *add* per-finding structure. Each must earn its keep against principle 1 — does it capture something non-re-derivable, or is it metadata the git history already implies? The comparison in §1 is partly in service of answering this: adopt a form only where it beats what version control already gives for free.
-- **Does the pattern's differentiator hold as the field matures?** Tracked as §1.3 thread 2; escalate to a positioning change in the approach only if a deeper compare shows "shrink-by-design" is no longer distinctive.
+- **Does the pattern's differentiator hold as the field matures?** Tracked as §1.3 thread 2 for shrink-by-design and thread 5 for the adoption-side pillars; escalate to a positioning change in the approach only if a deeper compare shows a staked claim is no longer distinctive.
 - **How do we operationalize "is this still ours to hold?"** The negative-space self-audit (§2) implies a second drift axis: content that has quietly become derivable from code should be shed, not just re-verified. Where does that check live in the dream cycle's checklist, and how does it avoid false positives on knowledge that only *looks* re-derivable?
 - **How is the readiness-probe set composed?** One global list, or composed from per-work-item questions contributed at closeout — and store questions only, never cached answers, or it becomes a second copy of FINDINGS waiting to drift. The name is also unsettled ("readiness probes" / "confidence checks"). Interacts with the toolkit-vs-brain question below.
-- **How much of this belongs in the toolkit vs. in an individual brain?** Some items (test-binding, freshness ledger) are per-brain conventions the templates would carry; others (instruction-drift detection) are toolkit-level. The line is unsettled and interacts with the universal-vs-exemplar-specific machinery question. The two comparison registries are firmly toolkit-specific — they exist because *this* brain's subject is the pattern; a product brain's research pass is a plain currency check that needs neither.
+- **How much of this belongs in the toolkit vs. in an individual brain?** Some items (test-binding, freshness ledger) are per-brain conventions the templates would carry; others (instruction-drift detection) are toolkit-level. The line is unsettled and interacts with the universal-vs-exemplar-specific machinery question. The two comparison registries are firmly toolkit-specific — they exist because *this* brain's subject is the pattern. The dream cycle's follow-on research is not toolkit-specific: every brain dreams with curiosity about what it doesn't know, aimed at its own field — the toolkit's field happens to be the memory-systems landscape, which is why its research grew registries; a product brain's follow-on research targets whatever its project depends on and needs neither.
 - **When does shrinking go too far?** *Shrink-by-design* is the differentiator, but aggressive compression can cause context collapse — shedding load-bearing signal, the concern behind Folkman's "your CLAUDE.md should grow, not shrink" (§1.3 thread 2). The pattern separates editorial distillation from lossy summarization but doesn't say where distillation crosses into loss. Should it name an explicit floor on the shrink mandate, or does principle 1 (store only what can't be re-derived) already bound it?
 - **Is "few large files" still the right bet for an LLM reader?** LLM-as-primary-reader is what justifies few-large-files-with-a-read-index over many-small-linked-notes (§1.2), but the empirical support is thin: the McMillan factorial study found file structure has no detectable effect on adherence (§1.5), and the field is drifting toward more, smaller, mode-activated files (Cursor, Copilot). Does the stance still hold — and if the evidence is genuinely neutral, is it a bet we keep on other grounds (human maintainability, token cost)?
 - **Should memory-to-code invalidation move to near-term?** It is the pattern's most significant competitive gap and the one capability with a shipping external implementation (Copilot's read-time code-citation check, §1.3 thread 3). The enabling pieces — claim-to-code dependency index, test-binding — currently sit under mid-term (§2). Given it is where the field is ahead of us, does it earn promotion?
@@ -139,4 +144,4 @@ Ideas for extending the pattern, grouped by horizon. Each is a one-line pointer;
 
 The pattern leans on biological metaphors for memory and cognition; the open question is whether that grounding is load-bearing or merely flattering.
 
-**Headline (2026-07-15):** partially load-bearing. 2 of 7 mappings are genuinely load-bearing (canonical docs as semantic memory; the dream cycle as sleep-dependent consolidation + synaptic pruning), 3 are decorative (`working/`, work rituals, the re-derivability criterion), 2 are mixed (LOG as episodic memory, shrinking as pruning). The grounding is a useful design heuristic and a generative source of mechanism candidates — not a deep structural parallel; alternative frameworks (ADR practice, document management, knowledge graphs) produce similar designs for most mechanisms.
+**Headline:** partially load-bearing. 2 of 7 mappings are genuinely load-bearing (canonical docs as semantic memory; the dream cycle as sleep-dependent consolidation + synaptic pruning), 3 are decorative (`working/`, work rituals, the re-derivability criterion), 2 are mixed (LOG as episodic memory, shrinking as pruning). The grounding is a useful design heuristic and a generative source of mechanism candidates — not a deep structural parallel; alternative frameworks (ADR practice, document management, knowledge graphs) produce similar designs for most mechanisms.

@@ -1,13 +1,13 @@
 # Mini-Brain Toolkit: Comparable Systems Registry
 
-> V2, 2026-07-16.
+> V3, 2026-07-27.
 
 A registry of the systems the mini-brain is measured against — coding-agent instruction conventions, production agent-memory systems, academic reflection/memory work, and human knowledge patterns. It holds *facts* about each system — state, canonical source, and when we last checked — as rows to be diffed, not prose to be re-read. The conclusions these facts support live in `MBT_RESEARCH.md`.
 
 Keeping facts here and conclusions there is deliberate: conclusions are stable and re-derived rarely; facts about a fast-moving field go stale and must be diffed, not rebuilt. So the registry is refreshed as a *delta* — re-check the stalest entries, add whatever is new — never re-surveyed from scratch.
 
 **Living vs. static.**
-- **Living** — repos and products that version, release, and change state (stars, licensing, forgetting behavior). These carry a `change signal` and are the entries a currency pass actually re-checks. Sort by `verified` date; check the stalest.
+- **Living** — repos and products that version, release, and change state (stars, licensing, forgetting behavior). These carry a `change signal` and are the entries a freshness pass actually re-checks. Sort by `verified` date; check the stalest.
 - **Static** — published papers and foundational conventions whose content is fixed. Once recorded they are not re-fetched; the only work they generate is *supersession* (a follow-up paper) or *new siblings appearing*. They accumulate; they do not need freshness checks.
 
 **Maintenance.** Update state and `verified` dates **in place** — do not paste a fresh giant table each cycle (that is how the old single-table survey drifted). `verified` is the date we last confirmed the state against the canonical source. When a new system appears, add a row; when one is deprecated/archived, keep the row and set status — a dead project we've already accounted for is cheaper than one we rediscover and re-investigate every run.
@@ -20,10 +20,10 @@ Highest adoption, lowest similarity to us: these inject *how to act*, not *why*.
 
 | System | Type | Canonical source | Verified | Known state | Relevance & change signal |
 |---|---|---|---|---|---|
-| CLAUDE.md | living | code.claude.com/docs/en/memory | 2026-07-15 | Anthropic's memory-file convention; the mini-brain's own substrate | Baseline convention, not a competitor. Watch: auto-memory / Auto Dream behavior. |
+| CLAUDE.md | living | code.claude.com/docs/en/memory | 2026-07-15 | Anthropic's memory-file convention; the mini-brain's own substrate and the host of its project-repo hook | Baseline convention and delivery channel, not a competitor. Watch: auto-memory / Auto Dream behavior. |
 | AGENTS.md | living | agents.md | 2026-07-15 | ~60k+ repos; donated to Linux Foundation's Agentic AI Foundation (Dec 2025) | The explicit **anti-mini-brain** — spec excludes rationale/lineage. Watch: spec adding any "why" capture. |
 | Cursor rules | living | cursor.com/docs/rules | 2026-07-15 | `.cursor/rules/*.mdc`, YAML frontmatter; activation modes | Rules only, no rationale. Watch: any consolidation/forgetting feature. |
-| Copilot custom instructions | living | docs.github.com/copilot | 2026-07-15 | Seven file types; **Copilot Memory auto-learns, 28-day expiry, code-citation invalidation** | Code-citation invalidation is our most significant competitive gap. Watch: editorial/curation controls. |
+| Copilot custom instructions | living | docs.github.com/copilot | 2026-07-15 | Seven file types; **Copilot Memory auto-learns, 28-day expiry, code-citation invalidation** | Code-citation invalidation is our most significant competitive gap. Watch: editorial/curation controls — a review/approve step on Memory would occupy frictionless-plus-curated capture, now a headline positioning pillar. |
 | Windsurf Memories | living | docs.windsurf.com/windsurf/cascade/memories | 2026-07-15 | Cascade auto-generated + user memories | Auto-managed. Watch: shrink/forget behavior. |
 | GEMINI.md | living | (Google Gemini CLI docs) | 2026-07-15 | Gemini's memory-file convention | Convention sibling. Watch: rationale/lineage capture. |
 | Aider `CONVENTIONS.md` | living | aider.chat/docs/usage/conventions.html | 2026-07-15 | Static conventions file, human-authored | Rules only. Low volatility. |
@@ -41,7 +41,7 @@ Mostly opaque and machine-managed; they validate the episodic→semantic shape b
 | Mem0 | living | github.com/mem0ai/mem0 | 2026-07-15 | ~61k★; adoption leader; **V3 regressed to ADD-only** extraction (accumulates forever) | The adoption leader moving *away* from forgetting — strong evidence for our differentiator. Watch: any return of consolidation-with-deletion. |
 | Cognee | living | github.com/topoteretes/cognee | 2026-07-15 | ~28k★; graph+vector; explicit **`forget` API** and `improve` API | Closest "forgets" API — but automatic, not editorial. Watch: human-in-the-loop curation. |
 | Zep / Graphiti | living | github.com/getzep/graphiti · arxiv 2501.13956 | 2026-07-15 | ~29k★; temporal knowledge graph; **fact invalidation preserves rather than deletes**; Zep CE discontinued, Graphiti sole open offering | Bi-temporal provenance leader. Invalidation ≠ deletion. Watch: a delete/shrink path. |
-| Letta / MemGPT | living | github.com/letta-ai/letta · letta.com/blog/sleep-time-compute | 2026-07-15 | ~24k★; **pivoted to git-backed "Context Repositories" (MemFS)**; sleep-time compute; archival memory has **no forgetting mechanism** | The git-backed pivot is structurally closest on substrate. Watch: editorial deletion/shrink in MemFS. |
+| Letta / MemGPT | living | github.com/letta-ai/letta · letta.com/blog/sleep-time-compute | 2026-07-15 | ~24k★; **pivoted to git-backed "Context Repositories" (MemFS)**; sleep-time compute; archival memory has **no forgetting mechanism** | The git-backed pivot is structurally closest on substrate and makes team-shared, PR-reviewed memory natural. Watch: editorial deletion/shrink in MemFS; a team review workflow, which would contest the team-owned pillar. |
 | LangMem / LangGraph | living | langchain.com/blog/langmem-sdk-launch | 2026-07-15 | Backend-agnostic store; names episodic/semantic/procedural taxonomy; can delete | Source of the memory-type vocabulary. Watch: shrink-toward-core behavior. |
 | MemOS / MemCube | living | arxiv 2507.03724 | 2026-07-15 | ~10k★, Alibaba-backed; multi-type + per-memory governance metadata + lifecycle | Governance-metadata leader. Watch: editorial-curation semantics. |
 | MemClaw / Caura | living | (vendor docs) | 2026-07-15 | Four-tier trust, PII detection; in production at eToro | Governance/classification leader. Watch: forgetting-by-judgment. |

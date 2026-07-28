@@ -10,7 +10,7 @@ Follow these instructions when the user asks the mini-brain to dream and improve
 
 **Confidence discipline.** As you draw each conclusion — *before* writing the edit — state a confidence from 1–100. It is a proxy for how many unknowns remain, not a grade. A score below ~70 is a signal to search harder or to flag rather than edit, and obligates you to name the specific unknowns capping it (an unverifiable claim, an inconclusive agent, a thin search). Never round up to look finished. Carry the final scores into the Phase 5 self-evaluation.
 
-**Context management:** Structural checks (Phase 1) and external-currency checks (Phase 3) have bounded context footprints and are handled directly. Heavy reads — full codebase searches, full LOG and FINDINGS files (Phases 2 and 4) — should be delegated to Explore agents. The active context handles agent briefing, result synthesis, editorial judgments, and all file edits.
+**Context management:** Structural checks (Phase 1) and follow-on research (Phase 3) have bounded context footprints and are handled directly. Heavy reads — full codebase searches, full LOG and FINDINGS files (Phases 2 and 4) — are delegated to Explore agents when they exceed what the active context should absorb (roughly 500+ lines); below that, read directly. The active context handles agent briefing, result synthesis, editorial judgments, and all file edits.
 
 **Error recovery:** None. If an Explore agent returns inconclusive results, a file is unexpectedly missing, a claim can't be verified, or any step produces an outcome the instructions don't cover — stop the cycle and report the error to the user. Do not retry, work around, or silently skip. A stopped cycle is a signal that the instructions need updating, not that the executor needs to improvise.
 
@@ -47,11 +47,11 @@ Fix any failures. Report what was found and fixed.
 
 ---
 
-## Phase 3: Approach currency
+## Phase 3: Follow-on research
 
-`<PREFIX>_APPROACH.md` may depend on specifics that change independently of the codebase. Two flavors — check whichever the approach actually commits to:
+The dream's outward-looking pass — the brain staying curious about what it doesn't know. `<PREFIX>_APPROACH.md` may depend on specifics that change independently of the codebase. Two flavors — check whichever the approach actually commits to:
 
-- **Technical currency** — versions of frameworks/libraries the design pins, protocol/spec versions, runtime/platform/model availability, breaking API changes.
+- **Technical freshness** — versions of frameworks/libraries the design pins, protocol/spec versions, runtime/platform/model availability, breaking API changes.
 - **Vendor/market** — vendor status (acquisitions, shutdowns, pivots), pricing, licensing changes, new entrants.
 
 Use web search to verify. Factual corrections (versions, dates, pricing): update in place. Status/version changes affecting a *recommended* choice: flag for the user. New entrants or alternatives: note without promoting to primary without explicit direction. Do not change strategic framing — flag if a change suggests reconsidering it.
