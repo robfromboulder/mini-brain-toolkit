@@ -1,6 +1,6 @@
 # Mini-Brain Toolkit: Technical Approach
 
-> V6, 2026-07-24.
+> V7, 2026-07-27.
 
 This document describes the approach for addressing the problems defined in `MBT_SCOPE.md`. It covers the strategic approach and key design decisions — not delivery sequence.
 
@@ -49,3 +49,7 @@ Template files use bare names and placeholders so the copy-and-substitute step i
 ### 2.5 Defer mature machinery when establishing
 
 A new brain gets the seed only. The mature-lifecycle docs are real read-index entries a reader must skip on every load, so scaffolding them empty is a cost paid every session for machinery not yet in use. Establishment therefore defers them until the work justifies them — the same shrink-toward-what's-needed discipline the pattern applies to content, applied to structure.
+
+### 2.6 The project-repo hook is merged, not copied
+
+Where a developer works migrates over a project's life: before project code exists, work items are thought through in the brain itself; once the project is established, iteration happens in a project repo, and switching directories to use the brain is friction that kills the habit. The hook template answers this — a section merged into each project repo's `CLAUDE.md` that loads the brain into that repo's sessions on demand and has the agent proactively offer a session closeout at natural stopping points — so the brain's workflows run wherever the developer already is, in both directions and at every stage. It was distilled from the exemplar where it emerged, where the closeout prompt measurably increased brain use. Because the target `CLAUDE.md` belongs to the project repo and may already exist, the hook is merged in as a section, never copied over — the same rule as `README.md`.

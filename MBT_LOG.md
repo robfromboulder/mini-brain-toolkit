@@ -65,3 +65,41 @@ Rob made the single call to fix all findings; the per-fix editorial choices were
 
 - A cleanup pass can *create* duplication: the staged rewrite of `MBT_SCOPE.md`'s intro had tightened it into a near-verbatim collision with the problem statement two paragraphs later. Whole-file review catches what diff review misses.
 - Summary tables and "at-a-glance" sections are where say-it-once dies quietly: `MBT_BIOLOGY.md` had grown three-to-four homes per fact (mapping table, tally, per-field entries, sources list), each individually defensible as a "view." The fix that held up was declaring one structure the data's home and making every other mention a pointer or deleting it.
+
+---
+
+# README repositioning, the project-repo hook, and the product→project sweep (2026-07-27)
+
+**Session ID**: `f9e592d2-1f41-451c-b00f-67f0ac704b1a`
+
+Rob's session, with Claude as co-author. It set out to score three candidate differentiators for the pattern against the second-brain landscape and retool the README around the strongest ones, and grew into three deliverables: a fully rewritten README, the Nebula-derived "working in the mini-brain" hook absorbed into the toolkit (`templates/PROJECT_HOOK.md` plus wiring in the pattern, the create procedure, and the approach), and a repo-wide terminology change from "product repo" to "project repo." Nothing committed — Rob asked for closeout without commit.
+
+## Turn by turn
+
+- Rob proposed three differentiators: software-project-shaped with multi-author/GitHub affinity; fully agentic (no need to understand the pattern to use it); and chats-as-the-raw-content, citing the Nebula brain's proactive session-closeout prompt as the development that most increased brain use. Claude scored chats-as-raw-content strongest (it answers the "I don't have time to maintain it" objection and had observed adoption evidence), software-shaped next (with the connected observation that a codebase ground truth is what makes shrink-by-design operational — a personal second brain has nothing to diff against), and fully-agentic strong only if worded to avoid reading as *automatic* capture, the pattern's anti-position.
+- Tracing the closeout-prompt instruction found it in the Nebula *product repo's* `CLAUDE.md`, not the brain's own files — meaning the README couldn't honestly claim just-chat behavior until the toolkit shipped the hook. Absorbing it became a prerequisite of the rewrite.
+- Rob supplied the hook's origin story: Nebula used its brain before any product repos existed, early work items were thought through in the brain and rolled out as code, and once developers shifted to iterating in the main repo, switching directories to use the brain was instantly awkward; the bidirectional structure fixed that. This became the pattern's "the workflow follows the developer in both directions" framing and the approach's new merged-not-copied design decision.
+- Claude drafted the hook template (stage-3 pieces held in a maturity comment, matching the entrypoint template's convention) and wired it in: the own-repository principle gained the hook as its load-on-demand mechanism, the seed file set notes the one piece living outside the brain, the lifecycle gained the closeout offer at natural stopping points, and the create procedure gained a project-repos intake question, a merge-don't-overwrite seed-table row, and a stage-3 uncomment note. The check procedure needed no edit — it works off the principles.
+- The README then went through many rounds of tightening driven by Rob against a "skeptical reader who knows second brains" standard: much shorter, no claim that invites challenge, no abstraction the reader must map themselves.
+
+## Decisions
+
+- **Drop the tagline entirely** — Rob's call, after asking for an honest opinion and Claude argued "self-improving software" claims the wrong subject (the *brain* is self-improving) and pattern-matches to AI hype. Replacement candidates all provoked questions they didn't answer ("why does small mean trustable?"), so the fix was removal; the opening sentence gained "about your software project" to absorb the tagline's anchoring job. For the GitHub repo description, Claude recommended "Capture the why behind your code, just by chatting with Claude."
+- **Kill the unprovable growth claims** — Rob's call. "Most knowledge systems die of growth… until nobody trusts them" was rewritten as the active, demonstrable "Mini-brains are self-improving" paragraph and moved last, its dreaming list settled at verify / prune / follow-on research with "curious about what it doesn't know" as the earned closer. Rob trimmed the list to three items; Claude argued "identifying potential conflicts" would duplicate verification and orphan the curiosity line, and "surfacing open questions" went too, for scan weight.
+- **The unification thesis leads** — Rob's course-correction: triage and estimates are aspects of the benefit, not the benefit; the benefit is code plus never-in-code knowledge as a single vehicle, versus details scattered across heads, tickets, wikis, and product docs.
+- **Keep "just Markdown files"** — Rob questioned the diminutive; Claude argued it is load-bearing (it answers "what do I have to install?") and "organized using" would raise questions instead; Rob accepted.
+- **"Project repo," not "product repo"** — Rob's call after the README settled on "project repos." Swept through the pattern, both procedures, the approach, and the templates; `templates/PRODUCT_HOOK.md` renamed to `PROJECT_HOOK.md`. Deliberately kept: "the product" as the shipped artifact in the own-repository principle, "product brain" as the dream cycle's term for a non-research brain, "production" systems, and the README's "product docs."
+- Version calls: the hook work was substantive (`MBT_PATTERN.md` V11, `MBT_CREATE_BRAIN.md` V10, `MBT_APPROACH.md` V7); the terminology sweep was classified editorial, no bumps.
+
+## What didn't work
+
+- Claude's first README rewrite failed the skeptic test in review: too many words, "codebase keeps the brain honest" was an internals lecture where the reader needed an outcome, and the epistemology of re-derivability belongs in the docs, not the advert.
+- The approach doc's new design decision initially wanted to cite the pattern and procedure docs by name — disallowed by its declared upstream-only exemption (scope only); reworded to speak of "the establishment procedure" generically.
+- The adoption evidence behind the hook (the closeout prompt's effect on Nebula) had to stay anonymous in public-facing text; the approach doc cites "the exemplar where it emerged."
+
+## Lessons
+
+- The skeptic test is the strongest editing tool this repo has found for outward-facing prose: every sentence must be self-evident, demonstrable in the repo, or cut. It killed the tagline, the growth claims, and half the word count while making the claims stronger.
+- Show mechanism, not category: "a periodic agent-run pass" lost the reader; "verifying all claims against the codebase" convinced them. The concrete list *is* the argument.
+- Adoption-side differentiators (nothing-extra, team-shaped) are the wrapper that makes the content-side differentiator (shrink-by-design) land; stated alone, shrink reads as philosophy.
+- A README claim is a toolkit obligation: "you'll be asked to save what the session decided" was true of one project's local practice until the hook template made it true of the toolkit. Positioning work surfaces shipping gaps.

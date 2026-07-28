@@ -1,11 +1,14 @@
 # mini-brain-toolkit 🧠
-Mini-brains for self-improving software
 
-A **mini-brain** is a small set of Markdown files that captures the *why* behind a project: what problems the project tries to solve (and how), what tradeoffs were considered, why a decision went one way vs another, what was tried and discarded along the way, and what constraints weren't obvious at first. Your code, git history, and tickets rarely hold all this background detail — but this is crucial to understanding how to debug or improve your software.
+A **mini-brain** captures knowledge about your software project that can't be derived from code or git history: why decisions went one way and not another, what was tried and discarded, what was surprising. Normally these details live in your team's heads, or scattered across tickets, wikis, and product docs. Using a mini-brain with your codebase helps iterate and triage faster, and gives Claude the context to make more changes autonomously.
 
-Most knowledge systems grow forever: wikis, second brains, agent memories, all expanding until no one trusts them. A mini-brain does the opposite. By design, it shrinks toward what matters, staying small enough to trust and to use every day. A Claude session or AI agent can intelligently load mini-brain knowledge into context to plan a feature or track down a bug. Company leaders and new engineers can interactively chat with the mini-brain instead of just reading docs and code.
+**Using a mini-brain is just chatting with Claude.** Your coding sessions are the raw material. At a natural stopping point, you'll be asked to save what the session decided and learned. There's nothing to file, no format to learn, and you never leave the repo you're working in.
 
-This toolkit has two workflows: one creates a new mini-brain for a project, the other checks an existing mini-brain against the pattern and suggests improvements. The toolkit is itself a mini-brain and a good example.
+**Mini-brains are built for software teams.** A mini-brain is just Markdown files in a dedicated git repo, alongside your regular project repos. Changes to a mini-brain are made through commits and PRs, reviewed like any other code — the knowledge belongs to the team, and teammates and AI agents all work from the same brain.
+
+**Mini-brains are self-improving.** On a schedule, a mini-brain dreams: verifying all claims against the codebase, pruning what's become derivable, and doing follow-on research. The brain stays small enough to read completely, and curious about what it doesn't know.
+
+This toolkit has two workflows: one creates a new mini-brain for a project and wires it into your project repos, the other checks an existing mini-brain against the pattern and suggests improvements. The toolkit is itself a mini-brain and a good example.
 
 ## Usage
 
@@ -13,7 +16,7 @@ This toolkit has two workflows: one creates a new mini-brain for a project, the 
 
 > Read ../mini-brain-toolkit/MBT_CREATE_BRAIN for instructions and set up a mini-brain for &lt;my project&gt;
 
-👆 asks about your project, picks a namespace token, and produces the seed file set from `templates/`
+👆 asks about your project, picks a namespace token, produces the seed file set from `templates/`, and hooks the brain into your project repos
 
 #### Check an existing mini-brain (or a repo you suspect should have one):
 

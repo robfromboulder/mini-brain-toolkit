@@ -1,6 +1,6 @@
 # Mini-Brain Toolkit: The Mini-Brain Pattern
 
-> V10, 2026-07-24.
+> V11, 2026-07-27.
 
 This document is the operational definition of a mini-brain: what it *is*, the file set it's made of, and the lifecycle that keeps it true and small.
 
@@ -22,7 +22,7 @@ Ten principles define the pattern, ordered from most to least important. Each is
 
 1. **Keep only what can't be re-derived.** Record the decisions, reasons, rejected paths, and lessons that the code, its version-control history, and the project's tickets do not already contain. Leave everything derivable where it lives. Expect the brain to shrink as content becomes re-derivable — that is health, not decay.
 
-2. **Store the mini-brain in its own repository, separate from the code it describes.** The brain records how and why the product was built, so it must not be embedded in, versioned with, or shipped as part of the product. It sits beside the product repositories, is loaded on demand, and outlives any single one of them.
+2. **Store the mini-brain in its own repository, separate from the code it describes.** The brain records how and why the product was built, so it must not be embedded in, versioned with, or shipped as part of the product. It sits beside the project repositories, is loaded on demand, and outlives any single one of them. A short hook merged into each project repo's entrypoint pulls the brain to latest and loads it into a coding session on demand, so working with the brain never requires leaving the project repo — the separation costs the developer nothing.
 
 3. **Organize knowledge into orthogonal documents.** Give each document one dimension of the project — problem, approach, findings, session history — with no overlap between documents. Orthogonality lets each question map to exactly one file, lets each document be judged on its own terms, and keeps any one file small enough to load without the rest. That orthogonality has to hold in the prose, not just at the file boundaries: each document describes its own dimension without narrating its neighbors, and a reader reaches another document as a whole unit through the read index — not by reaching into its sections or threading cross-references through the body. (These numbered principles are a deliberate exception; most documents should expose no such independently-citable parts, or the read-index partitioning collapses back toward a wiki.)
 
@@ -64,6 +64,8 @@ The minimum viable brain.
 
 SCOPE and APPROACH are deliberately **orthogonal** (principle 3): SCOPE describes the problem space without bias toward any solution; APPROACH makes the case for a specific design against that neutral problem statement.
 
+One piece of the seed lives *outside* the brain: the hook section merged into each project repo's `CLAUDE.md` (principle 2's load-on-demand mechanism). A brain can precede its project repos — early work is thought through in the brain and rolled out as code — and the hook is added to each project repo as it appears, so the workflow follows the developer in both directions.
+
 ### Stage 2 — Content
 
 Same file set, now filled. SCOPE and APPROACH are authored (often distilled from source material parked in `archive/`, then fact-checked against the real codebase), the LOG accumulates session entries, and FINDINGS starts collecting the non-obvious. This is where a brain spends most of its life.
@@ -86,7 +88,7 @@ Brains that serve more than one target platform also split some docs by platform
 
 ## 4. The lifecycle
 
-- **A session** starts by reading `CLAUDE.md` and only the indexed files the question needs. It ends (when there's durable lineage worth keeping) by appending one entry to the LOG per `<PREFIX>_SESSION_CLOSEOUT.md`.
+- **A session** usually runs in a project repo, where the hook loads the brain on demand; it starts by reading `CLAUDE.md` and only the indexed files the question needs. At a natural stopping point — a PR opened, work paused, the user wrapping up — the agent offers a closeout, and (when there's durable lineage worth keeping) appends one entry to the LOG per `<PREFIX>_SESSION_CLOSEOUT.md`.
 - **A work item** — a feature, bug fix, or hardening effort — opens with `WORK_SETUP`, runs across sessions logging to its own `<WORK>_LOG.md`, and closes with `WORK_CLOSEOUT`.
 - **Maintenance** runs on a cadence via `DREAM_CYCLE`: verify SCOPE's factual claims against the code, refresh APPROACH's external assumptions, promote LOG entries into FINDINGS, prune what's now re-derivable, and flag anything that needs human judgment.
 

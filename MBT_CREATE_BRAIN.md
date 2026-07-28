@@ -1,6 +1,6 @@
 # Mini-Brain Toolkit: Create a New Mini-Brain
 
-> V9, 2026-07-24.
+> V10, 2026-07-27.
 
 This document is the procedure for standing up a new mini-brain from `templates/`.
 
@@ -16,7 +16,8 @@ Before creating anything, settle these with the user. Establishment turns a deci
 
 - **Project** — what the brain is *about*. One line: the system whose un-derivable knowledge this will hold.
 - **Namespace token** — the SCREAMING_SNAKE_CASE token every knowledge file carries (principle 6). Short, distinctive, unlikely to collide with another brain loaded in the same session. Mirror the project name where natural (`orchard` → `ORCHARD`); pick an acronym when the name is long (`customer-data-platform` → `CDP`). Confirm it with the user — it touches every filename and is churn to change later.
-- **Location** — the repo (principle 2: the brain is its own repository, not a folder inside the product). Convention is a sibling repo named `mini-<project>-brain`, so a coding session in the product repo can load it with `Read ../mini-<project>-brain/CLAUDE.md for instructions`.
+- **Location** — the repo (principle 2: the brain is its own repository, not a folder inside a project repo). Convention is a sibling repo named `mini-<project>-brain`, so a coding session in a project repo can load it with `Read ../mini-<project>-brain/CLAUDE.md for instructions`.
+- **Project repos (optional)** — the repos whose coding sessions should load the brain. Each gets the hook merged into its `CLAUDE.md` (§3). A brand-new project may have none yet; add the hook to each repo as it appears — this procedure is safe to re-run.
 - **Source material (optional)** — existing docs the SCOPE/APPROACH will be distilled from (design docs, PRDs, tickets, prior wikis). If they exist, they go in `archive/` as source, not into the canonical docs verbatim.
 - **Platforms (optional)** — if the project targets more than one platform that will need platform-specific docs later, note it now; it affects the namespace layering (`<PLATFORM>_<PREFIX>_*` etc.) but not the seed.
 
@@ -53,6 +54,7 @@ For each missing file, copy the corresponding file from `templates/` and substit
 | `templates/FINDINGS.md` | `<PREFIX>_FINDINGS.md` | Header + `*No findings recorded yet.*` |
 | `templates/LOG.md` | `<PREFIX>_LOG.md` | Header only; first entry is appended at first session closeout. |
 | `templates/SESSION_CLOSEOUT.md` | `<PREFIX>_SESSION_CLOSEOUT.md` | The authoritative LOG-entry format. |
+| `templates/PROJECT_HOOK.md` | each project repo's `CLAUDE.md` | *Merge* as a section into the existing file (create the file if the repo has none). Skip when no project repo exists yet. |
 
 Then create the two directories: `archive/` (drop any source material here) and `working/`. Git won't track empty directories — add a `.gitkeep` to `working/` if it would otherwise be empty, and remove it once real content lands.
 
@@ -78,6 +80,8 @@ Add these **only when the work justifies them** (the stage model in `MBT_PATTERN
 
 - `templates/WORK_SETUP.md` → `<PREFIX>_WORK_SETUP.md` and `templates/WORK_CLOSEOUT.md` → `<PREFIX>_WORK_CLOSEOUT.md` — the open/close bookends for work items (a feature, bug fix, or hardening effort). They reference the per-work-item working set in `templates/work/`.
 - `templates/DREAM_CYCLE.md` → `<PREFIX>_DREAM_CYCLE.md` plus a `<PREFIX>_DREAM_LOG.md` (header only) — the periodic reflection pass.
+
+When the brain gains work items, also uncomment the work-item block in each project repo's hook (the maturity comment inside `templates/PROJECT_HOOK.md`).
 
 Don't scaffold these into a stage-1 brain; add them the first time a real work item or a real drift-review need appears.
 

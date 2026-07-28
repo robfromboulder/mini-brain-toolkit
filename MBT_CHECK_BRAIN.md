@@ -25,7 +25,7 @@ Walk the ten principles from `MBT_PATTERN.md` one at a time, in order. For each,
 | # | Principle | What to look for |
 |---|---|---|
 | 1 | Keep only what can't be re-derived | Docs hold *why*, not a restated copy of the code/README. Is there a stated bias toward small? Contrast: a store that mirrors the architecture and only grows. |
-| 2 | Its own repository, outside the code | The brain is a standalone repo beside the product, not a folder committed inside the product repo. Contrast: docs forked and versioned with the code they describe. |
+| 2 | Its own repository, outside the code | The brain is a standalone repo beside the project repos, not a folder committed inside one. Contrast: docs forked and versioned with the code they describe. |
 | 3 | Orthogonal documents | Each doc covers one non-overlapping dimension (problem, approach, findings, log); a question maps to one file. Contrast: overlapping docs, or one doc covering everything. |
 | 4 | Log separate from distilled docs | An append-only, dated, attributed session log *and* a distinct set of living current-state docs. Contrast: one mutable blob, or an ever-growing log never distilled. |
 | 5 | Entrypoint with read index | One file a reader opens first, carrying a table of what to read for a given question and what's current vs. retired. Contrast: finding files by guesswork. |
