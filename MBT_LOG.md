@@ -171,3 +171,33 @@ Rob's session, with Claude as co-author, run from the exemplar brain's repo — 
 - A declared invariant with no enforcement check behind it is drift waiting to happen — the exemptions table carried direction rules the structural phase never graded, even though that phase was already grepping every cross-reference it would have needed.
 - Instructions that add to an agent's brief after its spawn point are un-executable in the order written; when porting any check near an agent spawn, put the duty into the brief's composition. Caught once in the exemplar's draft, avoided pre-emptively in the template port.
 - Cross-brain comparison pays in both directions in a single pass — cost mechanisms flowed out of this brain, integrity checks flowed back in — and each brain's log carrying only its own side keeps both accounts readable.
+
+---
+
+# Session-log routing upstreamed from one exemplar brain and mapped onto a second (2026-07-29)
+
+**Session ID**: `a90be50c-ecb5-478b-ba5f-4b10b802ecc5`
+
+Rob's session, with Claude as co-author. Rob had watched sessions in the first exemplar brain write their entries to the permanent log instead of the active work item's log — an effective early closeout that leaks unstable work-item detail into permanent memory — and had already tightened that exemplar's session-closeout doc to fix it. This session folded that tightening into this brain and the template, mapped it onto a second exemplar brain with a differently split structure, and corrected a drift the mapping surfaced. Landed: `MBT_SESSION_CLOSEOUT.md` V3, `CLAUDE.md` V13, `templates/SESSION_CLOSEOUT.md` and `templates/WORK_SETUP.md` in place, and in the second exemplar's repo its session-closeout doc (V4) and work-setup doc (V15). Nothing committed in either repo; Rob staged the first round mid-session and the commit is pending.
+
+## Turn-by-turn
+
+- The first exemplar's change: one entry format across the permanent and work-item logs, a priority-ordered routing rule — explicit direction, then session content, then current branch, with the permanent log demoted to last resort — ask-don't-guess when signals conflict, and a carve-out sending the session that runs a work item's closeout to the permanent log, since the work-item log is merged and retired in that same pass.
+- The template took the rule nearly whole, since template brains share the branch/PR work-item machinery; "product repo" became the template's existing "project repo" term. This brain took a reduced form: its work items are in-flight `working/` docs with no branch machinery and no separate project repo, so the branch signal dropped, the content signal carries the weight, and — with no work-setup procedure to scaffold a working log — first append creates it. `CLAUDE.md`'s maintenance-doc boundary line was the one sentence the change falsified ("governs `MBT_LOG.md`") and was widened to cover both logs.
+- Second change in the first exemplar reviewed on Rob's pointer: a work item's declared branch may be a glob when the item lands across several PRs. The bulk of that change serves that brain's open-work-items status listing, which neither this brain nor the template has — not ported. The kernel that does translate: the routing rule's branch signal accepts "exact name or glob."
+- Mapping to the second exemplar — one brain spanning two sibling products: it keeps two platform logs and no shared log, joins to two product repos, and holds one open work item with no runbook (hence no branch declaration). The routing rule landed with the platform log as last resort, picked by which platform the session's work concerns; a platform-agnostic session has no clear home, which was folded into ask-don't-guess rather than inventing a default from that brain's lands-on-one-platform-first convention. Its `CLAUDE.md` needed nothing — no boundary sentence to falsify, no listing machinery to receive the glob-status rules.
+- The mapping surfaced drift: the second exemplar's work-setup doc said work-item prefixes carry no platform token, while every open item on disk is platform-prefixed — practice had converged on that brain's own file-naming rule. Rob had the doc corrected to match practice, with examples pointing at real current items.
+- Read-back review before commit caught one defect: the glob allowance had been hung on the work-item runbook scaffold's branch line, and scaffolds are copied verbatim — the explanation would leak into every generated runbook as permanent noise (real runbooks in the exemplars carry no such clause). Moved to the `<work-branch>` substitution in `templates/WORK_SETUP.md`, the author-facing definition site; the scaffold reverted to pristine.
+
+## Decisions
+
+- **Content signal outranks branch signal** — carried over from the first exemplar and load-bearing beyond it: in the second exemplar an open work item can lack a runbook entirely, leaving content as its only signal (Claude's observation, Rob's ordering).
+- **No invented defaults for unroutable sessions** — a platform-agnostic session in the second exemplar asks rather than defaulting to its lands-on-one-platform-first convention; extending "ask, don't guess" beats creating log policy the brain's owner never set (Claude's call within the mapping).
+- **Ignore the first exemplar's status-listing machinery everywhere** — it has no home outside that brain; only the field-shape kernel travels (Rob's framing: skip what's too specific to translate).
+- **Guidance lives where its reader is** — the glob grammar sits with the setup procedure that writes the field, its legality with the routing rule that reads it, and nothing rides the generated scaffold (Claude, at the read-back review Rob asked for before committing).
+
+## Lessons
+
+- One rule, three reductions: the routing rule's portable core is the priority order, the last-resort default, and the closeout carve-out — which signals exist is a property of each brain's structure (branch/PR machinery, platform split), not of the rule.
+- Scaffold templates are a distribution channel, not documentation: prose added to a template ships verbatim into every file generated from it, so author-facing guidance belongs in the procedure that does the generating.
+- Mapping a rule onto a differently-shaped brain is an audit of that brain for free — the second exemplar's prefix drift only surfaced because routing forced a close read of how its work items are actually named.

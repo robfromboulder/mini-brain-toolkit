@@ -1,6 +1,6 @@
 # Mini-Brain Toolkit: Mini-Brain Files
 
-> V12, 2026-07-24.
+> V13, 2026-07-29.
 
 ---
 
@@ -58,7 +58,7 @@ Only files in this table are current. `templates/` holds the base files `MBT_CRE
 
 Absent a declared exemption, full orthogonality holds; a different project would declare its own set. A permitted reference still follows the Cross-references rule above — cited by name, never by section number.
 
-**Maintenance-doc boundaries.** `MBT_DREAM_CYCLE.md` and the procedure docs `MBT_CREATE_BRAIN.md` / `MBT_CHECK_BRAIN.md` enact the pattern, so each may cite `MBT_PATTERN.md` as the definition it implements — but they do not reference one another, and naming the knowledge files they operate on is inherent to being a procedure, not a cross-reference. `MBT_SESSION_CLOSEOUT.md` governs `MBT_LOG.md` and references nothing else.
+**Maintenance-doc boundaries.** `MBT_DREAM_CYCLE.md` and the procedure docs `MBT_CREATE_BRAIN.md` / `MBT_CHECK_BRAIN.md` enact the pattern, so each may cite `MBT_PATTERN.md` as the definition it implements — but they do not reference one another, and naming the knowledge files they operate on is inherent to being a procedure, not a cross-reference. `MBT_SESSION_CLOSEOUT.md` governs the session logs — `MBT_LOG.md` and any open work item's working log — and references nothing else.
 
 **No harness memory.** Don't use the persistent memory feature. All persistent project information belongs in the markdown files in this directory.
 

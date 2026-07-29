@@ -59,7 +59,7 @@ A brand-new work item has nothing on disk, so the full set is created. A partial
 
 ## 3. Generate the docs
 
-Create each missing doc from the template below, substituting `<WORK>` (SCREAMING_SNAKE), `<Work-Item Name>` (Title Case), and `<work-branch>`. Fill PLAN and FINDINGS with real content from the intake chat; leave the others as scaffolds for the implementer.
+Create each missing doc from the template below, substituting `<WORK>` (SCREAMING_SNAKE), `<Work-Item Name>` (Title Case), and `<work-branch>` — a single branch name, or a glob when the item will land across several branches/PRs. Fill PLAN and FINDINGS with real content from the intake chat; leave the others as scaffolds for the implementer.
 
 Do not add a `> V<N>` version header to any of these — working files are unversioned. Do not copy them into `archive/` (that happens only at closeout). Do not touch the read index or any canonical doc.
 
