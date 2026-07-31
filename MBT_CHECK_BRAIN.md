@@ -1,6 +1,6 @@
 # Mini-Brain Toolkit: Check an Existing Mini-Brain
 
-> V8, 2026-07-24.
+> V9, 2026-07-31.
 
 This document is the procedure for evaluating an existing mini-brain against the pattern and surfacing where it could improve — whether the brain was built from this toolkit or grew on its own.
 
@@ -13,6 +13,8 @@ This document is the procedure for evaluating an existing mini-brain against the
 ## 1. Orient
 
 Read the target's entrypoint first (`CLAUDE.md` or equivalent), then list the repo top-level and its `archive/`/`working/` dirs. Identify: the namespace token in use, which canonical docs exist, whether there's a session log, and what stage the brain is at (per `MBT_PATTERN.md`: seed / content / mature). Read the canonical docs' first lines (not their full bodies yet) to see version headers and purpose. This is a bounded, low-context pass — save heavy full-file reads for §3.
+
+**If the entrypoint carries a component registry**, the brain uses the component layer described in `MBT_COMPONENTS.md`. Note the hub token and every unit's directory and token, and list each unit's directory rather than the top level alone. Several checks below then run per unit instead of once. A brain with no registry is single-unit and everything runs as written.
 
 If the repo has no entrypoint and no namespaced docs, it may not be a mini-brain — or the path may be wrong. Say so and stop: report that the target doesn't look like a mini-brain, ask the user to confirm the location, and do nothing else — don't score it, and don't scaffold what's missing.
 
@@ -37,6 +39,8 @@ Walk the ten principles from `MBT_PATTERN.md` one at a time, in order. For each,
 
 Principles 9 and 10 are stage-3 machinery — mark them **not applicable** (not **absent**) for a seed or content-stage brain that legitimately doesn't need them yet. The signal is need, not a checkbox: a brain tracking many work items with no closeout ritual is a real gap; a small single-purpose brain without one is fine.
 
+Score a component-structured brain's principles 5 and 6 against the component layer, not against enumeration. Principle 5 is satisfied when a hub index, a doctype grammar and a registry together resolve every document — not when every document is listed. Principle 6 is satisfied by a token declared per unit, not by one token across the brain.
+
 ---
 
 ## 3. Verify substance, not just structure
@@ -45,16 +49,18 @@ Structure can be present while the content rots. Spot-check the two things that 
 
 - **SCOPE factual drift.** Pull a handful of falsifiable claims from the scope doc (class/tool/config names, counts, and especially *absence* claims like "no control does X") and check them against the actual codebase. Absence claims break silently when capabilities are added — prioritize them. Report claims that no longer hold.
 - **Re-derivable content.** Skim the canonical docs for passages that merely restate what the current code plainly shows. These are pruning candidates (principle 1) — the brain would be *more* trustworthy smaller.
+- **Shape.** Ask of each unit whether its SCOPE still states one problem, or whether writing it honestly today would force two onto the page. A brain that should have split is internally consistent either way, so no structural check can see it; the tell is a unit that authored one target's documents first and ported a second against them.
 
 Also run the structural checks below; they're mechanical and catch the cheap, common failures.
 
 ### Structural checks
 
-1. **Read index ↔ disk** — every file in the read index exists; no top-level knowledge file is missing from the index (orphans).
+1. **Read index ↔ disk** — every file in the read index exists; no top-level knowledge file is missing from the index (orphans). *Component brain:* the hub index covers hub documents only, so instead check the registry against disk both ways — every registered unit has a directory, every unit directory is registered, at every depth — and check grammar conformance: every unit carries the full doctype set, and any document beyond it appears in that unit's **Also holds** cell or its local index.
 2. **Version headers** — every canonical doc (except the exempt `*_LOG.md` / `*_TASKS.md`) opens with a well-formed `> V<N>, YYYY-MM-DD.` and no smuggled change-note.
-3. **Cross-references** — every mini-brain filename mentioned resolves to a current top-level file, not an `archive/` copy or a deleted file.
-4. **Namespace prefix** — every top-level knowledge file carries the namespace token (`ls *.md | grep -vE '^(CLAUDE|README)\.md$' | grep -v <PREFIX>` should return nothing).
+3. **Cross-references** — every mini-brain filename mentioned resolves to a current canonical file, not an `archive/` copy or a deleted file. *Component brain:* resolve against the unit that owns the token, not the repo root.
+4. **Namespace prefix** — every top-level knowledge file carries the namespace token (`ls *.md | grep -vE '^(CLAUDE|README)\.md$' | grep -v <PREFIX>` should return nothing). *Component brain:* run it per unit against that unit's declared token, over the unit's own documents and its `working/` — never its `archive/`, where retired files legitimately keep the basename they were retired under and need not be markdown. Match the token exactly: a document belongs to the unit whose token its name begins with in full, longest match winning. Tokens nest as prefixes (`VMR` inside `VMR_AGENT`), so the substring test above silently accepts a child's document sitting in its parent's directory.
 5. **Log discipline** — the session log is append-only and readable from its last separator (not required to be read whole); entries carry a date and session identifier.
+6. **Unit references** (component brains) — no document names a sibling unit, and none names another unit's files; naming one's own sub-components by name is the only cross-unit reference permitted. Logs and maintenance documents are exempt — a log records what a session touched, and a procedure names the files it operates on.
 
 ---
 
@@ -62,7 +68,7 @@ Also run the structural checks below; they're mechanical and catch the cheap, co
 
 Produce a written assessment. Structure it:
 
-- **Summary** — the brain's stage, its namespace, and a one-line overall read (what kind of shape it's in).
+- **Summary** — the brain's stage, its namespace (or its unit tree and per-unit tokens, if component-structured), and a one-line overall read (what kind of shape it's in).
 - **What's working** — the principles it embodies well. Lead here.
 - **Principle scorecard** — the table from §2 with each verdict and note.
 - **Structural findings** — anything the §3 checks flagged, most-actionable first.

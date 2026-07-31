@@ -1,6 +1,6 @@
 # Mini-Brain Toolkit: Create a New Mini-Brain
 
-> V10, 2026-07-27.
+> V11, 2026-07-31.
 
 This document is the procedure for standing up a new mini-brain from `templates/`.
 
@@ -15,7 +15,8 @@ This procedure is **additive and idempotent**: it creates only what's missing an
 Before creating anything, settle these with the user. Establishment turns a decision into files; it does not invent the project.
 
 - **Project** — what the brain is *about*. One line: the system whose un-derivable knowledge this will hold.
-- **Namespace token** — the SCREAMING_SNAKE_CASE token every knowledge file carries (principle 6). Short, distinctive, unlikely to collide with another brain loaded in the same session. Mirror the project name where natural (`orchard` → `ORCHARD`); pick an acronym when the name is long (`customer-data-platform` → `CDP`). Confirm it with the user — it touches every filename and is churn to change later.
+- **Components** — whether the knowledge divides. Ask whether one SCOPE can state the problem honestly, or whether writing it would force two or more coexisting problems onto the page. If it divides, the brain is component-structured and `MBT_COMPONENTS.md` governs its layout; ask again of any component whose own problem divides. Most brains hold one problem and answer no. Settle this before the token, because the answer changes how many tokens there are.
+- **Namespace token** — the SCREAMING_SNAKE_CASE token every knowledge file carries (principle 6). Short, distinctive, unlikely to collide with another brain loaded in the same session. Mirror the project name where natural (`orchard` → `ORCHARD`); pick an acronym when the name is long (`customer-data-platform` → `CDP`). Confirm it with the user — it touches every filename and is churn to change later. A component-structured brain settles one token for the hub and one for each component.
 - **Location** — the repo (principle 2: the brain is its own repository, not a folder inside a project repo). Convention is a sibling repo named `mini-<project>-brain`, so a coding session in a project repo can load it with `Read ../mini-<project>-brain/CLAUDE.md for instructions`.
 - **Project repos (optional)** — the repos whose coding sessions should load the brain. Each gets the hook merged into its `CLAUDE.md` (§3). A brand-new project may have none yet; add the hook to each repo as it appears — this procedure is safe to re-run.
 - **Source material (optional)** — existing docs the SCOPE/APPROACH will be distilled from (design docs, PRDs, tickets, prior wikis). If they exist, they go in `archive/` as source, not into the canonical docs verbatim.
@@ -60,11 +61,13 @@ Then create the two directories: `archive/` (drop any source material here) and 
 
 All canonical docs open with `> V1, <date>.`; apply `CLAUDE.md`'s version convention and exemptions.
 
+**For a component-structured brain**, seed the hub's documents at the root under the hub token, create one directory per component — nested where components nest — and seed each component's full doctype set from the same `SCOPE`, `APPROACH`, `FINDINGS` and `LOG` templates under that component's token. Those four are prefix-substituted and work identically at any depth. Use `templates/COMPONENTS_CLAUDE.md` for the entrypoint in place of `templates/CLAUDE.md`. `SESSION_CLOSEOUT` stays at the hub, one per brain, as does every maintenance document added later; `archive/` and `working/` belong to whichever unit first needs them, so create only the hub's now. `MBT_COMPONENTS.md` carries the registry's shape and the naming rules.
+
 ---
 
 ## 4. Fill SCOPE and APPROACH (stage 2)
 
-Seeding produces skeletons; this step turns them into content. Do it in order — APPROACH argues against SCOPE, so SCOPE settles first.
+Seeding produces skeletons; this step turns them into content. Do it in order — APPROACH argues against SCOPE, so SCOPE settles first. In a component-structured brain, work parents before children as well: a component's problem statement may cite its parent's, so the parent has to settle first.
 
 **SCOPE — the problem, objectively.** Author `<PREFIX>_SCOPE.md`: problem statement, current state, goals (as outcomes, not deliverables), what's not in scope, and open questions. Keep it **solution-neutral** — it describes the problem space so any approach can be judged against it. If distilling from source material in `archive/`, strip strategy/tactics/vendor choices out of the goals; those belong in APPROACH. Then **fact-check every falsifiable claim against the actual codebase** — a scope authored from management docs drifts from the code in predictable ways (it overstates uniformity, mislabels by name, lags the code's evolution). Correct what the code contradicts; bump the version.
 
@@ -91,6 +94,6 @@ Don't scaffold these into a stage-1 brain; add them the first time a real work i
 
 1. Append the first LOG entry per `<PREFIX>_SESSION_CLOSEOUT.md`, recording what this establishment session did and decided (namespace choice, source material, fact-check corrections).
 2. Run a structural check — read index ↔ disk, version headers, cross-references, namespace prefix — and fix anything it flags.
-3. Report to the user: the namespace token used, which files were **created** vs. already **existed**, what stage the brain is at, and the natural next step (fill SCOPE, or add lifecycle machinery).
+3. Report to the user: the namespace token used — or the unit tree and its per-unit tokens, for a component-structured brain — which files were **created** vs. already **existed**, what stage the brain is at, and the natural next step (fill SCOPE, or add lifecycle machinery).
 
 Do not commit unless the user asks. If the repo is on its default branch, branch first.

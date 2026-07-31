@@ -1,6 +1,6 @@
 # Mini-Brain Toolkit: The Mini-Brain Pattern
 
-> V11, 2026-07-27.
+> V12, 2026-07-31.
 
 This document is the operational definition of a mini-brain: what it *is*, the file set it's made of, and the lifecycle that keeps it true and small.
 
@@ -76,20 +76,22 @@ Added when a brain tracks real work items across many sessions and needs rituals
 
 | File | Role |
 |---|---|
-| `<PREFIX>_WORK_SETUP.md` | Scaffolds a work item's `working/<WORK>_*` docs from an intake conversation. |
+| `<PREFIX>_WORK_SETUP.md` | Scaffolds a work item's `working/<PREFIX>_<WORK>_*` docs from an intake conversation. |
 | `<PREFIX>_WORK_CLOSEOUT.md` | Folds a concluded work item's working docs into the canonical store; retires them to `archive/`. |
 | `<PREFIX>_DREAM_CYCLE.md` | The periodic reflection pass. |
 | `<PREFIX>_DREAM_LOG.md` | Append-only log of dream-cycle runs. |
-| Per-work-item working set | `working/<WORK>_{PLAN,FINDINGS,LOG,TASKS,CLAUDE,TESTING}.md` — unversioned, out of the read index. |
+| Per-work-item working set | `working/<PREFIX>_<WORK>_{PLAN,FINDINGS,LOG,TASKS,CLAUDE,TESTING}.md` — unversioned, out of the read index. |
 
 Brains that serve more than one target platform also split some docs by platform (`<PLATFORM>_<PREFIX>_*`), keeping shared findings in the un-prefixed file and platform-specific ones in the platform files.
+
+Brains whose knowledge divides into several components — where one SCOPE cannot state the problem honestly, because writing it would force two or more coexisting problems onto the page — instead give each component its own subdirectory, nesting where a component's problem divides again. Such a brain declares a namespace token per component rather than one brain-wide, and its entrypoint resolves documents from a doctype grammar and a component registry instead of enumerating them. The read index names the convention that governs this.
 
 ---
 
 ## 4. The lifecycle
 
 - **A session** usually runs in a project repo, where the hook loads the brain on demand; it starts by reading `CLAUDE.md` and only the indexed files the question needs. At a natural stopping point — a PR opened, work paused, the user wrapping up — the agent offers a closeout, and (when there's durable lineage worth keeping) appends one entry to the LOG per `<PREFIX>_SESSION_CLOSEOUT.md`.
-- **A work item** — a feature, bug fix, or hardening effort — opens with `WORK_SETUP`, runs across sessions logging to its own `<WORK>_LOG.md`, and closes with `WORK_CLOSEOUT`.
+- **A work item** — a feature, bug fix, or hardening effort — opens with `WORK_SETUP`, runs across sessions logging to its own `<PREFIX>_<WORK>_LOG.md`, and closes with `WORK_CLOSEOUT`.
 - **Maintenance** runs on a cadence via `DREAM_CYCLE`: verify SCOPE's factual claims against the code, refresh APPROACH's external assumptions, promote LOG entries into FINDINGS, prune what's now re-derivable, and flag anything that needs human judgment.
 
 The through-line across all three: knowledge is captured as lineage in the LOG, distilled into the living docs on a known cadence, and continuously pruned toward the irreducible core.

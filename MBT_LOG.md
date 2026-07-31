@@ -201,3 +201,42 @@ Rob's session, with Claude as co-author. Rob had watched sessions in the first e
 - One rule, three reductions: the routing rule's portable core is the priority order, the last-resort default, and the closeout carve-out — which signals exist is a property of each brain's structure (branch/PR machinery, platform split), not of the rule.
 - Scaffold templates are a distribution channel, not documentation: prose added to a template ships verbatim into every file generated from it, so author-facing guidance belongs in the procedure that does the generating.
 - Mapping a rule onto a differently-shaped brain is an audit of that brain for free — the second exemplar's prefix drift only surfaced because routing forced a close read of how its work items are actually named.
+
+---
+
+# Component layer added as an opt-in convention set, from a three-project brain that broke the namespace (2026-07-31)
+
+**Session ID**: `93f4946d-f171-4054-86d4-8c833f90bb86`
+
+Rob's session, with Claude as co-author. It began as a review of a bootstrap plan for a brain spanning three sibling projects, which proposed six peer namespace families in one flat directory. The review found the scheme unparseable, and Rob redirected from "is this plan right" to "what does a brain look like at ten or thirty components" — which turned a brain-seeding session into a toolkit change. Landed: `MBT_COMPONENTS.md` V1 and `templates/COMPONENTS_CLAUDE.md` new, `MBT_PATTERN.md` V12, `MBT_CREATE_BRAIN.md` V11, `MBT_CHECK_BRAIN.md` V9, `CLAUDE.md` V14, and edits to the session-closeout, work-setup, work-closeout, project-hook, entrypoint and work-item templates. The brain that prompted it is planned but not seeded. Nothing committed in either repo.
+
+## Turn-by-turn
+
+- The proposed scheme varied the namespace token per project and appended module names to it. Reading both exemplar brains showed why that fails: each keeps one constant token acting as a pivot, so everything left of it is a platform and everything right of it is a work item, and every filename decomposes even at five underscores. Remove the anchor and a module log is indistinguishable from a work-item log — not hypothetical, since one exemplar already holds a work item whose name begins with the same word a module would have used.
+- The scaling answer came from the second exemplar rather than from design: it carries ninety-six files behind an eleven-row index by refusing to enumerate its in-flight directory, stating a grammar and a discovery procedure instead. The pattern had already solved N-scaling once and only ever applied it to work items; the whole proposal is that mechanism moved up to the canonical layer.
+- Four options were put to Rob. He rejected making the new layout canonical and framed the alternative: layer the conventions so simple brains never pay for them, let both styles live in one repo, and start simple with the option to grow. That framing held for the rest of the session. One correction to his reasoning: the flat fixed-pivot scheme bends the pattern *least*, not most — it is already-sanctioned text — so the case for the layer is scaling headroom alone, never pattern fit.
+- Rob challenged whether the two modules of the middle project were really one component. Comparing the submodules settled it — different stacks, roadmaps, test suites and issue sets, and issues that touch one and never the other. Two problems, so two components, and components had to nest. The log-routing rule needed no rewording to absorb a third level, which was the first sign the recursion was real rather than bolted on.
+- With modules as components, the layer's platform-qualifier slot had no user left. Rob asked whether that collapsed the need for it. It did — and then he supplied the fact that changed the reasoning underneath: the exemplar whose platform split looked like the argument for keeping the slot actually has two problem statements, one multi-model and one multi-tenant, carried under a single scope because everything was authored for the first platform and the second was ported against it. Opportunistic, not designed. That converted the only apparent instance of the category into an undeclared component split.
+- Writing `MBT_COMPONENTS.md` surfaced six gaps in the specification it was written from, and reviewing it surfaced five more, three of them introduced during the drafting. All eleven were statement problems; none touched the structure.
+- Rob's "stupid question" about session closeout was the last real gap: the closeout template's fallback assumed a single canonical log, and the one existing multi-log brain had hand-patched that rule rather than the template being fixed. A sweep for the same class of error then found the namespace token missing from work-item paths in roughly ten places, including the work-item scaffolds that generate cross-references into every real work item.
+
+## Decisions
+
+- **Layer the conventions, don't move the definition** — the pattern gains one sentence and a brain that never opts in reads it unchanged; neither exemplar changes a byte (Rob's framing, after rejecting the canonical-rewrite option).
+- **Directories carve components, the trailing slot carves work items, and the token is declared per unit** — one mechanism per job, which is what restores the pivot the flat scheme destroyed (Claude's proposal, Rob's choice of the readable compound tokens over short opaque ones).
+- **Placement by nearest common ancestor, siblings never named** — a fact about two units lives in the unit above them, which makes placement decidable rather than a judgment call. Rob's reason for taking it was enforceability in a structure where it is otherwise hard to tell where a fact belongs.
+- **Drop the platform qualifier from the layer** — nothing would use it, and the base pattern still serves brains that split flat (Claude's recommendation on Rob's prompt; the evidence that the one candidate instance is really a component split arrived afterward and strengthened it).
+- **A work item retires where it lived, but its knowledge is placed by reach** — an item owned by a child can push a finding up to its parent, because the child may not hold knowledge about a sibling (Claude, while making the two bookend procedures component-aware).
+
+## What didn't work
+
+- The delegating sentence, as specified, had the pattern doc name the new layer doc. That is a downstream reference, the one kind the toolkit's own rule says is never exemptable — it would have shipped as a live orthogonality violation in the most-read file. Rewritten to describe the convention inline and let the read index carry the pointer, which is exactly what the existing platform-split sentence does.
+- An extra restructuring signal was invented while drafting the layer and cut on review: it did not discriminate between a unit that should split and a scope that was merely under-written, so it would have sent someone restructuring a brain when they should have finished a document.
+- The checks were specified four times before any of them ran. Each round of inspection found another defect, ending with a prefix-matching rule that silently accepted a child's document sitting in its parent's directory — a false negative, the worst kind. Running them against both exemplars afterward confirmed one fix mattered: sweeping the retired-files directory into the token check would have raised four false failures in one brain and sixteen in the other.
+
+## Lessons
+
+- Look for the mechanism the pattern already has before designing one. Discovery-by-grammar was running over eighty-one files in a live brain; the contribution was noticing it had never been applied to the canonical layer.
+- Writing the document *is* the test of the specification. Eleven defects surfaced between drafting and reviewing one file, none of which had been visible across five careful reviews of the proposal describing it.
+- A section that restates another section's contents drifts every time that section changes — the proposal's list of what the new doc should contain went stale on four separate edits. Duplication that a rule would forbid inside a brain is just as costly in the document proposing the rule.
+- Ask where a rule's reader actually looks. Log routing was specified in the conventions layer and was still missing from the closeout procedure, which is the only document a session opens when it needs to know.

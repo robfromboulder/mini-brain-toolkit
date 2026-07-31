@@ -6,9 +6,9 @@
 
 ## Context
 
-See `<WORK>_FINDINGS.md` in this directory for the decision record and alternatives considered.
+See `<PREFIX>_<WORK>_FINDINGS.md` in this directory for the decision record and alternatives considered.
 
-Key references in the main mini-brain:
+Key references in the owning unit:
 - `<PREFIX>_SCOPE.md` — problem space this fits into
 - `<PREFIX>_FINDINGS.md` — relevant prior decisions
 - `<PREFIX>_APPROACH.md` — design constraints
@@ -25,7 +25,7 @@ Key references in the main mini-brain:
 
 ## Testing approach
 
-<automated: unit vs. integration, new test classes anticipated, what regression suite must stay green. Manual steps live in `<WORK>_TESTING.md`.>
+<automated: unit vs. integration, new test classes anticipated, what regression suite must stay green. Manual steps live in `<PREFIX>_<WORK>_TESTING.md`.>
 
 ## Implementation sequence
 

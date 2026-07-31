@@ -18,7 +18,7 @@ All paths are relative to this repo root (`CLAUDE.md`'s directory). Before readi
 
 Only files in this table are current. `archive/` holds source material, retired/absorbed docs, and closed work-item working files — ignore it unless asked.
 
-`working/` holds experiments and a work item's in-flight `<WORK>_*` docs. When a work item concludes, fold them into the canonical docs and **move** (not delete) them to `archive/`.
+`working/` holds experiments and a work item's in-flight `<PREFIX>_<WORK>_*` docs. When a work item concludes, fold them into the canonical docs and **move** (not delete) them to `archive/`.
 
 <!-- As the brain matures, add the lifecycle docs to this index:
 | Work setup — scaffold a work item's working docs | `<PREFIX>_WORK_SETUP.md` |

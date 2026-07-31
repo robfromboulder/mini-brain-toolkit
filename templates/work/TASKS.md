@@ -12,8 +12,8 @@ Checklist for the <work-item description> work item.
   * request feedback from reviewers
   * respond to review feedback
 * testing
-  * automated checks — see `<WORK>_CLAUDE.md`
-  * manual checks — capture steps in `<WORK>_TESTING.md`
+  * automated checks — see `<PREFIX>_<WORK>_CLAUDE.md`
+  * manual checks — capture steps in `<PREFIX>_<WORK>_TESTING.md`
 * docs
   * <screenshots, user-facing docs, if any>
 * porting/backporting

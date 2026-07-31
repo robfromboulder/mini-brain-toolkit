@@ -4,18 +4,18 @@
 
 ---
 
-Governs session log entries in both `<PREFIX>_LOG.md` and each work item's `working/<WORK>_LOG.md` (once the brain has work-item machinery) — the entry format and content rules are the same regardless of destination. **This format is the authority; do not imitate the previous entry** — a fresh file has none, and copying a neighbor lets the structure drift one merge at a time. Match sibling entries only where this spec is silent.
+Governs session log entries in every canonical log and in each work item's `working/<PREFIX>_<WORK>_LOG.md` (once the brain has work-item machinery) — the entry format and content rules are the same regardless of destination. **This format is the authority; do not imitate the previous entry** — a fresh file has none, and copying a neighbor lets the structure drift one merge at a time. Match sibling entries only where this spec is silent.
 
 **Purpose.** The log is the work's lineage, traceable to each coding session, and the home for what **cannot be deduced from the codebase alone**: key findings, decision points (and who made each call), what was tried and didn't work, and the course-corrections that kept the work on track. It's a log, not a design doc — don't restate scope or strategy; give the turn-by-turn account of each session start to finish and what was learned.
 
-**Routing — which log file to append to.** A session that belongs to an open work item — its docs still in `working/`, even if its PR has already merged — appends to that item's `working/<WORK>_LOG.md`; all other sessions append to `<PREFIX>_LOG.md`. Resolve ownership by the first matching signal, in priority order:
+**Routing — which log file to append to.** A session that belongs to an open work item — its docs still in `working/`, even if its PR has already merged — appends to that item's `working/<PREFIX>_<WORK>_LOG.md`; all other sessions append to a canonical log. Resolve ownership by the first matching signal, in priority order:
 
 1. **Explicit direction** — the user names a target log or work item.
-2. **Session content** — the session's work belongs to an open work item: its PR, branch, code area, or `working/<WORK>_*` docs (e.g. addressing review feedback on the item's PR from a different branch, or refining the item's plan in a session run from this repo).
-3. **Current branch** — the session runs from a project repo and its checked-out branch matches the branch declared in an open work item's `<WORK>_CLAUDE.md` runbook (exact name or glob). A session run from this repo has no branch signal; never take one from a sibling checkout's incidental branch.
-4. **No match** — append to `<PREFIX>_LOG.md`.
+2. **Session content** — the session's work belongs to an open work item: its PR, branch, code area, or `working/<PREFIX>_<WORK>_*` docs (e.g. addressing review feedback on the item's PR from a different branch, or refining the item's plan in a session run from this repo).
+3. **Current branch** — the session runs from a project repo and its checked-out branch matches the branch declared in an open work item's `<PREFIX>_<WORK>_CLAUDE.md` runbook (exact name or glob). A session run from this repo has no branch signal; never take one from a sibling checkout's incidental branch.
+4. **No match** — append to `<PREFIX>_LOG.md`. In a brain whose knowledge is divided into components, append instead to the log of the nearest common ancestor of the units the session touched: a session that stayed inside one unit logs there, and one that crossed units logs to the unit above them, however far apart in the tree they sit.
 
-When the content and branch signals point at different work items, or either signal is ambiguous, ask rather than guess. The session that runs a work item's closeout appends to `<PREFIX>_LOG.md`: its `working/<WORK>_LOG.md` is merged and retired in that same pass, so a fresh entry there would land in `archive/` unmerged.
+When the content and branch signals point at different work items, or either signal is ambiguous, ask rather than guess. The session that runs a work item's closeout appends to the canonical log of the unit that owns the item: the item's `working/<PREFIX>_<WORK>_LOG.md` is merged and retired in that same pass, so a fresh entry there would land in `archive/` unmerged.
 
 **Reading** (never read these large files in full): `grep -n '^---$' <log-file> | tail -1` gives the last separator's line `L`; read from `offset` `L`.
 
