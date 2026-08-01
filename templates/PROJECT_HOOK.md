@@ -1,4 +1,4 @@
-<!-- Mini-brain hook: merge the section below into each project repo's CLAUDE.md (create the file if the repo has none — never overwrite an existing one). Substitute <project> and <PREFIX>, and adjust the relative path if the brain isn't a sibling clone. If the brain is component-structured, also uncomment the component paragraph and name the component this repo maps to. -->
+<!-- Mini-brain hook: merge the section below into each project repo's CLAUDE.md (create the file if the repo has none — never overwrite an existing one). Substitute <project> and <PREFIX>, and adjust the relative path if the brain's clone sits elsewhere or under another name. If the brain is component-structured, also uncomment the component paragraph and fill `<Component>`, `<dir>`, and `<TOKEN>` for the component this repo maps to. -->
 
 ## Working in the mini-brain
 
@@ -19,5 +19,5 @@ Mini-brain edits accumulate uncommitted during a session; **closeout is the sync
 
 **Work-item closeout** is not a direct push — branch, commit, push, and open a PR against the mini-brain's `main`; report the link and leave it unmerged for review.
 
-**Active work item** = the one whose `working/<PREFIX>_<WORK>_*` docs name your current git branch; none on `main` or an unclaimed branch. It resolves any "my work item" reference; ask if ambiguous. In a component-structured brain each unit has its own `working/`, so search this repo's component first.
+**Active work item** = the one whose `working/<PREFIX>_<WORK>_*` docs name your current git branch; none on `main` or an unclaimed branch. It resolves any "my work item" reference; ask if ambiguous. In a component-structured brain each unit has its own `working/` and its work items carry that unit's token, so search this repo's component first, then its ancestors.
 -->

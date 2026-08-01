@@ -6,12 +6,12 @@
 
 ## Context
 
-See `<PREFIX>_<WORK>_FINDINGS.md` in this directory for the decision record and alternatives considered.
+See `<TOKEN>_<WORK>_FINDINGS.md` in this directory for the decision record and alternatives considered.
 
 Key references in the owning unit:
-- `<PREFIX>_SCOPE.md` — problem space this fits into
-- `<PREFIX>_FINDINGS.md` — relevant prior decisions
-- `<PREFIX>_APPROACH.md` — design constraints
+- `<TOKEN>_SCOPE.md` — problem space this fits into
+- `<TOKEN>_FINDINGS.md` — relevant prior decisions
+- `<TOKEN>_APPROACH.md` — design constraints
 
 ## What changes
 
@@ -25,7 +25,7 @@ Key references in the owning unit:
 
 ## Testing approach
 
-<automated: unit vs. integration, new test classes anticipated, what regression suite must stay green. Manual steps live in `<PREFIX>_<WORK>_TESTING.md`.>
+<automated: unit vs. integration, new test classes anticipated, what regression suite must stay green. Manual steps live in `<TOKEN>_<WORK>_TESTING.md`.>
 
 ## Implementation sequence
 

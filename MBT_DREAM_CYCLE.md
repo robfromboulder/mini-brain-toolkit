@@ -1,12 +1,12 @@
 # Mini-Brain Toolkit: Dream Cycle
 
-> V10, 2026-07-27.
+> V11, 2026-07-31.
 
 Follow these instructions when the user asks the toolkit to dream and improve itself — the periodic reflection pass that keeps this brain true and small (principle 10).
 
 **Important:** Read `CLAUDE.md` first for file conventions — those govern all edits made during this cycle.
 
-**This brain has two natures.** It is a mini-brain *and* its subject is the mini-brain pattern. So its top-level docs split two ways: its **own brain** (`MBT_SCOPE`, `MBT_APPROACH`, `MBT_FINDINGS`, `MBT_LOG`) and the **product it defines** (`MBT_PATTERN`, `MBT_CREATE_BRAIN`, `MBT_CHECK_BRAIN`, `MBT_RESEARCH`, plus `templates/`). The phases below touch both: Phase 2 keeps the product self-consistent and the brain dogfooding honestly; Phase 3 — because this brain's *subject* is the pattern — is where the standard follow-on research over APPROACH's external assumptions widens to the whole memory-systems field and the pattern's scientific grounding.
+**This brain has two natures.** It is a mini-brain *and* its subject is the mini-brain pattern. So its top-level docs split two ways: its **own brain** (`MBT_SCOPE`, `MBT_APPROACH`, `MBT_FINDINGS`, `MBT_LOG`) and the **product it defines** (`MBT_PATTERN`, `MBT_COMPONENTS`, `MBT_CREATE_BRAIN`, `MBT_CHECK_BRAIN`, `MBT_RESEARCH`, plus `templates/`). The phases below touch both: Phase 2 keeps the product self-consistent and the brain dogfooding honestly; Phase 3 — because this brain's *subject* is the pattern — is where the standard follow-on research over APPROACH's external assumptions widens to the whole memory-systems field and the pattern's scientific grounding.
 
 **Guiding principle:** When in doubt, flag for the user rather than auto-correcting. This cycle detects drift and corrects factual staleness; strategy, thesis, and framing changes require human judgment. Version control provides rollback safety, so be thorough about detecting problems — conservative about changing conclusions. **Exception — Phase 3 stance:** the follow-on-research phase is *adversarial by mandate*. Being aggressive about hunting disconfirming evidence and conservative about auto-applying thesis changes are not in tension — do both.
 
@@ -37,12 +37,13 @@ Fix any failures. Report what was found and fixed.
 
 ## Phase 2: Dogfooding & self-consistency
 
-A product brain verifies `SCOPE` against its code. This brain has no product code — its "code" is its own teaching artifacts, and its `SCOPE` and `APPROACH` commit it to *being* the pattern it defines. So Phase 2 has three checks. All are internal (no web); the cross-doc read covers `MBT_PATTERN`, `MBT_CREATE_BRAIN`, `MBT_CHECK_BRAIN`, and a listing of `templates/` (and `templates/work/`) — one Explore agent or a direct read per the context-management size rule — and reports divergences for the active context to fix or flag.
+A product brain verifies `SCOPE` against its code. This brain has no product code — its "code" is its own teaching artifacts, and its `SCOPE` and `APPROACH` commit it to *being* the pattern it defines. So Phase 2 has three checks. All are internal (no web); the cross-doc read covers `MBT_PATTERN`, `MBT_COMPONENTS`, `MBT_CREATE_BRAIN`, `MBT_CHECK_BRAIN`, and a listing of `templates/` (and `templates/work/`) — one Explore agent or a direct read per the context-management size rule — and reports divergences for the active context to fix or flag.
 
-**(a) Teaching-artifact consistency.** `MBT_PATTERN.md` is the spec; `MBT_CREATE_BRAIN.md` builds it, `MBT_CHECK_BRAIN.md` scores it, `templates/` supplies it. These four must agree. This operationalizes `MBT_SCOPE.md`'s templates-↔-reference-in-sync requirement and the roadmap's *instruction-drift detection*. Check:
+**(a) Teaching-artifact consistency.** `MBT_PATTERN.md` and `MBT_COMPONENTS.md` are the spec — the base pattern and its component layer; `MBT_CREATE_BRAIN.md` builds it, `MBT_CHECK_BRAIN.md` scores it, `templates/` supplies it. These five must agree. This operationalizes `MBT_SCOPE.md`'s templates-↔-reference-in-sync requirement and the roadmap's *instruction-drift detection*. Check:
 
 - **Principles.** `MBT_PATTERN.md`'s principles list is authoritative. `MBT_CHECK_BRAIN.md`'s scorecard must have exactly those principles, same count and meaning, same numbering (`MBT_CHECK_BRAIN.md` already subordinates its scorecard to `MBT_PATTERN.md` — enforce it).
 - **File set.** `MBT_PATTERN.md`'s stage tables ↔ `MBT_CREATE_BRAIN.md`'s create-table and stage-3 file list ↔ actual files in `templates/`. Every file named in one appears in the others; no template is orphaned; no referenced template is missing. (This cycle's own files, `MBT_DREAM_CYCLE`/`MBT_DREAM_LOG`, correspond to `templates/DREAM_CYCLE.md` + a dream-log — verify that mapping too.)
+- **Component layer.** `MBT_COMPONENTS.md` ↔ `templates/COMPONENTS_CLAUDE.md`: the naming grammar, token-ownership and naming rules, placement and log-routing rules, and the per-doctype exemption table must state the same convention in both — the template is the layer's shipped copy and drifts independently. The component passages in `MBT_CREATE_BRAIN.md`, `MBT_CHECK_BRAIN.md`, and the maintenance templates must enact that same convention.
 - **Lifecycle.** `MBT_PATTERN.md`'s lifecycle section and the procedure/template docs describe the same rituals (session → work item → maintenance).
 
 **(b) Dogfooding self-check.** The toolkit must still obey its own pattern at content-stage-or-better health. Apply `MBT_CHECK_BRAIN.md`'s logic to *this repo* (it is a brain) — do not re-implement it, run it. Expect principles 1–8 present and 9–10 present once this file lands. Confirm `SCOPE`/`APPROACH` are still orthogonal (problem vs. chosen design — no solution bias bleeding into `SCOPE`) and the two read-index blocks stay cleanly separated.

@@ -1,6 +1,6 @@
 # Mini-Brain Toolkit: Create a New Mini-Brain
 
-> V11, 2026-07-31.
+> V12, 2026-07-31.
 
 This document is the procedure for standing up a new mini-brain from `templates/`.
 
@@ -15,12 +15,12 @@ This procedure is **additive and idempotent**: it creates only what's missing an
 Before creating anything, settle these with the user. Establishment turns a decision into files; it does not invent the project.
 
 - **Project** — what the brain is *about*. One line: the system whose un-derivable knowledge this will hold.
-- **Components** — whether the knowledge divides. Ask whether one SCOPE can state the problem honestly, or whether writing it would force two or more coexisting problems onto the page. If it divides, the brain is component-structured and `MBT_COMPONENTS.md` governs its layout; ask again of any component whose own problem divides. Most brains hold one problem and answer no. Settle this before the token, because the answer changes how many tokens there are.
-- **Namespace token** — the SCREAMING_SNAKE_CASE token every knowledge file carries (principle 6). Short, distinctive, unlikely to collide with another brain loaded in the same session. Mirror the project name where natural (`orchard` → `ORCHARD`); pick an acronym when the name is long (`customer-data-platform` → `CDP`). Confirm it with the user — it touches every filename and is churn to change later. A component-structured brain settles one token for the hub and one for each component.
+- **Components** — whether the knowledge divides. Ask whether one SCOPE can state the problem honestly, or whether writing it would force two or more coexisting problems onto the page. If it divides, the brain is component-structured and `MBT_COMPONENTS.md` governs its layout; ask again of any component whose own problem divides. For each component, also settle the terms that should route a question to it — the registry's **Routes on** cell. Most brains hold one problem and answer no. Settle this before the token, because the answer changes how many tokens there are.
+- **Namespace token** — the SCREAMING_SNAKE_CASE token every knowledge file carries (principle 6). Short, distinctive, unlikely to collide with another brain loaded in the same session. Mirror the project name where natural (`orchard` → `ORCHARD`); pick an acronym when the name is long (`customer-data-platform` → `CDP`). Confirm it with the user — it touches every filename and is churn to change later. A component-structured brain settles one token for the hub and one for each component, each under the same collision test.
 - **Location** — the repo (principle 2: the brain is its own repository, not a folder inside a project repo). Convention is a sibling repo named `mini-<project>-brain`, so a coding session in a project repo can load it with `Read ../mini-<project>-brain/CLAUDE.md for instructions`.
-- **Project repos (optional)** — the repos whose coding sessions should load the brain. Each gets the hook merged into its `CLAUDE.md` (§3). A brand-new project may have none yet; add the hook to each repo as it appears — this procedure is safe to re-run.
+- **Project repos (optional)** — the repos whose coding sessions should load the brain. Each gets the hook merged into its `CLAUDE.md` (§3). A brand-new project may have none yet; add the hook to each repo as it appears — this procedure is safe to re-run. In a component-structured brain, note which component each repo maps to; its hook names that component.
 - **Source material (optional)** — existing docs the SCOPE/APPROACH will be distilled from (design docs, PRDs, tickets, prior wikis). If they exist, they go in `archive/` as source, not into the canonical docs verbatim.
-- **Platforms (optional)** — if the project targets more than one platform that will need platform-specific docs later, note it now; it affects the namespace layering (`<PLATFORM>_<PREFIX>_*` etc.) but not the seed.
+- **Platforms (optional)** — if the project targets more than one platform that will need platform-specific docs later, note it now; it affects the namespace layering (`<PLATFORM>_<PREFIX>_*` etc.) but not the seed. Platforms are one problem delivered across several targets; targets holding different problems are the components question above.
 
 Don't gather more than this for a seed.
 
@@ -28,7 +28,7 @@ Don't gather more than this for a seed.
 
 ## 2. Audit what exists
 
-Before writing, list the target directory. Classify each seed file:
+Before writing, list the target directory — every unit directory, in a component-structured brain. Classify each seed file:
 
 - **Missing** — create it from the template (§3).
 - **Exists** — leave it. Never overwrite.
@@ -41,10 +41,12 @@ A brand-new repo has nothing but perhaps a `README.md`, `LICENSE`, and `.git`; a
 
 For each missing file, copy the corresponding file from `templates/` and substitute the placeholders:
 
-- `<PREFIX>` → the namespace token (e.g. `ORCHARD`).
+- `<PREFIX>` → the namespace token (e.g. `ORCHARD`). In a component-structured brain, the token of the unit each copy serves: a component's for its own doctype set, the hub's for everything else.
 - `<Project>` → the project's display name (Title Case, e.g. `Orchard`).
 - `<project>` → the lowercase name used in prose/README (e.g. `orchard`).
 - `<date>` → today's date, `YYYY-MM-DD`.
+
+Substitute only these. `<TOKEN>` and `<WORK>` are runtime variables, not creation placeholders — the procedures resolve them later, per owning unit and per work item — so leave them intact wherever a template carries them.
 
 | Create from template | To | Notes |
 |---|---|---|
@@ -61,7 +63,7 @@ Then create the two directories: `archive/` (drop any source material here) and 
 
 All canonical docs open with `> V1, <date>.`; apply `CLAUDE.md`'s version convention and exemptions.
 
-**For a component-structured brain**, seed the hub's documents at the root under the hub token, create one directory per component — nested where components nest — and seed each component's full doctype set from the same `SCOPE`, `APPROACH`, `FINDINGS` and `LOG` templates under that component's token. Those four are prefix-substituted and work identically at any depth. Use `templates/COMPONENTS_CLAUDE.md` for the entrypoint in place of `templates/CLAUDE.md`. `SESSION_CLOSEOUT` stays at the hub, one per brain, as does every maintenance document added later; `archive/` and `working/` belong to whichever unit first needs them, so create only the hub's now. `MBT_COMPONENTS.md` carries the registry's shape and the naming rules.
+**For a component-structured brain**, seed the hub's documents at the root under the hub token, create one directory per component — nested where components nest — and seed each component's full doctype set from the same `SCOPE`, `APPROACH`, `FINDINGS` and `LOG` templates under that component's token. Those four are prefix-substituted and work identically at any depth. Use `templates/COMPONENTS_CLAUDE.md` for the entrypoint in place of `templates/CLAUDE.md`, filling its registry from the intake conversation — one row per component, replacing the placeholder rows. `SESSION_CLOSEOUT` stays at the hub, one per brain, as does every maintenance document added later; `archive/` and `working/` belong to whichever unit first needs them, so create only the hub's now. `MBT_COMPONENTS.md` carries the registry's shape and the naming rules.
 
 ---
 
@@ -81,7 +83,7 @@ Record the reasoning and course-corrections of this authoring work in the LOG at
 
 Add these **only when the work justifies them** (the stage model in `MBT_PATTERN.md`) — typically when the brain starts tracking work items across many sessions. Each is copied from `templates/`, namespaced, added to the read index, and bumps `CLAUDE.md`.
 
-- `templates/WORK_SETUP.md` → `<PREFIX>_WORK_SETUP.md` and `templates/WORK_CLOSEOUT.md` → `<PREFIX>_WORK_CLOSEOUT.md` — the open/close bookends for work items (a feature, bug fix, or hardening effort). They reference the per-work-item working set in `templates/work/`.
+- `templates/WORK_SETUP.md` → `<PREFIX>_WORK_SETUP.md` and `templates/WORK_CLOSEOUT.md` → `<PREFIX>_WORK_CLOSEOUT.md` — the open/close bookends for work items (a feature, bug fix, or hardening effort). They reference the per-work-item working set in `templates/work/` — inline those six scaffolds into `<PREFIX>_WORK_SETUP.md` where it points at them, so the brain stands alone without the toolkit.
 - `templates/DREAM_CYCLE.md` → `<PREFIX>_DREAM_CYCLE.md` plus a `<PREFIX>_DREAM_LOG.md` (header only) — the periodic reflection pass.
 
 When the brain gains work items, also uncomment the work-item block in each project repo's hook (the maturity comment inside `templates/PROJECT_HOOK.md`).
@@ -93,7 +95,7 @@ Don't scaffold these into a stage-1 brain; add them the first time a real work i
 ## 6. Close out and hand off
 
 1. Append the first LOG entry per `<PREFIX>_SESSION_CLOSEOUT.md`, recording what this establishment session did and decided (namespace choice, source material, fact-check corrections).
-2. Run a structural check — read index ↔ disk, version headers, cross-references, namespace prefix — and fix anything it flags.
+2. Run a structural check — read index ↔ disk, version headers, cross-references, namespace prefix; for a component-structured brain, also registry ↔ disk and each unit's full doctype set and token — and fix anything it flags.
 3. Report to the user: the namespace token used — or the unit tree and its per-unit tokens, for a component-structured brain — which files were **created** vs. already **existed**, what stage the brain is at, and the natural next step (fill SCOPE, or add lifecycle machinery).
 
 Do not commit unless the user asks. If the repo is on its default branch, branch first.

@@ -54,7 +54,7 @@ Only files in this table are current. `archive/` holds source material, retired/
 Absent a declared exemption, full orthogonality holds; add a row here only when the brain grows a knowledge doc that genuinely needs one. A permitted reference still follows the Cross-references rule above — cited by name, never by section number.
 
 <!-- As the brain matures and gains the lifecycle docs, add their boundary rule:
-**Maintenance-doc boundaries.** `<PREFIX>_DREAM_CYCLE.md` is standalone — it references no other maintenance doc. `<PREFIX>_WORK_SETUP.md` and `<PREFIX>_WORK_CLOSEOUT.md` are bookends and may reference each other, but only by that relationship.
+**Maintenance-doc boundaries.** Any procedure that appends a log entry cites `<PREFIX>_SESSION_CLOSEOUT.md` as the entry-format authority. Beyond that, `<PREFIX>_DREAM_CYCLE.md` references no other maintenance doc, and `<PREFIX>_WORK_SETUP.md` / `<PREFIX>_WORK_CLOSEOUT.md` are bookends that may reference each other, but only by that relationship.
 -->
 
 **No harness memory.** Don't use the persistent memory feature. All persistent project information belongs in the markdown files in this directory.
