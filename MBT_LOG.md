@@ -240,3 +240,36 @@ Rob's session, with Claude as co-author. It began as a review of a bootstrap pla
 - Writing the document *is* the test of the specification. Eleven defects surfaced between drafting and reviewing one file, none of which had been visible across five careful reviews of the proposal describing it.
 - A section that restates another section's contents drifts every time that section changes — the proposal's list of what the new doc should contain went stale on four separate edits. Duplication that a rule would forbid inside a brain is just as costly in the document proposing the rule.
 - Ask where a rule's reader actually looks. Log routing was specified in the conventions layer and was still missing from the closeout procedure, which is the only document a session opens when it needs to know.
+
+---
+
+# Scope authoring hardened after a full seed produced six status reports (2026-08-02)
+
+**Session ID**: `e054f1be-03ab-4b37-a0dd-74f68fd3df60`
+
+Rob's session, with Claude as co-author. A component-structured brain was seeded end to end against the current instructions, and every scope it produced described the project's own maturity instead of the problem's world. The instructions already said "solution-neutral" and "goals as outcomes, not deliverables", and they had been followed, so the fix was never more emphasis. Landed: `MBT_CREATE_BRAIN.md` V15, `MBT_CHECK_BRAIN.md` V12, `MBT_COMPONENTS.md` V3, `MBT_PATTERN.md` V13, `CLAUDE.md` V15, and edits to the scope, approach, entrypoint and component-entrypoint templates. Nine files, nothing committed.
+
+## Turn-by-turn
+
+- The failure was uniform across every unit, which ruled out carelessness in any one document and pointed at the instructions. Two things were diagnosed as causes. The section had a name and no definition, and the name it had invites exactly the wrong reading — a heading asking for the current state gets the current state of the thing being built. And the source material, being project documentation, was organized around the project, so distilling it preserved that organization unless the problem was deliberately re-derived. The second cause is the more general one: distillation carries the shape of what it distills.
+- Two existing brains were read to calibrate what the section should hold. Both describe the world their problem lives in — what the environment already provides, what alternatives exist and where they stop — and neither reports on its own progress. That confirmed the convention existed in practice and had simply never been written down.
+- Four rules went into the scope guidance, each stated with the test that catches its violation: the shipped-a-release test for status content, the could-a-different-design-satisfy-it test for goals, the shape-of-source-material warning, and a rule to report evidence at the strength the source gave it. The last came from an actual error in the seeded brain, where a source recorded what someone had done and the distillation invented why.
+- Rob had independently reached the same conclusion about the heading and approved renaming it. He also scoped the change correctly: a heading that invites drift is worth renaming when touched, but a section under the old name whose content is right is not a finding. That distinction went into the check procedure so the rename never generates busywork against brains that predate it.
+- Guidance was also moved to the point of use, as per-section comments inside the scope and approach templates that the author deletes while filling them. The procedure document is read once at seed time; the template is open at the moment the mistake gets made.
+- The forward trace from design choices to goals found nothing wrong. Running it in reverse — for every goal, name the decision that answers it — found three goals with no answering decision in a single sitting, including one where the prose implied a mechanism handled a goal it did not. That pass was added to the approach guidance.
+- Rob then directed two review cycles that the procedure did not describe: read every scope back as a group, and pair each approach with its own scope while explicitly *not* comparing approaches to each other. Both were added, with his reasoning for the asymmetry attached.
+- Reviewing the additions found three defects at the joins, two of them introduced by the additions themselves. The check procedure's preamble tells a reviewer to delegate read-heavy passes to subagents, which is correct for per-document checks and fatal to set-level ones — a term collision is invisible to a reader holding one document. And the report structure predated four of the seven checks, leaving a reviewer nowhere to file the new findings.
+
+## Decisions
+
+- **Define the section rather than add emphasis** — the guidance that failed was being followed, so the gap was a missing definition, not weak wording (Claude's diagnosis, Rob's agreement).
+- **Rename the heading, and treat the old name as cosmetic** — the new name carries the correction, while existing brains stay conforming and get flagged only when the section is next touched (Rob's call on both halves).
+- **Put the rules where the work happens** — the template comments duplicate the procedure deliberately, because the two are read at different moments and only one is open when the error occurs (Claude's proposal, Rob's approval).
+- **Scopes are reviewed as a set; approaches never are** — comparing sibling approaches invites the coupling the pattern forbids and pressures designs that legitimately differ into cosmetic agreement (Rob's instruction, and his reasoning).
+- **A stale source is a finding about that source** — fact-checking turns up drift in the documents being distilled as often as in the brain, and reporting it back is part of the job rather than an obstacle to it (Claude).
+
+## What didn't work
+
+- The first rewrite of the scope guidance silently dropped an instruction it was replacing: strip strategy, tactics and vendor choices out of anything headed for the goals, and the pointer to where source material sits. The new goal rule covered the principle and lost the operative sentence. Caught only by reading the full diff rather than confirming the new text had arrived — reviewing one's own edits by checking that the intended change landed misses everything the change displaced.
+- A rule against vocabulary collisions across documents was proposed and rejected as proofreading, then earned a place later when the same collision turned up in the seeded brain. The initial judgment was wrong about the category: a term meaning two things in two units is a structural defect, because each reading is defensible alone and only the set reveals it.
+- A pre-existing miscount in the check procedure ("the two things that decay silently" above three bullets) was made worse by adding a fourth before being noticed. Additions to a list are a reason to re-read its introduction.

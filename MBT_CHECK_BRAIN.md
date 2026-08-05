@@ -1,6 +1,6 @@
 # Mini-Brain Toolkit: Check an Existing Mini-Brain
 
-> V9, 2026-07-31.
+> V12, 2026-08-02.
 
 This document is the procedure for evaluating an existing mini-brain against the pattern and surfacing where it could improve — whether the brain was built from this toolkit or grew on its own.
 
@@ -45,10 +45,14 @@ Score a component-structured brain's principles 5 and 6 against the component la
 
 ## 3. Verify substance, not just structure
 
-Structure can be present while the content rots. Spot-check the two things that decay silently — delegate the read-heavy parts to Explore agents so the active context stays free for judgment:
+Structure can be present while the content rots. Spot-check the things that decay silently — delegate the read-heavy parts to Explore agents so the active context stays free for judgment. The three set-level checks are the exception: a term collision, a duplicated question and a parent's overreach are each invisible to a reader holding one document, so those have to be read together by whoever is judging, not split across agents.
 
 - **SCOPE factual drift.** Pull a handful of falsifiable claims from the scope doc (class/tool/config names, counts, and especially *absence* claims like "no control does X") and check them against the actual codebase. Absence claims break silently when capabilities are added — prioritize them. Report claims that no longer hold.
+- **SCOPE drifted into status.** Find the section describing where things stand — headed "State of the Problem", "Current State" or similar — and ask what it actually describes: the world the problem exists in, or the project's own progress through it. Version numbers, test counts, release status, maturity labels and issue counts are the tell; they belong to the project, not to a problem that exists whether or not anything addresses it. A scope written this way looks well-researched and dates within weeks, so flag it as a rewrite rather than a trim — the content that should be there was never gathered. The heading itself is cosmetic: "Current State" invites the drift and is worth renaming when the section is next touched, but a section under that name whose content is right is not a finding.
 - **Re-derivable content.** Skim the canonical docs for passages that merely restate what the current code plainly shows. These are pruning candidates (principle 1) — the brain would be *more* trustworthy smaller.
+- **One term, one meaning.** Read the canonical documents as a set and watch for a word carrying two jobs — a domain term in one document borrowed as a generic in another. Each reading is defensible alone and the collision shows only side by side, so no single-file check finds it.
+- **Question ownership** (component brains). An open question belongs to exactly one unit: the one whose work would resolve it. The same question standing in a parent and a child means neither owns it, and the copies drift as the answer develops.
+- **Parent overreach** (component brains). A parent names what a child elaborates and stops. Where a parent explains *why* a child's problem is hard, in its own words, that explanation belongs to the child — the tell is a passage equally at home in either document.
 - **Shape.** Ask of each unit whether its SCOPE still states one problem, or whether writing it honestly today would force two onto the page. A brain that should have split is internally consistent either way, so no structural check can see it; the tell is a unit that authored one target's documents first and ported a second against them.
 
 Also run the structural checks below; they're mechanical and catch the cheap, common failures.
@@ -72,7 +76,7 @@ Produce a written assessment. Structure it:
 - **What's working** — the principles it embodies well. Lead here.
 - **Principle scorecard** — the table from §2 with each verdict and note.
 - **Structural findings** — anything the §3 checks flagged, most-actionable first.
-- **Substance findings** — drifted SCOPE claims and pruning candidates, if any.
+- **Substance findings** — drifted SCOPE claims, a scope that has become a status report, cross-document inconsistencies, and pruning candidates, if any.
 - **Recommended next steps** — ranked, concrete opportunities. Frame each as "this brain does X well but Y would help because …", tied to a principle. If a step is "adopt lifecycle machinery," name the specific machinery and point at the relevant `templates/` file.
 
 Keep it proportionate: a healthy brain gets a short report that says so. Reserve length for real, actionable gaps.

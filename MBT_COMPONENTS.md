@@ -1,6 +1,6 @@
 # Mini-Brain Toolkit: The Component Layer
 
-> V2, 2026-07-31.
+> V3, 2026-08-02.
 
 This document is the layout convention for a mini-brain whose knowledge divides into several components. It is opt-in: a brain with one problem never uses it, and the file set in `MBT_PATTERN.md` applies unchanged.
 
@@ -59,6 +59,10 @@ Seeding creates the full doctype set for every component, so the grammar never p
 ## 4. Placement
 
 **The placement rule.** A fact about two units belongs to their nearest common ancestor. Sibling references are forbidden — a sibling is neither upstream nor downstream — so knowledge spanning two components lives in the unit above them and never in either one. Placement is therefore decidable rather than a matter of taste: name the units a fact concerns and walk up to where they meet. The ancestor fixes which unit holds the fact; the fact's own nature fixes which document, composition that was designed going to APPROACH and interaction that implementation revealed going to FINDINGS.
+
+**A parent names what a child elaborates, and stops.** A parent whose problem decomposes has to state the parts in order to state its own problem at all, so some restatement is inherent and is not duplication. What is duplication is the parent continuing past naming a part into explaining it — describing *why* a child's problem is hard, or how it is solved, in the parent's own words. The line is that a reader of the parent should learn that the part exists and where it fits; a reader who wants to know what makes it hard goes to the child. When the same explanation would be at home in either document, it belongs in the child.
+
+**An open question belongs to exactly one unit: the one whose work would resolve it.** The same question standing in a parent and a child means neither owns it, and both copies will drift as the answer develops. Ask which unit's session would close the question, and put it there.
 
 **Log routing** is the same rule applied to lineage. A session logs to the nearest common ancestor of the units its work concerned — not every unit it read: one that worked inside a single unit logs there, one whose work crossed units logs above them, however far apart in the tree they sit.
 

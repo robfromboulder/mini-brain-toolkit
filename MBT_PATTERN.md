@@ -1,6 +1,6 @@
 # Mini-Brain Toolkit: The Mini-Brain Pattern
 
-> V12, 2026-07-31.
+> V13, 2026-08-02.
 
 This document is the operational definition of a mini-brain: what it *is*, the file set it's made of, and the lifecycle that keeps it true and small.
 
@@ -54,7 +54,7 @@ The minimum viable brain.
 |---|---|---|
 | `CLAUDE.md` | Entrypoint: read index + file conventions (principle 5). | Exempt |
 | `README.md` | Repo artifact: what this is and how to load it. | Exempt |
-| `<PREFIX>_SCOPE.md` | The problem, current state, goals — objective, solution-free. | Yes |
+| `<PREFIX>_SCOPE.md` | The problem, the world it exists in, goals — objective, solution-free. | Yes |
 | `<PREFIX>_APPROACH.md` | The chosen design and key decisions that address SCOPE. | Yes |
 | `<PREFIX>_FINDINGS.md` | Implementation findings invisible from the code; starts empty. | Yes |
 | `<PREFIX>_LOG.md` | Append-only session log — the lineage (principle 4). | Yes |

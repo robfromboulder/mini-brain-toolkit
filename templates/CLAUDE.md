@@ -10,7 +10,7 @@ All paths are relative to this repo root (`CLAUDE.md`'s directory). Before readi
 
 | Purpose | File |
 |---|---|
-| Problem definition, current state, goals | `<PREFIX>_SCOPE.md` |
+| Problem definition, the world it exists in, goals | `<PREFIX>_SCOPE.md` |
 | Technical approach, what we build | `<PREFIX>_APPROACH.md` |
 | Key implementation findings (invisible from code) | `<PREFIX>_FINDINGS.md` |
 | Session log — why we chose what we chose | `<PREFIX>_LOG.md` (read from last `---`; large) |

@@ -1,6 +1,6 @@
 # Mini-Brain Toolkit: Mini-Brain Files
 
-> V14, 2026-07-31.
+> V15, 2026-08-02.
 
 ---
 
@@ -17,7 +17,7 @@ All paths are relative to this repo root (`CLAUDE.md`'s directory). Before readi
 | Research agenda — where the pattern could go, and how it compares to related work | `MBT_RESEARCH.md` |
 | Comparable systems — the second-brain / agent-memory landscape (read during the dream cycle's competitive-landscape pass) | `MBT_COMPARABLES.md` |
 | Cognitive-science grounding — biological models the pattern draws on (read during the dream cycle's biological-grounding pass) | `MBT_BIOLOGY.md` |
-| Problem definition, current state, goals | `MBT_SCOPE.md` |
+| Problem definition, the world it exists in, goals | `MBT_SCOPE.md` |
 | Technical approach, key design decisions | `MBT_APPROACH.md` |
 | Key implementation findings (invisible from the files) | `MBT_FINDINGS.md` |
 | Session log — why we chose what we chose | `MBT_LOG.md` (read from last `---`; large) |

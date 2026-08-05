@@ -14,7 +14,7 @@ All paths are relative to this repo root (`CLAUDE.md`'s directory). Before readi
 
 | Purpose | File |
 |---|---|
-| Problem definition, current state, goals — the system as a whole | `<PREFIX>_SCOPE.md` |
+| Problem definition, the world it exists in, goals — the system as a whole | `<PREFIX>_SCOPE.md` |
 | How the components compose, and the decisions spanning them | `<PREFIX>_APPROACH.md` |
 | Findings that cross components (invisible from code) | `<PREFIX>_FINDINGS.md` |
 | Session log for hub work and sessions that crossed components | `<PREFIX>_LOG.md` (read from last `---`; large) |
@@ -35,7 +35,7 @@ Every component directory carries all four, where `<TOKEN>` is that component's 
 
 | Doctype | Holds |
 |---|---|
-| `<TOKEN>_SCOPE.md` | That unit's problem, current state, goals — objective, solution-free. |
+| `<TOKEN>_SCOPE.md` | That unit's problem, the world it exists in, goals — objective, solution-free. |
 | `<TOKEN>_APPROACH.md` | That unit's chosen design, including how its own sub-components compose. |
 | `<TOKEN>_FINDINGS.md` | Implementation findings invisible from its code. |
 | `<TOKEN>_LOG.md` | Append-only session log for work that stayed inside that unit (read from last `---`; large). |
