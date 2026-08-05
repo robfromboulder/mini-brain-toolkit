@@ -1,6 +1,6 @@
 # Mini-Brain Toolkit: The Component Layer
 
-> V4, 2026-08-04.
+> V5, 2026-08-05.
 
 This document is the layout convention for a mini-brain whose knowledge divides into several components. It is opt-in: a brain with one problem never uses it, and the file set in `MBT_PATTERN.md` applies unchanged.
 
@@ -13,6 +13,8 @@ A **unit** is a brain's hub or any of its components, at any depth. Every unit c
 A unit holds **components** when one SCOPE cannot state its problem honestly: writing it forces two or more problems onto the page that merely coexist. Each of those problems becomes a component. A unit whose problem states cleanly in a single SCOPE has no components, and a brain with no components does not use this layer at all.
 
 Apply the test to each component in turn. A component whose own problem splits again holds sub-components, and everything below applies to it exactly as it applies to the hub.
+
+The layer pays off when the problem decomposes tree-like. Placement (§4) sends every fact spanning two components to the unit above them, so components that interact many-to-many push most of their knowledge to the hub — graceful degradation, not failure, but a brain shaped that way quietly rebuilds the monolith there; grouping the tightly-coupled components under an intermediate parent is the mitigation.
 
 The doctypes mean the same thing at every level. A unit with children therefore has a design that includes how those children compose: its APPROACH describes their interfaces and why they fit together, never their internals, which belong to the children. This is why the layer adds no document type — a parent is not a new kind of thing, only a unit whose problem happens to decompose.
 
