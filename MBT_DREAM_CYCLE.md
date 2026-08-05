@@ -1,6 +1,6 @@
 # Mini-Brain Toolkit: Dream Cycle
 
-> V11, 2026-07-31.
+> V12, 2026-08-04.
 
 Follow these instructions when the user asks the toolkit to dream and improve itself — the periodic reflection pass that keeps this brain true and small (principle 10).
 
@@ -22,13 +22,13 @@ Follow these instructions when the user asks the toolkit to dream and improve it
 
 ## Phase 1: Structural integrity
 
-Mechanical checks over top-level `MBT_*` docs. Run all first; fix failures before the content phases. `templates/` and `archive/` are excluded — template files are bare-named and un-namespaced by design.
+Mechanical checks over top-level `MBT_*` docs and `working/`. Run all first; fix failures before the content phases. `templates/` and `archive/` are excluded — template files are bare-named and un-namespaced by design.
 
 1. **Read index → disk.** Every file in the `CLAUDE.md` read index exists on disk.
 2. **Disk → read index.** Every top-level `.md` file (excluding `CLAUDE.md`, `README.md`, and this file) appears in the read index. The index is grouped in two blocks (product, then own-brain) — check both. Flag orphans.
 3. **Version headers.** Every top-level file except the version-exempt ones (`*_LOG.md`, `*_TASKS.md`) carries a well-formed `> V<N>, YYYY-MM-DD.` line — version and date only. Flag any that smuggled a change note into the header.
 4. **Cross-references.** Grep all top-level `.md` files for references to other mini-brain filenames. Every reference must resolve to an existing top-level file — not an `archive/` copy, not a deleted file. Within the docs covered by `CLAUDE.md`'s declared-exemptions table, also hold each reference to that table and to the cross-reference form: a permitted direction only, cited by name, not section number. A stray section number in an otherwise-permitted reference is a mechanical fix; a forbidden-direction reference usually means content bled across a boundary — flag it for the user rather than just deleting the pointer.
-5. **Namespace prefix.** `ls *.md | grep -vE '^(CLAUDE|README)\.md$' | grep -v MBT` should return nothing. Flag any hit.
+5. **Namespace prefix.** `ls *.md working/*.md | grep -vE '^(CLAUDE|README)\.md$' | grep -v MBT` should return nothing. Flag any hit.
 6. **Working/archive filename leakage.** Grep all top-level `.md` files for `.md` filename mentions, then flag any that **name an explicit `working/…` or `archive/…` path, or resolve to a file that exists in `working/` or `archive/`** — no top-level doc may cite a transient working/archived doc directly. The *resolves-to* trigger is what keeps this precise on this brain: legitimate mentions that would otherwise look suspicious — canonical top-level files, `templates/` files (the toolkit documents its own templates), this file, and the external- or other-brain names the comparative docs cite as references (`AGENTS.md`, `CONVENTIONS.md`, `GEMINI.md`, `log.md` in `MBT_COMPARABLES.md`/`MBT_RESEARCH.md`; `<PREFIX>_*` placeholder notation) — name things that are not local `working/`/`archive/` files, so they don't match. For each real hit: if the file still exists in `working/` or `archive/`, read it, extract the relevant substance, and replace the reference inline with that content; if it no longer exists there, flag for the user — don't guess at the content.
 
 Fix any failures. Report what was found and fixed.

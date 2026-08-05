@@ -49,9 +49,9 @@ A component may carry more; anything beyond these four is named in its **Also ho
 | <Component> | `<dir>/` | `<TOKEN>` | the terms that should send a question here | — | `../<repo>` |
 | — <Sub-component> | `<dir>/<sub>/` | `<SUBTOKEN>` | … | — | `../<repo>/<path>` |
 
-Match a question's terms against **Routes on** to choose a component *before* reading anything. A question about how components fit together, or one no component's terms claim, is hub-level — start at the hub documents. Sub-components are indented under their parent. Leave the project-repo cell empty for a component that has no repository of its own.
+Match a question's terms against **Routes on** to choose a component *before* reading anything. A question about how components fit together, or one no component's terms claim, is hub-level — start at the hub documents. Sub-components are indented under their parent. A component whose code lives inside an ancestor's repository points its project-repo cell at that path (`../<repo>/<path>`); leave the cell empty for a component with no repository presence at all.
 
-`archive/` holds source material and retired docs — not in-tree version snapshots; ignore unless asked. `working/` holds experiments and in-flight work-item docs; when a work item concludes, fold them into the canonical docs and **move** (not delete) them to the owning unit's `archive/`. Every unit owns its own pair, created when it first needs them; the hub's sit at the repo root.
+`archive/` holds source material and retired docs — not in-tree version snapshots; ignore unless asked. `working/` holds experiments and in-flight work-item docs; when a work item concludes, fold them into the canonical docs and **move** (not delete) them to the owning unit's `archive/`. Every unit owns its own pair — the hub's sit at the repo root from seeding; a component creates its own when it first needs them. Seed-time source material all lands in the hub's `archive/`, whichever component it describes.
 
 ---
 
@@ -90,7 +90,7 @@ Match a question's terms against **Routes on** to choose a component *before* re
 | `<TOKEN>_FINDINGS.md` | *none* | Implementation decisions downstream of the approach, with nothing upstream to cite. |
 | Any document | its own sub-components **by name**, never their files | Naming a part of your own subject is not a downstream reference; reaching into that part's documents is. |
 
-Two classes stand outside the table. **Logs** record what a session touched, filenames included, so naming another unit's documents is their job. **Maintenance and procedure documents** name the knowledge files they operate on, which is inherent to being a procedure.
+A permitted reference still follows the Cross-references rule above — cited by name, never by section number. Two classes stand outside the table. **Logs** record what a session touched, filenames included, so naming another unit's documents is their job. **Maintenance and procedure documents** name the knowledge files they operate on, which is inherent to being a procedure.
 
 **No harness memory.** Don't use the persistent memory feature. All persistent project information belongs in the markdown files in this directory.
 

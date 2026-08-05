@@ -1,6 +1,6 @@
 # Mini-Brain Toolkit: Create a New Mini-Brain
 
-> V15, 2026-08-02.
+> V16, 2026-08-04.
 
 This document is the procedure for standing up a new mini-brain from `templates/`.
 
@@ -96,7 +96,7 @@ Record the reasoning and course-corrections of this authoring work in the LOG at
 Add these **only when the work justifies them** (the stage model in `MBT_PATTERN.md`) — typically when the brain starts tracking work items across many sessions. Each is copied from `templates/`, namespaced, added to the read index, and bumps `CLAUDE.md`.
 
 - `templates/WORK_SETUP.md` → `<PREFIX>_WORK_SETUP.md` and `templates/WORK_CLOSEOUT.md` → `<PREFIX>_WORK_CLOSEOUT.md` — the open/close bookends for work items (a feature, bug fix, or hardening effort). They reference the per-work-item working set in `templates/work/` — inline those six scaffolds into `<PREFIX>_WORK_SETUP.md` where it points at them, so the brain stands alone without the toolkit.
-- `templates/DREAM_CYCLE.md` → `<PREFIX>_DREAM_CYCLE.md` plus a `<PREFIX>_DREAM_LOG.md` (header only) — the periodic reflection pass.
+- `templates/DREAM_CYCLE.md` → `<PREFIX>_DREAM_CYCLE.md` plus a `<PREFIX>_DREAM_LOG.md` (header only) — the periodic reflection pass. The template assumes a single unit; don't instantiate it unadapted into a component-structured brain.
 
 When the brain gains work items, also uncomment the work-item block in each project repo's hook (the maturity comment inside `templates/PROJECT_HOOK.md`).
 

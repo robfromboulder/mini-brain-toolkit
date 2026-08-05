@@ -1,6 +1,6 @@
 # Mini-Brain Toolkit: Check an Existing Mini-Brain
 
-> V12, 2026-08-02.
+> V13, 2026-08-04.
 
 This document is the procedure for evaluating an existing mini-brain against the pattern and surfacing where it could improve — whether the brain was built from this toolkit or grew on its own.
 
@@ -62,9 +62,9 @@ Also run the structural checks below; they're mechanical and catch the cheap, co
 1. **Read index ↔ disk** — every file in the read index exists; no top-level knowledge file is missing from the index (orphans). *Component brain:* the hub index covers hub documents only, so instead check the registry against disk both ways — every registered unit has a directory, every unit directory is registered, at every depth — and check grammar conformance: every unit carries the full doctype set, and any document beyond it appears in that unit's **Also holds** cell or its local index.
 2. **Version headers** — every canonical doc (except the exempt `*_LOG.md` / `*_TASKS.md`) opens with a well-formed `> V<N>, YYYY-MM-DD.` and no smuggled change-note.
 3. **Cross-references** — every mini-brain filename mentioned resolves to a current canonical file, not an `archive/` copy or a deleted file. *Component brain:* resolve against the unit that owns the token, not the repo root.
-4. **Namespace prefix** — every top-level knowledge file carries the namespace token (`ls *.md | grep -vE '^(CLAUDE|README)\.md$' | grep -v <PREFIX>` should return nothing). *Component brain:* run it per unit against that unit's declared token, over the unit's own documents and its `working/` — never its `archive/`, where retired files legitimately keep the basename they were retired under and need not be markdown. Match the token exactly: a document belongs to the unit whose token its name begins with in full, longest match winning. Tokens nest as prefixes (`VMR` inside `VMR_AGENT`), so the substring test above silently accepts a child's document sitting in its parent's directory.
+4. **Namespace prefix** — every top-level knowledge file and every `working/` doc carries the namespace token (`ls *.md working/*.md | grep -vE '^(CLAUDE|README)\.md$' | grep -v <PREFIX>` should return nothing). *Component brain:* run it per unit against that unit's declared token, over the unit's own documents and its `working/` — never its `archive/`, where retired files legitimately keep the basename they were retired under and need not be markdown. Match the token exactly: a document belongs to the unit whose token its name begins with in full, longest match winning. Tokens nest as prefixes (`ORCHARD` inside `ORCHARD_PRESS`), so the substring test above silently accepts a child's document sitting in its parent's directory.
 5. **Log discipline** — the session log is append-only and readable from its last separator (not required to be read whole); entries carry a date and session identifier.
-6. **Unit references** (component brains) — no document names a sibling unit, and none names another unit's files; naming one's own sub-components by name is the only cross-unit reference permitted. Logs and maintenance documents are exempt — a log records what a session touched, and a procedure names the files it operates on.
+6. **Unit references** (component brains) — cross-unit references stay within the entrypoint's declared exemptions: a component's SCOPE may cite its parent's SCOPE, its APPROACH its parent's APPROACH, and any document may name its own sub-components — never their files. Any other reference to another unit or its files is a violation, sibling references above all. Logs and maintenance documents are exempt — a log records what a session touched, and a procedure names the files it operates on.
 
 ---
 

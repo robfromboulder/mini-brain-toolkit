@@ -1,6 +1,6 @@
 # Mini-Brain Toolkit: The Component Layer
 
-> V3, 2026-08-02.
+> V4, 2026-08-04.
 
 This document is the layout convention for a mini-brain whose knowledge divides into several components. It is opt-in: a brain with one problem never uses it, and the file set in `MBT_PATTERN.md` applies unchanged.
 
@@ -29,11 +29,11 @@ component  in-flight declared  work item  doc kind
 
 Directories carve components; the trailing slot carves work items. Hub documents take no path.
 
-Every unit declares one namespace token, the hub's in the entrypoint's opening line and each component's in the registry (§3). Because the token is declared rather than inferred, it may contain underscores — `VMR_AGENT` is a single token, not `VMR` plus a qualifier.
+Every unit declares one namespace token, the hub's in the entrypoint's opening line and each component's in the registry (§3). Because the token is declared rather than inferred, it may contain underscores — `ORCHARD_PRESS` is a single token, not `ORCHARD` plus a qualifier.
 
-**Token ownership.** A document belongs to the unit whose declared token its name begins with in full, taking the longest match when more than one qualifies. Tokens may nest as prefixes, so a shorter token matching proves nothing: `viewmapper/VMR_AGENT_SCOPE.md` begins with `VMR`, and is nonetheless a misplaced document belonging to `viewmapper/agent/`. Ownership constrains naming in return: never name a document so that another unit's token is a longer prefix of its name than the owning unit's — the trap is a parent whose name continues into a child's token, as a `viewmapper/` work item slugged `AGENT_ERRORS` would yield `VMR_AGENT_ERRORS_PLAN.md` and hand its files to `viewmapper/agent/`.
+**Token ownership.** A document belongs to the unit whose declared token its name begins with in full, taking the longest match when more than one qualifies. Tokens may nest as prefixes, so a shorter token matching proves nothing: `orchard/ORCHARD_PRESS_SCOPE.md` begins with `ORCHARD`, and is nonetheless a misplaced document belonging to `orchard/press/`. Ownership constrains naming in return: never name a document so that another unit's token is a longer prefix of its name than the owning unit's — the trap is a parent whose name continues into a child's token, as an `orchard/` work item slugged `PRESS_ERRORS` would yield `ORCHARD_PRESS_ERRORS_PLAN.md` and hand its files to `orchard/press/`.
 
-**Every unit owns its `working/` and `archive/`.** Create them when the unit first has in-flight work or retired material, never ahead of need. A unit's `working/` inherits its token, so `viewmapper/agent/working/VMR_AGENT_COLUMN_LINEAGE_PLAN.md` stays as parseable as a canonical document. A unit's `archive/` does not: retired files keep the basename they were retired under, as in any brain, and need not be markdown.
+**Every unit owns its `working/` and `archive/`.** The hub's pair is created at seeding, as in any brain; a component's is created when it first has in-flight work or retired material, never ahead of need. Source material gathered at seeding lands in the hub's `archive/`, whichever component it describes — a component's `archive/` begins with its own first retirement. A unit's `working/` inherits its token, so `orchard/press/working/ORCHARD_PRESS_YIELD_PLAN.md` stays as parseable as a canonical document. A unit's `archive/` does not: retired files keep the basename they were retired under, as in any brain, and need not be markdown.
 
 ---
 
@@ -43,7 +43,7 @@ The brain's `CLAUDE.md` states the hub token, then carries four things and never
 
 1. **Hub index** — one row per hub document, as in any brain.
 2. **Doctype grammar** — one row per doctype, saying what it holds. Every component carries the full set.
-3. **Component registry** — one row per component: directory, token, the terms that should route a question to it, an **Also holds** cell, and the project repository where one exists. Sub-components are rows indented under their parent.
+3. **Component registry** — one row per component: directory, token, the terms that should route a question to it, an **Also holds** cell, and the project repository where one exists — a path into an ancestor's repository, for a component whose code lives inside one. Sub-components are rows indented under their parent.
 4. **Conventions** — as in any brain, plus the placement rules in §4.
 
 A reader resolves a document's path from the grammar and the registry rather than from an enumeration: the registry gives the directory and token, the grammar gives the rest. The registry's routing terms are what a session matches its question against to choose a component before reading anything; questions about how components fit together, and questions no component's terms claim, are hub-level.
@@ -75,7 +75,7 @@ Seeding creates the full doctype set for every component, so the grammar never p
 | `<TOKEN>_FINDINGS.md` | *none* | Implementation decisions downstream of the approach, with nothing upstream to cite. |
 | Any document | its own sub-components **by name**, never their files | Naming a part of your own subject is not a downstream reference; reaching into that part's documents is. |
 
-Two classes stand outside the table. **Logs** record what a session touched, filenames included, so naming another unit's documents is their job. **Maintenance and procedure documents** name the knowledge files they operate on, which is inherent to being a procedure.
+A permitted reference is cited by name, never by section number. Two classes stand outside the table. **Logs** record what a session touched, filenames included, so naming another unit's documents is their job. **Maintenance and procedure documents** name the knowledge files they operate on, which is inherent to being a procedure.
 
 ---
 
