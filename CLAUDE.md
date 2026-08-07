@@ -1,6 +1,6 @@
 # Mini-Brain Toolkit: Mini-Brain Files
 
-> V13, 2026-07-29.
+> V16, 2026-08-05.
 
 ---
 
@@ -11,12 +11,13 @@ All paths are relative to this repo root (`CLAUDE.md`'s directory). Before readi
 | Purpose | File |
 |---|---|
 | What a mini-brain is — principles, file set, lifecycle | `MBT_PATTERN.md` |
+| Layout convention for a brain whose knowledge divides into several components | `MBT_COMPONENTS.md` |
 | Procedure: create a new mini-brain | `MBT_CREATE_BRAIN.md` |
 | Procedure: check an existing mini-brain against the pattern | `MBT_CHECK_BRAIN.md` |
 | Research agenda — where the pattern could go, and how it compares to related work | `MBT_RESEARCH.md` |
 | Comparable systems — the second-brain / agent-memory landscape (read during the dream cycle's competitive-landscape pass) | `MBT_COMPARABLES.md` |
 | Cognitive-science grounding — biological models the pattern draws on (read during the dream cycle's biological-grounding pass) | `MBT_BIOLOGY.md` |
-| Problem definition, current state, goals | `MBT_SCOPE.md` |
+| Problem definition, the world it exists in, goals | `MBT_SCOPE.md` |
 | Technical approach, key design decisions | `MBT_APPROACH.md` |
 | Key implementation findings (invisible from the files) | `MBT_FINDINGS.md` |
 | Session log — why we chose what we chose | `MBT_LOG.md` (read from last `---`; large) |
@@ -52,13 +53,14 @@ Only files in this table are current. `templates/` holds the base files `MBT_CRE
 | `MBT_APPROACH.md` | `MBT_SCOPE.md` only | A design legitimately responds to the problem it addresses — never reaching down into implementation. |
 | `MBT_FINDINGS.md` | *none* | Implementation decisions that did *not* shape the approach — downstream of it, so nothing upstream to cite. |
 | `MBT_PATTERN.md` | *none* | The canonical definition stands alone; it precedes the procedures that enact it and the research that extends it, and reaches down to neither. |
+| `MBT_COMPONENTS.md` | `MBT_PATTERN.md` only | An optional layout layer serves the definition it extends — upstream — and reaches down to no procedure. |
 | `MBT_RESEARCH.md` | *none* | The conclusions the two registries feed upward into; naming them would reach *downstream*, and it needs nothing else. |
 | `MBT_COMPARABLES.md` | `MBT_RESEARCH.md` only | A fact registry serves the conclusions it feeds; it may name that conclusions doc (upstream) and nothing else. |
 | `MBT_BIOLOGY.md` | `MBT_RESEARCH.md` only | Same, for the cognitive-science grounding registry. |
 
 Absent a declared exemption, full orthogonality holds; a different project would declare its own set. A permitted reference still follows the Cross-references rule above — cited by name, never by section number.
 
-**Maintenance-doc boundaries.** `MBT_DREAM_CYCLE.md` and the procedure docs `MBT_CREATE_BRAIN.md` / `MBT_CHECK_BRAIN.md` enact the pattern, so each may cite `MBT_PATTERN.md` as the definition it implements — but they do not reference one another, and naming the knowledge files they operate on is inherent to being a procedure, not a cross-reference. `MBT_SESSION_CLOSEOUT.md` governs the session logs — `MBT_LOG.md` and any open work item's working log — and references nothing else.
+**Maintenance-doc boundaries.** `MBT_DREAM_CYCLE.md` and the procedure docs `MBT_CREATE_BRAIN.md` / `MBT_CHECK_BRAIN.md` enact the pattern, so each may cite `MBT_PATTERN.md` and `MBT_COMPONENTS.md` as the definitions it implements. Any procedure that appends a log entry cites `MBT_SESSION_CLOSEOUT.md` as the entry-format authority; beyond that they do not reference one another, and naming the knowledge files they operate on is inherent to being a procedure, not a cross-reference. `MBT_SESSION_CLOSEOUT.md` governs the session logs — `MBT_LOG.md` and any open work item's working log — and references nothing else.
 
 **No harness memory.** Don't use the persistent memory feature. All persistent project information belongs in the markdown files in this directory.
 

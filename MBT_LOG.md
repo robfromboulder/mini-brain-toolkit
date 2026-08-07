@@ -201,3 +201,114 @@ Rob's session, with Claude as co-author. Rob had watched sessions in the first e
 - One rule, three reductions: the routing rule's portable core is the priority order, the last-resort default, and the closeout carve-out — which signals exist is a property of each brain's structure (branch/PR machinery, platform split), not of the rule.
 - Scaffold templates are a distribution channel, not documentation: prose added to a template ships verbatim into every file generated from it, so author-facing guidance belongs in the procedure that does the generating.
 - Mapping a rule onto a differently-shaped brain is an audit of that brain for free — the second exemplar's prefix drift only surfaced because routing forced a close read of how its work items are actually named.
+
+---
+
+# Component layer added as an opt-in convention set, from a three-project brain that broke the namespace (2026-07-31)
+
+**Session ID**: `93f4946d-f171-4054-86d4-8c833f90bb86`
+
+Rob's session, with Claude as co-author. It began as a review of a bootstrap plan for a brain spanning three sibling projects, which proposed six peer namespace families in one flat directory. The review found the scheme unparseable, and Rob redirected from "is this plan right" to "what does a brain look like at ten or thirty components" — which turned a brain-seeding session into a toolkit change. Landed: `MBT_COMPONENTS.md` V1 and `templates/COMPONENTS_CLAUDE.md` new, `MBT_PATTERN.md` V12, `MBT_CREATE_BRAIN.md` V11, `MBT_CHECK_BRAIN.md` V9, `CLAUDE.md` V14, and edits to the session-closeout, work-setup, work-closeout, project-hook, entrypoint and work-item templates. The brain that prompted it is planned but not seeded. Nothing committed in either repo.
+
+## Turn-by-turn
+
+- The proposed scheme varied the namespace token per project and appended module names to it. Reading both exemplar brains showed why that fails: each keeps one constant token acting as a pivot, so everything left of it is a platform and everything right of it is a work item, and every filename decomposes even at five underscores. Remove the anchor and a module log is indistinguishable from a work-item log — not hypothetical, since one exemplar already holds a work item whose name begins with the same word a module would have used.
+- The scaling answer came from the second exemplar rather than from design: it carries ninety-six files behind an eleven-row index by refusing to enumerate its in-flight directory, stating a grammar and a discovery procedure instead. The pattern had already solved N-scaling once and only ever applied it to work items; the whole proposal is that mechanism moved up to the canonical layer.
+- Four options were put to Rob. He rejected making the new layout canonical and framed the alternative: layer the conventions so simple brains never pay for them, let both styles live in one repo, and start simple with the option to grow. That framing held for the rest of the session. One correction to his reasoning: the flat fixed-pivot scheme bends the pattern *least*, not most — it is already-sanctioned text — so the case for the layer is scaling headroom alone, never pattern fit.
+- Rob challenged whether the two modules of the middle project were really one component. Comparing the submodules settled it — different stacks, roadmaps, test suites and issue sets, and issues that touch one and never the other. Two problems, so two components, and components had to nest. The log-routing rule needed no rewording to absorb a third level, which was the first sign the recursion was real rather than bolted on.
+- With modules as components, the layer's platform-qualifier slot had no user left. Rob asked whether that collapsed the need for it. It did — and then he supplied the fact that changed the reasoning underneath: the exemplar whose platform split looked like the argument for keeping the slot actually has two problem statements, one multi-model and one multi-tenant, carried under a single scope because everything was authored for the first platform and the second was ported against it. Opportunistic, not designed. That converted the only apparent instance of the category into an undeclared component split.
+- Writing `MBT_COMPONENTS.md` surfaced six gaps in the specification it was written from, and reviewing it surfaced five more, three of them introduced during the drafting. All eleven were statement problems; none touched the structure.
+- Rob's "stupid question" about session closeout was the last real gap: the closeout template's fallback assumed a single canonical log, and the one existing multi-log brain had hand-patched that rule rather than the template being fixed. A sweep for the same class of error then found the namespace token missing from work-item paths in roughly ten places, including the work-item scaffolds that generate cross-references into every real work item.
+
+## Decisions
+
+- **Layer the conventions, don't move the definition** — the pattern gains one sentence and a brain that never opts in reads it unchanged; neither exemplar changes a byte (Rob's framing, after rejecting the canonical-rewrite option).
+- **Directories carve components, the trailing slot carves work items, and the token is declared per unit** — one mechanism per job, which is what restores the pivot the flat scheme destroyed (Claude's proposal, Rob's choice of the readable compound tokens over short opaque ones).
+- **Placement by nearest common ancestor, siblings never named** — a fact about two units lives in the unit above them, which makes placement decidable rather than a judgment call. Rob's reason for taking it was enforceability in a structure where it is otherwise hard to tell where a fact belongs.
+- **Drop the platform qualifier from the layer** — nothing would use it, and the base pattern still serves brains that split flat (Claude's recommendation on Rob's prompt; the evidence that the one candidate instance is really a component split arrived afterward and strengthened it).
+- **A work item retires where it lived, but its knowledge is placed by reach** — an item owned by a child can push a finding up to its parent, because the child may not hold knowledge about a sibling (Claude, while making the two bookend procedures component-aware).
+
+## What didn't work
+
+- The delegating sentence, as specified, had the pattern doc name the new layer doc. That is a downstream reference, the one kind the toolkit's own rule says is never exemptable — it would have shipped as a live orthogonality violation in the most-read file. Rewritten to describe the convention inline and let the read index carry the pointer, which is exactly what the existing platform-split sentence does.
+- An extra restructuring signal was invented while drafting the layer and cut on review: it did not discriminate between a unit that should split and a scope that was merely under-written, so it would have sent someone restructuring a brain when they should have finished a document.
+- The checks were specified four times before any of them ran. Each round of inspection found another defect, ending with a prefix-matching rule that silently accepted a child's document sitting in its parent's directory — a false negative, the worst kind. Running them against both exemplars afterward confirmed one fix mattered: sweeping the retired-files directory into the token check would have raised four false failures in one brain and sixteen in the other.
+
+## Lessons
+
+- Look for the mechanism the pattern already has before designing one. Discovery-by-grammar was running over eighty-one files in a live brain; the contribution was noticing it had never been applied to the canonical layer.
+- Writing the document *is* the test of the specification. Eleven defects surfaced between drafting and reviewing one file, none of which had been visible across five careful reviews of the proposal describing it.
+- A section that restates another section's contents drifts every time that section changes — the proposal's list of what the new doc should contain went stale on four separate edits. Duplication that a rule would forbid inside a brain is just as costly in the document proposing the rule.
+- Ask where a rule's reader actually looks. Log routing was specified in the conventions layer and was still missing from the closeout procedure, which is the only document a session opens when it needs to know.
+
+---
+
+# Scope authoring hardened after a full seed produced six status reports (2026-08-02)
+
+**Session ID**: `e054f1be-03ab-4b37-a0dd-74f68fd3df60`
+
+Rob's session, with Claude as co-author. A component-structured brain was seeded end to end against the current instructions, and every scope it produced described the project's own maturity instead of the problem's world. The instructions already said "solution-neutral" and "goals as outcomes, not deliverables", and they had been followed, so the fix was never more emphasis. Landed: `MBT_CREATE_BRAIN.md` V15, `MBT_CHECK_BRAIN.md` V12, `MBT_COMPONENTS.md` V3, `MBT_PATTERN.md` V13, `CLAUDE.md` V15, and edits to the scope, approach, entrypoint and component-entrypoint templates. Nine files, nothing committed.
+
+## Turn-by-turn
+
+- The failure was uniform across every unit, which ruled out carelessness in any one document and pointed at the instructions. Two things were diagnosed as causes. The section had a name and no definition, and the name it had invites exactly the wrong reading — a heading asking for the current state gets the current state of the thing being built. And the source material, being project documentation, was organized around the project, so distilling it preserved that organization unless the problem was deliberately re-derived. The second cause is the more general one: distillation carries the shape of what it distills.
+- Two existing brains were read to calibrate what the section should hold. Both describe the world their problem lives in — what the environment already provides, what alternatives exist and where they stop — and neither reports on its own progress. That confirmed the convention existed in practice and had simply never been written down.
+- Four rules went into the scope guidance, each stated with the test that catches its violation: the shipped-a-release test for status content, the could-a-different-design-satisfy-it test for goals, the shape-of-source-material warning, and a rule to report evidence at the strength the source gave it. The last came from an actual error in the seeded brain, where a source recorded what someone had done and the distillation invented why.
+- Rob had independently reached the same conclusion about the heading and approved renaming it. He also scoped the change correctly: a heading that invites drift is worth renaming when touched, but a section under the old name whose content is right is not a finding. That distinction went into the check procedure so the rename never generates busywork against brains that predate it.
+- Guidance was also moved to the point of use, as per-section comments inside the scope and approach templates that the author deletes while filling them. The procedure document is read once at seed time; the template is open at the moment the mistake gets made.
+- The forward trace from design choices to goals found nothing wrong. Running it in reverse — for every goal, name the decision that answers it — found three goals with no answering decision in a single sitting, including one where the prose implied a mechanism handled a goal it did not. That pass was added to the approach guidance.
+- Rob then directed two review cycles that the procedure did not describe: read every scope back as a group, and pair each approach with its own scope while explicitly *not* comparing approaches to each other. Both were added, with his reasoning for the asymmetry attached.
+- Reviewing the additions found three defects at the joins, two of them introduced by the additions themselves. The check procedure's preamble tells a reviewer to delegate read-heavy passes to subagents, which is correct for per-document checks and fatal to set-level ones — a term collision is invisible to a reader holding one document. And the report structure predated four of the seven checks, leaving a reviewer nowhere to file the new findings.
+
+## Decisions
+
+- **Define the section rather than add emphasis** — the guidance that failed was being followed, so the gap was a missing definition, not weak wording (Claude's diagnosis, Rob's agreement).
+- **Rename the heading, and treat the old name as cosmetic** — the new name carries the correction, while existing brains stay conforming and get flagged only when the section is next touched (Rob's call on both halves).
+- **Put the rules where the work happens** — the template comments duplicate the procedure deliberately, because the two are read at different moments and only one is open when the error occurs (Claude's proposal, Rob's approval).
+- **Scopes are reviewed as a set; approaches never are** — comparing sibling approaches invites the coupling the pattern forbids and pressures designs that legitimately differ into cosmetic agreement (Rob's instruction, and his reasoning).
+- **A stale source is a finding about that source** — fact-checking turns up drift in the documents being distilled as often as in the brain, and reporting it back is part of the job rather than an obstacle to it (Claude).
+
+## What didn't work
+
+- The first rewrite of the scope guidance silently dropped an instruction it was replacing: strip strategy, tactics and vendor choices out of anything headed for the goals, and the pointer to where source material sits. The new goal rule covered the principle and lost the operative sentence. Caught only by reading the full diff rather than confirming the new text had arrived — reviewing one's own edits by checking that the intended change landed misses everything the change displaced.
+- A rule against vocabulary collisions across documents was proposed and rejected as proofreading, then earned a place later when the same collision turned up in the seeded brain. The initial judgment was wrong about the category: a term meaning two things in two units is a structural defect, because each reading is defensible alone and only the set reveals it.
+- A pre-existing miscount in the check procedure ("the two things that decay silently" above three bullets) was made worse by adding a fourth before being noticed. Additions to a list are a reason to re-read its introduction.
+
+---
+
+# Component layer deep review and hardening (2026-07-31)
+
+**Session ID**: `403e9e4a-0a60-4555-ae23-6df3f4f24ac1`
+
+Rob's session, with Claude (Fable 5, max effort) as co-author. It began as a review of the component-brains branch — whether the component layer can serve larger knowledge bases without breaking the two exemplar brains or complicating simple ones — using the multi-component prototype brain's bootstrap plan as the reference structure. The review found no contraindication and three weak clusters; Rob redirected from assessment to repair, and the session became a fix-then-verify cycle over every document a component brain would instantiate. Landed as one commit (8bdd4a5): the two-tier placeholder contract, pinned routing and naming rules, template fidelity repairs, and a standing agenda of the open items with per-area confidence.
+
+## Turn-by-turn
+
+- The review scored ten areas and clustered the weaknesses in three places: a placeholder meaning two things at once in the maintenance templates, an entirely single-unit dream-cycle template, and holes in three of the five restructuring migrations. Everything scoring below 70 was stage-3 machinery the prototype seed would not touch, which set the session's scope — fix the seeding path now, leave the stage-3 design for a living brain.
+- Fixing the placeholder began with evidence rather than design: the simplest exemplar's instantiated work-setup showed the de facto contract — brain-token references made concrete at creation, per-item variables surviving to runtime. `<TOKEN>` joined `<WORK>` as a surviving runtime variable on that precedent, with single-unit brains resolving it through one definition sentence.
+- While pinning the review's log-merge ambiguity, Claude deviated from the review's own suggestion (collective nearest-common-ancestor) and pinned merged entries to the owner's canonical log, because session closeout already sends the closeout session there — one destination, matching where the item retires. Sprawl beyond the owner was reclassified as the re-homing problem and deferred.
+- Rob then asked for read-backs of each changed file in turn, and every pass caught real defects — two of them in this session's own fresh edits. The naming constraint as first written forbade every legitimate child document, since a child's name necessarily begins with its parent's token; it was restated in longest-prefix form. The substitution clause said component brains substitute the hub's token everywhere, contradicting the seeding step that puts each component's doctype set under its own token; it became a per-copy rule.
+- The component entrypoint pass found fidelity drops rather than logic errors — load-bearing sentences present in the spec or the base template but missing from the component variant (the never-bare-CLAUDE warning, logs never archived, move-not-delete retirement, the maturity comment blocks) — plus a missing routing fallback for questions no component claims, added to spec and template in the same words.
+- The bookend pass renamed the work item's "prefix" to slug (it collided with the hub-token variable in the same document), surfaced the runbook's undocumented load-bearing branch declaration, and formalized the simplest exemplar's organic self-containment: a brain's copy of work setup inlines the six scaffolds so the brain stands alone without the toolkit.
+- The same pass found the declared maintenance-doc boundary contradicted by the family's own practice — the dream cycle and work closeout both cite the session-closeout doc as the log-entry format authority, which the boundary forbade. The boundary now sanctions exactly that citation and holds the rest strict.
+- The open items were distilled into a standalone agenda with rescored confidence — no delta narration and no reference to the review, which Rob renamed and archived to preserve the point-in-time record. A last look before commit caught the renamed agenda's stale title and a `.gitkeep` resurrected by the file moves; Rob questioned its removal, and it stood after weighing the written convention against a permanent placeholder — the procedures recreate `working/` on demand, so an empty directory may vanish harmlessly.
+
+## Decisions
+
+- **Fix the seeding path now, design stage-3 machinery against a living brain** — every low-confidence area sat in machinery the prototype seed won't exercise (Rob's sequencing, adopting the review's recommendation).
+- **`<TOKEN>` survives as a runtime variable rather than substituting conditionally by brain shape** — uniformity and the `<WORK>` precedent: one meaning per symbol (Claude's proposal under Rob's direction to apply the fix).
+- **A work item's merged log entries land in its owner's canonical log, always** — simpler than collective ancestry, and it agrees with where the closeout session logs and where the item retires (Claude's deviation from the review text, reported to Rob and kept).
+- **Naming is constrained by longest prefix** — no document may bear a name of which another unit's token is a longer prefix than its owner's (correction of this session's own first formulation, caught in read-back).
+- **Instantiated brains stand alone** — work setup's six scaffolds are inlined at instantiation, never referenced from the toolkit (formalizing what the simplest exemplar already did).
+- **The review stays frozen; the agenda stands alone** — no updates to the archived review, no change-tracking between the two documents (Rob's requirement, for traceability).
+
+## What didn't work
+
+- The session's own first-pass edits shipped two defects that only the read-backs caught — the overbroad naming rule and the contradictory substitution clause. The branch's previous session had already recorded this exact failure shape (each round of inspection finding another defect); it repeated anyway.
+- The declared maintenance-doc boundary had never been checked against the documents it governs, and practice had drifted through it in two places.
+
+## Lessons
+
+- Simulating a template post-instantiation, once per brain shape, is the test that finds template defects; every template pass found real ones that way, and none were visible from the template text alone.
+- Prefer the precedent a living brain already set: both structural decisions this session — two-tier substitution and inlined scaffolds — were read off the simplest exemplar rather than invented.
+- Declared reference boundaries need the same mechanical verification as filenames: a rule about who may cite whom is testable by grep and had simply never been run.

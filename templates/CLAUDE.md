@@ -10,7 +10,7 @@ All paths are relative to this repo root (`CLAUDE.md`'s directory). Before readi
 
 | Purpose | File |
 |---|---|
-| Problem definition, current state, goals | `<PREFIX>_SCOPE.md` |
+| Problem definition, the world it exists in, goals | `<PREFIX>_SCOPE.md` |
 | Technical approach, what we build | `<PREFIX>_APPROACH.md` |
 | Key implementation findings (invisible from code) | `<PREFIX>_FINDINGS.md` |
 | Session log — why we chose what we chose | `<PREFIX>_LOG.md` (read from last `---`; large) |
@@ -18,7 +18,7 @@ All paths are relative to this repo root (`CLAUDE.md`'s directory). Before readi
 
 Only files in this table are current. `archive/` holds source material, retired/absorbed docs, and closed work-item working files — ignore it unless asked.
 
-`working/` holds experiments and a work item's in-flight `<WORK>_*` docs. When a work item concludes, fold them into the canonical docs and **move** (not delete) them to `archive/`.
+`working/` holds experiments and a work item's in-flight `<PREFIX>_<WORK>_*` docs. When a work item concludes, fold them into the canonical docs and **move** (not delete) them to `archive/`.
 
 <!-- As the brain matures, add the lifecycle docs to this index:
 | Work setup — scaffold a work item's working docs | `<PREFIX>_WORK_SETUP.md` |
@@ -54,7 +54,7 @@ Only files in this table are current. `archive/` holds source material, retired/
 Absent a declared exemption, full orthogonality holds; add a row here only when the brain grows a knowledge doc that genuinely needs one. A permitted reference still follows the Cross-references rule above — cited by name, never by section number.
 
 <!-- As the brain matures and gains the lifecycle docs, add their boundary rule:
-**Maintenance-doc boundaries.** `<PREFIX>_DREAM_CYCLE.md` is standalone — it references no other maintenance doc. `<PREFIX>_WORK_SETUP.md` and `<PREFIX>_WORK_CLOSEOUT.md` are bookends and may reference each other, but only by that relationship.
+**Maintenance-doc boundaries.** Any procedure that appends a log entry cites `<PREFIX>_SESSION_CLOSEOUT.md` as the entry-format authority. Beyond that, `<PREFIX>_DREAM_CYCLE.md` references no other maintenance doc, and `<PREFIX>_WORK_SETUP.md` / `<PREFIX>_WORK_CLOSEOUT.md` are bookends that may reference each other, but only by that relationship.
 -->
 
 **No harness memory.** Don't use the persistent memory feature. All persistent project information belongs in the markdown files in this directory.
