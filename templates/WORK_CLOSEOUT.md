@@ -32,10 +32,11 @@ The mirror of this: whoever writes a work item's own closeout notes (in its `<TO
 
 ---
 
-## 2. Classify each edit before making it
+## 2. Classify each piece of knowledge before merging it
 
-The canonical docs are not all the same shape, and merging the wrong way creates sedimentary layering — contradictory claims stacked because each merge only appended. Classify every edit:
+The canonical docs are not all the same shape, and merging the wrong way creates sedimentary layering — contradictory claims stacked because each merge only appended. Not every piece is merged:
 
+- **Omit** — the target's stated coverage already excludes this, most often because the shipped code or runbook now states it outright. `<TOKEN>_FINDINGS.md` carries only what the code does not already show, so a finding the merged artifact spells out in full is dropped rather than folded. The test: *"does the target's stated coverage exclude this?"* Nothing is lost by dropping it — the working doc retires to the owning unit's `archive/` intact — while a redundant fold taxes every later reader with deciding whether it says something the artifact doesn't. Adding is cheap at merge time and winnowing never is, so make this call here.
 - **Additive** — the target has no claim on this yet. Add it.
 - **Reconcile (supersede)** — the new knowledge makes an existing statement *false* or reverses a committed direction. Do **not** add a second statement beside the old one. Rewrite the existing statement in place (bumping the version header), saying what changed and why the earlier direction was abandoned. The test: *"does this make an existing statement false?"* If yes, it is a rewrite, not an addition. Grepping the target for shared key terms catches duplicates; it will **not** catch a reversal whose wording differs — read the section and judge.
 - **Snapshot-replace** — some sections are current-state snapshots, not logs. Replace these wholesale; never append a second "current" state beside the old one.
