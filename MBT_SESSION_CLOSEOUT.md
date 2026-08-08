@@ -1,17 +1,17 @@
 # Mini-Brain Toolkit: Session Closeout Instructions
 
-> V3, 2026-07-29.
+> V4, 2026-08-08.
 
 ---
 
-Governs session log entries in both `MBT_LOG.md` and any work item's `working/<PREFIX>_LOG.md` — the entry format and content rules are the same regardless of destination. **This format is the authority; do not imitate the previous entry** — a fresh file has none, and copying a neighbor lets the structure drift one merge at a time. Match sibling entries only where this spec is silent.
+Governs session log entries in both `MBT_LOG.md` and any work item's `working/MBT_<WORK>_LOG.md`, where `<WORK>` is that item's slug — the entry format and content rules are the same regardless of destination. **This format is the authority; do not imitate the previous entry** — a fresh file has none, and copying a neighbor lets the structure drift one merge at a time. Match sibling entries only where this spec is silent.
 
 **Purpose.** The log is the work's lineage, traceable to each coding session, and the home for what **cannot be deduced from the files alone**: key findings, decision points (and who made each call), what was tried and didn't work, and the course-corrections that kept the work on track. It's a log, not a design doc — don't restate scope or strategy; give the turn-by-turn account of each session start to finish and what was learned.
 
-**Routing — which log file to append to.** A session that belongs to an open work item — its `<PREFIX>_*` docs still in `working/`, even if the change they track has already landed — appends to that item's `working/<PREFIX>_LOG.md` (create it if the item lacks one); all other sessions append to `MBT_LOG.md`. Resolve ownership by the first matching signal, in priority order:
+**Routing — which log file to append to.** A session that belongs to an open work item — its `MBT_<WORK>_*` docs still in `working/`, even if the change they track has already landed — appends to that item's `working/MBT_<WORK>_LOG.md` (create it if the item lacks one); all other sessions append to `MBT_LOG.md`. Resolve ownership by the first matching signal, in priority order:
 
 1. **Explicit direction** — the user names a target log or work item.
-2. **Session content** — the session's work advances an open work item: its `working/<PREFIX>_*` docs or the change they track.
+2. **Session content** — the session's work advances an open work item: its `working/MBT_<WORK>_*` docs or the change they track.
 3. **No match** — append to `MBT_LOG.md`.
 
 When the session spans an open work item and other work, or could belong to more than one open item, ask rather than guess. The session that folds a concluded work item into the canonical docs appends to `MBT_LOG.md`: the item's working log is merged and moved to `archive/` in that same pass, so a fresh entry there would land in `archive/` unmerged.
