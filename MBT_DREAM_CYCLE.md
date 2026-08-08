@@ -1,6 +1,6 @@
 # Mini-Brain Toolkit: Dream Cycle
 
-> V13, 2026-08-08.
+> V14, 2026-08-08.
 
 Follow these instructions when the user asks the toolkit to dream and improve itself — the periodic reflection pass that keeps this brain true and small (principle 10).
 
@@ -37,7 +37,7 @@ Fix any failures. Report what was found and fixed.
 
 ## Phase 2: Dogfooding & self-consistency
 
-A product brain verifies `SCOPE` against its code. This brain has no product code — its "code" is its own teaching artifacts, and its `SCOPE` and `APPROACH` commit it to *being* the pattern it defines. So Phase 2 has three checks. All are internal (no web); the cross-doc read covers `MBT_PATTERN`, `MBT_COMPONENTS`, `MBT_CREATE_BRAIN`, `MBT_CHECK_BRAIN`, and a listing of `templates/` (and `templates/work/`) — one Explore agent or a direct read per the context-management size rule — and reports divergences for the active context to fix or flag.
+A product brain verifies `SCOPE` against its code. This brain has no product code — its "code" is its own teaching artifacts, and its `SCOPE` and `APPROACH` commit it to *being* the pattern it defines. So Phase 2 has three checks. All are internal (no web); the cross-doc read covers `MBT_PATTERN`, `MBT_COMPONENTS`, `MBT_CREATE_BRAIN`, `MBT_CHECK_BRAIN`, a listing of `templates/` (and `templates/work/`), and the full text of `templates/COMPONENTS_CLAUDE.md` and the maintenance templates — the component-layer check compares rule statements, which a filename listing cannot supply — one Explore agent or a direct read per the context-management size rule — and reports divergences for the active context to fix or flag.
 
 **(a) Teaching-artifact consistency.** `MBT_PATTERN.md` and `MBT_COMPONENTS.md` are the spec — the base pattern and its component layer; `MBT_CREATE_BRAIN.md` builds it, `MBT_CHECK_BRAIN.md` scores it, `templates/` supplies it. These five must agree. This operationalizes `MBT_SCOPE.md`'s templates-↔-reference-in-sync requirement and the roadmap's *instruction-drift detection*. Check:
 
