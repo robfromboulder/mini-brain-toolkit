@@ -62,7 +62,7 @@ Once the content is integrated, move each `working/<TOKEN>_<WORK>_*` file into t
 
 Finish with these mechanical checks, to confirm the merge is clean:
 
-1. **Read index ↔ disk** — every read-index file exists; no orphans. In a component-structured brain the hub index covers hub documents only, so check the registry against disk and confirm each unit still carries its full doctype set.
+1. **Read index ↔ disk** — every read-index file exists; no orphans. In a component-structured brain that covers the hub documents only, so also check the registry against disk and confirm each unit still carries its full doctype set.
 2. **Version headers** — each substantively edited file's header version was bumped by one and carries today's date (compared numerically — `V10` beats `V9`).
 3. **Cross-references** — every mini-brain filename reference resolves to a current canonical file, not an archive copy.
 4. **No dangling work-item references** — grep the canonical docs for each of the item's just-retired filenames (the exact `<TOKEN>_<WORK>_*.md` names, not the bare compound, which can also match unrelated canonical names); there should be none left (they live in `archive/` now). The `<WORK>` token used in this doc is a deliberate placeholder, so grepping it returns zero — any hit is a genuine dangling reference to fix, most often one carried in from a merged LOG entry (see the append-log rule in §2).

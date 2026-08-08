@@ -1,6 +1,6 @@
 # Mini-Brain Toolkit: Check an Existing Mini-Brain
 
-> V14, 2026-08-08.
+> V15, 2026-08-08.
 
 This document is the procedure for evaluating an existing mini-brain against the pattern and surfacing where it could improve — whether the brain was built from this toolkit or grew on its own.
 
@@ -59,7 +59,7 @@ Also run the structural checks below; they're mechanical and catch the cheap, co
 
 ### Structural checks
 
-1. **Read index ↔ disk** — every file in the read index exists; no top-level knowledge file is missing from the index (orphans). *Component brain:* the hub index covers hub documents only, so instead check the registry against disk both ways — every registered unit has a directory, every unit directory is registered, at every depth — and check grammar conformance: every unit carries the full doctype set, and any document beyond it appears in that unit's **Also holds** cell or its local index.
+1. **Read index ↔ disk** — every file in the read index exists; no top-level knowledge file is missing from the index (orphans). *Component brain:* run that against the hub index and the hub's documents, then check the registry against disk both ways — every registered unit has a directory, every unit directory is registered, at every depth — and check grammar conformance: every unit carries the full doctype set, and any document beyond it appears in that unit's **Also holds** cell or its local index.
 2. **Version headers** — every canonical doc (except the exempt `*_LOG.md` / `*_TASKS.md`) opens with a well-formed `> V<N>, YYYY-MM-DD.` and no smuggled change-note.
 3. **Cross-references** — every mini-brain filename mentioned resolves to a current canonical file, not an `archive/` copy or a deleted file. *Component brain:* resolve against the unit that owns the token, not the repo root.
 4. **Namespace prefix** — every top-level knowledge file and every `working/` doc carries the namespace token (`find . working -maxdepth 1 -name '*.md' 2>/dev/null | grep -vE '/(CLAUDE|README)\.md$' | grep -v '/<PREFIX>_'` should print nothing — it tolerates a missing or empty `working/` and anchors the token to the start of the filename). *Component brain:* run it per unit against that unit's declared token, over the unit's own documents and its `working/` — never its `archive/`, where retired files legitimately keep the basename they were retired under and need not be markdown. Match the token exactly: a document belongs to the unit whose token its name begins with in full, longest match winning. Tokens nest as prefixes (`ORCHARD` inside `ORCHARD_PRESS`), so the prefix test above silently accepts a child's document sitting in its parent's directory.
