@@ -1,6 +1,6 @@
 # Mini-Brain Toolkit: Create a New Mini-Brain
 
-> V18, 2026-08-08.
+> V19, 2026-08-08.
 
 This document is the procedure for standing up a new mini-brain from `templates/`.
 
@@ -42,7 +42,7 @@ A brand-new repo has nothing but perhaps a `README.md`, `LICENSE`, and `.git`; a
 For each missing file, copy the corresponding file from `templates/` and substitute the placeholders:
 
 - `<PREFIX>` → the namespace token (e.g. `ORCHARD`). In a component-structured brain, the token of the unit each copy serves: a component's for its own doctype set, the hub's for everything else.
-- `<Project>` → the project's display name (Title Case, e.g. `Orchard`).
+- `<Project>` → the project's display name (Title Case, e.g. `Orchard`). In a component-structured brain, a component's own doctype set takes that component's display name instead, so each unit's documents name their own subject rather than the whole project's.
 - `<project>` → the lowercase name used in prose/README (e.g. `orchard`).
 - `<date>` → today's date, `YYYY-MM-DD`.
 
@@ -63,7 +63,7 @@ Then create the two directories: `archive/` (drop any source material here) and 
 
 All canonical docs open with `> V1, <date>.`; apply `CLAUDE.md`'s version convention and exemptions.
 
-**For a component-structured brain**, seed the hub's documents at the root under the hub token, create one directory per component — nested where components nest — and seed each component's full doctype set from the same `SCOPE`, `APPROACH`, `FINDINGS` and `LOG` templates under that component's token. Those four are prefix-substituted and work identically at any depth. Use `templates/COMPONENTS_CLAUDE.md` for the entrypoint in place of `templates/CLAUDE.md`, filling its registry from the intake conversation — one row per component, replacing the placeholder rows. Reword the seeded README's namespace sentence to per-unit tokens — the template states one brain-wide token, which a component brain's own registry contradicts. `SESSION_CLOSEOUT` stays at the hub, one per brain, as does every maintenance document added later; `archive/` and `working/` belong to whichever unit first needs them, so create only the hub's now. `MBT_COMPONENTS.md` carries the registry's shape and the naming rules.
+**For a component-structured brain**, seed the hub's documents at the root under the hub token, create one directory per component — nested where components nest — and seed each component's full doctype set from the same `SCOPE`, `APPROACH`, `FINDINGS` and `LOG` templates under that component's token. Those four are substituted per unit — `<PREFIX>` with the unit's token, `<Project>` with its display name — and work identically at any depth. Use `templates/COMPONENTS_CLAUDE.md` for the entrypoint in place of `templates/CLAUDE.md`, filling its registry from the intake conversation — one row per component, replacing the placeholder rows. Reword the seeded README's namespace sentence to per-unit tokens — the template states one brain-wide token, which a component brain's own registry contradicts. `SESSION_CLOSEOUT` stays at the hub, one per brain, as does every maintenance document added later; `archive/` and `working/` belong to whichever unit first needs them, so create only the hub's now. `MBT_COMPONENTS.md` carries the registry's shape and the naming rules.
 
 ---
 
