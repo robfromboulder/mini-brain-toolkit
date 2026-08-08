@@ -19,5 +19,5 @@ Mini-brain edits accumulate uncommitted during a session; **closeout is the sync
 
 **Work-item closeout** is not a direct push — branch, commit, push, and open a PR against the mini-brain's `main`; report the link and leave it unmerged for review.
 
-**Active work item** = the one whose `working/<PREFIX>_<WORK>_*` docs name your current git branch; none on `main` or an unclaimed branch. It resolves any "my work item" reference; ask if ambiguous. In a component-structured brain each unit has its own `working/` and its work items carry that unit's token, so search this repo's component first, then its ancestors.
+**Active work item** = the one whose `working/<TOKEN>_<WORK>_*` docs name your current git branch, where `<TOKEN>` is the owning unit's token and `working/` that unit's own directory — both the brain's own in a single-unit brain; none on `main` or an unclaimed branch. It resolves any "my work item" reference; ask if ambiguous. In a component-structured brain, search this repo's component first, then its ancestors.
 -->
