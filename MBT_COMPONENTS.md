@@ -1,6 +1,6 @@
 # Mini-Brain Toolkit: The Component Layer
 
-> V5, 2026-08-05.
+> V6, 2026-08-08.
 
 This document is the layout convention for a mini-brain whose knowledge divides into several components. It is opt-in: a brain with one problem never uses it, and the file set in `MBT_PATTERN.md` applies unchanged.
 
@@ -54,7 +54,7 @@ Because the hub index no longer lists every current document, an entrypoint that
 
 Seeding creates the full doctype set for every component, so the grammar never promises a file that does not exist. Documents *beyond* the standard set are named in that component's **Also holds** cell. When the cell outgrows a line or two, that component earns a local read index — `<TOKEN>_CLAUDE.md`, never a bare `CLAUDE.md`, which a harness would load unbidden — and the cell becomes a pointer to it.
 
-**Maintenance and procedure documents live at the hub.** Session closeout, work setup and closeout, and the dream cycle govern the whole brain, so one of each serves every unit and none is namespaced to a component. The in-flight documents those procedures scaffold land in the `working/` of whichever unit owns the work.
+**Maintenance and procedure documents live at the hub.** Session closeout — and work setup, work closeout and the dream cycle when the brain grows them — govern the whole brain, so one of each serves every unit and none is namespaced to a component. The in-flight documents those procedures scaffold land in the `working/` of whichever unit owns the work.
 
 ---
 
