@@ -1,6 +1,6 @@
 # Mini-Brain Toolkit: Create a New Mini-Brain
 
-> V17, 2026-08-08.
+> V18, 2026-08-08.
 
 This document is the procedure for standing up a new mini-brain from `templates/`.
 
@@ -63,7 +63,7 @@ Then create the two directories: `archive/` (drop any source material here) and 
 
 All canonical docs open with `> V1, <date>.`; apply `CLAUDE.md`'s version convention and exemptions.
 
-**For a component-structured brain**, seed the hub's documents at the root under the hub token, create one directory per component — nested where components nest — and seed each component's full doctype set from the same `SCOPE`, `APPROACH`, `FINDINGS` and `LOG` templates under that component's token. Those four are prefix-substituted and work identically at any depth. Use `templates/COMPONENTS_CLAUDE.md` for the entrypoint in place of `templates/CLAUDE.md`, filling its registry from the intake conversation — one row per component, replacing the placeholder rows. `SESSION_CLOSEOUT` stays at the hub, one per brain, as does every maintenance document added later; `archive/` and `working/` belong to whichever unit first needs them, so create only the hub's now. `MBT_COMPONENTS.md` carries the registry's shape and the naming rules.
+**For a component-structured brain**, seed the hub's documents at the root under the hub token, create one directory per component — nested where components nest — and seed each component's full doctype set from the same `SCOPE`, `APPROACH`, `FINDINGS` and `LOG` templates under that component's token. Those four are prefix-substituted and work identically at any depth. Use `templates/COMPONENTS_CLAUDE.md` for the entrypoint in place of `templates/CLAUDE.md`, filling its registry from the intake conversation — one row per component, replacing the placeholder rows. Reword the seeded README's namespace sentence to per-unit tokens — the template states one brain-wide token, which a component brain's own registry contradicts. `SESSION_CLOSEOUT` stays at the hub, one per brain, as does every maintenance document added later; `archive/` and `working/` belong to whichever unit first needs them, so create only the hub's now. `MBT_COMPONENTS.md` carries the registry's shape and the naming rules.
 
 ---
 
