@@ -1,6 +1,6 @@
 # Mini-Brain Toolkit: Create a New Mini-Brain
 
-> V16, 2026-08-04.
+> V17, 2026-08-08.
 
 This document is the procedure for standing up a new mini-brain from `templates/`.
 
@@ -46,7 +46,7 @@ For each missing file, copy the corresponding file from `templates/` and substit
 - `<project>` → the lowercase name used in prose/README (e.g. `orchard`).
 - `<date>` → today's date, `YYYY-MM-DD`.
 
-Substitute only these. `<TOKEN>` and `<WORK>` are runtime variables, not creation placeholders — the procedures resolve them later, per owning unit and per work item — so leave them intact wherever a template carries them.
+Substitute only these. `<TOKEN>` and `<WORK>` are runtime variables, not creation placeholders — the procedures resolve them later, per owning unit and per work item — so leave them intact wherever a template carries them. Two spots are creation-time despite carrying `<TOKEN>`: the component registry's placeholder rows and the project hook's component paragraph are filled from the intake conversation when this procedure instantiates them, and only there.
 
 | Create from template | To | Notes |
 |---|---|---|
