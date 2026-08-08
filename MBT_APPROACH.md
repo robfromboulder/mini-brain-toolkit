@@ -1,6 +1,6 @@
 # Mini-Brain Toolkit: Technical Approach
 
-> V7, 2026-07-27.
+> V8, 2026-08-08.
 
 This document describes the approach for addressing the problems defined in `MBT_SCOPE.md`. It covers the strategic approach and key design decisions — not delivery sequence.
 
@@ -12,7 +12,7 @@ This document describes the approach for addressing the problems defined in `MBT
 
 The toolkit is itself a mini-brain, and its subject is the mini-brain pattern — exemplifying the pattern it defines is one of the goals in `MBT_SCOPE.md`. This is the load-bearing strategic choice: a toolkit that defined the pattern while not following it would be its own counterexample. Dogfooding makes the repo a worked example a reader can inspect end to end — the read index, the version headers, the append-only log, the orthogonal SCOPE/APPROACH split are all *demonstrated*, not just described — and it is the strongest available test that the templates and procedures are actually usable, because building the toolkit exercised them.
 
-The one wrinkle dogfooding creates is that two kinds of top-level knowledge file coexist: the toolkit's *own* brain (its problem, design, and findings) and the *pattern it defines* as a consumable product (the reference and the two procedures). The read index resolves this by grouping the two in blocks rather than interleaving them.
+The one wrinkle dogfooding creates is that two kinds of top-level knowledge file coexist: the toolkit's *own* brain (its problem, design, and findings) and the *pattern it defines* as a consumable product (the reference documents and the two procedures). The read index resolves this by grouping the two in blocks rather than interleaving them.
 
 ### 1.2 Distill from live exemplars, do not invent
 
@@ -20,7 +20,7 @@ The pattern already works in production brains. The toolkit's job is to *capture
 
 ### 1.3 Separate the reference from the procedures
 
-The definition and the two procedures are split into three documents rather than one, matching the three goals in `MBT_SCOPE.md`: a standalone reference that says *what a mini-brain is and why*, and two procedure documents that say *how to build one* and *how to judge one*. A single combined document would be simpler to find, but it would fuse the neutral reference with two opposed procedures. The split mirrors how the live brains separate a standalone reference from action-oriented runbooks, and it pays off in two ways: each document stays small and loads only when its question is being asked, and establishment and assessment — genuinely different activities — don't get tangled in one document. The cost is three files where the reader must know which one they want, mitigated by the grouped read index. The definition lives in the reference alone, cited rather than restated, so it has exactly one home.
+The definition and the two procedures are split into separate documents rather than one, matching the goals in `MBT_SCOPE.md`: a standalone reference that says *what a mini-brain is and why* — a base definition plus an opt-in layout layer for brains whose knowledge divides into components, so a simple brain never loads conventions it doesn't use — and two procedure documents that say *how to build one* and *how to judge one*. A single combined document would be simpler to find, but it would fuse the neutral reference with two opposed procedures. The split mirrors how the live brains separate a standalone reference from action-oriented runbooks, and it pays off in two ways: each document stays small and loads only when its question is being asked, and establishment and assessment — genuinely different activities — don't get tangled in one document. The cost is more files where the reader must know which one they want, mitigated by the grouped read index. Each part of the definition lives in exactly one reference document, cited rather than restated, so it has exactly one home.
 
 ### 1.4 Templates as the single source of truth
 
