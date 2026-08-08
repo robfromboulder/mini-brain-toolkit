@@ -1,6 +1,6 @@
 # Mini-Brain Toolkit: Mini-Brain Files
 
-> V16, 2026-08-05.
+> V17, 2026-08-08.
 
 ---
 
@@ -27,7 +27,7 @@ All paths are relative to this repo root (`CLAUDE.md`'s directory). Before readi
 
 Only files in this table are current. `templates/` holds the base files `MBT_CREATE_BRAIN.md` copies; `archive/` holds source material and retired docs — ignore both unless asked.
 
-`working/` holds experiments and a work item's in-flight `<PREFIX>_*` docs. When a work item concludes, fold them into the canonical docs and **move** (not delete) them to `archive/`.
+`working/` holds experiments and a work item's in-flight `MBT_<WORK>_*` docs, where `<WORK>` is the item's slug. When a work item concludes, fold them into the canonical docs and **move** (not delete) them to `archive/`.
 
 ---
 
