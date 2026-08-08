@@ -9,7 +9,7 @@
 **This repo is the brain's `<Component>` component** (directory `<dir>/`, token `<TOKEN>`). Start there and read another component's documents only when the question crosses into it; the brain's registry says which terms route where.
 -->
 
-Mini-brain edits accumulate uncommitted during a session; **closeout is the sync point that lands them** — don't commit/push on every file write. The user can't see that tree, so a closeout must actually commit and push, not just write files, and it follows the mini-brain's own commit conventions. A session closeout commits the session's changes (edits, the new log entry) and pushes to the mini-brain's `main`, reporting both; if the push fails, resolve or surface it rather than leaving the change unpushed.
+Mini-brain edits accumulate uncommitted during a session; **closeout is the sync point that lands them** — don't commit/push on every file write. The user can't see that tree, so a closeout must actually commit and push, not just write files. A session closeout commits the session's changes (edits, the new log entry) and pushes to the mini-brain's `main`, reporting both; if the push fails, resolve or surface it rather than leaving the change unpushed.
 
 **Proactively offer a session closeout at natural stopping points** (PR opened, branch merged, work paused, user signals wrapping up). Offer once and briefly; run the procedure only after the user agrees; skip trivial sessions (a lone question, a typo).
 

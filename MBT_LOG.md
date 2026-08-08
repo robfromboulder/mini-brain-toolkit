@@ -348,3 +348,15 @@ Rob's session, with Claude (Fable 5) as co-author. It began as a deep final revi
 - A reviewed-but-never-run command is prose, not a check. Executing each one against a fixture — including its failure cases — is cheaper than one false pass from a check that fails open.
 - The dry run per brain shape keeps earning its keep: after twenty-one fixes both seeds executed clean, and the one remaining defect it found sat in the oldest template nobody had touched.
 - Reading a document set together finds what per-file review structurally cannot: the exemplar's parent-child duplication was invisible in every earlier single-file pass over those same documents, and became obvious the moment the scopes were read as a set.
+
+---
+
+# Remove commit-conventions dependency from the project hook template (2026-08-08)
+
+**Session ID**: `a417fef1-dd6a-4a31-af07-71734d9d506c`
+
+Rob's session, with Claude (Sonnet 4.6) as co-author. Addressed the harvest candidate flagged in the previous session: the project hook template told the agent to follow "the mini-brain's own commit conventions" at closeout, implying every downstream brain should have commit conventions. Rob's direction was that MBT has nothing to say about commit conventions for downstream brains — enforcing a policy there hurts adoption — and the only commit-convention text that belongs in the toolkit is what governs MBT's own development (the no-AI-attribution rule in `CLAUDE.md`). The fix was one sentence in `templates/PROJECT_HOOK.md`: drop the phrase "and it follows the mini-brain's own commit conventions." No work item was opened; the fix was immediate and required no design.
+
+## Decisions
+
+- **Drop the commit-conventions reference from the hook template entirely** — MBT should not prescribe commit conventions to downstream brains; doing so would alienate developers and hurt adoption. The MBT-specific convention (no AI attribution trailer) stays in `CLAUDE.md` and applies only to this repo's own development (Rob's call).
