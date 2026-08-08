@@ -1,6 +1,6 @@
 # Mini-Brain Toolkit: Check an Existing Mini-Brain
 
-> V17, 2026-08-08.
+> V18, 2026-08-08.
 
 This document is the procedure for evaluating an existing mini-brain against the pattern and surfacing where it could improve — whether the brain was built from this toolkit or grew on its own.
 
@@ -76,7 +76,7 @@ Produce a written assessment. Structure it:
 - **What's working** — the principles it embodies well. Lead here.
 - **Principle scorecard** — the table from §2 with each verdict and note.
 - **Structural findings** — anything the §3 checks flagged, most-actionable first.
-- **Substance findings** — drifted SCOPE claims, a scope that has become a status report, cross-document inconsistencies, and pruning candidates, if any.
+- **Substance findings** — drifted SCOPE claims, a scope that has become a status report, cross-document inconsistencies, a unit whose scope no longer states one problem, and pruning candidates, if any.
 - **Recommended next steps** — ranked, concrete opportunities. Frame each as "this brain does X well but Y would help because …", tied to a principle. If a step is "adopt lifecycle machinery," name the specific machinery and point at the relevant `templates/` file.
 
 Keep it proportionate: a healthy brain gets a short report that says so. Reserve length for real, actionable gaps.
