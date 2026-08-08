@@ -1,6 +1,6 @@
 # Mini-Brain Toolkit: Scoping Statement
 
-> V6, 2026-07-24.
+> V7, 2026-08-08.
 
 This document defines the problem that the mini-brain toolkit addresses, separately from design decisions and implementation details, as an objective and unbiased resource.
 
@@ -22,7 +22,7 @@ These goals define what the toolkit must accomplish, expressed as outcomes. They
 
 ### 2.1 Provide one canonical, operational definition of the pattern
 
-A single current document should define what a mini-brain is in operational terms — the principles, the concrete file set, and the lifecycle — precise enough that a human or an agent can apply it without having seen the exemplars. It supersedes copy-and-imitate as the source of the pattern's intent, and both the establish and assess procedures build on it rather than restating it.
+The pattern should have one canonical, current definition in operational terms — the principles, the concrete file set, and the lifecycle — precise enough that a human or an agent can apply it without having seen the exemplars, each concern defined in exactly one place. It supersedes copy-and-imitate as the source of the pattern's intent, and both the establish and assess procedures build on it rather than restating it.
 
 ### 2.2 Make establishing a new mini-brain repeatable
 
