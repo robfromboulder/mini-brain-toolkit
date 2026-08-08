@@ -43,11 +43,13 @@ If the chosen approach makes an existing canonical claim false (a reversal, not 
 
 **Slug.** SCREAMING_SNAKE_CASE. Not a mechanical transform of the work-item name — short, specific, and distinct enough that `<TOKEN>_<WORK>_*.md` won't collide with another work item's docs — and, in a component brain, such that no other unit's token is a longer prefix of `<TOKEN>_<WORK>` than `<TOKEN>` itself: ownership goes to the longest match, so a parent's slug that continues into a child's token hands the item's files to that child. The fuller name lives in the `# <Work-Item Name>` heading. Every doc carries the owning unit's token ahead of it, which is what keeps a work item's files parseable and tells a reader which unit owns the effort.
 
-**Audit (this is what makes setup safe on partial/existing work items).** Before creating anything, list the owning unit's `working/` and `archive/` for the slug — the repo root for a single-unit brain, the unit's directory otherwise:
+**Audit (this is what makes setup safe on partial/existing work items).** Before creating anything, list the owning unit's `working/` and `archive/` for the slug. From the owning unit's directory — the repo root for a single-unit brain:
 
 ```bash
-ls -1 <unit>/working/<TOKEN>_<WORK>_*.md <unit>/archive/<TOKEN>_<WORK>_*.md 2>/dev/null
+find working archive -maxdepth 1 -name '<TOKEN>_<WORK>_*.md' 2>/dev/null
 ```
+
+A unit missing one of the two directories is normal and doesn't hide the other's matches. Empty output means a brand-new item **only if the command ran in the owning unit's directory** — confirm the location before trusting an empty audit, because everything below builds on it.
 
 Classify each doc:
 - **Missing** — create from the template (§3).
