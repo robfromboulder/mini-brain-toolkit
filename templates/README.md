@@ -16,8 +16,8 @@ Knowledge files in this mini-brain are `<PREFIX>_`-namespaced. This convention l
 
 #### 1. Use <project> knowledge from a sibling repo directory:
 
-> Read ../mini-<project>-brain/CLAUDE for instructions
+> Read ../mini-<project>-brain/CLAUDE.md for instructions
 
 #### 2. Save notes about this Claude session:
 
-> Read <PREFIX>_SESSION_CLOSEOUT and append to <PREFIX>_LOG
+> Read <PREFIX>_SESSION_CLOSEOUT.md and append to <PREFIX>_LOG.md
