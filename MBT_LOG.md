@@ -312,3 +312,39 @@ Rob's session, with Claude (Fable 5, max effort) as co-author. It began as a rev
 - Simulating a template post-instantiation, once per brain shape, is the test that finds template defects; every template pass found real ones that way, and none were visible from the template text alone.
 - Prefer the precedent a living brain already set: both structural decisions this session — two-tier substitution and inlined scaffolds — were read off the simplest exemplar rather than invented.
 - Declared reference boundaries need the same mechanical verification as filenames: a rule about who may cite whom is testable by grep and had simply never been run.
+
+---
+
+# Pre-merge review closes twenty-one findings, dry-runs both brain shapes, and syncs the exemplar (2026-08-08)
+
+**Session ID**: `7bec749a-e026-4e78-ba41-c53b4232419c`
+
+Rob's session, with Claude (Fable 5) as co-author. It began as a deep final review of the component-brains PR before merge, using the multi-component prototype brain as the live example, and became the branch's hardening pass: a multi-agent verification review plus an independent validation converged on twenty-one confirmed findings, Rob directed that all be fixed one commit each for atomic review, and the session then ran the PR's own until-then-unchecked test plan and synced the prototype brain to the result. Landed: twenty-three commits on component-brains (4ef0af3 through 77e04fe) touching every canonical doc but the logs and the two registries, plus the prototype's sync commit in its own repo. Versions after: `CLAUDE.md` V17, `MBT_CHECK_BRAIN.md` V18, `MBT_CREATE_BRAIN.md` V19, `MBT_DREAM_CYCLE.md` V14, `MBT_COMPONENTS.md` V6, `MBT_APPROACH.md` V8, `MBT_FINDINGS.md` V10, `MBT_SESSION_CLOSEOUT.md` V4, `MBT_SCOPE.md` V7.
+
+## Turn-by-turn
+
+- The findings clustered four ways. Runnable commands that fail on healthy brains: the namespace check aborts under zsh whenever `working/` is empty or missing, its token grep matched anywhere in a filename, and the work-setup audit shipped an undefined unit-path placeholder with its errors suppressed — a silent-overwrite path through the very audit that promises idempotency. The toolkit not applying its own changes to itself: its session-closeout still routed by the pre-branch grammar while the branch itself opened three work items that grammar cannot tell apart, the entrypoint stated a weaker working-doc grammar than the one it ships, and the approach and findings docs made claims the branch had made false. Contract contradictions on the seeding path: the leave-runtime-variables-intact rule against the registry rows and hook paragraph that must be filled at creation, a seeded README claiming one brain-wide token, the component entrypoint carrying only two of the four placement rules, and the hook stating two grammars for one lookup. And the COMPOUND retirement had deleted its documents rather than archiving them.
+- Every command fix was executed against fixture brains before shipping, including the failure cases — the old commands demonstrably fail open under zsh; the replacements tolerate a missing `working/`, anchor the token to the filename start, and were confirmed to catch a planted stray that the originals pass.
+- Rob asked for a before/after quality rating and then for what would raise it: the answer was the PR's own test plan, still unchecked in its description. The dry run seeded a single-unit brain and a three-level component brain from the templates literally — nested tokens, a non-nested token, and a sub-component — and both came through with no improvisation required: the two-tier placeholder contract, per-unit substitution, registry fill and README reword all executed as written, and the check procedure passed on both. A planted misplacement (a child-token document at the hub root) was flagged by the new anchored command. The dry run's one finding was pre-existing: the README template's usage prompts cited filenames without their extensions.
+- Two wording calls were walked through with Rob one at a time and both applied: the no-match log-routing rule, and the scope goal that had prescribed a document count.
+- The prototype sync ported four lagging deltas into its entrypoint and closeout, kept five divergences as deliberate, and ran the check procedure as acceptance. Every mechanical check passed across its six units, and the new substance checks earned their place on first contact with real content: the hub scope elaborates its children's problems near-verbatim in three places, one open question arguably belongs a level down, and the hub approach carries a version range that will date within weeks. All reported to that brain rather than edited — checking observes.
+- The sync surfaced a harvest candidate: both living brains independently grew a commit-conventions section and the project hook already depends on one existing, yet no template carries even a stub. Flagged for Rob; not acted on.
+
+## Decisions
+
+- **One fix, one commit** — the branch is reviewed as atomic diffs rather than start/end state (Rob's requirement, before any fix landed).
+- **Restore the retired COMPOUND docs to `archive/`** — the written move-not-delete convention and the frozen-review-for-traceability decision already on record outweigh treating git history as the archive; the restoring commit is deliberately separable if the deletion turns out to have been intended (Claude's finding, Rob's direction to address all findings; the sessions of 2026-08-05 and 2026-08-07 that deleted and that added the omit rule left no log entries, and this entry is the record of that gap).
+- **The no-match routing rule states the nearest-common-ancestor rule first**, with the single-unit case as a closing conditional — the template ships into both brain shapes, and wrong-then-corrected text in one shape is worse than inert-but-conditional text in either (Rob's choice between presented alternatives).
+- **The definition goal names the outcome, not a document count** — "a single current document" failed the branch's own could-a-different-design-satisfy-it test and the goals section's own no-file-structure preamble; it now asks for one canonical current definition with each concern defined in exactly one place (Rob's call, as scoping judgment).
+- **Check commands are enumerated fail-safe, not globbed** — an unmatched glob aborts the pipeline under zsh and an empty result reads as a pass, so the checks now enumerate with find and anchor their filters (Claude, verified empirically before shipping).
+
+## What didn't work
+
+- Every check command on the branch had been specified and reviewed repeatedly and executed never; the first real run falsified three of them in minutes. The log already records this failure shape twice — each round of inspection finding what only inspection can, while the defects that survive are the ones only execution finds — and it repeated anyway, this time as shell behavior rather than prose.
+- The toolkit's own instantiated docs were the blind spot: the dream cycle's consistency pass compares the five teaching artifacts to each other but never to this brain's own entrypoint or closeout, which is exactly where the stale grammar sat unnoticed.
+
+## Lessons
+
+- A reviewed-but-never-run command is prose, not a check. Executing each one against a fixture — including its failure cases — is cheaper than one false pass from a check that fails open.
+- The dry run per brain shape keeps earning its keep: after twenty-one fixes both seeds executed clean, and the one remaining defect it found sat in the oldest template nobody had touched.
+- Reading a document set together finds what per-file review structurally cannot: the exemplar's parent-child duplication was invisible in every earlier single-file pass over those same documents, and became obvious the moment the scopes were read as a set.
