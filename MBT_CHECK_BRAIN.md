@@ -1,6 +1,6 @@
 # Mini-Brain Toolkit: Check an Existing Mini-Brain
 
-> V18, 2026-08-08.
+> V19, 2026-08-08.
 
 This document is the procedure for evaluating an existing mini-brain against the pattern and surfacing where it could improve — whether the brain was built from this toolkit or grew on its own.
 
@@ -63,7 +63,7 @@ Also run the structural checks below; they're mechanical and catch the cheap, co
 2. **Version headers** — every canonical doc (except the exempt `*_LOG.md` / `*_TASKS.md`) opens with a well-formed `> V<N>, YYYY-MM-DD.` and no smuggled change-note.
 3. **Cross-references** — every mini-brain filename mentioned resolves to a current canonical file, not an `archive/` copy or a deleted file. *Component brain:* resolve against the unit that owns the token, not the repo root.
 4. **Namespace prefix** — every top-level knowledge file and every `working/` doc carries the namespace token (`find . working -maxdepth 1 -name '*.md' 2>/dev/null | grep -vE '/(CLAUDE|README)\.md$' | grep -v '/<PREFIX>_'` should print nothing — it tolerates a missing or empty `working/` and anchors the token to the start of the filename). *Component brain:* run it per unit against that unit's declared token, over the unit's own documents and its `working/` — never its `archive/`, where retired files legitimately keep the basename they were retired under and need not be markdown. Match the token exactly: a document belongs to the unit whose token its name begins with in full, longest match winning. Tokens nest as prefixes (`ORCHARD` inside `ORCHARD_PRESS`), so the prefix test above silently accepts a child's document sitting in its parent's directory. A brain seeded before working docs carried the brain token names its in-flight docs `working/<WORK>_*` by the then-current convention — treat that as adopt-when-touched guidance, not a violation, since renaming a live item's docs breaks the routing signals that match on those names.
-5. **Log discipline** — the session log is append-only and readable from its last separator (not required to be read whole); entries carry a date and session identifier.
+5. **Log discipline** — the session log is append-only and readable from its last separator (not required to be read whole); entries carry a date and session identifier. Append-only governs each entry's content, not its position, so dates out of sequence are not a violation: work-item closeout preserves each merged entry's original date, and folding one log into another places entries by date among the existing ones. Check that no entry was revised after the fact, not that the file runs chronologically.
 6. **Unit references** (component brains) — cross-unit references stay within the entrypoint's declared exemptions: a component's SCOPE may cite its parent's SCOPE, its APPROACH its parent's APPROACH, and any document may name its own sub-components — never their files. Any other reference to another unit or its files is a violation, sibling references above all. Logs and maintenance documents are exempt — a log records what a session touched, and a procedure names the files it operates on.
 
 ---

@@ -61,7 +61,9 @@ Match a question's terms against **Routes on** to choose a component *before* re
 
 **Token ownership.** A document belongs to the unit whose declared token its name begins with in full, longest match winning. Tokens may nest as prefixes, so a shorter token matching proves nothing — a document whose name begins with a child's token is misplaced if it sits in the parent's directory. Ownership constrains naming in return: never name a document so that another unit's token is a longer prefix of its name than the owning unit's — a parent's work-item slug that continues into a child's token hands the item's files to that child.
 
-**Working and archive.** A unit's `working/` inherits that unit's token, so in-flight documents stay as parseable as canonical ones. A unit's `archive/` does not: retired files keep the basename they were retired under and need not be markdown. LOG files are append-only — never archived.
+**Working and archive.** A unit's `working/` inherits that unit's token, so in-flight documents stay as parseable as canonical ones. A unit's `archive/` does not: retired files keep the basename they were retired under and need not be markdown.
+
+**Append-only logs.** LOG files are never archived and never edited after the fact. Append-only governs an entry's content, not its position: once written, an entry is never revised, split, or merged. New entries go at the end. The one exception is folding another log into this one, which places that log's entries whole and in date order among the existing ones, so the last separator still holds the most recently written entry.
 
 **Maintenance documents live at the hub.** Session closeout — and work setup, work closeout and the dream cycle when the brain grows them — govern the whole brain, so one of each serves every unit and none is namespaced to a component. The in-flight documents those procedures scaffold land in the `working/` of whichever unit owns the work.
 

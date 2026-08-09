@@ -1,6 +1,6 @@
 # Mini-Brain Toolkit: The Component Layer
 
-> V6, 2026-08-08.
+> V8, 2026-08-08.
 
 This document is the layout convention for a mini-brain whose knowledge divides into several components. It is opt-in: a brain with one problem never uses it, and the file set in `MBT_PATTERN.md` applies unchanged.
 
@@ -89,11 +89,11 @@ A **flat platform split** is the base pattern's convention for one problem deliv
 
 | From | To | The move |
 |---|---|---|
-| One problem | Components | `git mv` the knowledge documents into a component directory — the brain's token, now taken, becomes that component's — then declare a fresh hub token, rename the maintenance documents (and the hub references inside them) to it, author the hub's documents at the root, and replace the entrypoint's file table with the four parts in §3. |
+| One problem | Components | `git mv` the knowledge documents into a component directory — the brain's token, now taken, becomes that component's — then declare a fresh hub token, rename the maintenance documents (and the hub references inside them) to it, author the hub's documents at the root, and replace the entrypoint's file table with the four parts in §3. A brain that already runs a dream cycle comes out of this move with one that assumes a single unit: its structural checks are scoped to the root and will pass while never examining a component. Treat that cycle as unadapted until it is redesigned. |
 | Flat platform split | Components | Move each platform's documents into a directory named for it and declare its existing compound prefix as that component's token. Shared documents stay at the root as the parent, whose token is unchanged. Author each new unit's missing doctypes — a platform family typically arrives with findings and a log but no SCOPE or APPROACH of its own. |
 | Component | Sub-components | The component gains child directories, each seeded with its full doctype set; its own documents stay put and become the parent layer, ceding to each child the content that was really that child's. |
-| Components | One problem | The reverse of the first, folding the hub's documents into the last remaining component. |
-| Component | Its own brain | `git mv` the directory to a new repository and replace its registry row with a pointer. The subtree already carries its `working/` and `archive/`, so it moves whole. |
+| Components | One problem | The reverse of the first, folding the hub's documents into the last remaining component. Each of the hub's logs merges into the survivor's counterpart: entries move whole and in date order, placed among the survivor's rather than after them. Entries sharing a date may sit in either order — the headings carry no finer precision. |
+| Component | Its own brain | **Incomplete — do not run this move yet.** `git mv` the directory to a new repository and replace its registry row with a pointer; the subtree already carries its `working/` and `archive/`, so it moves whole. What is unspecified is everything the subtree lacks on arrival: an entrypoint and a maintenance set, both hub property, and a SCOPE and APPROACH whose sanctioned parent references now dangle across repositories. The pointer's own semantics — what the row holds, and how routing treats a component that has left — are undefined. |
 
 ---
 
