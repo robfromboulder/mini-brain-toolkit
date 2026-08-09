@@ -360,3 +360,46 @@ Rob's session, with Claude (Sonnet 4.6) as co-author. Addressed the harvest cand
 ## Decisions
 
 - **Drop the commit-conventions reference from the hook template entirely** — MBT should not prescribe commit conventions to downstream brains; doing so would alienate developers and hurt adoption. The MBT-specific convention (no AI attribution trailer) stays in `CLAUDE.md` and applies only to this repo's own development (Rob's call).
+
+---
+
+# Append-only redefined to let two logs merge, and work-item re-homing ruled out entirely (2026-08-08)
+
+**Session ID**: `91e26ed2-da03-4ae7-bb07-2127a3764e95`
+
+Rob's session, with Claude (Opus 5) as co-author. It opened as a sequencing question — whether two open work items should land together — and became a session that fixed a live contradiction in merged instructions, reversed a design direction that had been carried for weeks, opened a new work item, and left caveats on two moves nobody should run yet. Three commits landed on main (unpushed); everything after them — the working-doc rewrites, the two migration caveats, a findings promotion, and this entry — is uncommitted at session end.
+
+## Turn-by-turn
+
+- The sequencing question resolved by reading both plans: the two items were different in kind, not just in priority. Rob sharpened the distinction and it drove everything after — the collapse's log problem is a genuine hole in instructions already merged, while re-homing was far-out work that might need deeper hierarchy before its decisions could even be vetted.
+- The re-homing plan's activation trigger was retargeted from "the prototype's first live work item" to hierarchy depth, on Rob's reasoning that at two levels every re-home has exactly one possible destination, so a live example would confirm a procedure while being incapable of falsifying it. Fixture shapes were written into the plan for the cases only depth exposes.
+- The log-fold question went to Rob as a choice between leaving the retired hub log in place and folding it in summarized, with a recommendation to append it verbatim under a dated wrapper. Rob rejected the framing: append-only should protect each entry's *content*, not its position, which makes merging by date legal. Checking every place the rule is actually written confirmed he was reading it as already stated — the pattern doc says "never edited after the fact," work closeout says "never revise content above the new separator," and both are content claims. This repo's own log was already out of date order, since work closeout preserves each merged entry's original date.
+- That falsified the recommendation rather than refining it. Appending verbatim leaves an old entry at the file's tail, breaking the read-from-the-last-separator ritual the check procedure names; a date merge preserves it. The fix therefore reached five files rather than the single table row originally promised, and Rob approved the wider surface before it was written.
+- With the bug fixed, Rob directed that the migrations item be rewritten against the corrected files, explicitly without a "part 1" the same session would immediately close. Rewriting it surfaced something the item had never recorded: the extraction move has no inverse. Absorbing an existing standalone brain as a component is not in the table, and is not extraction reversed — extraction mints an entrypoint and maintenance set for a subtree that lacks them, absorption sheds the ones an arriving brain already has.
+- Rob then questioned re-homing itself and proposed the simplifying policy: a work item never moves. One that outgrows its unit retires as superseded and re-opens in the corrected unit, authored against what is now known. Both re-homing documents were rewritten to that policy, which removed the depth gate, the fixture apparatus and the audit guard in a single stroke — all three existed to serve a move that no longer happens.
+- A verification read-back, which Rob asked for before accepting the rewrite, found three defects in the pair and then a fourth class outside it: the same cross-item staleness that had just been repaired in one work item was still sitting in two siblings.
+- The intake-placement question, left owned by nobody once relocation became deliberate and costly, was opened as its own work item.
+- A closing audit asked whether any of the four open items held urgent work. Two did not. Two were loaded guns rather than absent features, and both got a caveat at the point of danger instead of a fix.
+- Rob asked whether the findings document needed updating. Nothing in it had been falsified, and the two design reversals belong to open items whose own closeouts will fold them — but the append-only result qualified on its own, because the files now carry the corrected rule while showing nothing of the reasoning that no exception was required. Writing that entry surfaced a collision the relocation item had missed: work closeout already uses *supersede* for a knowledge-edit classification, so adding a superseded retirement reason would give one word two meanings in one document.
+
+## Decisions
+
+- **The collapse merges logs by date, and append-only means section integrity rather than fixed position** — Rob's reframe, against Claude having ruled date-merging out as a violation before checking what the rule said. The definition was not relaxed; it was found to be what two of the five statements of it already said.
+- **The definition lands in all three entrypoints, not only the toolkit's** — the templates ship the same sentence, so a definition corrected in one place would leave every seeded brain with the old one (Claude).
+- **Work items never re-home; they are superseded** — Rob's call, on frame drag. The plan and findings fall out of sync with the new parent and siblings whichever way the files travel, so the rewrite the move was meant to avoid is required anyway, and the move only adds a mutation plus a window where routing resolves to a half-left home.
+- **The setup-audit guard is rejected as the answer to duplicate scaffolds** — under the supersede policy a same-slug item in another unit is the *expected* state, so the audit's job is to find and link a predecessor, not to prevent one (Claude, following from Rob's policy).
+- **Placement earns its own work item rather than a note** — it fires on every work item in every component brain, where the other three items serve rare or dormant paths (Rob's direction).
+- **Caveats rather than fixes for the two loaded moves** — Rob stated he would not revisit the open items soon, which made the point-of-danger warning worth more than the deferred repair.
+- **The append-only result is promoted to findings now rather than left for a dream cycle to extract** — the corrected rule is visible in the files and the reasoning is not, and the durable half is that no exception was carved (Claude's recommendation, Rob's direction to write it).
+
+## What didn't work
+
+- The log-fold question was put to Rob twice before the framing was right. The first attempt bundled a question he had already reframed; the second ruled out the option he wanted, on an assumption about append-only that a single grep falsified. Reading what a rule says before reasoning from what it is called would have collapsed both rounds into one.
+- The re-homing plan was given a depth gate and a five-case fixture table that were obsolete within the hour, because the plan edit was directed before the policy question was asked. Nothing recovers that work; the ordering was simply wrong.
+- Cross-item staleness was repaired in one work item and not propagated to its two siblings until a read-back was requested. The same defect class had been repaired earlier in the same session, which is what makes it a miss rather than an oversight.
+
+## Lessons
+
+- A rule's name is not its content. "Append-only" was reasoned about positionally for most of the session, and two of the five places it is written already defined it as content integrity. The check costs one grep and precedes any argument built on the rule.
+- The repo's own artifacts are admissible evidence. The claim that chronological order was load-bearing died on the observation that this log has been out of date order by design for weeks.
+- Unloading a trap is cheaper than fixing it and survives indefinite delay. A caveat at the point of danger converts a silently-broken outcome into a stop sign without waiting for the work item that owns the repair.

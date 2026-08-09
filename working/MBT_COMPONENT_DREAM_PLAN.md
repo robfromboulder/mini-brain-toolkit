@@ -37,8 +37,7 @@ Run the redesigned cycle against the living component prototype and against a si
 
 ## Scope boundary — what this does NOT include
 
-- Work-item re-homing (its own work item).
-- The restructuring migration holes (their own work item).
+- Work-item relocation and cross-repository migrations, which are their own work items.
 - The event half of Also-holds maintenance (one clause in the work-closeout walk).
 
 ## Open issues
