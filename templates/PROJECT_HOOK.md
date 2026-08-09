@@ -2,7 +2,7 @@
 
 ## Working in the mini-brain
 
-**When the user mentions the mini-brain, work items, or <project> knowledge/history — or asks to start, work on, or close out a work item or session** — pull `../mini-<project>-brain/` to latest (it's a shared repo), then read its `CLAUDE.md` and follow it (sibling clone; if absent, tell the user to clone it beside this repo). Drive the whole workflow from *this* session — never make the user switch repos — and resolve its instructions' relative paths against `../mini-<project>-brain/`.
+**When the user says "mini brain", "mini-brain", or "work item"** — pull `../mini-<project>-brain/` to latest (it's a shared repo), then read its `CLAUDE.md` and follow it (sibling clone; if absent, tell the user to clone it beside this repo). Drive the whole workflow from *this* session — never make the user switch repos — and resolve its instructions' relative paths against `../mini-<project>-brain/`. Nothing else loads the brain.
 
 <!-- Component-structured brains only — name the component this repo maps to:
 
@@ -11,7 +11,7 @@
 
 Mini-brain edits accumulate uncommitted during a session; **closeout is the sync point that lands them** — don't commit/push on every file write. The user can't see that tree, so a closeout must actually commit and push, not just write files. A session closeout commits the session's changes (edits, the new log entry) and pushes to the mini-brain's `main`, reporting both; if the push fails, resolve or surface it rather than leaving the change unpushed.
 
-**Proactively offer a session closeout at natural stopping points** (PR opened, branch merged, work paused, user signals wrapping up). Offer once and briefly; run the procedure only after the user agrees; skip trivial sessions (a lone question, a typo).
+**Proactively offer a session closeout at natural stopping points** (PR opened, branch merged, work paused, user signals wrapping up) — only in a session that loaded the brain. Offer once and briefly; run the procedure only after the user agrees; skip trivial sessions (a lone question, a typo).
 
 **Never cite mini-brain docs (`<PREFIX>_*`, or any component's token) from code.** Information flows one way — down from the mini-brain into code — so a back-reference is circular. Roadmap, history, and rationale that isn't about operating *this* code belong in the mini-brain, not in code comments.
 

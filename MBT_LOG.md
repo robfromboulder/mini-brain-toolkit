@@ -403,3 +403,45 @@ Rob's session, with Claude (Opus 5) as co-author. It opened as a sequencing ques
 - A rule's name is not its content. "Append-only" was reasoned about positionally for most of the session, and two of the five places it is written already defined it as content integrity. The check costs one grep and precedes any argument built on the rule.
 - The repo's own artifacts are admissible evidence. The claim that chronological order was load-bearing died on the observation that this log has been out of date order by design for weeks.
 - Unloading a trap is cheaper than fixing it and survives indefinite delay. A caveat at the point of danger converts a silently-broken outcome into a stop sign without waiting for the work item that owns the repair.
+
+---
+
+# Hook trigger narrowed to three phrases, with the closeout offer gated behind them (2026-08-08)
+
+**Session ID**: `03f40aec-073e-4ae2-988a-c41d9b4f36e4`
+
+Rob's session, with Claude (Opus 5) as co-author. It set out to true the project hook template up against narrower trigger language being proposed in the exemplar brain, and ended with the hook's entry conditions rewritten twice under Rob's successive narrowing: the three canonical phrases became the only way to load the brain, and then the only way to reach a closeout offer. Two changed lines in one template, committed with this entry.
+
+## Turn-by-turn
+
+- The narrower language was not where it was expected. Rob pointed at the exemplar brain's entrypoint; that file was unmodified, and the proposal turned out to be staged in the exemplar's in-flight work-item docs and already implemented in its project repo's entrypoint on an unmerged branch. Reading the project repo's version gave the sentence to port: three phrases, named as the only passive trigger, with everything else about the brain reached by typing a skill command.
+- The first pass narrowed the trigger and kept an example list naming the retired ones, then added a clause letting a closeout pull and read the brain if the session had not already — a hole the narrowing opened, since the old wording made "close out a session" a trigger in its own right.
+- Rob asked for a read-back review. It found two words that had travelled with the sentence rather than being chosen for it: "passive trigger" only means something against the typed commands being deliberately excluded, and the new clause's tail restated what the trigger sentence already said. Both were cut. The review also flagged that the exemplar offsets its narrowing with typed commands and a session-start greeting, while the template ships no other door — a discoverability loss with nothing compensating for it.
+- Rob resolved that with the simplest version: the phrases are the only way in, no escape hatch, and the create procedure must not introduce skills either. A check confirmed the toolkit mentions skills nowhere outside a competitor description in the comparables registry, so the create procedure complies by silence and no prohibition was added — a rule against a thing the document never raises is a spare token.
+- Rob then extended the rule to the closeout offer, on the reasoning that the exemplar ties eligibility to a team roster, which is a far more advanced case and would confuse a single-user adopter. The offer became conditional on the brain having loaded, and the pull-and-read rescue clause was deleted: it existed for exactly the case the rule now forbids.
+- A final review, requested before committing, found two defects in Claude's own wording. The gate had been given a justification — that a session which never loaded the brain has nothing to close out — which is false: a code-only session can produce plenty worth logging, it simply never opened the brain. And the trigger's enforcement sentence stated one fact twice. The false reason was dropped rather than repaired, leaving the condition attached to the sentence that authorizes the offer.
+- Rob closed by questioning the one caveat left standing — whether the work-item phrase firing in a brain too young to have work-item machinery was a real defect. It is not, and the templates say so: the seeded entrypoint carries the term, the working directory, the doc-naming convention and the fold-on-conclude rule, and the closeout instructions carry log routing with an explicit hedge for brains that lack the machinery. Setup is additive and idempotent and names the partial-item case; work closeout enumerates whatever docs exist rather than assuming a fixed set. An improvised early work item is a supported input to both, resting entirely on the naming convention the seed states.
+
+## Decisions
+
+- **The three phrases are the only way in** — no escape hatch for an outright request, no adjacent-subject triggers (Rob).
+- **They are also the only route to a closeout offer** — a session that never loaded the brain is never offered one (Rob).
+- **No skills in the hook or the create procedure** — an advanced configuration, better left to project-specific setup (Rob).
+- **No roster-based closeout gating** — the exemplar's eligibility list answers a question a single-user adopter does not have (Rob).
+- **The example list of retired triggers was dropped** — it retires wording that exists only in the old template, and echoed the roadmap/history triple in the never-cite-from-code rule, where the same words mean something different (Claude).
+- **The omission of skills and roster gating is promoted to findings now rather than left for a dream cycle to extract** — the narrowed trigger is visible in the hook and the reasoning is not, and the durable half is what the exemplar's machinery had been compensating for (Claude's recommendation, Rob's direction to write it).
+- **Append-only binds an entry once its commit is pushed, not the moment it is written** — Rob's call when the findings promotion arrived after this entry was already committed. A session amending its own unpushed closeout is still writing; the rule protects finished history from later sessions, not a session from itself.
+
+## What didn't work
+
+- Porting the exemplar's sentence wholesale imported vocabulary that depends on the half being excluded. "Passive" is only meaningful against a typed command.
+- The pull-and-read rescue clause was written to close a hole, then deleted two turns later when the hole became the rule. It was authored before the offer gate existed and could not have been right in both worlds.
+- Attaching a reason to the gate produced a false claim while the rule itself was sound.
+- An edit that replaced a trailing clause with nothing also consumed the paragraph break, silently merging two paragraphs; the diff caught it.
+- Closeout ran before the findings candidate was raised, so this entry had to be reopened to record it. Raising the promotion question during closeout rather than after would have written the entry once.
+
+## Lessons
+
+- Porting a rule out of a richer system imports that system's vocabulary. The words that only parse against the machinery being left behind are the ones to strip.
+- A gate needs no reason attached, and a false one is worse than none — it is the handle a model uses to argue its way around the gate.
+- Whether something is a gap is usually answerable from the templates themselves. The early-stage work-item worry dissolved on reading what the seed carries and how the later procedures enumerate.
