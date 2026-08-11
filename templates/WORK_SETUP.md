@@ -6,7 +6,7 @@ Procedure for scaffolding a new work item's working docs from an intake conversa
 
 Run this when starting a new work item — **code-changing work that gets its own branch and PR**: a feature, a bug fix, or a hardening effort — or when formalizing a partial one that already lives in `working/` (e.g. a PLAN+FINDINGS pair that needs the rest of its scaffolding). The output is the `working/<TOKEN>_<WORK>_*.md` documents that track a work item until it concludes. `<TOKEN>` throughout is the owning unit's namespace token — in a brain with one unit, the brain's own token. Setup is **additive and idempotent**: it creates only the docs that are missing and never overwrites existing work, so it is safe to re-run as a work item grows.
 
-The scope is deliberately narrow and practical: **assume a work item has a branch and a PR until proven otherwise.** It is often not knowable at inception whether an idea is a shallow doc/config tweak or something deeper, so default to the full scaffold rather than guessing small — an oversized scaffold is cheap, and under-scaffolding something that turns out deep is not. If the work later resolves without a code change, it simply concludes without a merge — closeout still folds in whatever knowledge the docs hold (see `<PREFIX>_WORK_CLOSEOUT.md`) — rather than being forced through the PR checklist. A pure question that produces no artifact worth keeping needs no work item at all: answer it, and if the answer is worth recording, add a session-log entry.
+The scope is deliberately narrow and practical: **assume a work item has a branch and a PR until proven otherwise.** It is often not knowable at inception whether an idea is a shallow doc/config tweak or something deeper, so default to the full scaffold rather than guessing small — an oversized scaffold is cheap, and under-scaffolding something that turns out deep is not. If the work later concludes without a code change, closeout still folds in whatever knowledge the docs hold (see `<PREFIX>_WORK_CLOSEOUT.md`); the burndown does not apply. A pure question that produces no artifact worth keeping needs no work item at all: answer it, and if the answer is worth recording, add a session-log entry.
 
 The working docs and their roles:
 
@@ -15,9 +15,11 @@ The working docs and their roles:
 | `<TOKEN>_<WORK>_PLAN.md` | The spec: objective, what changes, testing approach, scope boundary, open issues | Yes — written from the intake conversation |
 | `<TOKEN>_<WORK>_FINDINGS.md` | The decision record: problem, preferred approach, tradeoffs, alternatives | Yes — written from the intake conversation |
 | `<TOKEN>_<WORK>_LOG.md` | Append-only session log; one entry per implementation session | No — header only; the first session appends the first entry |
-| `<TOKEN>_<WORK>_TASKS.md` | Checklist: PR wrangling, testing, docs, closeout | No — template checklist |
+| `<TOKEN>_<WORK>_BURNDOWN.md` | Finishing checklist: everything between working code and a merged PR | No — template checklist |
 | `<TOKEN>_<WORK>_CLAUDE.md` | Runbook for automated tests — declares the item's branch (the session-routing join key), defers to the platform runbook, then adds work-specific steps | No — template with a placeholder step |
 | `<TOKEN>_<WORK>_TESTING.md` | Manual test plan: steps to verify the work item by hand; folds into the canonical testing doc at closeout | No — template scaffold |
+
+PLAN and BURNDOWN are two halves of the same work: the plan gets the code written, the burndown gets it merged.
 
 These are **working files**, so per `CLAUDE.md` they are *not* versioned (no `> V<N>` header), are *not* added to the read index, and are not read in future sessions unless explicitly asked.
 
@@ -33,7 +35,7 @@ Before scaffolding anything, have the conversation. Setup turns a settled discus
 - **Problem** — what's broken or missing, and who feels it. This anchors FINDINGS.
 - **Preferred approach + tradeoffs** — the chosen direction and *why*, plus the alternatives weighed and rejected. This is the heart of FINDINGS; capture the reasoning, not just the verdict.
 - **Scope boundary** — what the work item explicitly does *not* touch. Goes into PLAN's "what this does NOT include"; it is the cheapest way to prevent scope creep.
-- **Testing approach** — what's covered by automated tests and what can only be checked by hand. Seeds PLAN's testing section, the TASKS checklist, and the runbook/testing docs.
+- **Testing approach** — what's covered by automated tests and what can only be checked by hand. Seeds PLAN's testing section, the BURNDOWN checklist, and the runbook/testing docs.
 
 If the chosen approach makes an existing canonical claim false (a reversal, not just an addition), note it now — record it in FINDINGS and flag it for closeout. A reversal is the one thing a wording-based grep won't catch at merge time, so the merge relies on it being called out explicitly here.
 
@@ -66,7 +68,7 @@ Create each missing doc in the owning unit's `working/`, from its base template,
 
 Do not add a `> V<N>` version header to any of these — working files are unversioned. Do not copy them into `archive/` (that happens only at closeout). Do not touch the read index or any canonical doc.
 
-Base templates for each doc live in the toolkit's `templates/work/` (`PLAN.md`, `FINDINGS.md`, `LOG.md`, `TASKS.md`, `CLAUDE.md`, `TESTING.md`); a brain's copy of this procedure inlines all six here, so the brain stands alone without the toolkit.
+Base templates for each doc live in the toolkit's `templates/work/` (`PLAN.md`, `FINDINGS.md`, `LOG.md`, `BURNDOWN.md`, `CLAUDE.md`, `TESTING.md`); a brain's copy of this procedure inlines all six here, so the brain stands alone without the toolkit.
 
 ---
 

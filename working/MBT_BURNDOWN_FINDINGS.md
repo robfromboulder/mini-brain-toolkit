@@ -14,10 +14,12 @@ Underneath the naming problem sits a lifetime problem the name conceals. **A pla
 
 **A plan gets the code written. A burndown gets the code pushed upstream.** Two sides of one coin: one document is consumed to produce the change, the other is consumed to land it. Four commitments follow.
 
-- **The burndown holds only what the plan does not.** Stated as an exclusion rather than as an instruction to summarize, which is what ends the overlap question outright — there is no correct amount of overlap, there is none.
-- **Its items come in two kinds.** *Routine* items are the same for every work item: branch, draft PR, review, full retest, review feedback, closeout notes. *Custom* items are this item's own: a port, a doc screenshot, a follow-on the code revealed. Both kinds share one document because both answer the same question.
+- **The burndown is a finishing checklist: everything between working code and a merged PR.** Stated as a positive scope — a reader asking "must this happen before this ships?" — rather than as an exclusion from the plan or an instruction to summarize. The scope ends the overlap question by construction: implementation planning is work already done, so it cannot appear on a list of work remaining.
+- **Its items come in two kinds.** *Routine* items are inherited defaults — branch, draft PR, review, full retest, review feedback, closeout notes — that each brain refines to match its PR conventions. *Custom* items are this item's own: a port, a doc screenshot, a follow-on the code revealed. Both kinds share one document because both answer the same question.
 - **The burndown is standalone and never names the plan.** It is written to survive the plan's archival, so a reference to the plan would dangle at exactly the moment it mattered most.
-- **Early plan archival becomes a sanctioned move.** When the developer asks for it — typically once the plan has been converted to code — the plan retires to `archive/` mid-item, and any follow-on work it defines merges into the burndown *first*. Nothing is lost, and a document that is already out of date stops competing with the codebase for authority.
+- **Early plan archival becomes a sanctioned, user-requested move.** When the developer asks for it — typically once the plan has been converted to code — the plan retires to `archive/` mid-item. Before the plan moves, the agent walks the developer through any significant unaddressed items to decide per-item what belongs in the burndown. The agent does not offer early archival unprompted — retiring a plan someone is still working from is the wrong kind of helpful.
+
+A work item that concludes without a merge is by definition unfinished. The burndown is the definition of done — a list that goes to zero when the item ships — so canceled or reframed items don't carry one.
 
 **Why the rename carries the fix rather than a wording change.** A name is the only part of a document that appears in every reference to it, including its own filename, so when the name and the instructions pull in opposite directions the name wins. A *task list* means, in ordinary usage, everything you have to do — it asks for a master list, and a reader who produces one has read it correctly. A *burndown* names a quantity that goes to zero against a scope fixed when it opened. The question the writer asks changes with the word: "must this be done before this ships?" rather than "is this a thing to do?" The first question excludes the plan's contents automatically; the second includes all of them.
 
@@ -26,7 +28,7 @@ Underneath the naming problem sits a lifetime problem the name conceals. **A pla
 - **Keep the name, tighten the prose.** Rejected. The mechanics are already stated clearly and the drift happened anyway, in more than one brain, in different directions. When prose has to work against the name on the file, the prose is read once and the name is read every time.
 - **Delete the document and fold its contents into the plan.** Rejected — it makes the lifetime problem strictly worse. The remaining work would then live in the one document guaranteed to go stale, and early archival would become impossible rather than merely undefined.
 - **Split it in two: a fixed routine checklist and a follow-on list.** Rejected. Routine versus custom is a property of individual rows, not of documents, and two files to consult before a PR is ready is exactly the did-I-miss-one failure a burndown exists to prevent.
-- **Other names weighed.** CHECKLIST and TODO carry the same everything-you-have-to-do sense that TASKS does, so they reproduce the defect. REMAINING is accurate but silent on remaining-before-*what*, which is the part that does the excluding. SHIPPING and LANDING name the destination but not the shrinking quantity, and read wrong for a work item that concludes with no merge at all. BURNDOWN carries both the destination and the goes-to-zero property, and has no ordinary-English sense waiting to be mistaken for it.
+- **Other names weighed.** CHECKLIST and TODO carry the same everything-you-have-to-do sense that TASKS does, so they reproduce the defect. REMAINING is accurate but silent on remaining-before-*what*, which is the part that does the excluding. SHIPPING and LANDING name the destination but not the shrinking quantity. BURNDOWN carries both the destination and the goes-to-zero property, and has no ordinary-English sense waiting to be mistaken for it.
 
 ## What this doesn't solve
 
@@ -38,6 +40,6 @@ Underneath the naming problem sits a lifetime problem the name conceals. **A pla
 
 Two claims become false rather than merely renamed.
 
-The checklist's stated role — "Checklist: PR wrangling, testing, docs, closeout" — is replaced by an exclusion rule, so a reader can no longer derive its contents from an enumeration of categories. Reconcile in place.
+The checklist's stated role — "Checklist: PR wrangling, testing, docs, closeout" — is replaced by a positive scope statement, so a reader can no longer derive its contents from an enumeration of categories. Reconcile in place.
 
 `MBT_PATTERN.md` states the version-header exemption as applying to "task checklists", which stops being what the document is. The filename glob that expresses the exemption in seven documents, this one among them, is a rename; the phrase describing what is exempt is a reversal.
