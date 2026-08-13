@@ -1,6 +1,6 @@
 # Mini-Brain Toolkit: The Mini-Brain Pattern
 
-> V14, 2026-08-10.
+> V15, 2026-08-13.
 
 This document is the operational definition of a mini-brain: what it *is*, the file set it's made of, and the lifecycle that keeps it true and small.
 
@@ -77,7 +77,7 @@ Added when a brain tracks real work items across many sessions and needs rituals
 | File | Role |
 |---|---|
 | `<PREFIX>_WORK_SETUP.md` | Scaffolds a work item's `working/<PREFIX>_<WORK>_*` docs from an intake conversation. |
-| `<PREFIX>_WORK_CLOSEOUT.md` | Folds a concluded work item's working docs into the canonical store; retires them to `archive/`. |
+| `<PREFIX>_WORK_CLOSEOUT.md` | Folds a concluded work item's working docs into the canonical store; retires them to `archive/` — at conclusion, or mid-item for a consumed PLAN the developer archives early. |
 | `<PREFIX>_DREAM_CYCLE.md` | The periodic reflection pass. |
 | `<PREFIX>_DREAM_LOG.md` | Append-only log of dream-cycle runs. |
 | Per-work-item working set | `working/<PREFIX>_<WORK>_{PLAN,FINDINGS,LOG,BURNDOWN,CLAUDE,TESTING}.md` — unversioned, out of the read index. |
