@@ -54,7 +54,6 @@ find working archive -maxdepth 1 -name '<TOKEN>_<WORK>_*.md' 2>/dev/null
 A unit missing one of the two directories is normal and doesn't hide the other's matches. Empty output means a brand-new item **only if the command ran in the owning unit's directory** — confirm the location before trusting an empty audit, because everything below builds on it.
 
 Classify each doc — first match wins:
-- **A legacy `<TOKEN>_<WORK>_TASKS.md` in `working/`** — the item's burndown under its pre-rename name, so the BURNDOWN slot is not missing. Rename the file to `<TOKEN>_<WORK>_BURNDOWN.md` — a rename keeps its content and its `<TOKEN>_<WORK>_` routing prefix, overwriting nothing — update references to the old name among the item's other docs, and do not scaffold a second checklist.
 - **Missing** — create from the template (§3).
 - **Exists in `working/`** — leave it. Do not overwrite. If the intake chat adds genuinely new material, append it; never rewrite existing working content from a setup run.
 - **Exists in `archive/`** — already implemented and retired (as a `<TOKEN>_<WORK>_PLAN.md` often is once its plan has shipped). Do **not** recreate it in `working/`; note that it is done and move on.
@@ -77,6 +76,6 @@ Base templates for each doc live in the toolkit's `templates/work/` (`PLAN.md`, 
 
 After creating the docs:
 
-1. Report the owning unit, the slug used, which docs were **created**, which were **renamed** from a legacy name, and which already **existed** (and where — `working/` or `archive/`).
+1. Report the owning unit, the slug used, which docs were **created**, and which already **existed** (and where — `working/` or `archive/`).
 2. Remind that these are working files: they stay out of the read index, and the canonical mini-brain is untouched until the work concludes.
 3. Point at `<PREFIX>_WORK_CLOSEOUT.md` as the closeout bookend — it consumes exactly these docs.

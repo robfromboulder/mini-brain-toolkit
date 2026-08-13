@@ -52,8 +52,8 @@ Then the back-test that justifies the rename: re-read the two known misreadings 
 ## Scope boundary — what this does NOT include
 
 - The manual test plan, which shares the lifetime property and is a separate call.
-- Any broader change to how work items are scaffolded, routed, or retired: this renames one document, defines one retirement move for another, and adds one setup audit rule for the legacy name.
+- Any broader change to how work items are scaffolded, routed, or retired: this renames one document and defines one retirement move for another.
 - The plan scaffold's own structure is unchanged.
 - A mechanism for verifying that a burndown is complete.
-- Bulk migration of existing brains carrying `*_TASKS.md`. Setup adopts a legacy file by renaming it when it next touches the item; no check validates doctype names beyond the namespace token, so an untouched legacy file passes silently. A deliberate sweep is a separate effort.
+- Migrating existing brains that carry `*_TASKS.md`. The toolkit deliberately carries no legacy-adoption rule — setup knows only BURNDOWN — so the few brains under the old name are corrected by a one-time manual rename per brain, outside any toolkit mechanism.
 

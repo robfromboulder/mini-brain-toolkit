@@ -39,3 +39,30 @@ Rob's session, with Claude (Opus 4.6) as co-author. It resolved all six open iss
 - Giving all open-issue decisions at once, with rationale, eliminates the back-and-forth that typically stretches resolution across multiple turns. Six issues resolved in one message.
 - Reading the target files before writing new content into them is the difference between matching voice and approximating it — Claude's self-assessed confidence jumped from 85 to 92 on that read alone.
 - A rename that touches ten files is mostly mechanical, but the three files that gain new content are where the voice and consistency risks concentrate. Separating the read-back into "scaffold + new-content files" from "glob renames" focused the review where it mattered.
+
+---
+
+# Migration dropped entirely; TASKS forgotten as a concept (2026-08-13)
+
+**Session ID**: `57b543b7-ee8d-4ac9-b67c-2f8a228b4d91`
+
+Rob's session, with Claude (Opus 4.8) as co-author. A code review of the rename branch surfaced two edge-case gaps in setup's legacy-adoption rule; rather than patch them, Rob decided to remove migration from the toolkit altogether so TASKS survives nowhere as a token or concept. The setup rule was deleted, the canonical templates were swept clean, and these working docs were corrected to record the reversal and its reason.
+
+## Turn-by-turn
+
+- A background code review (high effort, against the branch's PR, briefed with this work item for context) returned two findings, both landing on setup's legacy-rename bullet: its "overwriting nothing" claim is false for a half-migrated item that already holds a burndown, and its instruction to repoint the old name in the item's other docs can force an edit to the append-only working LOG, which setup grants no carve-out for. Both were real but narrow.
+- Rob rejected patching them and asked the simpler question: take migration out entirely. His reasoning — the pattern is too young to accumulate migration rules, only a handful of brains carry the old name, and any live TASKS concept is an attractor that re-invites the master-list drift the rename exists to kill.
+- A grep sweep located every TASKS reference. The only canonical migration site was setup's legacy bullet; everything else was in-flight working docs, the archive, or legitimate ordinary-English use ("tickets show the tasks" in SCOPE, left untouched).
+- Removed the legacy-classification bullet from setup and the matching "renamed from a legacy name" clause in its handoff step. Setup now knows only three doc states: missing, exists in `working/`, exists in `archive/`. A confirming grep showed TASKS gone from all canonical and template files.
+- Closeout corrected these working docs: the plan's scope boundary dropped the delivered "setup audit rule for the legacy name" and reframed the out-of-scope bulk-migration bullet to state the toolkit carries no legacy-adoption at all; the findings gained a rejected-alternative entry recording why migration was dropped.
+
+## Decisions
+
+- **Remove migration wholesale rather than fix the two findings** (Rob) — the findings dissolve by construction once the rule is gone: no rename left to clobber a burndown slot or to touch an append-only LOG.
+- **TASKS is forgotten as a concept, not deprecated** (Rob) — BURNDOWN is treated as the only name that ever existed, because a concept setup still knows how to retire is a concept a writer can still be tempted to fill.
+- **Existing brains are fixed by hand, not by the toolkit** (Rob) — the few carrying the old name get a one-time manual rename each; the toolkit gains no mechanism for it.
+
+## Lessons
+
+- A young pattern is better served by forgetting a bad concept than by carrying a rule to migrate away from it — the migration rule is itself a place the bad concept keeps living. The two review findings were the symptom; the standing TASKS token was the cause.
+- When a review surfaces edge cases in a mechanism, "delete the mechanism" is a candidate fix worth weighing before patching it — here it was cheaper and removed the underlying attractor rather than guarding it.
