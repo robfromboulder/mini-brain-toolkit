@@ -78,4 +78,4 @@ After creating the docs:
 
 1. Report the owning unit, the slug used, which docs were **created**, and which already **existed** (and where — `working/` or `archive/`).
 2. Remind that these are working files: they stay out of the read index, and the canonical mini-brain is untouched until the work concludes.
-3. Point at `<PREFIX>_WORK_CLOSEOUT.md` as the closeout bookend — it consumes exactly these docs.
+3. Point at `<PREFIX>_WORK_CLOSEOUT.md` as the closeout bookend — it consumes exactly these docs and defines early plan archival, the one mid-item retirement move.
