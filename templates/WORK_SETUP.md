@@ -66,7 +66,7 @@ A brand-new work item has nothing on disk, so the full set is created. A partial
 
 Create each missing doc in the owning unit's `working/`, from its base template, substituting `<TOKEN>` (the owning unit's token), `<WORK>` (SCREAMING_SNAKE), `<Work-Item Name>` (Title Case), and `<work-branch>` — a single branch name, or a glob when the item will land across several branches/PRs. Create that `working/` if the unit does not have one yet. Fill PLAN and FINDINGS with real content from the intake chat; leave the others as scaffolds for the implementer.
 
-Do not add a `> V<N>` version header to any of these — working files are unversioned. Do not copy them into `archive/` (that happens only at closeout). Do not touch the read index or any canonical doc.
+Do not add a `> V<N>` version header to any of these — working files are unversioned. Do not copy them into `archive/` (docs land there only when they retire). Do not touch the read index or any canonical doc.
 
 Base templates for each doc live in the toolkit's `templates/work/` (`PLAN.md`, `FINDINGS.md`, `LOG.md`, `BURNDOWN.md`, `CLAUDE.md`, `TESTING.md`); a brain's copy of this procedure inlines all six here, so the brain stands alone without the toolkit.
 
