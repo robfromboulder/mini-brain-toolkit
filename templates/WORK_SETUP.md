@@ -56,6 +56,7 @@ A unit missing one of the two directories is normal and doesn't hide the other's
 Classify each doc:
 - **Missing** — create from the template (§3).
 - **Exists in `working/`** — leave it. Do not overwrite. If the intake chat adds genuinely new material, append it; never rewrite existing working content from a setup run.
+- **Exists in `working/` as legacy `<TOKEN>_<WORK>_TASKS.md`** — the item's burndown under its pre-rename name. Rename it to `<TOKEN>_<WORK>_BURNDOWN.md`, update references to the old name among the item's docs, and do not scaffold a second checklist beside it.
 - **Exists in `archive/`** — already implemented and retired (as a `<TOKEN>_<WORK>_PLAN.md` often is once its plan has shipped). Do **not** recreate it in `working/`; note that it is done and move on.
 
 A brand-new work item has nothing on disk, so the full set is created. A partial one (commonly PLAN+FINDINGS) gets only its missing docs created.
