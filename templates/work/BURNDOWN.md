@@ -17,4 +17,6 @@ Everything between working code and a merged PR.
 
 ## Custom
 
-* <this item's own: docs, screenshots, ports, backports, follow-on items discovered during implementation>
+* docs — <screenshots, user-facing docs, if any>
+* porting/backporting — <if this work ships to more than one target>
+* <follow-on items discovered during implementation>
