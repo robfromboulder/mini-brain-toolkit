@@ -15,7 +15,7 @@ The working docs and their roles:
 | `<TOKEN>_<WORK>_PLAN.md` | The spec: objective, what changes, testing approach, scope boundary, open issues | Yes — written from the intake conversation |
 | `<TOKEN>_<WORK>_FINDINGS.md` | The decision record: problem, preferred approach, tradeoffs, alternatives | Yes — written from the intake conversation |
 | `<TOKEN>_<WORK>_LOG.md` | Append-only session log; one entry per implementation session | No — header only; the first session appends the first entry |
-| `<TOKEN>_<WORK>_BURNDOWN.md` | Finishing checklist: everything between working code and a merged PR | No — template checklist |
+| `<TOKEN>_<WORK>_BURNDOWN.md` | Finishing checklist: what remains to land the change | No — template checklist |
 | `<TOKEN>_<WORK>_CLAUDE.md` | Runbook for automated tests — declares the item's branch (the session-routing join key), defers to the platform runbook, then adds work-specific steps | No — template with a placeholder step |
 | `<TOKEN>_<WORK>_TESTING.md` | Manual test plan: steps to verify the work item by hand; folds into the canonical testing doc at closeout | No — template scaffold |
 
