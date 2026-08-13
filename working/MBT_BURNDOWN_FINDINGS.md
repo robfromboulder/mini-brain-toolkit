@@ -42,4 +42,4 @@ Two claims become false rather than merely renamed.
 
 The checklist's stated role — "Checklist: PR wrangling, testing, docs, closeout" — is replaced by a positive scope statement, so a reader can no longer derive its contents from an enumeration of categories. Reconcile in place.
 
-`MBT_PATTERN.md` states the version-header exemption as applying to "task checklists", which stops being what the document is. The filename glob that expresses the exemption in seven documents, this one among them, is a rename; the phrase describing what is exempt is a reversal.
+`MBT_PATTERN.md` states the version-header exemption as applying to "task checklists", which stops being what the document is. The filename glob that expresses the exemption in four documents, this one among them (the three checkers cite its authority instead), is a rename; the phrase describing what is exempt is a reversal.
