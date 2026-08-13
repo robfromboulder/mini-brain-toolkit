@@ -19,7 +19,7 @@ The working docs and their roles:
 | `<TOKEN>_<WORK>_CLAUDE.md` | Runbook for automated tests — declares the item's branch (the session-routing join key), defers to the platform runbook, then adds work-specific steps | No — template with a placeholder step |
 | `<TOKEN>_<WORK>_TESTING.md` | Manual test plan: steps to verify the work item by hand; folds into the canonical testing doc at closeout | No — template scaffold |
 
-PLAN and BURNDOWN are two halves of the same work: the plan gets the code written, the burndown gets it merged.
+PLAN and BURNDOWN are two halves of the same work: the plan gets the code written, the burndown gets it merged. The burndown's Routine rows are inherited defaults: a brain adopting this procedure refines them once, outside any setup run, to match its PR conventions — the closeout-notes row is not a PR convention and stays. Custom rows are always per-item.
 
 These are **working files**, so per `CLAUDE.md` they are *not* versioned (no `> V<N>` header), are *not* added to the read index, and are not read in future sessions unless explicitly asked.
 
@@ -69,7 +69,7 @@ Create each missing doc in the owning unit's `working/`, from its base template,
 
 Do not add a `> V<N>` version header to any of these — working files are unversioned. Do not copy them into `archive/` (docs land there only when they retire). Do not touch the read index or any canonical doc.
 
-Base templates for each doc live in the toolkit's `templates/work/` (`PLAN.md`, `FINDINGS.md`, `LOG.md`, `BURNDOWN.md`, `CLAUDE.md`, `TESTING.md`); a brain's copy of this procedure inlines all six here, so the brain stands alone without the toolkit. The burndown's Routine rows are inherited defaults, not a fixed list: refine them in the inlined copy, once, to match the project's PR conventions; Custom rows stay per-item.
+Base templates for each doc live in the toolkit's `templates/work/` (`PLAN.md`, `FINDINGS.md`, `LOG.md`, `BURNDOWN.md`, `CLAUDE.md`, `TESTING.md`); a brain's copy of this procedure inlines all six here, so the brain stands alone without the toolkit.
 
 ---
 
