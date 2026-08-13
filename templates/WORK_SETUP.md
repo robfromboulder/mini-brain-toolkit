@@ -2,7 +2,7 @@
 
 > V1, <date>.
 
-Procedure for scaffolding a new work item's working docs from an intake conversation. The bookend to `<PREFIX>_WORK_CLOSEOUT.md`: setup creates the `working/` docs at branch start, closeout folds them into the canonical mini-brain when the work concludes. Read `CLAUDE.md` first for file conventions — they govern every file this procedure touches.
+Procedure for scaffolding a new work item's working docs from an intake conversation. The bookend to `<PREFIX>_WORK_CLOSEOUT.md`: setup creates the `working/` docs when a work item opens, closeout folds them into the canonical mini-brain when the work concludes. Read `CLAUDE.md` first for file conventions — they govern every file this procedure touches.
 
 Run this when starting a new work item — **code-changing work that gets its own branch and PR**: a feature, a bug fix, or a hardening effort — or when formalizing a partial one that already lives in `working/` (e.g. a PLAN+FINDINGS pair that needs the rest of its scaffolding). The output is the `working/<TOKEN>_<WORK>_*.md` documents that track a work item until it concludes. `<TOKEN>` throughout is the owning unit's namespace token — in a brain with one unit, the brain's own token. Setup is **additive and idempotent**: it creates only the docs that are missing and never overwrites existing work, so it is safe to re-run as a work item grows.
 
@@ -65,7 +65,7 @@ A brand-new work item has nothing on disk, so the full set is created. A partial
 
 ## 3. Generate the docs
 
-Create each missing doc in the owning unit's `working/`, from its base template, substituting `<TOKEN>` (the owning unit's token), `<WORK>` (SCREAMING_SNAKE), `<Work-Item Name>` (Title Case), and `<work-branch>` — a single branch name, or a glob when the item will land across several branches/PRs. Create that `working/` if the unit does not have one yet. Fill PLAN and FINDINGS with real content from the intake chat; leave the others as scaffolds for the implementer.
+Create each missing doc in the owning unit's `working/`, from its base template, substituting `<TOKEN>` (the owning unit's token), `<WORK>` (SCREAMING_SNAKE), `<Work-Item Name>` (Title Case), and `<work-branch>` — a single branch name, or a glob when the item will land across several branches/PRs; setup declares the name — creating the branch belongs to the project's workflow, when coding starts. Create that `working/` if the unit does not have one yet. Fill PLAN and FINDINGS with real content from the intake chat; leave the others as scaffolds for the implementer.
 
 Do not add a `> V<N>` version header to any of these — working files are unversioned. Do not copy them into `archive/` (docs land there only when they retire). Do not touch the read index or any canonical doc.
 

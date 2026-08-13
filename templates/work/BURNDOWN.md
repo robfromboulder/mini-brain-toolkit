@@ -4,7 +4,7 @@ Everything between working code and a merged PR.
 
 ## Routine
 
-* commit and push the finished change to `<work-branch>`
+* commit and push the finished change on the work branch
 * create draft PR
 * review code changes
 * full rebuild and automated retest on PR code
