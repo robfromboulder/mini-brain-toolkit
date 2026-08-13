@@ -69,7 +69,7 @@ Create each missing doc in the owning unit's `working/`, from its base template,
 
 Do not add a `> V<N>` version header to any of these — working files are unversioned. Do not copy them into `archive/` (docs land there only when they retire). Do not touch the read index or any canonical doc.
 
-Base templates for each doc live in the toolkit's `templates/work/` (`PLAN.md`, `FINDINGS.md`, `LOG.md`, `BURNDOWN.md`, `CLAUDE.md`, `TESTING.md`); a brain's copy of this procedure inlines all six here, so the brain stands alone without the toolkit.
+Base templates for each doc live in the toolkit's `templates/work/` (`PLAN.md`, `FINDINGS.md`, `LOG.md`, `BURNDOWN.md`, `CLAUDE.md`, `TESTING.md`); a brain's copy of this procedure inlines all six here, so the brain stands alone without the toolkit. The burndown's Routine rows are inherited defaults, not a fixed list: refine them in the inlined copy, once, to match the project's PR conventions; Custom rows stay per-item.
 
 ---
 
