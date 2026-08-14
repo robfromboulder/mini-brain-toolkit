@@ -42,7 +42,7 @@ The slate below was asserted against current top-level and template content. The
 | Term | Reserved meaning | Must not mean | Why it earns a row anyway |
 |---|---|---|---|
 | **component** | A unit whose problem is one of several its parent's problem divides into. | A software module, service, or UI component. | No generic use exists in current content — this brain is clean. The word is nonetheless a term of art in the domain most brains describe, so any brain documenting software collides with it on contact. This is what a healthy row looks like: reserved before the collision, not after. |
-| **work item** | Work that gets its own branch and PR, opened and closed by the setup and closeout rituals. | A ticket, a task, or an issue. | Clean today, and the reserved meaning was already fought for once when it displaced "feature". The generic pull is strong enough that a sibling work item — the TASKS-to-BURNDOWN rename — exists because a neighbouring document's name reads as *ticket*. |
+| **work item** | Work that gets its own branch and PR, opened and closed by the setup and closeout rituals. | A ticket, a task, or an issue. | Clean today, but the phrase is among the most generic available for a unit of work and pulls hard toward the ticket/task/issue senses in the column beside it. Without the reservation, any loose to-do gets filed as a work item and the branch-and-PR meaning the setup and closeout rituals depend on quietly erodes. |
 
 **Rejected, and the reasons are part of the deliverable.** Each shows one of the three rules doing its job, so the slate should ship with them recorded rather than silently dropped.
 

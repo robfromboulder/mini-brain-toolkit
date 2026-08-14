@@ -25,7 +25,7 @@ Make the name → slug → filename transform an explicit, unmissable step in `W
 
 ## Alternatives considered
 
-- **Drop the token from working files (Option A)** — rejected. The token is genuinely redundant with the directory in component brains and pure redundancy in single-unit brains, so the scannability complaint is real. But dropping it is not confined: the glob `<TOKEN>_<WORK>_*` is threaded through `WORK_SETUP`, `WORK_CLOSEOUT`, `SESSION_CLOSEOUT`, `PROJECT_HOOK`, and `templates/work/{PLAN,TASKS}.md`, and it punctures two invariants — the universal-token naming law in `CLAUDE.md` (two named exemptions become three, conditionally) and the longest-match ownership cross-check in `MBT_COMPONENTS.md` that catches misfiled work files. Six-doc change, foundational invariants disturbed, and the benefit fully materializes only in single-unit brains.
+- **Drop the token from working files (Option A)** — rejected. The token is genuinely redundant with the directory in component brains and pure redundancy in single-unit brains, so the scannability complaint is real. But dropping it is not confined: the glob `<TOKEN>_<WORK>_*` is threaded through `WORK_SETUP`, `WORK_CLOSEOUT`, `SESSION_CLOSEOUT`, `PROJECT_HOOK`, and `templates/work/{PLAN,BURNDOWN}.md`, and it punctures two invariants — the universal-token naming law in `CLAUDE.md` (two named exemptions become three, conditionally) and the longest-match ownership cross-check in `MBT_COMPONENTS.md` that catches misfiled work files. Six-doc change, foundational invariants disturbed, and the benefit fully materializes only in single-unit brains.
 
 ## What this doesn't solve
 
