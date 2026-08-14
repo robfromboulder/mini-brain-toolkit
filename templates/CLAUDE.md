@@ -16,9 +16,9 @@ All paths are relative to this repo root (`CLAUDE.md`'s directory). Before readi
 | Session log — why we chose what we chose | `<PREFIX>_LOG.md` (read from last `---`; large) |
 | Session log update format and rules | `<PREFIX>_SESSION_CLOSEOUT.md` (read when asked to update the session log) |
 
-Only files in this table are current. `archive/` holds source material, retired/absorbed docs, and closed work-item working files — ignore it unless asked.
+Only files in this table are current. `archive/` holds source material, retired/absorbed docs, and retired work-item working files — ignore it unless asked.
 
-`working/` holds experiments and a work item's in-flight `<PREFIX>_<WORK>_*` docs. When a work item concludes, fold them into the canonical docs and **move** (not delete) them to `archive/`.
+`working/` holds experiments and a work item's in-flight `<PREFIX>_<WORK>_*` docs. When a work item concludes, fold them into the canonical docs and **move** (not delete) them to `archive/`. The item's PLAN, once consumed (converted to code), may move there early at the developer's request — walk its significant unaddressed items with the developer first.
 
 <!-- As the brain matures, add the lifecycle docs to this index:
 | Work setup — scaffold a work item's working docs | `<PREFIX>_WORK_SETUP.md` |
@@ -37,7 +37,7 @@ Only files in this table are current. `archive/` holds source material, retired/
 
 **File naming.** Every mini-brain filename carries the `<PREFIX>` namespace token — shared docs as `<PREFIX>_*`. Two files are exempt: `CLAUDE.md` (entrypoint) and `README.md` (repo artifact). New top-level knowledge files must include the token; files in `archive/` keep whatever basename they were retired under.
 
-**Version header.** Every top-level file except the version-exempt ones opens with `> V<N>, YYYY-MM-DD.` — version and date, nothing else. **No change note in this line.** If a file needs a description, put it on its own line below. Bump `<N>` by one on each substantive edit (numerically — `V10` > `V9`) and set the date. This applies to `CLAUDE.md` itself. Exempt: `README.md`, `*_LOG.md` files, and `*_TASKS.md` checklists.
+**Version header.** Every top-level file except the version-exempt ones opens with `> V<N>, YYYY-MM-DD.` — version and date, nothing else. **No change note in this line.** If a file needs a description, put it on its own line below. Bump `<N>` by one on each substantive edit (numerically — `V10` > `V9`) and set the date. This applies to `CLAUDE.md` itself. Exempt: `README.md`, `*_LOG.md` files, and `*_BURNDOWN.md` checklists.
 
 **Classify every edit:** *editorial* (typos, rewording) — edit in place, don't bump `<N>`, may update date; *substantive* (facts, decisions, scope, structure) — set the version line to `> V<N+1>, <today's date>.` No change note in the line.
 

@@ -51,7 +51,7 @@ A component may carry more; anything beyond these four is named in its **Also ho
 
 Match a question's terms against **Routes on** to choose a component *before* reading anything. A question about how components fit together, or one no component's terms claim, is hub-level — start at the hub documents. Sub-components are indented under their parent. A component whose code lives inside an ancestor's repository points its project-repo cell at that path (`../<repo>/<path>`); leave the cell empty for a component with no repository presence at all.
 
-`archive/` holds source material and retired docs — not in-tree version snapshots; ignore unless asked. `working/` holds experiments and in-flight work-item docs; when a work item concludes, fold them into the canonical docs and **move** (not delete) them to the owning unit's `archive/`. Every unit owns its own pair — the hub's sit at the repo root from seeding; a component creates its own when it first needs them. Seed-time source material all lands in the hub's `archive/`, whichever component it describes.
+`archive/` holds source material and retired docs — not in-tree version snapshots; ignore unless asked. `working/` holds experiments and in-flight work-item docs; when a work item concludes, fold them into the canonical docs and **move** (not delete) them to the owning unit's `archive/`. The item's PLAN, once consumed (converted to code), may move there early at the developer's request — walk its significant unaddressed items with the developer first. Every unit owns its own pair — the hub's sit at the repo root from seeding; a component creates its own when it first needs them. Seed-time source material all lands in the hub's `archive/`, whichever component it describes.
 
 ---
 
@@ -71,7 +71,7 @@ Match a question's terms against **Routes on** to choose a component *before* re
 **Maintenance-doc boundaries.** Any procedure that appends a log entry cites `<PREFIX>_SESSION_CLOSEOUT.md` as the entry-format authority. Beyond that, `<PREFIX>_DREAM_CYCLE.md` references no other maintenance doc, and `<PREFIX>_WORK_SETUP.md` / `<PREFIX>_WORK_CLOSEOUT.md` are bookends that may reference each other, but only by that relationship.
 -->
 
-**Version header.** Every canonical document opens with `> V<N>, YYYY-MM-DD.` — version and date, nothing else. **No change note in this line.** If a file needs a description, put it on its own line below. Bump `<N>` by one on each substantive edit (numerically — `V10` > `V9`) and set the date. This applies to `CLAUDE.md` itself. Exempt: `README.md`, `*_LOG.md` files, and `*_TASKS.md` checklists.
+**Version header.** Every canonical document opens with `> V<N>, YYYY-MM-DD.` — version and date, nothing else. **No change note in this line.** If a file needs a description, put it on its own line below. Bump `<N>` by one on each substantive edit (numerically — `V10` > `V9`) and set the date. This applies to `CLAUDE.md` itself. Exempt: `README.md`, `*_LOG.md` files, and `*_BURNDOWN.md` checklists.
 
 **Classify every edit:** *editorial* (typos, rewording) — edit in place, don't bump `<N>`, may update date; *substantive* (facts, decisions, scope, structure) — set the version line to `> V<N+1>, <today's date>.` No change note in the line.
 

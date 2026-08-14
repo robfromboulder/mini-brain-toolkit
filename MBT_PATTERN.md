@@ -1,6 +1,6 @@
 # Mini-Brain Toolkit: The Mini-Brain Pattern
 
-> V13, 2026-08-02.
+> V16, 2026-08-13.
 
 This document is the operational definition of a mini-brain: what it *is*, the file set it's made of, and the lifecycle that keeps it true and small.
 
@@ -32,7 +32,7 @@ Ten principles define the pattern, ordered from most to least important. Each is
 
 6. **Namespace every knowledge file with a SCREAMING_SNAKE_CASE token.** Prefix each file with one uppercase token unique to the brain (`ORCHARD_SCOPE.md`, `CDP_APPROACH.md`). The token makes the brain's files unmistakable in a mixed directory and prevents collisions when two brains load in the same session. `CLAUDE.md` and `README.md` are exempt.
 
-7. **Version and date every canonical document.** Open each canonical document with `> V<N>, YYYY-MM-DD.` Bump the number and set the date on each substantive edit. This gives readers a citable version and a freshness signal; full history stays in version control, not in duplicate in-tree copies. The append-only log and task checklists (`*_TASKS.md`) are exempt.
+7. **Version and date every canonical document.** Open each canonical document with `> V<N>, YYYY-MM-DD.` Bump the number and set the date on each substantive edit. This gives readers a citable version and a freshness signal; full history stays in version control, not in duplicate in-tree copies. The append-only log and burndown checklists (`*_BURNDOWN.md`) are exempt.
 
 8. **Keep work-in-progress separate from settled knowledge.** Put experiments and a work item's in-flight documents in a `working/` area, apart from the canonical documents a reader is meant to trust. Nothing in `working/` is authoritative until it is folded into a canonical document.
 
@@ -77,10 +77,10 @@ Added when a brain tracks real work items across many sessions and needs rituals
 | File | Role |
 |---|---|
 | `<PREFIX>_WORK_SETUP.md` | Scaffolds a work item's `working/<PREFIX>_<WORK>_*` docs from an intake conversation. |
-| `<PREFIX>_WORK_CLOSEOUT.md` | Folds a concluded work item's working docs into the canonical store; retires them to `archive/`. |
+| `<PREFIX>_WORK_CLOSEOUT.md` | Folds a concluded work item's working docs into the canonical store and retires them to `archive/`; also defines early plan archival, the mid-item retirement of a consumed PLAN. |
 | `<PREFIX>_DREAM_CYCLE.md` | The periodic reflection pass. |
 | `<PREFIX>_DREAM_LOG.md` | Append-only log of dream-cycle runs. |
-| Per-work-item working set | `working/<PREFIX>_<WORK>_{PLAN,FINDINGS,LOG,TASKS,CLAUDE,TESTING}.md` — unversioned, out of the read index. |
+| Per-work-item working set | `working/<PREFIX>_<WORK>_{PLAN,FINDINGS,LOG,BURNDOWN,CLAUDE,TESTING}.md` — unversioned, out of the read index. |
 
 Brains that serve more than one target platform also split some docs by platform (`<PLATFORM>_<PREFIX>_*`), keeping shared findings in the un-prefixed file and platform-specific ones in the platform files.
 
