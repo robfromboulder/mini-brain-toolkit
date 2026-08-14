@@ -66,3 +66,24 @@ Rob's session, with Claude (Opus 4.8) as co-author. A code review of the rename 
 
 - A young pattern is better served by forgetting a bad concept than by carrying a rule to migrate away from it — the migration rule is itself a place the bad concept keeps living. The two review findings were the symptom; the standing TASKS token was the cause.
 - When a review surfaces edge cases in a mechanism, "delete the mechanism" is a candidate fix worth weighing before patching it — here it was cheaper and removed the underlying attractor rather than guarding it.
+
+---
+
+# Rename branch merged to main (2026-08-13)
+
+**Session ID**: `ca400db6-6efb-45e2-996d-0fa605d396bb`
+
+Rob's session, with Claude (Opus 4.8) as co-author. A short session to land the rename branch: Rob asked whether the PR needed a rebase before merging, and once confirmed clean, had it merged. The branch carrying the TASKS→BURNDOWN rename is now on main.
+
+## Turn-by-turn
+
+- Rob asked whether the rename PR needed rebasing first. Its merge status reported mergeable and clean — up to date with main, no conflicts — so no rebase was needed.
+- On Rob's go-ahead the PR was merged with a merge commit (not squash or rebase), and the merged state was confirmed.
+
+## Decisions
+
+- **Plain merge, no rebase** (Rob) — the branch was already current with main and conflict-free, so there was nothing for a rebase to resolve.
+
+## Lessons
+
+- Check the PR's mergeability before assuming a rebase is required; a clean branch needs none, and rebasing it anyway only rewrites history for no gain.
