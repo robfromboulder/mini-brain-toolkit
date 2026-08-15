@@ -10,4 +10,4 @@ This work item changes procedure prose in `templates/WORK_SETUP.md`; there is no
 
 Run the revised `WORK_SETUP` against the sample names in the manual test plan and confirm every resulting filename is `<TOKEN>_<WORK>_*` with no double prefix.
 
-**Expected:** all three sample cases (bare name, already-prefixed name, component-brain case) yield correctly single-prefixed filenames.
+**Expected:** every sample case in that plan yields correctly single-prefixed filenames.
