@@ -35,3 +35,7 @@ Make the name → slug → filename transform an explicit, unmissable step in `W
 ## Reversals
 
 None. `WORK_SETUP` already intends the prefix; this makes the existing intent enforceable. No canonical claim becomes false.
+
+## Form of the Slug paragraph
+
+Settled 2026-08-14, Rob's call: the filename imperative leads the paragraph, ahead of the slug definition. These templates are instructions executed by a model, and the root cause above is an execution failure — burying the prepend rule in definitional prose is what made runs skip it — so the executable form outranks a definition-led opening. The writing laws are satisfied, not overruled: the imperative introduces `<WORK>` at its point of first need, and the procedure's intro describes the output set while the Slug paragraph alone states the derivation rule. A wording pass that re-leads with the definition and demotes the imperative recreates the diagnosed failure mode; the paragraph's history holds exactly one such demotion, made in an unlogged session and reversed on review.
