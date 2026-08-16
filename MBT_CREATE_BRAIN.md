@@ -30,7 +30,7 @@ Don't gather more than this for a seed.
 
 Verify that the target location from §1 exists and is a git repository. If either check fails, tell the user what's needed — the repo name and location settled in the intake — so they can create it (`gh repo create` for a hosted repo, or `mkdir` + `git init` for local-only). Don't create the repo yourself; hosting and visibility are the user's call.
 
-When the brain accompanies an existing project, the two are sibling repos — this procedure creates the brain's files in the brain repo, and the project repo receives only the loading hook (§4). A project at `~/projects/my-app` gets its brain at `~/projects/mini-my-app-brain`, not a directory inside `my-app`.
+When the brain accompanies an existing project, this procedure creates the brain's files in the brain repo; the project repo receives only the loading hook (§4).
 
 ---
 
