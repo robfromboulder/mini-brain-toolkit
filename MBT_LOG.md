@@ -625,3 +625,35 @@ Rob's session, with Claude (Opus 4.8) as co-author. With the prefix-enforce bran
 
 - **SETUP_PREFIX declared done and closed out now** (Rob) — the fold and the archive moves are performed, but nothing is committed; review comes first.
 - **Both findings promoted rather than left in the item's log** (Claude's recommendation, Rob's direction) — the shipped paragraph shows the enforced rule but not why its imperative must lead, nor why dropping the redundant token was rejected.
+
+---
+
+# CREATE_BRAIN repo-establishment step and README rewrite (2026-08-16)
+
+**Session ID**: `76fd6b03-6025-4378-971a-19695b1a2bcc`
+
+Rob's session, with Claude (Opus 4.6) as co-author. Rob identified a gap in the create-brain procedure: nothing verified the target repo existed or was git-managed before the procedure began writing files, and the sibling-repo relationship was easy to miss for someone creating a brain for an existing codebase. A new §2 was added to gate on both conditions. Separately, the README was rewritten to better teach what a mini-brain is, simplify the agentic-tool prompts, and add a "Why a mini-brain?" section positioning against the landscape.
+
+## MBT_CREATE_BRAIN changes
+
+- Added §2 "Establish the brain repo" — checks the target directory exists and is a git repository; if either fails, tells the user what's needed so they can create it via `gh repo create` or manually. Second paragraph makes explicit that the brain and project are sibling repos and the procedure writes to the brain repo while the project repo only receives the loading hook.
+- Renumbered §§2–6 → §§3–7 and updated all six internal cross-references.
+- Version bumped V19 → V20.
+
+## README rewrite
+
+- Added "What is a mini-brain?" heading to structure the intro; added a bridge sentence in the opener connecting the pitch to what the toolkit is.
+- Simplified both agentic-tool prompts — stripped verbose tails and placeholders, reduced to bare `Read ../mini-brain-toolkit/MBT_CREATE_BRAIN` form. Both sections now follow parallel structure: context sentence, prompt, explanation.
+- Renamed "Checking a mini-brain" → "Improving a mini-brain" — the procedure does more than verify, and the new lead-in connects creation to maturity growth.
+- Added "Why a mini-brain?" section — acknowledges the landscape respectfully, states the core differentiator (store only what code can't tell you, shrink as knowledge becomes derivable), and links to the pattern definition, research, and biology docs for readers who want depth.
+- Multiple rounds of word-level tightening with Rob: "what inspires the work," "to optionally save," "re-evaluates drift," replaced "the market niche that your project occupies" with "their surroundings."
+
+## Decisions
+
+- **One README section for both greenfield and existing-codebase cases, not two** (Rob's question, Claude's recommendation, Rob agreed) — the create procedure is one flow with optional inputs; splitting the README would imply two workflows that don't exist.
+- **"Improving" over "Checking" for the README heading** (Rob's direction) — better names what the procedure actually does; the filename stays `MBT_CHECK_BRAIN.md` since renaming it would be churn.
+- **"Their surroundings" over "the market niche that your project occupies"** (Rob's direction after considering alternatives) — the original was specific to this brain's dream cycle and overpromised for most users' brains.
+- **Drop `for <my project>` from the create prompt** (Rob's question, Claude's recommendation) — the intake conversation asks what the project is, so the placeholder added nothing.
+- **Don't create the repo for the user** (Claude's recommendation) — hosting and visibility choices belong to the user; the procedure verifies and guides, doesn't act.
+
+PR #4 created on branch `create-brain-repo-step-and-readme` for review.
