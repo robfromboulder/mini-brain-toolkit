@@ -1,6 +1,6 @@
 # Mini-Brain Toolkit: Create a New Mini-Brain
 
-> V19, 2026-08-08.
+> V20, 2026-08-15.
 
 This document is the procedure for standing up a new mini-brain from `templates/`.
 
@@ -18,7 +18,7 @@ Before creating anything, settle these with the user. Establishment turns a deci
 - **Components** — whether the knowledge divides. Ask whether one SCOPE can state the problem honestly, or whether writing it would force two or more coexisting problems onto the page. If it divides, the brain is component-structured and `MBT_COMPONENTS.md` governs its layout; ask again of any component whose own problem divides. For each component, also settle the terms that should route a question to it — the registry's **Routes on** cell. Most brains hold one problem and answer no. Settle this before the token, because the answer changes how many tokens there are.
 - **Namespace token** — the SCREAMING_SNAKE_CASE token every knowledge file carries (principle 6). Short, distinctive, unlikely to collide with another brain loaded in the same session. Mirror the project name where natural (`orchard` → `ORCHARD`); pick an acronym when the name is long (`customer-data-platform` → `CDP`). Confirm it with the user — it touches every filename and is churn to change later. A component-structured brain settles one token for the hub and one for each component, each under the same collision test.
 - **Location** — the repo (principle 2: the brain is its own repository, not a folder inside a project repo). Convention is a sibling repo named `mini-<project>-brain`, so a coding session in a project repo can load it with `Read ../mini-<project>-brain/CLAUDE.md for instructions`.
-- **Project repos (optional)** — the repos whose coding sessions should load the brain. Each gets the hook merged into its `CLAUDE.md` (§3). A brand-new project may have none yet; add the hook to each repo as it appears — this procedure is safe to re-run. In a component-structured brain, note which component each repo maps to; its hook names that component.
+- **Project repos (optional)** — the repos whose coding sessions should load the brain. Each gets the hook merged into its `CLAUDE.md` (§4). A brand-new project may have none yet; add the hook to each repo as it appears — this procedure is safe to re-run. In a component-structured brain, note which component each repo maps to; its hook names that component.
 - **Source material (optional)** — existing docs the SCOPE/APPROACH will be distilled from (design docs, PRDs, tickets, prior wikis). If they exist, they go in `archive/` as source, not into the canonical docs verbatim.
 - **Platforms (optional)** — if the project targets more than one platform that will need platform-specific docs later, note it now; it affects the namespace layering (`<PLATFORM>_<PREFIX>_*` etc.) but not the seed. Platforms are one problem delivered across several targets; targets holding different problems are the components question above.
 
@@ -26,18 +26,26 @@ Don't gather more than this for a seed.
 
 ---
 
-## 2. Audit what exists
+## 2. Establish the brain repo
+
+Verify that the target location from §1 exists and is a git repository. If either check fails, tell the user what's needed — the repo name and location settled in the intake — so they can create it (`gh repo create` for a hosted repo, or `mkdir` + `git init` for local-only). Don't create the repo yourself; hosting and visibility are the user's call.
+
+When the brain accompanies an existing project, this procedure creates the brain's files in the brain repo; the project repo receives only the loading hook (§4).
+
+---
+
+## 3. Audit what exists
 
 Before writing, list the target directory — every unit directory, in a component-structured brain. Classify each seed file:
 
-- **Missing** — create it from the template (§3).
+- **Missing** — create it from the template (§4).
 - **Exists** — leave it. Never overwrite.
 
 A brand-new repo has nothing but perhaps a `README.md`, `LICENSE`, and `.git`; all seed files are created. A repo you're formalizing (e.g. a stray `NOTES.md`) gets only its missing pieces, and existing notes are treated as source material to fold in later, not clobbered.
 
 ---
 
-## 3. Create the seed file set
+## 4. Create the seed file set
 
 For each missing file, copy the corresponding file from `templates/` and substitute the placeholders:
 
@@ -52,7 +60,7 @@ Substitute only these. `<TOKEN>` and `<WORK>` are runtime variables, not creatio
 |---|---|---|
 | `templates/CLAUDE.md` | `CLAUDE.md` | Read index + conventions. The read index lists only the seed canonical docs at first; extend it as files are added. |
 | `templates/README.md` | `README.md` | If a README already exists (repo artifact), *merge* the mini-brain usage section in rather than overwriting. |
-| `templates/SCOPE.md` | `<PREFIX>_SCOPE.md` | Section skeleton with `*To be filled in.*` placeholders. Each section carries a comment saying what belongs in it; leave those in place at seed time — they are deleted section by section as §4 fills them. |
+| `templates/SCOPE.md` | `<PREFIX>_SCOPE.md` | Section skeleton with `*To be filled in.*` placeholders. Each section carries a comment saying what belongs in it; leave those in place at seed time — they are deleted section by section as §5 fills them. |
 | `templates/APPROACH.md` | `<PREFIX>_APPROACH.md` | Section skeleton with `*To be filled in.*` placeholders, carrying the same per-section comments. |
 | `templates/FINDINGS.md` | `<PREFIX>_FINDINGS.md` | Header + `*No findings recorded yet.*` |
 | `templates/LOG.md` | `<PREFIX>_LOG.md` | Header only; first entry is appended at first session closeout. |
@@ -67,7 +75,7 @@ All canonical docs open with `> V1, <date>.`; apply `CLAUDE.md`'s version conven
 
 ---
 
-## 4. Fill SCOPE and APPROACH (stage 2)
+## 5. Fill SCOPE and APPROACH (stage 2)
 
 Seeding produces skeletons; this step turns them into content. Do it in order — APPROACH argues against SCOPE, so SCOPE settles first. In a component-structured brain, work parents before children as well: a component's problem statement may cite its parent's, so the parent has to settle first.
 
@@ -82,16 +90,16 @@ Then **fact-check every falsifiable claim** against the codebase and against the
 
 **APPROACH — the chosen design.** Author `<PREFIX>_APPROACH.md`: strategic approach, architecture, key design decisions (with alternatives weighed), and what gets built. This is where solution commitments live. Trace each design choice to the SCOPE goal it serves, cited by name. Then read the pair in the other direction: **for every goal, name the decision that answers it.** A goal with no answering decision is either a gap in the design or a goal that was never real, and where the design deliberately leaves a goal unmet, say so — silence reads as "handled". This reverse pass is what catches the defects the forward pass cannot, because a design that traces cleanly to the goals it addresses says nothing about the goals it skipped. Keep APPROACH and SCOPE orthogonal: if you find yourself faulting SCOPE for not matching an APPROACH decision, that's importing solution bias into the problem statement — stop.
 
-**Read the set back before calling it done.** Run this once every document in the set exists, not after each one. Authoring runs document by document, so each one comes out consistent with itself and the defects collect in the seams. They are invisible from inside the document being written and obvious the moment the set is read together, which is why this is a separate pass and not a matter of being careful while authoring. The structural check in §6 catches none of them — every file involved exists, is namespaced, and carries a version header. Two passes, and they are not the same pass:
+**Read the set back before calling it done.** Run this once every document in the set exists, not after each one. Authoring runs document by document, so each one comes out consistent with itself and the defects collect in the seams. They are invisible from inside the document being written and obvious the moment the set is read together, which is why this is a separate pass and not a matter of being careful while authoring. The structural check in §7 catches none of them — every file involved exists, is namespaced, and carries a version header. Two passes, and they are not the same pass:
 
 - **The scopes, as a group.** Read every SCOPE in one sitting and look for what only appears side by side: a term meaning two different things in two units, an open question standing in more than one place, a parent explaining a child's problem rather than naming it, and the same fact stated at two levels. Then re-ask solution-neutrality in a form authoring cannot answer — for each claim about the world, would it still hold if the design had gone another way? A claim that fails that test arrived from a design decision made in some other document and is wearing the clothes of a fact. This is the leak that survives a careful reading for solution bias, because by the time it is written down it reads as a description of reality.
 - **Each approach against its own scope, and never against the other approaches.** The pairing is the reverse-trace above, run once the whole set exists. Comparing approaches to *each other* is a mistake: they are siblings, so the comparison invites exactly the coupling the pattern forbids, and it pressures designs that legitimately differ into cosmetic agreement. What matters about an approach is whether it answers its own problem, not whether it resembles its neighbors.
 
-Record the reasoning and course-corrections of this authoring work in the LOG at session closeout (§6). The *decisions* that are invisible from the resulting docs go in FINDINGS as they arise.
+Record the reasoning and course-corrections of this authoring work in the LOG at session closeout (§7). The *decisions* that are invisible from the resulting docs go in FINDINGS as they arise.
 
 ---
 
-## 5. Grow into the mature lifecycle (stage 3)
+## 6. Grow into the mature lifecycle (stage 3)
 
 Add these **only when the work justifies them** (the stage model in `MBT_PATTERN.md`) — typically when the brain starts tracking work items across many sessions. Each is copied from `templates/`, namespaced, added to the read index, and bumps `CLAUDE.md`.
 
@@ -104,7 +112,7 @@ Don't scaffold these into a stage-1 brain; add them the first time a real work i
 
 ---
 
-## 6. Close out and hand off
+## 7. Close out and hand off
 
 1. Append the first LOG entry per `<PREFIX>_SESSION_CLOSEOUT.md`, recording what this establishment session did and decided (namespace choice, source material, fact-check corrections).
 2. Run a structural check — read index ↔ disk, version headers, cross-references, namespace prefix; for a component-structured brain, also registry ↔ disk and each unit's full doctype set and token — and fix anything it flags.
