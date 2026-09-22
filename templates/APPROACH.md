@@ -2,7 +2,7 @@
 
 > V1, <date>.
 
-This document describes the proposed approach for addressing the problems defined in `<PREFIX>_SCOPE.md`. It covers architectural approach, key design decisions, and what we build — but not implementation phases or delivery milestones, which are derived from this document separately.
+This document describes the proposed approach for addressing the problems defined in `<LOBESPACE>_SCOPE.md`. It covers architectural approach, key design decisions, and what we build — but not implementation phases or delivery milestones, which are derived from this document separately.
 
 ---
 

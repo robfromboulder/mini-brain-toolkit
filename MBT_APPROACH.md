@@ -1,6 +1,6 @@
 # Mini-Brain Toolkit: Technical Approach
 
-> V8, 2026-08-08.
+> V9, 2026-09-21.
 
 This document describes the approach for addressing the problems defined in `MBT_SCOPE.md`. It covers the strategic approach and key design decisions — not delivery sequence.
 
@@ -30,9 +30,9 @@ Establishment is a copy-and-substitute operation against `templates/` (the base-
 
 ## 2. Key Design Decisions
 
-### 2.1 Namespace token `MBT`
+### 2.1 Lobespace `MBT`
 
-The toolkit carries a namespace token like any other brain. `MBT` was chosen over mirroring the repo name (`TOOLKIT`) or the subject (`BRAIN`): it is short, unambiguous, and — because the toolkit is frequently loaded *alongside* the very brains it assesses — must not collide with a target brain's files. `BRAIN` risked conceptual collision in exactly that scenario; `MBT` cannot.
+The toolkit carries a lobespace like any other brain. `MBT` was chosen over mirroring the repo name (`TOOLKIT`) or the subject (`BRAIN`): it is short, unambiguous, and — because the toolkit is frequently loaded *alongside* the very brains it assesses — must not collide with a target brain's files. `BRAIN` risked conceptual collision in exactly that scenario; `MBT` cannot.
 
 ### 2.2 Keep the archived docs as source material, distill a canonical reference
 

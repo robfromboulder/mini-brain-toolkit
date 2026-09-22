@@ -10,7 +10,7 @@ All knowledge is stored in Markdown files. Each file captures an orthogonal dime
 
 CLAUDE.md provides a read index so that Claude can discover and apply knowledge that is relevant to the active chat session.
 
-Knowledge files in this mini-brain are `<PREFIX>_`-namespaced. This convention lets you load more than one mini-brain into the same coding session without filename collisions or confusion during updates.
+Knowledge files in this mini-brain are `<LOBESPACE>_`-namespaced. This convention lets you load more than one mini-brain into the same coding session without filename collisions or confusion during updates.
 
 ## Usage
 
@@ -20,4 +20,4 @@ Knowledge files in this mini-brain are `<PREFIX>_`-namespaced. This convention l
 
 #### 2. Save notes about this Claude session:
 
-> Read <PREFIX>_SESSION_CLOSEOUT.md and append to <PREFIX>_LOG.md
+> Read <LOBESPACE>_SESSION_CLOSEOUT.md and append to <LOBESPACE>_LOG.md

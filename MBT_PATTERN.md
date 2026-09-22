@@ -1,6 +1,6 @@
 # Mini-Brain Toolkit: The Mini-Brain Pattern
 
-> V16, 2026-08-13.
+> V17, 2026-09-21.
 
 This document is the operational definition of a mini-brain: what it *is*, the file set it's made of, and the lifecycle that keeps it true and small.
 
@@ -24,19 +24,19 @@ Ten principles define the pattern, ordered from most to least important. Each is
 
 2. **Store the mini-brain in its own repository, separate from the code it describes.** The brain records how and why the product was built, so it must not be embedded in, versioned with, or shipped as part of the product. It sits beside the project repositories, is loaded on demand, and outlives any single one of them. A short hook merged into each project repo's entrypoint pulls the brain to latest and loads it into a coding session on demand, so working with the brain never requires leaving the project repo — the separation costs the developer nothing.
 
-3. **Organize knowledge into orthogonal documents.** Give each document one dimension of the project — problem, approach, findings, session history — with no overlap between documents. Orthogonality lets each question map to exactly one file, lets each document be judged on its own terms, and keeps any one file small enough to load without the rest. That orthogonality has to hold in the prose, not just at the file boundaries: each document describes its own dimension without narrating its neighbors, and a reader reaches another document as a whole unit through the read index — not by reaching into its sections or threading cross-references through the body. (These numbered principles are a deliberate exception; most documents should expose no such independently-citable parts, or the read-index partitioning collapses back toward a wiki.)
+3. **Organize knowledge into orthogonal documents.** Give each document one dimension of the project — problem, approach, findings, session history — with no overlap between documents. Orthogonality lets each question map to exactly one file, lets each document be judged on its own terms, and keeps any one file small enough to load without the rest. That orthogonality has to hold in the prose, not just at the file boundaries: each document describes its own dimension without narrating its neighbors, and a reader reaches another document as a whole through the read index — not by reaching into its sections or threading cross-references through the body. (These numbered principles are a deliberate exception; most documents should expose no such independently-citable parts, or the read-index partitioning collapses back toward a wiki.)
 
 4. **Separate the append-only log from the distilled documents.** Keep one time-stamped log that records what happened each session and is never edited after the fact. Keep the rest — the *canonical documents* — as living current-state summaries, rewritten freely as understanding improves. The log preserves lineage; the canonical documents preserve conclusions.
 
 5. **Provide an entrypoint with a read index.** Put one file (`CLAUDE.md`) that a reader always opens first — the entrypoint — and have it carry a read index: a table listing every document, what each is for, and which are current. The reader consults the index and loads only the documents a given question needs.
 
-6. **Namespace every knowledge file with a SCREAMING_SNAKE_CASE token.** Prefix each file with one uppercase token unique to the brain (`ORCHARD_SCOPE.md`, `CDP_APPROACH.md`). The token makes the brain's files unmistakable in a mixed directory and prevents collisions when two brains load in the same session. `CLAUDE.md` and `README.md` are exempt.
+6. **Namespace every knowledge file with a SCREAMING_SNAKE_CASE lobespace.** Prefix each file with one uppercase lobespace unique to the brain (`ORCHARD_SCOPE.md`, `CDP_APPROACH.md`). The lobespace makes the brain's files unmistakable in a mixed directory and prevents collisions when two brains load in the same session. `CLAUDE.md` and `README.md` are exempt.
 
 7. **Version and date every canonical document.** Open each canonical document with `> V<N>, YYYY-MM-DD.` Bump the number and set the date on each substantive edit. This gives readers a citable version and a freshness signal; full history stays in version control, not in duplicate in-tree copies. The append-only log and burndown checklists (`*_BURNDOWN.md`) are exempt.
 
 8. **Keep work-in-progress separate from settled knowledge.** Put experiments and a work item's in-flight documents in a `working/` area, apart from the canonical documents a reader is meant to trust. Nothing in `working/` is authoritative until it is folded into a canonical document.
 
-9. **Open and close each unit of work the same way.** Use one defined ritual to scaffold a work item's working documents at the start, and a matching ritual at the end to fold their durable lessons into the canonical documents and retire (move, not delete) the working files. This keeps every effort's structure identical and stops its lessons from being stranded.
+9. **Open and close every work item the same way.** Use one defined ritual to scaffold a work item's working documents at the start, and a matching ritual at the end to fold their durable lessons into the canonical documents and retire (move, not delete) the working files. This keeps every effort's structure identical and stops its lessons from being stranded.
 
 10. **Reflect on a schedule to keep the brain true and small.** Run a periodic maintenance pass that re-checks claims against current reality, merges overlapping content, deletes what has become re-derivable, and flags gaps. Without it, a brain only grows and drifts from the truth.
 
@@ -54,11 +54,11 @@ The minimum viable brain.
 |---|---|---|
 | `CLAUDE.md` | Entrypoint: read index + file conventions (principle 5). | Exempt |
 | `README.md` | Repo artifact: what this is and how to load it. | Exempt |
-| `<PREFIX>_SCOPE.md` | The problem, the world it exists in, goals — objective, solution-free. | Yes |
-| `<PREFIX>_APPROACH.md` | The chosen design and key decisions that address SCOPE. | Yes |
-| `<PREFIX>_FINDINGS.md` | Implementation findings invisible from the code; starts empty. | Yes |
-| `<PREFIX>_LOG.md` | Append-only session log — the lineage (principle 4). | Yes |
-| `<PREFIX>_SESSION_CLOSEOUT.md` | The authoritative format/rules for LOG entries. | Yes |
+| `<LOBESPACE>_SCOPE.md` | The problem, the world it exists in, goals — objective, solution-free. | Yes |
+| `<LOBESPACE>_APPROACH.md` | The chosen design and key decisions that address SCOPE. | Yes |
+| `<LOBESPACE>_FINDINGS.md` | Implementation findings invisible from the code; starts empty. | Yes |
+| `<LOBESPACE>_LOG.md` | Append-only session log — the lineage (principle 4). | Yes |
+| `<LOBESPACE>_SESSION_CLOSEOUT.md` | The authoritative format/rules for LOG entries. | Yes |
 | `archive/` | Source material and retired docs. | — |
 | `working/` | Experiments and in-flight work-item docs (principle 8). | — |
 
@@ -76,22 +76,22 @@ Added when a brain tracks real work items across many sessions and needs rituals
 
 | File | Role |
 |---|---|
-| `<PREFIX>_WORK_SETUP.md` | Scaffolds a work item's `working/<PREFIX>_<WORK>_*` docs from an intake conversation. |
-| `<PREFIX>_WORK_CLOSEOUT.md` | Folds a concluded work item's working docs into the canonical store and retires them to `archive/`; also defines early plan archival, the mid-item retirement of a consumed PLAN. |
-| `<PREFIX>_DREAM_CYCLE.md` | The periodic reflection pass. |
-| `<PREFIX>_DREAM_LOG.md` | Append-only log of dream-cycle runs. |
-| Per-work-item working set | `working/<PREFIX>_<WORK>_{PLAN,FINDINGS,LOG,BURNDOWN,CLAUDE,TESTING}.md` — unversioned, out of the read index. |
+| `<LOBESPACE>_WORK_SETUP.md` | Scaffolds a work item's `working/<LOBESPACE>_<WORK>_*` docs from an intake conversation. |
+| `<LOBESPACE>_WORK_CLOSEOUT.md` | Folds a concluded work item's working docs into the canonical store and retires them to `archive/`; also defines early plan archival, the mid-item retirement of a consumed PLAN. |
+| `<LOBESPACE>_DREAM_CYCLE.md` | The periodic reflection pass. |
+| `<LOBESPACE>_DREAM_LOG.md` | Append-only log of dream-cycle runs. |
+| Per-work-item working set | `working/<LOBESPACE>_<WORK>_{PLAN,FINDINGS,LOG,BURNDOWN,CLAUDE,TESTING}.md` — unversioned, out of the read index. |
 
-Brains that serve more than one target platform also split some docs by platform (`<PLATFORM>_<PREFIX>_*`), keeping shared findings in the un-prefixed file and platform-specific ones in the platform files.
+Brains that serve more than one target platform also split some docs by platform (`<PLATFORM>_<LOBESPACE>_*`), keeping shared findings in the un-prefixed file and platform-specific ones in the platform files.
 
-Brains whose knowledge divides into several components — where one SCOPE cannot state the problem honestly, because writing it would force two or more coexisting problems onto the page — instead give each component its own subdirectory, nesting where a component's problem divides again. Such a brain declares a namespace token per component rather than one brain-wide, and its entrypoint resolves documents from a doctype grammar and a component registry instead of enumerating them. The read index names the convention that governs this.
+Brains whose knowledge divides into several lobes — where one SCOPE cannot state the problem honestly, because writing it would force two or more coexisting problems onto the page — instead give each lobe its own subdirectory, nesting where a lobe's problem divides again. Such a brain declares a lobespace per lobe rather than one brain-wide, and its entrypoint resolves documents from a doctype grammar and a lobe registry instead of enumerating them. The read index names the convention that governs this.
 
 ---
 
 ## 4. The lifecycle
 
-- **A session** usually runs in a project repo, where the hook loads the brain on demand; it starts by reading `CLAUDE.md` and only the indexed files the question needs. At a natural stopping point — a PR opened, work paused, the user wrapping up — the agent offers a closeout, and (when there's durable lineage worth keeping) appends one entry to the LOG per `<PREFIX>_SESSION_CLOSEOUT.md`.
-- **A work item** — a feature, bug fix, or hardening effort — opens with `WORK_SETUP`, runs across sessions logging to its own `<PREFIX>_<WORK>_LOG.md`, and closes with `WORK_CLOSEOUT`.
+- **A session** usually runs in a project repo, where the hook loads the brain on demand; it starts by reading `CLAUDE.md` and only the indexed files the question needs. At a natural stopping point — a PR opened, work paused, the user wrapping up — the agent offers a closeout, and (when there's durable lineage worth keeping) appends one entry to the LOG per `<LOBESPACE>_SESSION_CLOSEOUT.md`.
+- **A work item** — a feature, bug fix, or hardening effort — opens with `WORK_SETUP`, runs across sessions logging to its own `<LOBESPACE>_<WORK>_LOG.md`, and closes with `WORK_CLOSEOUT`.
 - **Maintenance** runs on a cadence via `DREAM_CYCLE`: verify SCOPE's factual claims against the code, refresh APPROACH's external assumptions, promote LOG entries into FINDINGS, prune what's now re-derivable, and flag anything that needs human judgment.
 
 The through-line across all three: knowledge is captured as lineage in the LOG, distilled into the living docs on a known cadence, and continuously pruned toward the irreducible core.

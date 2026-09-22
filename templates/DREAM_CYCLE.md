@@ -14,7 +14,7 @@ Follow these instructions when the user asks the mini-brain to dream and improve
 
 **Error recovery:** None. If an Explore agent returns inconclusive results, a file is unexpectedly missing, a claim can't be verified, or any step produces an outcome the instructions don't cover — stop the cycle and report the error to the user. Do not retry, work around, or silently skip. A stopped cycle is a signal that the instructions need updating, not that the executor needs to improvise.
 
-**Before you begin — orient against the last cycle.** Read the last entry in `<PREFIX>_DREAM_LOG.md` (grep the final `---`). Carry forward: (a) what the last cycle flagged as *needs human decision* — resolved, still open, or now actionable; (b) what it said it would change about these instructions; (c) which phases found nothing last time — if nothing relevant has changed since, calibrate effort there instead of re-deriving from scratch. This makes the dream log an input, not only an output, and is what lets a cycle notice it is re-treading. First run (empty log): note it and proceed.
+**Before you begin — orient against the last cycle.** Read the last entry in `<LOBESPACE>_DREAM_LOG.md` (grep the final `---`). Carry forward: (a) what the last cycle flagged as *needs human decision* — resolved, still open, or now actionable; (b) what it said it would change about these instructions; (c) which phases found nothing last time — if nothing relevant has changed since, calibrate effort there instead of re-deriving from scratch. This makes the dream log an input, not only an output, and is what lets a cycle notice it is re-treading. First run (empty log): note it and proceed.
 
 ---
 
@@ -26,8 +26,8 @@ Mechanical checks. Run all first; fix any failures before the content phases.
 2. **Disk → read index.** Every top-level `.md` file (excluding `CLAUDE.md`, `README.md`, and this file) appears in the read index. Flag orphans.
 3. **Version headers.** Every top-level file except the version-exempt ones `CLAUDE.md` declares carries a well-formed `> V<N>, YYYY-MM-DD.` line — version and date only. Flag any that smuggled a change note into the header.
 4. **Cross-references.** Grep all top-level `.md` files for references to other mini-brain filenames. Every reference must resolve to an existing top-level file — not an archive copy, not a deleted file. Within the docs covered by `CLAUDE.md`'s declared-exemptions table, also hold each reference to that table and to the cross-reference form: a permitted direction only, cited by name, not section number. A stray section number in an otherwise-permitted reference is a mechanical fix; a forbidden-direction reference usually means content bled across a boundary — flag it for the user rather than just deleting the pointer.
-5. **Namespace prefix.** Every top-level `.md` except the exempt repo artifacts, and every `working/` doc, carries the `<PREFIX>` token: `find . working -maxdepth 1 -name '*.md' 2>/dev/null | grep -vE '/(CLAUDE|README)\.md$' | grep -v '/<PREFIX>_'` should print nothing — it tolerates a missing or empty `working/` and anchors the token to the start of the filename. Flag any hit.
-6. **Working/archive filename leakage.** Grep all top-level `.md` files for `.md` filename mentions, then flag any that **name an explicit `working/…` or `archive/…` path, or resolve to a file that exists in `working/` or `archive/`** — no top-level doc may cite a transient working/archived doc directly. Placeholder notation — a name carrying `<TOKEN>`, `<WORK>`, or another `<…>` variable, as the maintenance docs do throughout — names no actual file and never matches either trigger. For each real hit: if the file still exists in `working/` or `archive/`, read it, extract the relevant substance, and replace the reference inline with that content; if it no longer exists there, flag for the user — don't guess at the content.
+5. **Namespace prefix.** Every top-level `.md` except the exempt repo artifacts, and every `working/` doc, carries the `<LOBESPACE>` lobespace: `find . working -maxdepth 1 -name '*.md' 2>/dev/null | grep -vE '/(CLAUDE|README)\.md$' | grep -v '/<LOBESPACE>_'` should print nothing — it tolerates a missing or empty `working/` and anchors the lobespace to the start of the filename. Flag any hit.
+6. **Working/archive filename leakage.** Grep all top-level `.md` files for `.md` filename mentions, then flag any that **name an explicit `working/…` or `archive/…` path, or resolve to a file that exists in `working/` or `archive/`** — no top-level doc may cite a transient working/archived doc directly. Placeholder notation — a name carrying `<LOBESPACE>`, `<WORK>`, or another `<…>` variable, as the maintenance docs do throughout — names no actual file and never matches either trigger. For each real hit: if the file still exists in `working/` or `archive/`, read it, extract the relevant substance, and replace the reference inline with that content; if it no longer exists there, flag for the user — don't guess at the content.
 
 Fix any failures. Report what was found and fixed.
 
@@ -35,7 +35,7 @@ Fix any failures. Report what was found and fixed.
 
 ## Phase 2: Scope accuracy
 
-`<PREFIX>_SCOPE.md` makes factual claims about the codebase. These go stale when the code changes without a document update.
+`<LOBESPACE>_SCOPE.md` makes factual claims about the codebase. These go stale when the code changes without a document update.
 
 **Extract claims** from SCOPE — implementation details (class/method names, config, constants, counts), architectural facts (trust boundaries, message flow), **absence claims** ("no control does X" — the most fragile, they break silently when a capability is added, so prioritize them), and control/behavior descriptions.
 
@@ -49,7 +49,7 @@ Fix any failures. Report what was found and fixed.
 
 ## Phase 3: Follow-on research
 
-The dream's outward-looking pass — the brain staying curious about what it doesn't know. `<PREFIX>_APPROACH.md` may depend on specifics that change independently of the codebase. Two flavors — check whichever the approach actually commits to:
+The dream's outward-looking pass — the brain staying curious about what it doesn't know. `<LOBESPACE>_APPROACH.md` may depend on specifics that change independently of the codebase. Two flavors — check whichever the approach actually commits to:
 
 - **External drift** — versions of frameworks/libraries the design pins, protocol/spec versions, runtime/platform/model availability, breaking API changes.
 - **Vendor/market** — vendor status (acquisitions, shutdowns, pivots), pricing, licensing changes, new entrants.
@@ -62,7 +62,7 @@ Use web search to verify. Factual corrections (versions, dates, pricing): update
 
 ## Phase 4: Findings extraction and reflow
 
-Session logs (`<PREFIX>_LOG.md`) accumulate decisions and discoveries; some should be promoted to `<PREFIX>_FINDINGS.md`. Two activities: **extraction** (find LOG candidates not yet promoted, reconcile contradictions) and **reflow** (maintain FINDINGS as a coherent body — merge overlap, fix section drift, prune stale-now-obvious). Run extraction first, then reflow.
+Session logs (`<LOBESPACE>_LOG.md`) accumulate decisions and discoveries; some should be promoted to `<LOBESPACE>_FINDINGS.md`. Two activities: **extraction** (find LOG candidates not yet promoted, reconcile contradictions) and **reflow** (maintain FINDINGS as a coherent body — merge overlap, fix section drift, prune stale-now-obvious). Run extraction first, then reflow.
 
 Most per-work-item knowledge should already have been promoted at work closeout, so treat extraction as a verification/backstop pass. Delegate the read-heavy work to an Explore agent that reads the full FINDINGS and LOG files and reports: extraction candidates, contradictions/supersessions, internal contradictions, and reflow issues.
 
@@ -78,7 +78,7 @@ Present a summary after all phases complete: **structural fixes** (Phase 1, or "
 
 **Needs-human-decision list.** The dream log entry must include a standalone `## Needs human decision` section — a numbered list where each item states the context, what changed, and the specific decision to make. It is the primary output readers act on, and exactly what the next cycle's orientation step reads — each item must be self-contained, understandable without the rest of the entry. An empty list is fine — write "None" and move on.
 
-**Cycle log.** After the report, append an entry to `<PREFIX>_DREAM_LOG.md` using the standard LOG entry format from `<PREFIX>_SESSION_CLOSEOUT.md`. Cover: which phases ran/were skipped and why; what broke or surprised (the raw signal for instruction improvements); how many Explore agents were spawned and whether their results were useful; and what you'd change about these instructions based on this run.
+**Cycle log.** After the report, append an entry to `<LOBESPACE>_DREAM_LOG.md` using the standard LOG entry format from `<LOBESPACE>_SESSION_CLOSEOUT.md`. Cover: which phases ran/were skipped and why; what broke or surprised (the raw signal for instruction improvements); how many Explore agents were spawned and whether their results were useful; and what you'd change about these instructions based on this run.
 
 **Model and effort.** Record the model and effort level used for the cycle in the dream log entry header (after the session-ID line, if the entry format includes one). The model name is stated in the system environment context ("You are powered by the model named…"); the effort level may appear in session command output. If either cannot be determined, ask the user before writing the entry. This is what makes runs comparable on depth and cost — a low-effort small-model run and a high-effort large-model run are not the same cycle.
 
