@@ -8,7 +8,7 @@ Follow these instructions when the user asks the mini-brain to dream and improve
 
 **Guiding principle:** When in doubt, flag for the user rather than auto-correcting. This cycle detects drift and corrects factual staleness. Strategy and framing changes require human judgment. Version control provides rollback safety, so be thorough about detecting problems — but conservative about changing analytical conclusions.
 
-**Confidence discipline.** As you draw each conclusion — *before* writing the edit — state a confidence from 1–100. It is a proxy for how many unknowns remain, not a grade. A score below ~70 is a signal to search harder or to flag rather than edit, and obligates you to name the specific unknowns capping it (an unverifiable claim, an inconclusive agent, a thin search). Never round up to look finished. Carry the final scores into the Phase 5 self-evaluation.
+**Confidence discipline.** As you draw each conclusion — *before* writing the edit — state a confidence from 1–100. It is a proxy for how many unknowns remain, not a grade. A score below ~70 is a signal to search harder or to flag rather than edit, and obligates you to name the specific unknowns capping it (an unverifiable claim, an inconclusive agent, a thin search). Never round up to look finished. Carry the final scores into the Phase 6 self-evaluation.
 
 **Context management:** Structural checks (Phase 1) and follow-on research (Phase 3) have bounded context footprints and are handled directly. Heavy reads — full codebase searches, full LOG and FINDINGS files (Phases 2 and 4) — are delegated to Explore agents when they exceed what the active context should absorb (roughly 500+ lines); below that, read directly. The active context handles agent briefing, result synthesis, editorial judgments, and all file edits.
 
@@ -28,7 +28,6 @@ Mechanical checks. Run all first; fix any failures before the content phases.
 4. **Cross-references.** Grep all top-level `.md` files for references to other mini-brain filenames. Every reference must resolve to an existing top-level file — not an archive copy, not a deleted file. Within the docs covered by `CLAUDE.md`'s declared-exemptions table, also hold each reference to that table and to the cross-reference form: a permitted direction only, cited by name, not section number. A stray section number in an otherwise-permitted reference is a mechanical fix; a forbidden-direction reference usually means content bled across a boundary — flag it for the user rather than just deleting the pointer.
 5. **Namespace prefix.** Every top-level `.md` except the exempt repo artifacts, and every `working/` doc, carries the `<LOBESPACE>` lobespace: `find . working -maxdepth 1 -name '*.md' 2>/dev/null | grep -vE '/(CLAUDE|README)\.md$' | grep -v '/<LOBESPACE>_'` should print nothing — it tolerates a missing or empty `working/` and anchors the lobespace to the start of the filename. Flag any hit.
 6. **Working/archive filename leakage.** Grep all top-level `.md` files for `.md` filename mentions, then flag any that **name an explicit `working/…` or `archive/…` path, or resolve to a file that exists in `working/` or `archive/`** — no top-level doc may cite a transient working/archived doc directly. Placeholder notation — a name carrying `<LOBESPACE>`, `<WORK>`, or another `<…>` variable, as the maintenance docs do throughout — names no actual file and never matches either trigger. For each real hit: if the file still exists in `working/` or `archive/`, read it, extract the relevant substance, and replace the reference inline with that content; if it no longer exists there, flag for the user — don't guess at the content.
-7. **Enforced terms** — if the brain declares enforced terms (the enforced terms file has entries), grep the canonical docs for each listed term and judge every hit against the entry's enforced sense. A term used in its non-enforced sense is a collision to fix in Phase 2 or flag for the user. An entry whose disambiguation has gone empty (no plausible misuse remains) is a retirement candidate — flag for the user rather than deleting.
 
 Fix any failures. Report what was found and fixed.
 
@@ -42,7 +41,7 @@ Fix any failures. Report what was found and fixed.
 
 **Verify** by spawning Explore agents with specific claim lists grouped by section. Brief each with the exact claim text and the identifiers it contains; agents search by name, not location, since code moves and gets renamed. Ask each for (a) still true? and (b) easily derivable from code? If SCOPE carries an Open Questions section, include those questions in the briefs — for each, report anything that now answers or narrows it; these are flagged with the evidence, never resolved in SCOPE (that's scoping judgment). Check against the main/current release branch, not feature branches.
 
-**Update.** Stale claims: correct to current state, preserving the document's analytical framing. Invalidated absence claims: don't just flip "no X" to "X exists" — describe what was added and the gap that remains. Codebase-derivable detail with no analytical value: consider removing rather than maintaining. Confirmed-accurate claims: note them as verified in the Phase 5 report.
+**Update.** Stale claims: correct to current state, preserving the document's analytical framing. Invalidated absence claims: don't just flip "no X" to "X exists" — describe what was added and the gap that remains. Codebase-derivable detail with no analytical value: consider removing rather than maintaining. Confirmed-accurate claims: note them as verified in the Phase 6 report.
 
 **Do not** add new goals, scope categories, or boundaries (that's scoping work), delete analytical content because a premise changed (update the premise, then check the analysis still follows), or rewrite conclusions — flag for the user if a factual change undermines one.
 
@@ -69,15 +68,26 @@ Most per-work-item knowledge should already have been promoted at work closeout,
 
 **Extraction.** Look for decisions where one option won for non-obvious reasons, discoveries that reframed the problem, constraints that would surprise a future developer, and approaches tried and failed (negative findings are valuable). Grep FINDINGS for each candidate's key terms: a **duplicate** is skipped; a **contradiction/supersession** is a rewrite in place (bump the version), not a second finding beside the old one.
 
-**Enforced-term candidates.** While reading the LOG and canonical docs, note any word that required disambiguation across sessions — a session that had to stop and ask which sense a word carries, or a collision the check surfaced repeatedly. These are candidates for the enforced terms file; flag them for the user rather than adding entries directly.
-
 **Reflow.** Read FINDINGS end to end and check for redundancy/overlap (merge, preserving every distinct reason), section drift (re-section, fix duplicated/empty headers), and stale-now-obvious findings (now self-evident from shipped code — removal candidates). Structural fixes (merges, section repair) may be done directly, bumping the version. Removing a finding's *substance* or rewriting a conclusion is analytical — flag it for the user rather than auto-applying.
 
 ---
 
-## Phase 5: Report
+## Phase 5: Enforced terms
 
-Present a summary after all phases complete: **structural fixes** (Phase 1, or "none"); **files updated** (Phases 2–4, each as `file V<old> → V<new> — one-line summary`); **confirmed accurate** (grouped by section, not enumerated); **needs human decision** (factual changes that affect strategy/scope/framing); **new findings extracted**; **findings reflow** (structural changes applied, substance items flagged). If a phase found nothing, say so in one line — don't pad.
+This phase keeps the enforced terms file internally sound and true to how its terms are used. If the brain has no enforced terms file, run only the drift pass. Two activities, in order.
+
+**Internal integrity (bounded — handle directly).** Check the file against its own stated rules and entry format. Fix format violations directly and bump the version. An entry whose definition can be made to stand alone only by changing what it says is analytical: flag it, do not rewrite the meaning. An entry whose disambiguation has gone empty is a retirement candidate: flag it rather than deleting.
+
+**Drift (one pass).** Read the canonical knowledge docs (`<LOBESPACE>_SCOPE.md`, `<LOBESPACE>_APPROACH.md`, `<LOBESPACE>_FINDINGS.md`) — one Explore agent or a direct read per the context-management size rule — reporting every term used inconsistently across them, listed or not, plus any consistently-used unlisted term whose everyday sense or near-neighbor would silently change what a claim asserts. Do not scan the logs or `archive/`: logs are append-only history and are never revised. Judge each result:
+
+- A **listed** term misused or shadowed by a loose synonym is a wording fix — correct it in place to match the entry, bumping that doc's version. A use showing the *entry itself* is wrong or too narrow is analytical — flag it with the evidence rather than silently redefine the term.
+- An **unlisted** term that meets the enforced terms file's rule for adding an entry is proposed — name, one-line sense, and the evidence — for the user to confirm; never add automatically, because judging a term worth enforcing is a human call.
+
+---
+
+## Phase 6: Report
+
+Present a summary after all phases complete: **structural fixes** (Phase 1, or "none"); **files updated** (Phases 2–5, each as `file V<old> → V<new> — one-line summary`); **confirmed accurate** (grouped by section, not enumerated); **needs human decision** (factual changes that affect strategy/scope/framing); **new findings extracted**; **findings reflow** (structural changes applied, substance items flagged); **enforced terms** (Phase 5: fixes made, drift corrected, entries flagged, new terms proposed). If a phase found nothing, say so in one line — don't pad.
 
 **Needs-human-decision list.** The dream log entry must include a standalone `## Needs human decision` section — a numbered list where each item states the context, what changed, and the specific decision to make. It is the primary output readers act on, and exactly what the next cycle's orientation step reads — each item must be self-contained, understandable without the rest of the entry. An empty list is fine — write "None" and move on.
 
@@ -86,7 +96,7 @@ Present a summary after all phases complete: **structural fixes** (Phase 1, or "
 **Model and effort.** Record the model and effort level used for the cycle in the dream log entry header (after the session-ID line, if the entry format includes one). The model name is stated in the system environment context ("You are powered by the model named…"); the effort level may appear in session command output. If either cannot be determined, ask the user before writing the entry. This is what makes runs comparable on depth and cost — a low-effort small-model run and a high-effort large-model run are not the same cycle.
 
 **Self-evaluation.** Close the entry by scoring the *cycle's own performance*, not only its findings — this is the signal for whether dreaming is converging or spinning, and what makes runs comparable across cycles and over time:
-- **Confidence per headline conclusion (1–100)** — one per phase that draws a conclusion (e.g. Phase 2 "SCOPE matches current code and no open question has been overtaken unnoticed"; Phase 3 "APPROACH's external assumptions are current"), plus a confidence score on the findings this run produced. For any score below ~70, name the unknowns that cap it.
+- **Confidence per headline conclusion (1–100)** — one per phase that draws a conclusion (e.g. Phase 2 "SCOPE matches current code and no open question has been overtaken unnoticed"; Phase 3 "APPROACH's external assumptions are current"; Phase 5 "the enforced terms match how they are used, and any drifting unlisted term has been surfaced"), plus a confidence score on the findings this run produced. For any score below ~70, name the unknowns that cap it.
 - **New ground vs. re-tread** — classify this run against the last: *net-new* (surfaced findings/changes the last run didn't), *incremental*, or *re-tread* (same ground, no movement), with one line of evidence.
 - **Depth achieved** — did each phase run to its intent, or run shallow (agent inconclusive, source unavailable, halted)? Name any that did.
 - **Diminishing returns** — if this is the Nth consecutive *re-tread* run with no findings and no edits, say so and recommend either dreaming less often or that the brain has reached a fixed point on current inputs (a real result, not a failure).

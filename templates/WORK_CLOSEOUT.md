@@ -30,7 +30,7 @@ One working file commonly fans out to several targets; do not assume one source 
 
 In a multi-lobe brain, walk that table against the **owning lobe's** canonical docs, then place each piece of knowledge by its reach rather than by the work item's ownership. A finding about only the owning lobe stays there. A finding that describes how two lobes relate belongs to their nearest common ancestor — the owner may not hold knowledge about a sibling, so an item owned by a child can and does push content up to its parent, and an item owned by a parent pushes a child-only finding down into that child. The work item's log entries are the exception: they are lineage, not knowledge to place by reach — every merged entry goes to the owning lobe's canonical log, one destination for the whole item, matching where the item retires.
 
-The mirror of this: whoever writes a work item's own closeout notes (in its `<LOBESPACE>_<WORK>_BURNDOWN.md`) should *not* pre-enumerate this table — which files a work item touches is derived here, at closeout time. A work item's closeout notes record only what this walk won't surface: deviations from the standard flow, and non-derivable callouts — most importantly the specific existing claim a work item **reverses**, and any term the work item **coined or gave a second sense** (an enforced-term candidate a grep cannot find at merge time).
+The mirror of this: whoever writes a work item's own closeout notes (in its `<LOBESPACE>_<WORK>_BURNDOWN.md`) should *not* pre-enumerate this table — which files a work item touches is derived here, at closeout time. A work item's closeout notes record only what this walk won't surface: deviations from the standard flow, and non-derivable callouts — most importantly the specific existing claim a work item **reverses**.
 
 ---
 
@@ -70,5 +70,6 @@ Finish with these mechanical checks, to confirm the merge is clean:
 4. **No dangling work-item references** — grep the canonical docs for each of the item's just-retired filenames (the exact `<LOBESPACE>_<WORK>_*.md` names, not the bare compound, which can also match unrelated canonical names); there should be none left (they live in `archive/` now). The `<WORK>` placeholder used in this doc is deliberate, so grepping it returns zero — any hit is a genuine dangling reference to fix, most often one carried in from a merged LOG entry (see the append-log rule in §2).
 5. **`working/` is clean** — the merged work item's working files are gone from the owning lobe's `working/`.
 6. **No sideways references** (multi-lobe brains) — if a finding folded upward, confirm it landed in the ancestor and that neither sibling names the other.
+7. **Terminology** (brains that declare enforced terms) — every term listed in `<HUB>_ENFORCED_TERMS.md` is used as defined in each doc this closeout edited; correct a loose synonym standing in for a listed term, or a listed term used with the wrong meaning.
 
 Report what was merged (by target file and old → new version), what was reconciled (what reversed and why), and the result of the structural check.

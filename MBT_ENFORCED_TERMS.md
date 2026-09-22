@@ -14,4 +14,4 @@ Three rules keep the set small:
 
 **Finding** is an entry in a FINDINGS document: a durable, non-obvious decision or discovery worth preserving beyond the session that produced it. It is not anything a check, maintenance pass, or procedure surfaces — those are observations or issues, not findings in the enforced sense. Where the generic sense is needed, write "observation," "issue," or "result."
 
-**Work item** is work that gets its own branch and PR, opened and closed by the setup and closeout rituals, with its own `working/` documents. It is not a ticket, a task, or an issue.
+**Work item** is work that gets its own branch and PR, opened and closed by the setup and closeout rituals, with its own `working/` documents. It is not a tracker ticket or a task.

@@ -21,3 +21,29 @@ The plan's implementation sequence step 5 said "three entries" but the plan body
 ## What didn't work
 
 Nothing — clean execution against a settled plan.
+
+---
+
+# Align enforced-term hooks with the first adopting brain after PR #7 review (2026-09-22)
+
+**Session ID**: `b8c5688f-8d1f-4731-ba54-62fa02f39b85`
+
+Rob and Claude ran a medium-effort code review of PR #7, compared the branch's enforcement hooks against the first product brain to use enforced terms, and cut the hooks back to what that brain actually runs. Everything landed on the `enforced-terms` branch.
+
+## Review
+
+The review found seven issues. Three came from hooks the adopting brain doesn't have. First, the coined-term callout in the closeout and work FINDINGS templates was recorded but nothing ever acted on it, and the templates disagreed about where it went. Second, the dream cycle's term check sat in the mechanical Phase 1 but needed judgment, said to fix things "in Phase 2", and grepped the append-only logs, whose hits can never be fixed. Third, the check procedure only recommended declaring a term once a collision "recurs across checks", which conflicted with the Harvest rule. The other two issues didn't depend on that brain: the dream cycle still used "findings" in its generic sense in several places, and the Work item entry used "issue" in the tracker sense while the Finding entry reserves it as the generic word.
+
+## Comparison with the adopting brain
+
+Rob recalled that the adopting brain has no instruction for coining terms in a work item and no closeout step that acts on them, and asked for nothing beyond what it does. Reading that brain confirmed it. It enforces terms in three places: a terms rule at session closeout, a terminology conformance check in work closeout's structural checks, and a dedicated dream-cycle phase. That phase checks the terms file against its own rules, reads the canonical knowledge docs for drift, and proposes unlisted terms for the user to confirm. It never scans the log.
+
+## What changed
+
+- Reverted the coined-term callout in `templates/WORK_CLOSEOUT.md` and `templates/work/FINDINGS.md`. Added the adopting brain's terminology check to the closeout's structural checks in its place.
+- In both dream cycle files, removed the Phase 1 term check and the Phase 4 candidates paragraph, and added an "Enforced terms" phase before the report, modeled on the adopting brain's. The report moves to Phase 6. In the toolkit's own cycle, the drift pass reads every top-level doc, since its product docs and procedures are its knowledge. The template reads only SCOPE, APPROACH and FINDINGS, as the adopting brain does.
+- Changed the check procedure's term bullet to grep listed terms outside the logs and to report every unlisted collision as a candidate for the user.
+- Fixed the remaining generic uses of "findings" in `MBT_DREAM_CYCLE.md`, and reworded the Work item entry to "not a tracker ticket or a task".
+- Updated the decision record's enforcement points and added the two rejected designs as alternatives.
+
+The adopting brain's session-closeout terms rule was not copied. The entrypoint's write-time rule already covers log entries.
