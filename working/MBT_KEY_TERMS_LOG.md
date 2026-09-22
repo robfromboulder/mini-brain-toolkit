@@ -32,7 +32,7 @@ A final grep for remaining pattern-specific uses of "unit," "token," and "compon
 
 **Session ID**: `239392ec-f1f6-4f8a-93cf-f10bf1077c16`
 
-Rob's session, with Claude (Opus 5, 1M context) as co-author. A code review of PR #5 found that the rename's placeholder unification had merged two placeholders with different binding times, breaking the templates' references to hub-only maintenance documents for any brain with more than one lobe. The session introduced `<HUB>` to restore that distinction, restored a second placeholder the rename had also collapsed, corrected a pattern claim the rename had falsified, finished the vocabulary sweep it had left incomplete, and pushed the result to the branch with a review and a follow-up comment on the PR.
+Rob's session, with Claude (Opus 5, 1M context) as co-author. A code review of PR #5 found that the rename's placeholder unification had merged two placeholders with different binding times, breaking the templates' references to hub-only maintenance documents for any brain with more than one lobe. The session introduced `<HUB>` to restore that distinction, restored a second placeholder the rename had also collapsed, corrected a pattern claim the rename had falsified, finished the vocabulary sweep it had left incomplete, and closed by seeding a throwaway three-lobe brain from the templates to prove the fix — which caught one further defect. The branch carries a review and a follow-up comment on the PR.
 
 ## What the review found
 
@@ -52,6 +52,16 @@ The findings outside the collapse were fixed alongside it. The sub-lobe registry
 
 A mechanical sweep afterwards caught a stale pattern-specific use in the create procedure that the review had not reported. The review had examined that file — the positional rule and a garbled substitution sentence both came from it — but had not swept it for vocabulary. Worth noting for the next pass: a review's enumeration is a sample, not a census, and the sweep is what closed it.
 
+## Verification by dry-run seed
+
+Rob asked whether the branch was ready to merge or wanted another review round. Claude argued that a second prose review would mostly re-read text it had just rewritten, and that the genuinely untested surface was the procedure itself: the defect class had been invisible until someone asked what a multi-lobe seed would produce, and the fix was verified by grep rather than by seeding. Rob chose the dry run.
+
+The seed followed the create procedure literally into a throwaway tree three lobes deep — a hub, a child, and a sub-lobe beneath it — so the nested-lobespace rules and the restored sub-lobe placeholder were exercised rather than reasoned about, then the result was run through the check procedure's structural checks.
+
+It found one defect. The seeded README's quickstart line pointed the reader at the session-closeout document under the per-lobe placeholder, so a multi-lobe brain came out with an unsubstituted placeholder in a user-facing file, naming a document that cannot exist under that lobespace. Claude had skipped the README during the `<HUB>` pass on the reasoning that it is a single-lobe template; the create procedure disproves that, since it instructs the seeder to reword the README for a multi-lobe brain, which makes it a multi-lobe artifact. The line now takes the hub placeholder, which resolves to the brain's own lobespace when there is one lobe and to the hub's when there are several.
+
+Everything else resolved correctly: the hub's maintenance document took the hub lobespace rather than a child's, the hub index and its commented-out lifecycle rows took it too, the doctype grammar and the exemption table kept the per-lobe placeholder intact as a runtime variable, the registry rows came out distinct and nested, and the per-lobe checks — full doctype set, longest-match namespace prefix, cross-lobe references, vocabulary — passed at every depth. Two apparent hits were not defects: the entrypoint's surviving repo-and-path placeholders belong to the illustrative convention sentence and the file-naming grammar, and the index rows that looked missing sit inside the as-the-brain-matures comment block, correctly absent from a stage-1 brain.
+
 ## Decisions
 
 - **`<HUB>` stays out of the single-lobe templates and the base pattern definition** (Claude's proposal, Rob agreed) — a brain with one lobe has one lobespace and no hub/child split, so the per-lobe placeholder is already unambiguous there, and introducing `<HUB>` would import multi-lobe vocabulary into the base pattern. The lone exception was the create procedure's seed-table row for session closeout, which had to change or it would contradict the same file's later instructions for the mature lifecycle.
@@ -63,4 +73,5 @@ A mechanical sweep afterwards caught a stale pattern-specific use in the create 
 
 - **A placeholder's name can carry a binding time, and collapsing names collapses that too.** The unification looked like pure vocabulary work because both placeholders denoted a lobespace. What distinguished them was *when* they resolve, which no amount of care about the noun would have surfaced — the defect only became visible by asking what each site would resolve to in a multi-lobe brain.
 - **A replacement rule that decides by position needs to be tested against the file set it governs.** The positional rule read plausibly and was wrong on its second example; the name-based rule it replaced had been decidable for free.
+- **For model-executed instructions, reading the diff is not the test; executing them is.** Every finding this session came from reading, and the set looked closed — the mechanical checks passed and the vocabulary swept clean. Seeding one brain from the templates then turned up a defect in a user-facing file that three passes of reading had walked past. The implementation-findings doc already carries a related caution about a load-bearing sentence in these same templates being caught only by re-checking the final text against the work item's test cases; this is that lesson arriving from the other direction.
 - **Check a proposed term against the repo before adopting it.** "Home lobe" was appealing in the abstract and collided with two established senses, one of them a named operation with live design work attached.
