@@ -1,6 +1,6 @@
 # Mini-Brain Toolkit: The Mini-Brain Pattern
 
-> V17, 2026-09-21.
+> V18, 2026-09-22.
 
 This document is the operational definition of a mini-brain: what it *is*, the file set it's made of, and the lifecycle that keeps it true and small.
 
@@ -80,6 +80,7 @@ Added when a brain tracks real work items across many sessions and needs rituals
 | `<LOBESPACE>_WORK_CLOSEOUT.md` | Folds a concluded work item's working docs into the canonical store and retires them to `archive/`; also defines early plan archival, the mid-item retirement of a consumed PLAN. |
 | `<LOBESPACE>_DREAM_CYCLE.md` | The periodic reflection pass. |
 | `<LOBESPACE>_DREAM_LOG.md` | Append-only log of dream-cycle runs. |
+| `<LOBESPACE>_ENFORCED_TERMS.md` | The brain's reserved vocabulary — a small set of terms whose meaning is enforced across all documents. |
 | Per-work-item working set | `working/<LOBESPACE>_<WORK>_{PLAN,FINDINGS,LOG,BURNDOWN,CLAUDE,TESTING}.md` — unversioned, out of the read index. |
 
 Brains that serve more than one target platform also split some docs by platform (`<PLATFORM>_<LOBESPACE>_*`), keeping shared findings in the un-prefixed file and platform-specific ones in the platform files.

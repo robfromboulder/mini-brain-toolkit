@@ -23,6 +23,7 @@ All paths are relative to this repo root (`CLAUDE.md`'s directory). Before readi
 These are the current hub documents. Child lobes' documents are **resolved** from the grammar and registry below rather than listed — a document not derivable that way does not exist.
 
 <!-- As the brain matures, add the lifecycle docs to this index:
+| Enforced terms — the brain's reserved vocabulary | `<HUB>_ENFORCED_TERMS.md` |
 | Work setup — scaffold a work item's working docs | `<HUB>_WORK_SETUP.md` |
 | Work closeout — fold working docs into the mini-brain | `<HUB>_WORK_CLOSEOUT.md` |
 | Periodic health check and content refresh | `<HUB>_DREAM_CYCLE.md` |
@@ -113,5 +114,6 @@ All prose in this repo is read like a proof or a program, not a wiki. The reader
 - **Resolve, don't provoke.** A detail that raises a question it doesn't answer is a net loss — prefer omission to a half-explanation.
 - **One job per sentence.** A sentence tells the reader what to do or explains why — never several at once.
 - **No hard wrapping.** Write each markdown paragraph and list item as one continuous line and let it soft-wrap; manual line breaks inside a paragraph make noisy diffs and fight reflow.
+- **Enforced terms bind.** When this brain declares enforced terms, use each listed term in its enforced sense or choose a different word.
 
 When a line's contribution isn't obvious, it isn't contributing — delete it.

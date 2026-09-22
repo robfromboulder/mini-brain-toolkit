@@ -1,6 +1,6 @@
 # Mini-Brain Toolkit: Create a New Mini-Brain
 
-> V21, 2026-09-21.
+> V22, 2026-09-22.
 
 This document is the procedure for standing up a new mini-brain from `templates/`.
 
@@ -87,7 +87,7 @@ Seeding produces skeletons; this step turns them into content. Do it in order �
 - **Source material carries its own shape.** The documents parked in `archive/` were written for a project repo and are organized around the project — status, features, roadmap — and distilling them preserves that organization unless the problem is deliberately re-derived from them. Read them for the problem they imply, not for what they say about the project, and strip strategy, tactics and vendor choices out of anything headed for the goals. This is the usual reason a scope comes out reading like a status report.
 - **Report evidence at the strength it was given.** Sources record what someone did far more often than why. If a source says a team built their own tool, do not write that they built it because nothing else was light enough.
 
-Then **fact-check every falsifiable claim** against the codebase and against the current state of whatever else the claim is about — trackers, branches, released artifacts. A scope authored from project documents drifts in predictable ways (it overstates uniformity, mislabels by name, lags the code's evolution), and the source documents themselves are often stale: a feature count that no longer matches, an open ticket asking for work that already shipped. Correct what the evidence contradicts, bump the version, and report the stale sources — a source that has drifted is a finding about that document, not just an obstacle to this one.
+Then **fact-check every falsifiable claim** against the codebase and against the current state of whatever else the claim is about — trackers, branches, released artifacts. A scope authored from project documents drifts in predictable ways (it overstates uniformity, mislabels by name, lags the code's evolution), and the source documents themselves are often stale: a feature count that no longer matches, an open ticket asking for work that already shipped. Correct what the evidence contradicts, bump the version, and report the stale sources — a source that has drifted is an observation about that document, not just an obstacle to this one.
 
 **APPROACH — the chosen design.** Author `<LOBESPACE>_APPROACH.md`: strategic approach, architecture, key design decisions (with alternatives weighed), and what gets built. This is where solution commitments live. Trace each design choice to the SCOPE goal it serves, cited by name. Then read the pair in the other direction: **for every goal, name the decision that answers it.** A goal with no answering decision is either a gap in the design or a goal that was never real, and where the design deliberately leaves a goal unmet, say so — silence reads as "handled". This reverse pass is what catches the defects the forward pass cannot, because a design that traces cleanly to the goals it addresses says nothing about the goals it skipped. Keep APPROACH and SCOPE orthogonal: if you find yourself faulting SCOPE for not matching an APPROACH decision, that's importing solution bias into the problem statement — stop.
 
@@ -106,6 +106,7 @@ Add these **only when the work justifies them** (the stage model in `MBT_PATTERN
 
 - `templates/WORK_SETUP.md` → `<HUB>_WORK_SETUP.md` and `templates/WORK_CLOSEOUT.md` → `<HUB>_WORK_CLOSEOUT.md` — the open/close bookends for work items (a feature, bug fix, or hardening effort). They reference the per-work-item working set in `templates/work/` — inline those six scaffolds into `<HUB>_WORK_SETUP.md` where it points at them, so the brain stands alone without the toolkit.
 - `templates/DREAM_CYCLE.md` → `<HUB>_DREAM_CYCLE.md` plus a `<HUB>_DREAM_LOG.md` (header only) — the periodic reflection pass. The template assumes a single lobe; don't instantiate it unadapted into a multi-lobe brain.
+- `templates/ENFORCED_TERMS.md` → `<HUB>_ENFORCED_TERMS.md` — the brain's reserved vocabulary. Add it the first time a term collision is found, not before — a brain with no collisions has no enforced terms, and seeding a vocabulary up front is the authoring failure the mechanism's first rule prevents.
 
 When the brain gains work items, also uncomment the work-item block in each project repo's hook (the maturity comment inside `templates/PROJECT_HOOK.md`).
 

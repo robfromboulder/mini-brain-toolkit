@@ -21,6 +21,7 @@ Only files in this table are current. `archive/` holds source material, retired/
 `working/` holds experiments and a work item's in-flight `<LOBESPACE>_<WORK>_*` docs. When a work item concludes, fold them into the canonical docs and **move** (not delete) them to `archive/`. The item's PLAN, once consumed (converted to code), may move there early at the developer's request — walk its significant unaddressed items with the developer first.
 
 <!-- As the brain matures, add the lifecycle docs to this index:
+| Enforced terms — the brain's reserved vocabulary | `<LOBESPACE>_ENFORCED_TERMS.md` |
 | Work setup — scaffold a work item's working docs | `<LOBESPACE>_WORK_SETUP.md` |
 | Work closeout — fold working docs into the mini-brain | `<LOBESPACE>_WORK_CLOSEOUT.md` |
 | Periodic health check and content refresh | `<LOBESPACE>_DREAM_CYCLE.md` |
@@ -74,5 +75,6 @@ All prose in this repo is read like a proof or a program, not a wiki. The reader
 - **Resolve, don't provoke.** A detail that raises a question it doesn't answer is a net loss — prefer omission to a half-explanation.
 - **One job per sentence.** A sentence tells the reader what to do or explains why — never several at once.
 - **No hard wrapping.** Write each markdown paragraph and list item as one continuous line and let it soft-wrap; manual line breaks inside a paragraph make noisy diffs and fight reflow.
+- **Enforced terms bind.** When this brain declares enforced terms, use each listed term in its enforced sense or choose a different word.
 
 When a line's contribution isn't obvious, it isn't contributing — delete it.

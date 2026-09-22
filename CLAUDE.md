@@ -1,6 +1,6 @@
 # Mini-Brain Toolkit: Mini-Brain Files
 
-> V24, 2026-09-21.
+> V25, 2026-09-22.
 
 ---
 
@@ -22,6 +22,7 @@ All paths are relative to this repo root (`CLAUDE.md`'s directory). Before readi
 | Key implementation findings (invisible from the files) | `MBT_FINDINGS.md` |
 | Session log — why we chose what we chose | `MBT_LOG.md` (read from last `---`; large) |
 | Session log update format and rules | `MBT_SESSION_CLOSEOUT.md` (read when asked to update the session log) |
+| Enforced terms — the brain's reserved vocabulary | `MBT_ENFORCED_TERMS.md` |
 | Dream cycle — periodic self-improvement pass | `MBT_DREAM_CYCLE.md` (read when asked to dream) |
 | Dream cycle session log | `MBT_DREAM_LOG.md` |
 
@@ -54,6 +55,7 @@ Only files in this table are current. `templates/` holds the base files `MBT_CRE
 | `MBT_SCOPE.md` | *none* | The problem statement stands alone; it precedes and outlives any design. |
 | `MBT_APPROACH.md` | `MBT_SCOPE.md` only | A design legitimately responds to the problem it addresses — never reaching down into implementation. |
 | `MBT_FINDINGS.md` | *none* | Implementation decisions that did *not* shape the approach — downstream of it, so nothing upstream to cite. |
+| `MBT_ENFORCED_TERMS.md` | *none* | Each entry stands alone; it disambiguates without referencing the term's home document. |
 | `MBT_PATTERN.md` | *none* | The canonical definition stands alone; it precedes the procedures that enact it and the research that extends it, and reaches down to neither. |
 | `MBT_LOBES.md` | `MBT_PATTERN.md` only | An optional layout layer serves the definition it extends — upstream — and reaches down to no procedure. |
 | `MBT_RESEARCH.md` | *none* | The conclusions the two registries feed upward into; naming them would reach *downstream*, and it needs nothing else. |
@@ -79,6 +81,7 @@ All prose in this repo is read like a proof or a program, not a wiki. The reader
 - **Resolve, don't provoke.** A detail that raises a question it doesn't answer is a net loss — prefer omission to a half-explanation.
 - **One job per sentence.** A sentence tells the reader what to do or explains why — never several at once.
 - **No hard wrapping.** Write each markdown paragraph and list item as one continuous line and let it soft-wrap; manual line breaks inside a paragraph make noisy diffs and fight reflow.
+- **Enforced terms bind.** When this brain declares enforced terms, use each listed term in its enforced sense or choose a different word.
 
 When a line's contribution isn't obvious, it isn't contributing — delete it.
 
