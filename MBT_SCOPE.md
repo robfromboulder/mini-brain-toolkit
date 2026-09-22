@@ -1,6 +1,6 @@
 # Mini-Brain Toolkit: Scoping Statement
 
-> V7, 2026-08-08.
+> V8, 2026-09-21.
 
 This document defines the problem that the mini-brain toolkit addresses, separately from design decisions and implementation details, as an objective and unbiased resource.
 
@@ -68,7 +68,7 @@ Assessment is defined as observe-only. But the boundary between assessment and t
 
 ### 4.4 Composition across multiple brains
 
-The namespace-token convention exists so multiple brains can load into one session without collision. As that becomes common — a session spanning several projects' brains — questions arise about cross-brain references, a shared index, and role-lensed recall. The pattern supports co-loading today; it does not yet address coordination between co-loaded brains.
+The lobespace convention exists so multiple brains can load into one session without collision. As that becomes common — a session spanning several projects' brains — questions arise about cross-brain references, a shared index, and role-lensed recall. The pattern supports co-loading today; it does not yet address coordination between co-loaded brains.
 
 ### 4.5 The right maturity floor for a new brain
 

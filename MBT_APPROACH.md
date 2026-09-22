@@ -1,6 +1,6 @@
 # Mini-Brain Toolkit: Technical Approach
 
-> V8, 2026-08-08.
+> V9, 2026-09-21.
 
 This document describes the approach for addressing the problems defined in `MBT_SCOPE.md`. It covers the strategic approach and key design decisions — not delivery sequence.
 
@@ -20,7 +20,7 @@ The pattern already works in production brains. The toolkit's job is to *capture
 
 ### 1.3 Separate the reference from the procedures
 
-The definition and the two procedures are split into separate documents rather than one, matching the goals in `MBT_SCOPE.md`: a standalone reference that says *what a mini-brain is and why* — a base definition plus an opt-in layout layer for brains whose knowledge divides into components, so a simple brain never loads conventions it doesn't use — and two procedure documents that say *how to build one* and *how to judge one*. A single combined document would be simpler to find, but it would fuse the neutral reference with two opposed procedures. The split mirrors how the live brains separate a standalone reference from action-oriented runbooks, and it pays off in two ways: each document stays small and loads only when its question is being asked, and establishment and assessment — genuinely different activities — don't get tangled in one document. The cost is more files where the reader must know which one they want, mitigated by the grouped read index. Each part of the definition lives in exactly one reference document, cited rather than restated, so it has exactly one home.
+The definition and the two procedures are split into separate documents rather than one, matching the goals in `MBT_SCOPE.md`: a standalone reference that says *what a mini-brain is and why* — a base definition plus an opt-in layout layer for brains whose knowledge divides into several lobes, so a simple brain never loads conventions it doesn't use — and two procedure documents that say *how to build one* and *how to judge one*. A single combined document would be simpler to find, but it would fuse the neutral reference with two opposed procedures. The split mirrors how the live brains separate a standalone reference from action-oriented runbooks, and it pays off in two ways: each document stays small and loads only when its question is being asked, and establishment and assessment — genuinely different activities — don't get tangled in one document. The cost is more files where the reader must know which one they want, mitigated by the grouped read index. Each part of the definition lives in exactly one reference document, cited rather than restated, so it has exactly one home.
 
 ### 1.4 Templates as the single source of truth
 
@@ -30,9 +30,9 @@ Establishment is a copy-and-substitute operation against `templates/` (the base-
 
 ## 2. Key Design Decisions
 
-### 2.1 Namespace token `MBT`
+### 2.1 Lobespace `MBT`
 
-The toolkit carries a namespace token like any other brain. `MBT` was chosen over mirroring the repo name (`TOOLKIT`) or the subject (`BRAIN`): it is short, unambiguous, and — because the toolkit is frequently loaded *alongside* the very brains it assesses — must not collide with a target brain's files. `BRAIN` risked conceptual collision in exactly that scenario; `MBT` cannot.
+The toolkit carries a lobespace like any other brain. `MBT` was chosen over mirroring the repo name (`TOOLKIT`) or the subject (`BRAIN`): it is short, unambiguous, and — because the toolkit is frequently loaded *alongside* the very brains it assesses — must not collide with a target brain's files. `BRAIN` risked conceptual collision in exactly that scenario; `MBT` cannot.
 
 ### 2.2 Keep the archived docs as source material, distill a canonical reference
 
