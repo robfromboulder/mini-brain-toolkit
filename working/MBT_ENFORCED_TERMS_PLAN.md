@@ -11,7 +11,7 @@ See `MBT_ENFORCED_TERMS_FINDINGS.md` in this directory for the decision record a
 ## What changes
 
 - `templates/ENFORCED_TERMS.md` — NEW. The skeleton: header text explaining what enforced terms are, the entry format (prose paragraphs: bold term, definition, disambiguation), the three anti-growth rules, and the instruction to check every use of a listed term against its entry.
-- `templates/CLAUDE.md` and `templates/COMPONENTS_CLAUDE.md` — a read-index row pointing to `<PREFIX>_ENFORCED_TERMS.md` (hub documents section in the component template). One line in the writing rules making an enforced term binding at write time.
+- `templates/CLAUDE.md` and `templates/LOBES_CLAUDE.md` — a read-index row pointing to `<PREFIX>_ENFORCED_TERMS.md` (hub documents section in the lobe-level template). One line in the writing rules making an enforced term binding at write time.
 - `CLAUDE.md` — the same read-index row and write-time rule. A declared-exemption row for `MBT_ENFORCED_TERMS.md`.
 - `MBT_ENFORCED_TERMS.md` — NEW. This brain's own enforced terms, filled with the entries settled below.
 - `MBT_CHECK_BRAIN.md` — the one-term-one-meaning bullet becomes two-mode: a per-term grep where the brain declares enforced terms, the existing by-eye set read where it declares none, with a repeated collision becoming a recommendation to declare the term. The reversal identified in the decision record is reconciled here.
@@ -38,7 +38,7 @@ Each demonstrates one of the three anti-growth rules doing its job.
 - **canonical** — the ordinary dictionary meaning (authoritative, standard) is close enough to the pattern's meaning (a current, trusted top-level document) that a reader is rarely misled. The more frequent term for the pattern's sense is "top-level." *Rule: an empty disambiguation is a delete.*
 - **archive, session, hub, doctype, placement** — single-sense today with no plausible near-miss. *Rule: an empty disambiguation is a delete.*
 - **exemplar** — single-sense across all uses, but exposes the mirror defect the mechanism cannot see: two words for one concept ("exemplar" vs. "reference brain") costs a reader what one word for two costs, and no disambiguation can express it.
-- **unit, token, component** — load-bearing in the pattern but their everyday forms (unit test, auth token, LLM token, software component) are ubiquitous, so enforcement by grep generates more noise than signal. Left unenforced; the collision is resolved by renaming the pattern's own vocabulary to more distinctive words.
+- **unit, token, component** — were load-bearing in the pattern but their everyday forms (unit test, auth token, LLM token, software component) are ubiquitous, so enforcement by grep would have generated more noise than signal. Left unenforced; the collision was resolved by renaming to "lobe" and "lobespace" (PR #5).
 
 ## Collision fixes
 
