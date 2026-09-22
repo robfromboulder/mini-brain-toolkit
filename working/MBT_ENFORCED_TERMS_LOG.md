@@ -47,3 +47,19 @@ Rob recalled that the adopting brain has no instruction for coining terms in a w
 - Updated the decision record's enforcement points and added the two rejected designs as alternatives.
 
 The adopting brain's session-closeout terms rule was not copied. The entrypoint's write-time rule already covers log entries.
+
+---
+
+# Keep other brains unnamed in mini-brain docs (2026-09-22)
+
+**Session ID**: `b8c5688f-8d1f-4731-ba54-62fa02f39b85`
+
+Rob and Claude finished the review follow-up from the previous entry: they removed another brain's name from this item's docs, then committed and pushed the enforced-term changes to PR #7.
+
+## Decisions
+
+Rob directed that mini-brain docs never name the product brain the hooks were compared against. The previous entry had named it before it was committed, so Claude rewrote it to say "the first product brain to use enforced terms" before the commit. The decision record already used that phrasing. An older `MBT_LOG.md` entry that names the same brain was left alone because the log is append-only. Mentions in `archive/` were left alone as well.
+
+## Landed
+
+The review follow-up was committed as one change and pushed to the `enforced-terms` branch, updating PR #7.
