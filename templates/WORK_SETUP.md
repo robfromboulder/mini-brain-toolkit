@@ -2,11 +2,11 @@
 
 > V1, <date>.
 
-Procedure for scaffolding a new work item's working docs from an intake conversation. The bookend to `<LOBESPACE>_WORK_CLOSEOUT.md`: setup creates the `working/` docs when a work item opens, closeout folds them into the canonical mini-brain when the work concludes. Read `CLAUDE.md` first for file conventions — they govern every file this procedure touches.
+Procedure for scaffolding a new work item's working docs from an intake conversation. The bookend to `<HUB>_WORK_CLOSEOUT.md`: setup creates the `working/` docs when a work item opens, closeout folds them into the canonical mini-brain when the work concludes. Read `CLAUDE.md` first for file conventions — they govern every file this procedure touches.
 
 Run this when starting a new work item — **code-changing work that gets its own branch and PR**: a feature, a bug fix, or a hardening effort — or when formalizing a partial one that already lives in `working/` (e.g. a PLAN+FINDINGS pair that needs the rest of its scaffolding). The output is the `working/<LOBESPACE>_<WORK>_*.md` documents that track a work item until it concludes. `<LOBESPACE>` throughout is the owning lobe's lobespace — in a brain with one lobe, the brain's own lobespace. Setup is **additive and idempotent**: it creates only the docs that are missing and never overwrites existing work, so it is safe to re-run as a work item grows.
 
-The scope is deliberately narrow and practical: **assume a work item has a branch and a PR until proven otherwise.** It is often not knowable at inception whether an idea is a shallow doc/config tweak or something deeper, so default to the full scaffold rather than guessing small — an oversized scaffold is cheap, and under-scaffolding something that turns out deep is not. If the work later concludes without a code change, closeout still folds in whatever knowledge the docs hold (see `<LOBESPACE>_WORK_CLOSEOUT.md`); the burndown does not apply. A pure question that produces no artifact worth keeping needs no work item at all: answer it, and if the answer is worth recording, add a session-log entry.
+The scope is deliberately narrow and practical: **assume a work item has a branch and a PR until proven otherwise.** It is often not knowable at inception whether an idea is a shallow doc/config tweak or something deeper, so default to the full scaffold rather than guessing small — an oversized scaffold is cheap, and under-scaffolding something that turns out deep is not. If the work later concludes without a code change, closeout still folds in whatever knowledge the docs hold (see `<HUB>_WORK_CLOSEOUT.md`); the burndown does not apply. A pure question that produces no artifact worth keeping needs no work item at all: answer it, and if the answer is worth recording, add a session-log entry.
 
 The working docs and their roles:
 
@@ -78,4 +78,4 @@ After creating the docs:
 
 1. Report the owning lobe, the slug used, which docs were **created**, and which already **existed** (and where — `working/` or `archive/`).
 2. Remind that these are working files: they stay out of the read index, and the canonical mini-brain is untouched until the work concludes.
-3. Point at `<LOBESPACE>_WORK_CLOSEOUT.md` as the closeout bookend — it consumes exactly these docs.
+3. Point at `<HUB>_WORK_CLOSEOUT.md` as the closeout bookend — it consumes exactly these docs.

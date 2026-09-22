@@ -24,4 +24,4 @@
 
 ## Reversals
 
-<If this work item makes an existing canonical claim false, name the exact claim and file here. `<LOBESPACE>_WORK_CLOSEOUT.md` will reconcile it in place at merge. Delete this section if nothing is reversed.>
+<If this work item makes an existing canonical claim false, name the exact claim and file here. `<HUB>_WORK_CLOSEOUT.md` will reconcile it in place at merge. Delete this section if nothing is reversed.>

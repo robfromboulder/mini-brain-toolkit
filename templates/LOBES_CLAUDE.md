@@ -2,7 +2,7 @@
 
 > V1, <date>.
 
-The hub's lobespace is `<LOBESPACE>`. Each child lobe declares its own in the registry below.
+The hub's lobespace is `<HUB>`. Each child lobe declares its own in the registry below.
 
 ---
 
@@ -14,19 +14,19 @@ All paths are relative to this repo root (`CLAUDE.md`'s directory). Before readi
 
 | Purpose | File |
 |---|---|
-| Problem definition, the world it exists in, goals — the system as a whole | `<LOBESPACE>_SCOPE.md` |
-| How the lobes compose, and the decisions spanning them | `<LOBESPACE>_APPROACH.md` |
-| Findings that cross lobes (invisible from code) | `<LOBESPACE>_FINDINGS.md` |
-| Session log for hub work and sessions that crossed lobes | `<LOBESPACE>_LOG.md` (read from last `---`; large) |
-| Session log update format and rules | `<LOBESPACE>_SESSION_CLOSEOUT.md` (read when asked to update a session log) |
+| Problem definition, the world it exists in, goals — the system as a whole | `<HUB>_SCOPE.md` |
+| How the lobes compose, and the decisions spanning them | `<HUB>_APPROACH.md` |
+| Findings that cross lobes (invisible from code) | `<HUB>_FINDINGS.md` |
+| Session log for hub work and sessions that crossed lobes | `<HUB>_LOG.md` (read from last `---`; large) |
+| Session log update format and rules | `<HUB>_SESSION_CLOSEOUT.md` (read when asked to update a session log) |
 
 These are the current hub documents. Child lobes' documents are **resolved** from the grammar and registry below rather than listed — a document not derivable that way does not exist.
 
 <!-- As the brain matures, add the lifecycle docs to this index:
-| Work setup — scaffold a work item's working docs | `<LOBESPACE>_WORK_SETUP.md` |
-| Work closeout — fold working docs into the mini-brain | `<LOBESPACE>_WORK_CLOSEOUT.md` |
-| Periodic health check and content refresh | `<LOBESPACE>_DREAM_CYCLE.md` |
-| Dream cycle session log | `<LOBESPACE>_DREAM_LOG.md` |
+| Work setup — scaffold a work item's working docs | `<HUB>_WORK_SETUP.md` |
+| Work closeout — fold working docs into the mini-brain | `<HUB>_WORK_CLOSEOUT.md` |
+| Periodic health check and content refresh | `<HUB>_DREAM_CYCLE.md` |
+| Dream cycle session log | `<HUB>_DREAM_LOG.md` |
 -->
 
 ### Doctype grammar
@@ -47,7 +47,7 @@ A child lobe may carry more; anything beyond these four is named in its **Also h
 | Lobe | Directory | Lobespace | Routes on | Also holds | Project repo |
 |---|---|---|---|---|---|
 | <Lobe> | `<dir>/` | `<LOBESPACE>` | the terms that should send a question here | — | `../<repo>` |
-| — <Sub-lobe> | `<dir>/<sub>/` | `<LOBESPACE>` | … | — | `../<repo>/<path>` |
+| — <Sub-lobe> | `<dir>/<sub>/` | `<SUBLOBESPACE>` | … | — | `../<repo>/<path>` |
 
 Match a question's terms against **Routes on** to choose a lobe *before* reading anything. A question about how lobes fit together, or one no lobe's terms claim, is hub-level — start at the hub documents. Sub-lobes are indented under their parent. A child whose code lives inside an ancestor's repository points its project-repo cell at that path (`../<repo>/<path>`); leave the cell empty for a child with no repository presence at all.
 
@@ -68,7 +68,7 @@ Match a question's terms against **Routes on** to choose a lobe *before* reading
 **Maintenance documents live at the hub.** Session closeout — and work setup, work closeout and the dream cycle when the brain grows them — govern the whole brain, so one of each serves every lobe and none is namespaced to a child. The in-flight documents those procedures scaffold land in the `working/` of whichever lobe owns the work.
 
 <!-- As the brain matures and gains the lifecycle docs, add their boundary rule:
-**Maintenance-doc boundaries.** Any procedure that appends a log entry cites `<LOBESPACE>_SESSION_CLOSEOUT.md` as the entry-format authority. Beyond that, `<LOBESPACE>_DREAM_CYCLE.md` references no other maintenance doc, and `<LOBESPACE>_WORK_SETUP.md` / `<LOBESPACE>_WORK_CLOSEOUT.md` are bookends that may reference each other, but only by that relationship.
+**Maintenance-doc boundaries.** Any procedure that appends a log entry cites `<HUB>_SESSION_CLOSEOUT.md` as the entry-format authority. Beyond that, `<HUB>_DREAM_CYCLE.md` references no other maintenance doc, and `<HUB>_WORK_SETUP.md` / `<HUB>_WORK_CLOSEOUT.md` are bookends that may reference each other, but only by that relationship.
 -->
 
 **Version header.** Every canonical document opens with `> V<N>, YYYY-MM-DD.` — version and date, nothing else. **No change note in this line.** If a file needs a description, put it on its own line below. Bump `<N>` by one on each substantive edit (numerically — `V10` > `V9`) and set the date. This applies to `CLAUDE.md` itself. Exempt: `README.md`, `*_LOG.md` files, and `*_BURNDOWN.md` checklists.

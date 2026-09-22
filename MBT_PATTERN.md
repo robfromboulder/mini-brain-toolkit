@@ -84,7 +84,7 @@ Added when a brain tracks real work items across many sessions and needs rituals
 
 Brains that serve more than one target platform also split some docs by platform (`<PLATFORM>_<LOBESPACE>_*`), keeping shared findings in the un-prefixed file and platform-specific ones in the platform files.
 
-Brains whose knowledge divides into several lobes — where one SCOPE cannot state the problem honestly, because writing it would force two or more coexisting problems onto the page — instead give each lobe its own subdirectory, nesting where a lobe's problem divides again. Such a brain declares a lobespace per lobe rather than one brain-wide, and its entrypoint resolves documents from a doctype grammar and a lobe registry instead of enumerating them. The read index names the convention that governs this.
+Brains whose knowledge divides into several lobes — where one SCOPE cannot state the problem honestly, because writing it would force two or more coexisting problems onto the page — instead give each child lobe its own subdirectory, nesting where a lobe's problem divides again. Such a brain declares a lobespace per lobe rather than one brain-wide, and its entrypoint resolves documents from a doctype grammar and a lobe registry instead of enumerating them. The read index names the convention that governs this.
 
 ---
 

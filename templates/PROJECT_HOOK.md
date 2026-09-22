@@ -1,4 +1,4 @@
-<!-- Mini-brain hook: merge the section below into each project repo's CLAUDE.md (create the file if the repo has none — never overwrite an existing one). Substitute <project> and <LOBESPACE>, and adjust the relative path if the brain's clone sits elsewhere or under another name. If the brain is multi-lobe, also uncomment the lobe paragraph and fill `<Lobe>`, `<dir>`, and `<LOBESPACE>` for the lobe this repo maps to. -->
+<!-- Mini-brain hook: merge the section below into each project repo's CLAUDE.md (create the file if the repo has none — never overwrite an existing one). Substitute <project> and <HUB>, and adjust the relative path if the brain's clone sits elsewhere or under another name. If the brain is multi-lobe, also uncomment the lobe paragraph and fill `<Lobe>`, `<dir>`, and `<LOBESPACE>` for the lobe this repo maps to. -->
 
 ## Working in the mini-brain
 
@@ -13,7 +13,7 @@ Mini-brain edits accumulate uncommitted during a session; **closeout is the sync
 
 **Proactively offer a session closeout at natural stopping points** (PR opened, branch merged, work paused, user signals wrapping up) — only in a session that loaded the brain. Offer once and briefly; run the procedure only after the user agrees; skip trivial sessions (a lone question, a typo).
 
-**Never cite mini-brain docs (`<LOBESPACE>_*`, or any lobe's lobespace) from code.** Information flows one way — down from the mini-brain into code — so a back-reference is circular. Roadmap, history, and rationale that isn't about operating *this* code belong in the mini-brain, not in code comments.
+**Never cite mini-brain docs (`<HUB>_*`, or any lobe's lobespace) from code.** Information flows one way — down from the mini-brain into code — so a back-reference is circular. Roadmap, history, and rationale that isn't about operating *this* code belong in the mini-brain, not in code comments.
 
 <!-- As the brain matures and gains work items (stage 3), add:
 

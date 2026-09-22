@@ -49,12 +49,13 @@ A brand-new repo has nothing but perhaps a `README.md`, `LICENSE`, and `.git`; a
 
 For each missing file, copy the corresponding file from `templates/` and substitute the placeholders:
 
-- `<LOBESPACE>` — **creation-time instances only.** Templates use `<LOBESPACE>` in two roles: as a creation placeholder (substitute it now) and as a runtime variable (leave it for procedures to resolve later, per owning lobe and per work item). Which role a given instance plays is determined by position: in hub and single-lobe documents (the read index, conventions, file-set tables, and the hub's own doctype copies), substitute with the hub's lobespace; in the doctype grammar and the lobe registry, leave it intact — those are runtime references resolved per lobe. In a multi-lobe brain, each child's doctype set takes that child's lobespace.
+- `<HUB>` → the hub's lobespace (e.g. `ORCHARD`); in a brain with one lobe, the brain's own. One value per brain, and every instance is creation-time — it marks the documents that live only at the hub.
+- `<LOBESPACE>` → the lobespace of the lobe whose document you are seeding: the brain's own in a single-lobe brain, each child's own in its doctype set. Leave it intact in the doctype grammar, which names documents generically and is resolved per lobe at read time.
 - `<Project>` → the project's display name (Title Case, e.g. `Orchard`). In a multi-lobe brain, a child's own doctype set takes that child's display name instead, so each lobe's documents name their own subject rather than the whole project's.
 - `<project>` → the lowercase name used in prose/README (e.g. `orchard`).
 - `<date>` → today's date, `YYYY-MM-DD`.
 
-Substitute only these. `<WORK>` is always a runtime variable. Two spots in the lobe registry and the project hook's lobe paragraph are creation-time despite appearing in grammar that otherwise stays as runtime — fill them from the intake conversation when this procedure instantiates them, and only there.
+Substitute only these. `<WORK>` is always a runtime variable, not a creation placeholder — the procedures resolve it later, per work item — so leave it intact wherever a template carries it. Two spots are creation-time despite carrying `<LOBESPACE>`: the lobe registry's placeholder rows and the project hook's lobe paragraph are filled from the intake conversation when this procedure instantiates them, and only there.
 
 | Create from template | To | Notes |
 |---|---|---|
@@ -64,7 +65,7 @@ Substitute only these. `<WORK>` is always a runtime variable. Two spots in the l
 | `templates/APPROACH.md` | `<LOBESPACE>_APPROACH.md` | Section skeleton with `*To be filled in.*` placeholders, carrying the same per-section comments. |
 | `templates/FINDINGS.md` | `<LOBESPACE>_FINDINGS.md` | Header + `*No findings recorded yet.*` |
 | `templates/LOG.md` | `<LOBESPACE>_LOG.md` | Header only; first entry is appended at first session closeout. |
-| `templates/SESSION_CLOSEOUT.md` | `<LOBESPACE>_SESSION_CLOSEOUT.md` | The authoritative LOG-entry format. |
+| `templates/SESSION_CLOSEOUT.md` | `<HUB>_SESSION_CLOSEOUT.md` | The authoritative LOG-entry format. |
 | `templates/PROJECT_HOOK.md` | each project repo's `CLAUDE.md` | *Merge* as a section into the existing file (create the file if the repo has none). Skip when no project repo exists yet. |
 
 Then create the two directories: `archive/` (drop any source material here) and `working/`. Git won't track empty directories — add a `.gitkeep` to `working/` if it would otherwise be empty, and remove it once real content lands.
@@ -92,7 +93,7 @@ Then **fact-check every falsifiable claim** against the codebase and against the
 
 **Read the set back before calling it done.** Run this once every document in the set exists, not after each one. Authoring runs document by document, so each one comes out consistent with itself and the defects collect in the seams. They are invisible from inside the document being written and obvious the moment the set is read together, which is why this is a separate pass and not a matter of being careful while authoring. The structural check in §7 catches none of them — every file involved exists, is namespaced, and carries a version header. Two passes, and they are not the same pass:
 
-- **The scopes, as a group.** Read every SCOPE in one sitting and look for what only appears side by side: a term meaning two different things in two units, an open question standing in more than one place, a parent explaining a child's problem rather than naming it, and the same fact stated at two levels. Then re-ask solution-neutrality in a form authoring cannot answer — for each claim about the world, would it still hold if the design had gone another way? A claim that fails that test arrived from a design decision made in some other document and is wearing the clothes of a fact. This is the leak that survives a careful reading for solution bias, because by the time it is written down it reads as a description of reality.
+- **The scopes, as a group.** Read every SCOPE in one sitting and look for what only appears side by side: a term meaning two different things in two lobes, an open question standing in more than one place, a parent explaining a child's problem rather than naming it, and the same fact stated at two levels. Then re-ask solution-neutrality in a form authoring cannot answer — for each claim about the world, would it still hold if the design had gone another way? A claim that fails that test arrived from a design decision made in some other document and is wearing the clothes of a fact. This is the leak that survives a careful reading for solution bias, because by the time it is written down it reads as a description of reality.
 - **Each approach against its own scope, and never against the other approaches.** The pairing is the reverse-trace above, run once the whole set exists. Comparing approaches to *each other* is a mistake: they are siblings, so the comparison invites exactly the coupling the pattern forbids, and it pressures designs that legitimately differ into cosmetic agreement. What matters about an approach is whether it answers its own problem, not whether it resembles its neighbors.
 
 Record the reasoning and course-corrections of this authoring work in the LOG at session closeout (§7). The *decisions* that are invisible from the resulting docs go in FINDINGS as they arise.
@@ -103,8 +104,8 @@ Record the reasoning and course-corrections of this authoring work in the LOG at
 
 Add these **only when the work justifies them** (the stage model in `MBT_PATTERN.md`) — typically when the brain starts tracking work items across many sessions. Each is copied from `templates/`, namespaced, added to the read index, and bumps `CLAUDE.md`.
 
-- `templates/WORK_SETUP.md` → `<LOBESPACE>_WORK_SETUP.md` and `templates/WORK_CLOSEOUT.md` → `<LOBESPACE>_WORK_CLOSEOUT.md` — the open/close bookends for work items (a feature, bug fix, or hardening effort). They reference the per-work-item working set in `templates/work/` — inline those six scaffolds into `<LOBESPACE>_WORK_SETUP.md` where it points at them, so the brain stands alone without the toolkit.
-- `templates/DREAM_CYCLE.md` → `<LOBESPACE>_DREAM_CYCLE.md` plus a `<LOBESPACE>_DREAM_LOG.md` (header only) — the periodic reflection pass. The template assumes a single lobe; don't instantiate it unadapted into a multi-lobe brain.
+- `templates/WORK_SETUP.md` → `<HUB>_WORK_SETUP.md` and `templates/WORK_CLOSEOUT.md` → `<HUB>_WORK_CLOSEOUT.md` — the open/close bookends for work items (a feature, bug fix, or hardening effort). They reference the per-work-item working set in `templates/work/` — inline those six scaffolds into `<HUB>_WORK_SETUP.md` where it points at them, so the brain stands alone without the toolkit.
+- `templates/DREAM_CYCLE.md` → `<HUB>_DREAM_CYCLE.md` plus a `<HUB>_DREAM_LOG.md` (header only) — the periodic reflection pass. The template assumes a single lobe; don't instantiate it unadapted into a multi-lobe brain.
 
 When the brain gains work items, also uncomment the work-item block in each project repo's hook (the maturity comment inside `templates/PROJECT_HOOK.md`).
 
@@ -114,7 +115,7 @@ Don't scaffold these into a stage-1 brain; add them the first time a real work i
 
 ## 7. Close out and hand off
 
-1. Append the first LOG entry per `<LOBESPACE>_SESSION_CLOSEOUT.md`, recording what this establishment session did and decided (namespace choice, source material, fact-check corrections).
+1. Append the first LOG entry per `<HUB>_SESSION_CLOSEOUT.md`, recording what this establishment session did and decided (namespace choice, source material, fact-check corrections).
 2. Run a structural check — read index ↔ disk, version headers, cross-references, namespace prefix; for a multi-lobe brain, also registry ↔ disk and each lobe's full doctype set and lobespace — and fix anything it flags.
 3. Report to the user: the lobespace used — or the lobe tree and its per-lobe lobespaces, for a multi-lobe brain — which files were **created** vs. already **existed**, what stage the brain is at, and the natural next step (fill SCOPE, or add lifecycle machinery).
 
