@@ -8,7 +8,7 @@ Follow these instructions when the user asks the mini-brain to dream and improve
 
 **Guiding principle:** When in doubt, flag for the user rather than auto-correcting. This cycle detects drift and corrects factual staleness. Strategy and framing changes require human judgment. Version control provides rollback safety, so be thorough about detecting problems — but conservative about changing analytical conclusions.
 
-**Confidence discipline.** As you draw each conclusion — *before* writing the edit — state a confidence from 1–100. It is a proxy for how many unknowns remain, not a grade. A score below ~70 is a signal to search harder or to flag rather than edit, and obligates you to name the specific unknowns capping it (an unverifiable claim, an inconclusive agent, a thin search). Never round up to look finished. Carry the final scores into the Phase 5 self-evaluation.
+**Confidence discipline.** As you draw each conclusion — *before* writing the edit — state a confidence from 1–100. It is a proxy for how many unknowns remain, not a grade. A score below ~70 is a signal to search harder or to flag rather than edit, and obligates you to name the specific unknowns capping it (an unverifiable claim, an inconclusive agent, a thin search). Never round up to look finished. Carry the final scores into the Phase 6 self-evaluation.
 
 **Context management:** Structural checks (Phase 1) and follow-on research (Phase 3) have bounded context footprints and are handled directly. Heavy reads — full codebase searches, full LOG and FINDINGS files (Phases 2 and 4) — are delegated to Explore agents when they exceed what the active context should absorb (roughly 500+ lines); below that, read directly. The active context handles agent briefing, result synthesis, editorial judgments, and all file edits.
 
@@ -41,7 +41,7 @@ Fix any failures. Report what was found and fixed.
 
 **Verify** by spawning Explore agents with specific claim lists grouped by section. Brief each with the exact claim text and the identifiers it contains; agents search by name, not location, since code moves and gets renamed. Ask each for (a) still true? and (b) easily derivable from code? If SCOPE carries an Open Questions section, include those questions in the briefs — for each, report anything that now answers or narrows it; these are flagged with the evidence, never resolved in SCOPE (that's scoping judgment). Check against the main/current release branch, not feature branches.
 
-**Update.** Stale claims: correct to current state, preserving the document's analytical framing. Invalidated absence claims: don't just flip "no X" to "X exists" — describe what was added and the gap that remains. Codebase-derivable detail with no analytical value: consider removing rather than maintaining. Confirmed-accurate claims: note them as verified in the Phase 5 report.
+**Update.** Stale claims: correct to current state, preserving the document's analytical framing. Invalidated absence claims: don't just flip "no X" to "X exists" — describe what was added and the gap that remains. Codebase-derivable detail with no analytical value: consider removing rather than maintaining. Confirmed-accurate claims: note them as verified in the Phase 6 report.
 
 **Do not** add new goals, scope categories, or boundaries (that's scoping work), delete analytical content because a premise changed (update the premise, then check the analysis still follows), or rewrite conclusions — flag for the user if a factual change undermines one.
 
@@ -72,9 +72,23 @@ Most per-work-item knowledge should already have been promoted at work closeout,
 
 ---
 
-## Phase 5: Report
+## Phase 5: Enforced terms
 
-Present a summary after all phases complete: **structural fixes** (Phase 1, or "none"); **files updated** (Phases 2–4, each as `file V<old> → V<new> — one-line summary`); **confirmed accurate** (grouped by section, not enumerated); **needs human decision** (factual changes that affect strategy/scope/framing); **new findings extracted**; **findings reflow** (structural changes applied, substance items flagged). If a phase found nothing, say so in one line — don't pad.
+This phase keeps the enforced terms file internally sound and true to how its terms are used. If the brain has no enforced terms file, run only the drift pass. Two activities, in order.
+
+**Internal integrity (bounded — handle directly).** Check the file against its own stated rules and entry format. Fix format violations directly and bump the version. An entry whose definition can be made to stand alone only by changing what it says is analytical: flag it, do not rewrite the meaning.
+
+**Drift (one pass).** Read the canonical knowledge docs (`<LOBESPACE>_SCOPE.md`, `<LOBESPACE>_APPROACH.md`, `<LOBESPACE>_FINDINGS.md`) — one Explore agent or a direct read per the context-management size rule — reporting every term used inconsistently across them, listed or not, plus any consistently-used unlisted term whose everyday sense or near-neighbor would silently change what a claim asserts. Do not scan the logs or `archive/`: logs are append-only history and are never revised. Judge each result:
+
+- A **listed** term misused or shadowed by a loose synonym is a wording fix — correct it in place to match the entry, bumping that doc's version. A use showing the *entry itself* is wrong or too narrow is analytical — flag it with the evidence rather than silently redefine the term.
+- A **listed** entry with no disambiguation is flagged, never deleted: as needing one when this pass found its term misused, and as a retirement candidate when it did not.
+- An **unlisted** term that meets the enforced terms file's rule for adding an entry is proposed — name, one-line sense, and the evidence — for the user to confirm; never add automatically, because judging a term worth enforcing is a human call.
+
+---
+
+## Phase 6: Report
+
+Present a summary after all phases complete: **structural fixes** (Phase 1, or "none"); **files updated** (Phases 2–5, each as `file V<old> → V<new> — one-line summary`); **confirmed accurate** (grouped by section, not enumerated); **needs human decision** (factual changes that affect strategy/scope/framing); **new findings extracted**; **findings reflow** (structural changes applied, substance items flagged); **enforced terms** (Phase 5: fixes made, drift corrected, entries flagged, new terms proposed). If a phase found nothing, say so in one line — don't pad.
 
 **Needs-human-decision list.** The dream log entry must include a standalone `## Needs human decision` section — a numbered list where each item states the context, what changed, and the specific decision to make. It is the primary output readers act on, and exactly what the next cycle's orientation step reads — each item must be self-contained, understandable without the rest of the entry. An empty list is fine — write "None" and move on.
 
@@ -83,7 +97,7 @@ Present a summary after all phases complete: **structural fixes** (Phase 1, or "
 **Model and effort.** Record the model and effort level used for the cycle in the dream log entry header (after the session-ID line, if the entry format includes one). The model name is stated in the system environment context ("You are powered by the model named…"); the effort level may appear in session command output. If either cannot be determined, ask the user before writing the entry. This is what makes runs comparable on depth and cost — a low-effort small-model run and a high-effort large-model run are not the same cycle.
 
 **Self-evaluation.** Close the entry by scoring the *cycle's own performance*, not only its findings — this is the signal for whether dreaming is converging or spinning, and what makes runs comparable across cycles and over time:
-- **Confidence per headline conclusion (1–100)** — one per phase that draws a conclusion (e.g. Phase 2 "SCOPE matches current code and no open question has been overtaken unnoticed"; Phase 3 "APPROACH's external assumptions are current"), plus a confidence score on the findings this run produced. For any score below ~70, name the unknowns that cap it.
+- **Confidence per headline conclusion (1–100)** — one per phase that draws a conclusion (e.g. Phase 2 "SCOPE matches current code and no open question has been overtaken unnoticed"; Phase 3 "APPROACH's external assumptions are current"; Phase 5 "the enforced terms match how they are used, and any drifting unlisted term has been surfaced"), plus a confidence score on the findings this run produced. For any score below ~70, name the unknowns that cap it.
 - **New ground vs. re-tread** — classify this run against the last: *net-new* (surfaced findings/changes the last run didn't), *incremental*, or *re-tread* (same ground, no movement), with one line of evidence.
 - **Depth achieved** — did each phase run to its intent, or run shallow (agent inconclusive, source unavailable, halted)? Name any that did.
 - **Diminishing returns** — if this is the Nth consecutive *re-tread* run with no findings and no edits, say so and recommend either dreaming less often or that the brain has reached a fixed point on current inputs (a real result, not a failure).

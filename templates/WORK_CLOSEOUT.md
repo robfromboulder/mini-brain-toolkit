@@ -70,5 +70,6 @@ Finish with these mechanical checks, to confirm the merge is clean:
 4. **No dangling work-item references** — grep the canonical docs for each of the item's just-retired filenames (the exact `<LOBESPACE>_<WORK>_*.md` names, not the bare compound, which can also match unrelated canonical names); there should be none left (they live in `archive/` now). The `<WORK>` placeholder used in this doc is deliberate, so grepping it returns zero — any hit is a genuine dangling reference to fix, most often one carried in from a merged LOG entry (see the append-log rule in §2).
 5. **`working/` is clean** — the merged work item's working files are gone from the owning lobe's `working/`.
 6. **No sideways references** (multi-lobe brains) — if a finding folded upward, confirm it landed in the ancestor and that neither sibling names the other.
+7. **Terminology** (brains that declare enforced terms) — every term listed in `<HUB>_ENFORCED_TERMS.md` is used as defined in each doc this closeout edited; correct a loose synonym standing in for a listed term, or a listed term used with the wrong meaning.
 
 Report what was merged (by target file and old → new version), what was reconciled (what reversed and why), and the result of the structural check.

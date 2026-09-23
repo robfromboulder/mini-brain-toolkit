@@ -1,6 +1,6 @@
 # Mini-Brain Toolkit: Dream Cycle
 
-> V17, 2026-09-21.
+> V18, 2026-09-22.
 
 Follow these instructions when the user asks the toolkit to dream and improve itself — the periodic reflection pass that keeps this brain true and small (principle 10).
 
@@ -10,9 +10,9 @@ Follow these instructions when the user asks the toolkit to dream and improve it
 
 **Guiding principle:** When in doubt, flag for the user rather than auto-correcting. This cycle detects drift and corrects factual staleness; strategy, thesis, and framing changes require human judgment. Version control provides rollback safety, so be thorough about detecting problems — conservative about changing conclusions. **Exception — Phase 3 stance:** the follow-on-research phase is *adversarial by mandate*. Being aggressive about hunting disconfirming evidence and conservative about auto-applying thesis changes are not in tension — do both.
 
-**Confidence discipline.** As you draw each conclusion — *before* writing the edit — state a confidence from 1–100. It is a proxy for how many unknowns remain, not a grade. A score below ~70 is a signal to search harder or to flag rather than edit, and obligates you to name the specific unknowns capping it (an unverifiable claim, an inconclusive agent, a thin search). Never round up to look finished. In Phase 3 the score is additionally bounded by that phase's disconfirmation gate. Carry the final scores into the Phase 5 self-evaluation.
+**Confidence discipline.** As you draw each conclusion — *before* writing the edit — state a confidence from 1–100. It is a proxy for how many unknowns remain, not a grade. A score below ~70 is a signal to search harder or to flag rather than edit, and obligates you to name the specific unknowns capping it (an unverifiable claim, an inconclusive agent, a thin search). Never round up to look finished. In Phase 3 the score is additionally bounded by that phase's disconfirmation gate. Carry the final scores into the Phase 6 self-evaluation.
 
-**Context management:** Phase 1 has a bounded footprint (file listings, greps) and is handled directly. File reads are delegated by size: hand a read to an Explore agent only when it exceeds roughly 500 lines — below that, read directly. This covers Phase 2's cross-doc read and Phase 4's LOG/FINDINGS read, which stay in the active context until the brain outgrows the threshold. Phase 3 is research-heavy, but the `MBT_COMPARABLES.md` and `MBT_BIOLOGY.md` registries bound it: spawn web-search agents (general-purpose with web search; Explore is file-only and won't reach the web) only where §3a/§3b call for one — **not one agent per thread.** A routine cycle spends at most ~10 sub-agents in total; needing more is itself a finding to flag in the Phase 5 report, not a license to keep spawning. Do the synthesis (feature-level cut, positioning, verdicts) in the active context over registry data, not in sub-agents — sub-agent fan-out is the dominant cost of this cycle, and most of it was re-confirming facts the registry already holds. Retrieval/change-check agents don't need high reasoning effort — brief them narrowly and prefer a cheaper/faster model where the harness allows. The active context briefs agents, synthesizes, makes editorial judgments, and makes all edits.
+**Context management:** Phase 1 has a bounded footprint (file listings, greps) and is handled directly. File reads are delegated by size: hand a read to an Explore agent only when it exceeds roughly 500 lines — below that, read directly. This covers Phase 2's cross-doc read and Phase 4's LOG/FINDINGS read, which stay in the active context until the brain outgrows the threshold. Phase 3 is research-heavy, but the `MBT_COMPARABLES.md` and `MBT_BIOLOGY.md` registries bound it: spawn web-search agents (general-purpose with web search; Explore is file-only and won't reach the web) only where §3a/§3b call for one — **not one agent per thread.** A routine cycle spends at most ~10 sub-agents in total; needing more is itself an issue to flag in the Phase 6 report, not a license to keep spawning. Do the synthesis (feature-level cut, positioning, verdicts) in the active context over registry data, not in sub-agents — sub-agent fan-out is the dominant cost of this cycle, and most of it was re-confirming facts the registry already holds. Retrieval/change-check agents don't need high reasoning effort — brief them narrowly and prefer a cheaper/faster model where the harness allows. The active context briefs agents, synthesizes, makes editorial judgments, and makes all edits.
 
 **Error recovery:** None. If an agent returns inconclusive results, a file is unexpectedly missing, a claim can't be verified, or any step produces an outcome these instructions don't cover — stop the cycle and report to the user. Do not retry, work around, or silently skip. A stopped cycle means the instructions need updating, not that the executor should improvise.
 
@@ -60,9 +60,9 @@ This brain's subject is the pattern, so the standard follow-on research over APP
 
 **Nap gate.** If every registry `verified`/`reviewed` date is fresher than ~30 days and the last cycle left no Phase 3 flag open, skip Phase 3 and say so in the report — the registry dates *are* the "is anything stale?" check. A user-requested full re-baseline overrides the gate.
 
-**Stance — attack the thesis, don't defend it.** The load-bearing claims — *shrink/forgets-by-design*, the *negative-space rule* (define the brain by what the code can't say), *LLM-as-primary-reader*, *human-curated not machine-managed* — are hypotheses to be attacked with fresh evidence every run. **A cycle that surfaces only confirming evidence has probably fallen into motivated reasoning — treat that as a defect, not a win.** Do not anchor on a fixed reference model or a frozen competitor list; re-survey creatively each time, weight recent and high-adoption work, and go looking for the system or study that makes a mini-brain claim *false*. **"Don't anchor on a frozen list" governs *breadth*** — actively hunt entrants and findings not yet in the registries — **not re-verification** of known entries (§3a/§3b). (The adversarial mandate is specific to this research brain and should not be inherited; a product brain's Phase 3 is still follow-on research — curious about what it doesn't know, aimed at its own field — without the attack-the-thesis stance.)
+**Stance — attack the thesis, don't defend it.** The load-bearing claims — *shrink/forgets-by-design*, the *negative-space rule* (define the brain by what the code can't say), *LLM-as-primary-reader*, *human-curated not machine-managed* — are hypotheses to be attacked with fresh evidence every run. **A cycle that surfaces only confirming evidence has probably fallen into motivated reasoning — treat that as a defect, not a win.** Do not anchor on a fixed reference model or a frozen competitor list; re-survey creatively each time, weight recent and high-adoption work, and go looking for the system or study that makes a mini-brain claim *false*. **"Don't anchor on a frozen list" governs *breadth*** — actively hunt entrants and research not yet in the registries — **not re-verification** of known entries (§3a/§3b). (The adversarial mandate is specific to this research brain and should not be inherited; a product brain's Phase 3 is still follow-on research — curious about what it doesn't know, aimed at its own field — without the attack-the-thesis stance.)
 
-**Disconfirmation gate (both sub-phases).** Before concluding, state — for each load-bearing claim examined — what evidence *would* have falsified it and confirm you actually ran that search. If you cannot name a real disconfirmation search you performed, the phase is incomplete. Disconfirmation is not additional fan-out: word the new-entrant and new-research hunts adversarially so each search doubles as one. Record these searches in the Phase 5 cycle log so the stance is auditable.
+**Disconfirmation gate (both sub-phases).** Before concluding, state — for each load-bearing claim examined — what evidence *would* have falsified it and confirm you actually ran that search. If you cannot name a real disconfirmation search you performed, the phase is incomplete. Disconfirmation is not additional fan-out: word the new-entrant and new-research hunts adversarially so each search doubles as one. Record these searches in the Phase 6 cycle log so the stance is auditable.
 
 ### 3a — Competitive novelty (the peer-review analog)
 
@@ -72,7 +72,7 @@ This brain's subject is the pattern, so the standard follow-on research over APP
 2. **Change-check the stale living entries.** Fetch each selected entry's canonical source, read current state (stars, version/release, licensing, forgetting behavior), compare to the stored `known state`. Unchanged → just bump `verified`. Changed → it joins the delta set. This is retrieval, not synthesis — default to a direct fetch of the canonical source, and spawn a narrow, low-effort agent only when a fetch can't answer.
 3. **Hunt for new entrants** — where the adversarial energy goes (the mandate is about *breadth*: systems not yet in the registry, not re-verifying known ones). One focused search per family where useful, weighting recency and adoption; add rows for what you find.
 4. **Deep-dive the delta set only** — changed living entries plus new entrants. For each: run the differentiator stress-test (has it added editorial/human-curated forgetting, consolidation-with-deletion, or a shrink-toward-irreducible step?) and place it on the feature-level map (provenance / governance / memory-to-code invalidation / episodic-to-semantic consolidation, → the roadmap in `MBT_RESEARCH.md`).
-5. **Synthesize in the active context** over the now-current registry: re-derive the two-axis rankings and the differentiator verdict only if a delta moves them. Hunt for any published measurement of human-curated vs. machine-managed memory (recall, drift, context-window cost); absence is itself a finding (record in `MBT_RESEARCH.md`).
+5. **Synthesize in the active context** over the now-current registry: re-derive the two-axis rankings and the differentiator verdict only if a delta moves them. Hunt for any published measurement of human-curated vs. machine-managed memory (recall, drift, context-window cost); the absence is itself the result (record in `MBT_RESEARCH.md`).
 
 Write updated state and `verified` dates to `MBT_COMPARABLES.md` **in place** (do not paste a fresh giant table — it drifts); write conclusions/deltas to `MBT_RESEARCH.md`. A differentiator weakening → flag (`MBT_SCOPE` differentiator / `MBT_APPROACH` positioning is the user's call, per `MBT_RESEARCH.md`). Holding → a stronger result; state it with the fresh evidence.
 
@@ -81,7 +81,7 @@ Write updated state and `verified` dates to `MBT_COMPARABLES.md` **in place** (d
 `MBT_BIOLOGY.md` is the baseline — a mechanism-mapping table holding the verdicts, and per-field entries carrying key research, a `reviewed` date, and any candidate mechanisms. A field's foundational science is effectively static (CLS 1995, SHY 2003/2014, Richards & Frankland 2017 don't move month to month), so this is a *new-research* pass, not a re-derivation:
 
 1. **Re-confirm, don't rebuild.** The mechanism mapping and verdicts in `MBT_BIOLOGY.md` are the standing result. Do not re-derive them from scratch. Read them forward and ask, per field, whether anything you already know contradicts the stored verdict.
-2. **Hunt new research per field.** For each field in `MBT_BIOLOGY.md`, search for work published since its `reviewed` date that would strengthen, weaken, or add a mechanism — the adversarial move is going after the finding that breaks a "load-bearing" verdict or the mechanism the pattern is missing. Focused, low-effort searches; one per field at most, and skip fields where nothing plausibly moved.
+2. **Hunt new research per field.** For each field in `MBT_BIOLOGY.md`, search for work published since its `reviewed` date that would strengthen, weaken, or add a mechanism — the adversarial move is going after the result that breaks a "load-bearing" verdict or the mechanism the pattern is missing. Focused, low-effort searches; one per field at most, and skip fields where nothing plausibly moved.
 3. **Update in place.** Where new research bears on a field, update that field's research + `reviewed` date and, if a verdict changes, the mapping table — all in `MBT_BIOLOGY.md`. A new candidate mechanism goes in `MBT_BIOLOGY.md`'s candidate list with a status.
 4. **Flag candidates for the user.** Each candidate is a proposal, not an edit: the user decides whether it graduates to the roadmap (`MBT_RESEARCH.md`) or escalates to the pattern (`MBT_PATTERN.md`). **Do not** fold a mechanism into the pattern here.
 
@@ -99,18 +99,33 @@ Bump `MBT_BIOLOGY.md`. Refresh the headline verdict in `MBT_RESEARCH.md` only if
 
 ---
 
-## Phase 5: Report
+## Phase 5: Enforced terms
+
+This phase keeps `MBT_ENFORCED_TERMS.md` internally sound and true to how its terms are used. Two activities, in order.
+
+**Internal integrity (bounded — handle directly).** Check the file against its own stated rules and entry format. Fix format violations directly and bump the version. An entry whose definition can be made to stand alone only by changing what it says is analytical: flag it, do not rewrite the meaning.
+
+**Drift (one pass).** Read every top-level doc — this brain's product docs and procedures are its knowledge, not only its own SCOPE, APPROACH and FINDINGS — with one Explore agent or a direct read per the context-management size rule, reporting every term used inconsistently across them, listed or not, plus any consistently-used unlisted term whose everyday sense or near-neighbor would silently change what a claim asserts. Do not scan the logs or `archive/`: logs are append-only history and are never revised. Judge each result:
+
+- A **listed** term misused or shadowed by a loose synonym is a wording fix — correct it in place to match the entry, bumping that doc's version. A use showing the *entry itself* is wrong or too narrow is analytical — flag it with the evidence rather than silently redefine the term.
+- A **listed** entry with no disambiguation is flagged, never deleted: as needing one when this pass found its term misused, and as a retirement candidate when it did not.
+- An **unlisted** term that meets `MBT_ENFORCED_TERMS.md`'s rule for adding an entry is proposed — name, one-line sense, and the evidence — for the user to confirm; never add automatically, because judging a term worth enforcing is a human call.
+
+---
+
+## Phase 6: Report
 
 Present a summary after all phases complete:
 
 - **Structural fixes** (Phase 1): issues and resolutions, or "none".
 - **Dogfooding & consistency** (Phase 2): what agreed; what drifted and was synced; anything meaning-level flagged.
-- **Files updated** (Phases 2–4): each as `file V<old> → V<new> — one-line summary`.
+- **Files updated** (Phases 2–5): each as `file V<old> → V<new> — one-line summary`.
 - **Research — novelty** (3a): differentiator status (holding / weakening, with the evidence), landscape deltas, and flags.
 - **Research — biology** (3b): mapping/analogy updates (including any metaphor found broken) and candidate mechanisms flagged.
 - **New findings extracted** (Phase 4): each bold statement.
 - **Findings reflow**: structural changes applied; substance items flagged.
-- **Needs human decision**: flags from any phase — thesis-level (Phases 2–3), extraction/reflow substance (Phase 4) — each with what changed and the implication.
+- **Enforced terms** (Phase 5): internal fixes made, drift corrected, entries flagged, and new terms proposed — or "nothing to change" in one line.
+- **Needs human decision**: flags from any phase — thesis-level (Phases 2–3), extraction/reflow substance (Phase 4), entry concerns and proposed terms (Phase 5) — each with what changed and the implication.
 
 If a phase found nothing, say so in one line — don't pad.
 
@@ -120,8 +135,8 @@ If a phase found nothing, say so in one line — don't pad.
 
 **Model and effort.** Record the model and effort level used for the cycle in the dream log entry header (after the session-ID line). The model name is stated in the system environment context ("You are powered by the model named…"); the effort level may appear in session command output. If either cannot be determined, ask the user before writing the entry. This is what makes runs comparable on depth and cost — a low-effort small-model run and a high-effort large-model run are not the same cycle.
 
-**Self-evaluation.** Close the entry by scoring the *cycle's own performance*, not only its findings — this is the signal for whether dreaming is converging or spinning, and what makes runs comparable across cycles and over time:
-- **Confidence per headline conclusion (1–100)** — Phase 2 "the teaching artifacts are self-consistent, the toolkit still obeys its own pattern, and no open question has been overtaken unnoticed"; Phase 3a "the *forgets/shrinks-by-design* differentiator still holds"; Phase 3b "the biological grounding is load-bearing, not flattering"; and each **finding extracted this run** (Phase 4), or an overall confidence in the run's findings if none. Each Phase 3 score must cite the disconfirmation search that earned it. For any score below ~70, name the unknowns that cap it.
-- **New ground vs. re-tread** — classify this run against the last: *net-new* (surfaced findings/changes the last run didn't), *incremental*, or *re-tread* (same ground, no movement), with one line of evidence. For a research brain, a re-tread run that merely re-confirms the thesis is a specific warning sign — say so.
+**Self-evaluation.** Close the entry by scoring the *cycle's own performance*, not only its output — this is the signal for whether dreaming is converging or spinning, and what makes runs comparable across cycles and over time:
+- **Confidence per headline conclusion (1–100)** — Phase 2 "the teaching artifacts are self-consistent, the toolkit still obeys its own pattern, and no open question has been overtaken unnoticed"; Phase 3a "the *forgets/shrinks-by-design* differentiator still holds"; Phase 3b "the biological grounding is load-bearing, not flattering"; and each **finding extracted this run** (Phase 4), or one for the extraction/reflow pass if none; Phase 5 "the enforced terms match how they are used, and any drifting unlisted term has been surfaced". Each Phase 3 score must cite the disconfirmation search that earned it. For any score below ~70, name the unknowns that cap it.
+- **New ground vs. re-tread** — classify this run against the last: *net-new* (surfaced issues/changes the last run didn't), *incremental*, or *re-tread* (same ground, no movement), with one line of evidence. For a research brain, a re-tread run that merely re-confirms the thesis is a specific warning sign — say so.
 - **Depth achieved** — did each phase run to its intent, or run shallow (agent inconclusive, source unavailable, halted)? Name any that did.
-- **Diminishing returns** — if this is the Nth consecutive *re-tread* run with no findings and no edits, say so and recommend either dreaming less often or that the brain has reached a fixed point on current inputs (a real result, not a failure).
+- **Diminishing returns** — if this is the Nth consecutive *re-tread* run with nothing surfaced and no edits, say so and recommend either dreaming less often or that the brain has reached a fixed point on current inputs (a real result, not a failure).
