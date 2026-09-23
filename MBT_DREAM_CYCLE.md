@@ -103,11 +103,12 @@ Bump `MBT_BIOLOGY.md`. Refresh the headline verdict in `MBT_RESEARCH.md` only if
 
 This phase keeps `MBT_ENFORCED_TERMS.md` internally sound and true to how its terms are used. Two activities, in order.
 
-**Internal integrity (bounded — handle directly).** Check the file against its own stated rules and entry format. Fix format violations directly and bump the version. An entry whose definition can be made to stand alone only by changing what it says is analytical: flag it, do not rewrite the meaning. An entry whose disambiguation has gone empty is a retirement candidate: flag it rather than deleting.
+**Internal integrity (bounded — handle directly).** Check the file against its own stated rules and entry format. Fix format violations directly and bump the version. An entry whose definition can be made to stand alone only by changing what it says is analytical: flag it, do not rewrite the meaning.
 
 **Drift (one pass).** Read every top-level doc — this brain's product docs and procedures are its knowledge, not only its own SCOPE, APPROACH and FINDINGS — with one Explore agent or a direct read per the context-management size rule, reporting every term used inconsistently across them, listed or not, plus any consistently-used unlisted term whose everyday sense or near-neighbor would silently change what a claim asserts. Do not scan the logs or `archive/`: logs are append-only history and are never revised. Judge each result:
 
 - A **listed** term misused or shadowed by a loose synonym is a wording fix — correct it in place to match the entry, bumping that doc's version. A use showing the *entry itself* is wrong or too narrow is analytical — flag it with the evidence rather than silently redefine the term.
+- A **listed** entry with no disambiguation is flagged, never deleted: as needing one when this pass found its term misused, and as a retirement candidate when it did not.
 - An **unlisted** term that meets `MBT_ENFORCED_TERMS.md`'s rule for adding an entry is proposed — name, one-line sense, and the evidence — for the user to confirm; never add automatically, because judging a term worth enforcing is a human call.
 
 ---

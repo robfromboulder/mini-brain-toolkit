@@ -2,7 +2,7 @@
 
 > V1, <date>.
 
-This brain's enforced terms — a deliberately small set of words whose meaning is enforced across all documents. Each entry is a prose paragraph: bold term, what the thing *is* (one to three sentences, never benefits, motivation, history, or use cases), then what it must not be confused with. Every entry stands alone — defined without invoking any other entry, readable in any order.
+This brain's enforced terms — a deliberately small set of words whose meaning is enforced across all documents. Each entry is a prose paragraph: bold term, what the thing *is* (one to three sentences, never benefits, motivation, history, or use cases), then what it must not be confused with. Every entry's definition stands alone, invoking no other entry, so the list reads in any order. Only the disambiguation may name another listed term, and only the one this term is confused with.
 
 Three rules keep the set small:
 
