@@ -933,3 +933,17 @@ Rob asked for a simple `CONTRIBUTING.md` that requires Claude Code, modeled on t
 ## Lessons
 
 - **An exemption list lives in more places than the rule that declares it.** The two-file exemption was repeated in the pattern, in each check's grep, in the orphan check, and in three templates, split across naming and version-header rules. Each review round found the next copy. Before changing an exemption, grep for every copy of the old list.
+
+---
+
+# Retitle CLAUDE.md as the entrypoint (2026-09-22)
+
+**Session ID**: `fcb5071b-0cea-4f48-bb6e-dcd9054181d8`
+
+After PR #9 merged, Rob asked whether the title "Mini-Brain Files" in `CLAUDE.md` should be widened to "Mini-Brain Files and Instructions" or narrowed to "Main Instructions". The title changed to "Entrypoint" in `CLAUDE.md` and both entrypoint templates, and landed as PR #10.
+
+## Decisions
+
+- **Name the role, not the contents.** Claude recommended narrowing. The file holds the read index and the conventions, not the brain's files, so any title naming "files" misleads. Claude proposed "Entrypoint" over "Main Instructions" because `MBT_PATTERN.md` already defines the file by that name, and a second name for the same file would add vocabulary. Rob chose "Entrypoint".
+- **Retitle the templates too.** The old title came from the two entrypoint templates, so leaving them alone would have seeded every new brain with it. Rob agreed to change all three together.
+- **Editorial, not substantive.** A retitle is a rewording, so no version was bumped. A code review of PR #10 found no dependency on the old title in any procedure.
