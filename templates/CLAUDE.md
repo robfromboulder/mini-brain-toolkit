@@ -36,7 +36,7 @@ Only files in this table are current. `archive/` holds source material, retired/
 
 **Append-only logs.** LOG files are never archived and never edited after the fact. Append-only governs an entry's content, not its position: once written, an entry is never revised, split, or merged. New entries go at the end. The one exception is folding another log into this one, which places that log's entries whole and in date order among the existing ones, so the last separator still holds the most recently written entry.
 
-**File naming.** Every mini-brain filename carries the `<LOBESPACE>` lobespace — shared docs as `<LOBESPACE>_*`. Two files are exempt: `CLAUDE.md` (entrypoint) and `README.md` (repo artifact). New top-level knowledge files must include the lobespace; files in `archive/` keep whatever basename they were retired under.
+**File naming.** Every mini-brain filename carries the `<LOBESPACE>` lobespace — shared docs as `<LOBESPACE>_*`. Three files are exempt: `CLAUDE.md` (entrypoint) and the repo artifacts `README.md` and `CONTRIBUTING.md`. New top-level knowledge files must include the lobespace; files in `archive/` keep whatever basename they were retired under.
 
 **Version header.** Every top-level file except the version-exempt ones opens with `> V<N>, YYYY-MM-DD.` — version and date, nothing else. **No change note in this line.** If a file needs a description, put it on its own line below. Bump `<N>` by one on each substantive edit (numerically — `V10` > `V9`) and set the date. This applies to `CLAUDE.md` itself. Exempt: `README.md`, `*_LOG.md` files, and `*_BURNDOWN.md` checklists.
 

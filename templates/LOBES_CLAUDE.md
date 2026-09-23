@@ -58,7 +58,7 @@ Match a question's terms against **Routes on** to choose a lobe *before* reading
 
 ## File Conventions
 
-**File naming.** Every filename follows `[<path>/] [working/] <LOBESPACE> [_<WORK>] _<DOCTYPE>.md` — directories carve lobes, the trailing slot carves work items. Hub documents take no path and use the hub's lobespace. `CLAUDE.md` and `README.md` are exempt. Because each lobespace is *declared* rather than inferred, a lobespace may contain underscores; it is one lobespace, not a shorter one plus a qualifier.
+**File naming.** Every filename follows `[<path>/] [working/] <LOBESPACE> [_<WORK>] _<DOCTYPE>.md` — directories carve lobes, the trailing slot carves work items. Hub documents take no path and use the hub's lobespace. `CLAUDE.md` and the repo artifacts `README.md` and `CONTRIBUTING.md` are exempt. Because each lobespace is *declared* rather than inferred, a lobespace may contain underscores; it is one lobespace, not a shorter one plus a qualifier.
 
 **Lobespace ownership.** A document belongs to the lobe whose declared lobespace its name begins with in full, longest match winning. Lobespaces may nest as prefixes, so a shorter lobespace matching proves nothing — a document whose name begins with a child's lobespace is misplaced if it sits in the parent's directory. Ownership constrains naming in return: never name a document so that another lobe's lobespace is a longer prefix of its name than the owning lobe's — a parent's work-item slug that continues into a child's lobespace hands the item's files to that child.
 
