@@ -10,11 +10,37 @@ Using a **mini-brain** with your codebase helps you iterate and triage faster, a
 
 A mini-brain only captures knowledge about your software project that **can't be derived from code or git history**: what inspires the work, why decisions went one way and not another, what was tried and discarded, what was surprising. Normally these details live in your team's heads or are scattered across tickets, wikis, and project docs. A mini-brain curates these details so every Claude session understands the problem statement, the technical approach, the design tradeoffs, and the implementation decisions behind your codebase.
 
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset=".github/images/what-goes-where-dark.svg">
+  <img src=".github/images/what-goes-where-light.svg" alt="A project repo holds what code, git history, and tickets already answer; a separate mini-brain repo holds decisions, rejected paths, findings, and scope, loaded into sessions by a hook">
+</picture>
+
 **Using a mini-brain is just chatting with Claude.** Your coding sessions are the raw material. At each natural stopping point, you'll be prompted to optionally save what the session decided and learned. There's nothing to file, no format to learn, and you never leave the repo you're working in. Even creating a new mini-brain is done by chatting with Claude.
+
+**Mini-brains are self-improving.** On a schedule, a mini-brain dreams: verifying all claims against the codebase, pruning what's become derivable, and doing follow-on research. The brain stays small enough to read completely, and curious about what it doesn't know. Each dream cycle re-evaluates drift between the codebase, the mini-brain, and their surroundings.
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset=".github/images/lifecycle-dark.svg">
+  <img src=".github/images/lifecycle-light.svg" alt="Lifecycle: chat with Claude, optionally close out so Claude updates the brain with what was learned, which feeds the next session directly, while a scheduled dream cycle verifies, prunes, and distills the brain">
+</picture>
 
 **Mini-brains are built for software teams.** A mini-brain is just Markdown files in a dedicated git repo, alongside your regular project repos. Changes to a mini-brain are made through commits and PRs, reviewable like any other code. This knowledge belongs to the team, and teammates and AI agents all work from the same brain.
 
-**Mini-brains are self-improving.** On a schedule, a mini-brain dreams: verifying all claims against the codebase, pruning what's become derivable, and doing follow-on research. The brain stays small enough to read completely, and curious about what it doesn't know. Each dream cycle re-evaluates drift between the codebase, the mini-brain, and their surroundings.
+## Why a mini-brain?
+
+There are many good tools for giving AI agents memory and context: instruction files, production memory systems, knowledge-management patterns like ADRs and Zettelkasten. But most of them merely accumulate. Every interaction adds to the store, and it grows over time.
+
+A mini-brain makes the opposite bet: **store only what the code can't tell you, and shrink as knowledge becomes derivable.** Decisions, rejected paths, and surprising findings stay. Anything the codebase or git history can already answer gets pruned. The result is a small, high-trust store that an AI agent can load incrementally and a new teammate can read in minutes.
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset=".github/images/curate-not-accumulate-dark.svg">
+  <img src=".github/images/curate-not-accumulate-light.svg" alt="Chart: memory that only accumulates grows steadily, while a mini-brain shrinks at each work-item closeout and dream cycle and levels off">
+</picture>
+
+If you're curious about the design:
+- [MBT_PATTERN.md](MBT_PATTERN.md) — the principles, file set, and lifecycle
+- [MBT_RESEARCH.md](MBT_RESEARCH.md) — how mini-brains compare to related approaches
+- [MBT_BIOLOGY.md](MBT_BIOLOGY.md) — the cognitive-science models the pattern draws on
 
 ## Creating a mini-brain
 
@@ -31,14 +57,3 @@ A new brain starts small — run this to see where it stands and what to add nex
 > Read ../mini-brain-toolkit/MBT_CHECK_BRAIN
 
 This asks which brains to check, then walks you through the recommendations it finds.
-
-## Why a mini-brain?
-
-There are many good tools for giving AI agents memory and context: instruction files, production memory systems, knowledge-management patterns like ADRs and Zettelkasten. But most of them merely accumulate. Every interaction adds to the store, and it grows over time.
-
-A mini-brain makes the opposite bet: **store only what the code can't tell you, and shrink as knowledge becomes derivable.** Decisions, rejected paths, and surprising findings stay. Anything the codebase or git history can already answer gets pruned. The result is a small, high-trust store that an AI agent can load incrementally and a new teammate can read in minutes.
-
-If you're curious about the design:
-- [MBT_PATTERN.md](MBT_PATTERN.md) — the principles, file set, and lifecycle
-- [MBT_RESEARCH.md](MBT_RESEARCH.md) — how mini-brains compare to related approaches
-- [MBT_BIOLOGY.md](MBT_BIOLOGY.md) — the cognitive-science models the pattern draws on

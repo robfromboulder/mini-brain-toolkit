@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 250" width="800" height="250" role="img" aria-labelledby="title desc">
+  <title id="title">The mini-brain lifecycle</title>
+  <desc id="desc">You chat with Claude in your project repo. At a stopping point, you can save what the session decided, and Claude updates the brain with what was challenged and learned. That update feeds the next session directly, and on a schedule a dream cycle also verifies, prunes, and distills the brain before it loads into the next session.</desc>
+  <style>
+    .t { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; fill: #e6edf3; }
+    .muted { fill: #9198a1; }
+    .accent { fill: #a5b4fc; }
+    .name { font-size: 16px; font-weight: 600; }
+    .desc { font-size: 13px; }
+    .tag { font-size: 11px; font-weight: 600; letter-spacing: 0.08em; }
+    .card { fill: #161b22; stroke: #3d444d; stroke-width: 1.5; }
+    .brain { fill: #1e1b4b; stroke: #818cf8; stroke-width: 1.5; }
+    .wire { fill: none; stroke: #656c76; stroke-width: 1.5; }
+    .head { fill: #656c76; }
+    .loop { fill: none; stroke: #818cf8; stroke-width: 2; }
+    .lhead { fill: #818cf8; }
+  </style>
+
+  <!-- Step tags -->
+  <text class="t tag muted" x="100" y="28" text-anchor="middle">EVERY SESSION</text>
+  <text class="t tag muted" x="300" y="28" text-anchor="middle">AT A STOPPING POINT</text>
+  <text class="t tag muted" x="500" y="28" text-anchor="middle">AUTOMATIC CURATION</text>
+  <text class="t tag accent" x="700" y="28" text-anchor="middle">ON A SCHEDULE</text>
+
+  <!-- Boxes -->
+  <rect class="card" x="20" y="40" width="160" height="100" rx="12"/>
+  <text class="t name" x="100" y="76" text-anchor="middle">Chat</text>
+  <text class="t desc muted" x="100" y="100" text-anchor="middle">work with Claude in</text>
+  <text class="t desc muted" x="100" y="118" text-anchor="middle">your project repo</text>
+
+  <rect class="card" x="220" y="40" width="160" height="100" rx="12"/>
+  <text class="t name" x="300" y="76" text-anchor="middle">Closeout</text>
+  <text class="t desc muted" x="300" y="100" text-anchor="middle">save what the session</text>
+  <text class="t desc muted" x="300" y="118" text-anchor="middle">decided? (optional)</text>
+
+  <rect class="card" x="420" y="40" width="160" height="100" rx="12"/>
+  <text class="t name" x="500" y="76" text-anchor="middle">Update</text>
+  <text class="t desc muted" x="500" y="100" text-anchor="middle">what was challenged</text>
+  <text class="t desc muted" x="500" y="118" text-anchor="middle">and learned on the way</text>
+
+  <rect class="brain" x="620" y="40" width="160" height="100" rx="12"/>
+  <text class="t name" x="700" y="76" text-anchor="middle">Dream 🌙</text>
+  <text class="t desc muted" x="700" y="100" text-anchor="middle">verify against code,</text>
+  <text class="t desc muted" x="700" y="118" text-anchor="middle">prune, distill, research</text>
+
+  <!-- Forward arrows -->
+  <path class="wire" d="M182 90 H208"/><path class="head" d="M218 90 l-10 -5 v10 z"/>
+  <path class="wire" d="M382 90 H408"/><path class="head" d="M418 90 l-10 -5 v10 z"/>
+  <path class="wire" d="M582 90 H608"/><path class="head" d="M618 90 l-10 -5 v10 z"/>
+
+  <!-- Return loop -->
+  <path class="loop" d="M700 142 V178 Q700 196 682 196 H118 Q100 196 100 178 V154"/>
+  <path class="loop" d="M500 142 V178 Q500 196 482 196"/>
+  <path class="lhead" d="M100 144 l-6 12 h12 z"/>
+  <text class="t desc accent" x="400" y="222" text-anchor="middle">a wiser brain loads into the next session</text>
+</svg>
