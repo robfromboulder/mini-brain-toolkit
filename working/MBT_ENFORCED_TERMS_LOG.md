@@ -63,3 +63,35 @@ Rob directed that mini-brain docs never name the product brain the hooks were co
 ## Landed
 
 The review follow-up was committed as one change and pushed to the `enforced-terms` branch, updating PR #7.
+
+---
+
+# Dry-run the check procedure's enforced-terms pass against the adopting brain (2026-09-22)
+
+**Session ID**: `a64e0725-e1c6-4004-b30f-58c59b00378b`
+
+Rob asked Claude to dry-run the PR #7 version of `MBT_CHECK_BRAIN.md` against the first product brain to use enforced terms, to see what the revised term check would surface. The run showed where the procedure's wording was ambiguous. Rob then had Claude tighten the term check and push the result to PR #7.
+
+## The dry run
+
+The path Rob gave was the product's code repo. Its entrypoint pointed to the mini-brain in a sibling repo, so Claude checked that one. Claude ran the structural checks mechanically. For the listed-term pass it counted hits per term across the top-level docs, excluding logs, and got about 500 hits for ten terms. Reading all of them wasn't practical, so Claude grepped for the senses each entry rules out: a protocol's sense of a term, a cloud provider's permission vocabulary, and generic verb forms. That's where every real misuse turned up. Some uses didn't break an entry but showed the entry was too narrow; a cost-allocation sense of an accountability term was the clearest. The unlisted-term pass relied on greps rather than a full read of the knowledge docs as a set, and Claude said so in the report.
+
+## What the run showed about the instructions
+
+- "Judge every hit" doesn't scale on a mature brain. The intro's rule that set-level checks can't be split across agents also seemed to cover the listed-term pass, which is per-hit judgment against one entry.
+- The check read "canonical docs, not the logs" while the dream cycle's term phase reads every top-level doc. Nothing settled whether procedures and the entrypoint were in scope.
+- The check reported every unlisted collision as a candidate, while the dream cycle proposes only terms that meet the brain's own admission rule. The adopting brain's rule excludes overloaded common words, so the check would have proposed a term that rule rejects.
+- The check had no outcome for "the entry itself is too narrow". The dream cycle has one.
+- Grepping a term literally missed its inflections, because entries are nouns and the misuses were verbs and participles.
+- Nothing in the check examined the terms file itself. The adopting brain's file predates the template, and two of its entries have no disambiguation clause.
+
+## Decisions
+
+Rob asked Claude to tighten the instructions, and Claude made all six fixes in `MBT_CHECK_BRAIN.md`. Both term passes now read top-level docs and never logs or `archive/`. Listed terms are grepped by stem, starting with the senses the entry rules out. An entry concern is reported separately from a misuse. An unlisted candidate goes to the user only if it meets the terms file's own rule for adding an entry. The terms file is checked against its own rules, and an entry with an empty disambiguation is reported as a retirement candidate. The intro's no-delegation exception now covers only unlisted collisions, so listed-term hits can go to Explore agents. That one change covers delegation; no separate rule was added. Claude put the terms-file check in the check procedure rather than leaving it to the dream cycle alone, because the check only reports and doesn't edit. The file kept its version, because this PR had already bumped it once.
+
+Rob then directed that PR #7 not name the adopting brain. The only mention was in the new commit's message, so Claude reworded that commit and force-pushed the branch with a lease. An older `MBT_LOG.md` entry that names the brain was left alone, because it's already on `main` and the log is append-only.
+
+## Lessons
+
+- Dry-running a procedure against a real brain surfaced ambiguities that reviewing the text had missed.
+- For a listed term, misuse concentrates in the senses the entry rules out and in neighboring vocabularies. Grepping those first finds it faster than reading every consistent hit.
