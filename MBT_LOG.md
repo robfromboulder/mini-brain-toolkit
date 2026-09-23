@@ -913,3 +913,23 @@ Rob and Claude closed the one question the dry runs left open: whether a brain's
 ## State at close
 
 PR #7 carries every fix from the three dry runs. The two test brains were not edited. Once PR #7 merges, the work item is ready for closeout.
+
+---
+
+# Add a CONTRIBUTING guide and exempt it as a repo artifact (2026-09-22)
+
+**Session ID**: `fcb5071b-0cea-4f48-bb6e-dcd9054181d8`
+
+Rob asked for a simple `CONTRIBUTING.md` that requires Claude Code, modeled on the ones in the viewzoo and viewmapper repos, plus a contributions badge in `README.md`. Claude wrote both, and the change grew into a general rule: the pattern now treats `CONTRIBUTING.md` like `README.md`, as a repo artifact exempt from lobespace naming and version headers. Everything landed on PR #9 over four review rounds.
+
+## Lineage
+
+- **The guide.** Claude wrote the guide with the same shape as the sibling repos. It says Claude Code is required, opens sessions at the repo root, updates the session log at stopping points, and submits changes as pull requests. Because the naming rule exempted only `CLAUDE.md` and `README.md`, Claude also added `CONTRIBUTING.md` to both exemption lists in this brain's `CLAUDE.md`.
+- **Review round one.** Rob ran a code review on PR #9. It found that the dream cycle's orphan and prefix checks and the check-brain prefix grep still hard-coded the two-file exemption, and that `MBT_PATTERN.md` contradicted the new three-file rule. Claude recommended making the exemption part of the pattern rather than a project-specific exception, and Rob agreed. Claude updated the pattern, both checks, and the three templates that repeated the same list.
+- **Review round two.** The templates' version-header exemption lists still omitted `CONTRIBUTING.md`, so a brain seeded from them would flag the file and a dream cycle might stamp a header onto it. Claude fixed both entrypoint templates.
+- **Review round three.** The pattern's version-and-date principle exempted only the log and burndown checklists. `MBT_CHECK_BRAIN.md` falls back on that principle when a target brain declares no exemptions. The gap was older than this PR and applied to `README.md` too. Claude named both repo artifacts in the principle.
+- **Review round four.** No correctness bugs. Of three consistency points, Claude recommended leaving two alone: the prefix check skipping `CONTRIBUTING.md` in brains seeded from the old template, and the seed-file table not listing an optional file. Claude offered to add `CONTRIBUTING.md` to the check-brain vocabulary scan. Rob declined, since contributing guides are slow-moving and written for humans.
+
+## Lessons
+
+- **An exemption list lives in more places than the rule that declares it.** The two-file exemption was repeated in the pattern, in each check's grep, in the orphan check, and in three templates, split across naming and version-header rules. Each review round found the next copy. Before changing an exemption, grep for every copy of the old list.
