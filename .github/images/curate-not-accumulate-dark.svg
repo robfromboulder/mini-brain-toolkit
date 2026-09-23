@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 290" width="800" height="290" role="img" aria-labelledby="title desc">
+  <title id="title">Curate, don't accumulate</title>
+  <desc id="desc">Over time, a memory store that only accumulates keeps growing. A mini-brain shrinks at each work-item closeout, when plans give way to the code as ground truth, and at each dream cycle, when knowledge the code now answers is pruned, so its size levels off.</desc>
+  <style>
+    .t { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; fill: #e6edf3; }
+    .muted { fill: #9198a1; }
+    .accent { fill: #a5b4fc; }
+    .name { font-size: 14px; font-weight: 600; }
+    .desc { font-size: 13px; }
+    .tag { font-size: 11px; font-weight: 600; letter-spacing: 0.08em; }
+    .axis { fill: none; stroke: #656c76; stroke-width: 1.5; }
+    .grid { fill: none; stroke: #3d444d; stroke-width: 1; stroke-dasharray: 3 4; }
+    .grow { fill: none; stroke: #9198a1; stroke-width: 2.5; stroke-dasharray: 7 5; stroke-linecap: round; }
+    .mb { fill: none; stroke: #818cf8; stroke-width: 3; stroke-linejoin: round; stroke-linecap: round; }
+    .lead { fill: none; stroke: #818cf8; stroke-width: 1; }
+  </style>
+
+  <!-- Pruning markers -->
+  <path class="grid" d="M179 44 V240 M295 44 V240 M411 44 V240 M527 44 V240"/>
+  <text class="t tag muted" x="179" y="20" text-anchor="middle">WORK</text>
+  <text class="t tag muted" x="179" y="34" text-anchor="middle">CLOSEOUT</text>
+  <text class="t tag muted" x="295" y="20" text-anchor="middle">WORK</text>
+  <text class="t tag muted" x="295" y="34" text-anchor="middle">CLOSEOUT</text>
+  <text class="t tag accent" x="411" y="20" text-anchor="middle">DREAM</text>
+  <text class="t tag accent" x="411" y="34" text-anchor="middle">CYCLE</text>
+  <text class="t tag muted" x="527" y="20" text-anchor="middle">WORK</text>
+  <text class="t tag muted" x="527" y="34" text-anchor="middle">CLOSEOUT</text>
+
+  <!-- Axes -->
+  <path class="axis" d="M60 40 V240 H640"/>
+  <text class="t desc muted" x="640" y="262" text-anchor="end">time →</text>
+  <text class="t desc muted" x="44" y="140" text-anchor="middle" transform="rotate(-90 44 140)">size of the store</text>
+
+  <!-- Accumulating store -->
+  <path class="grow" d="M60 236 L640 62"/>
+  <text class="t name muted" x="654" y="60">memory that</text>
+  <text class="t name muted" x="654" y="78">only accumulates</text>
+
+  <!-- Mini-brain -->
+  <path class="mb" d="M60 236 L176 206 L182 222 L292 196 L298 214 L408 192 L414 204 L524 184 L530 206 L640 186"/>
+  <text class="t name accent" x="654" y="184">mini-brain</text>
+  <text class="t desc muted" x="654" y="202">shrinks at every</text>
+  <text class="t desc muted" x="654" y="218">closeout and dream</text>
+</svg>
