@@ -1,4 +1,4 @@
-# Mini-Brain Toolkit: Mini-Brain Files
+# Mini-Brain Toolkit: Entrypoint
 
 > V26, 2026-09-22.
 

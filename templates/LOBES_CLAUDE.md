@@ -1,4 +1,4 @@
-# <Project>: Mini-Brain Files
+# <Project>: Entrypoint
 
 > V1, <date>.
 
