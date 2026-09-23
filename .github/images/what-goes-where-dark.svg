@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 360" width="800" height="360" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 290" width="800" height="290" role="img" aria-labelledby="title desc">
   <title id="title">What goes in a mini-brain</title>
-  <desc id="desc">The project repo keeps what the code, git history, and tickets already say. A separate mini-brain repo keeps decisions, rejected paths, findings, and scope. A hook loads the brain into every Claude session.</desc>
+  <desc id="desc">The project repo, with its code and tests, commit history, and tickets and PRs, is always treated as ground truth. A separate mini-brain repo keeps experimental results, findings, approach, and scope. A hook loads the brain into a Claude session on demand.</desc>
   <style>
     .t { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; fill: #e6edf3; }
     .muted { fill: #9198a1; }
@@ -13,53 +13,45 @@
     .brain { fill: #1e1b4b; stroke: #818cf8; stroke-width: 1.5; }
     .dot { fill: #656c76; }
     .bdot { fill: #818cf8; }
-    .wire { fill: none; stroke: #656c76; stroke-width: 1.5; }
     .hook { fill: none; stroke: #818cf8; stroke-width: 2; }
     .head { fill: #818cf8; }
-    .pill { fill: #0d1117; stroke: #3d444d; stroke-width: 1.5; }
   </style>
 
   <!-- Project repo -->
   <rect class="card" x="20" y="20" width="290" height="250" rx="12"/>
-  <text class="t h" x="44" y="56">Project repo</text>
-  <text class="t sub muted" x="44" y="78">already answers what and when</text>
+  <text class="t h" x="44" y="56">Project repo 🤖</text>
+  <text class="t sub muted" x="44" y="78">always treated as ground truth</text>
   <circle class="dot" cx="50" cy="115" r="4"/>
-  <text class="t name" x="64" y="120">Code</text>
-  <text class="t desc muted" x="64" y="138">what it does</text>
+  <text class="t name" x="64" y="120">Code and tests</text>
+  <text class="t desc muted" x="64" y="138">how the system behaves</text>
   <circle class="dot" cx="50" cy="163" r="4"/>
-  <text class="t name" x="64" y="168">Git history</text>
+  <text class="t name" x="64" y="168">Commit history</text>
   <text class="t desc muted" x="64" y="186">what changed, and when</text>
   <circle class="dot" cx="50" cy="211" r="4"/>
-  <text class="t name" x="64" y="216">Tickets</text>
-  <text class="t desc muted" x="64" y="234">what was asked for</text>
+  <text class="t name" x="64" y="216">Tickets and PRs</text>
+  <text class="t desc muted" x="64" y="234">what was requested and shipped</text>
 
   <!-- Mini-brain repo -->
   <rect class="brain" x="490" y="20" width="290" height="250" rx="12"/>
   <text class="t h" x="514" y="56">Mini-brain repo 🧠</text>
   <text class="t sub accent" x="514" y="78">keeps only what the code can’t say</text>
   <circle class="bdot" cx="520" cy="107" r="4"/>
-  <text class="t name" x="534" y="112">Decisions</text>
-  <text class="t desc muted" x="534" y="130">why it went this way</text>
+  <text class="t name" x="534" y="112">Experimental results</text>
+  <text class="t desc muted" x="534" y="130">what worked, what didn’t</text>
   <circle class="bdot" cx="520" cy="147" r="4"/>
-  <text class="t name" x="534" y="152">Rejected paths</text>
-  <text class="t desc muted" x="534" y="170">what was tried and dropped</text>
+  <text class="t name" x="534" y="152">Findings</text>
+  <text class="t desc muted" x="534" y="170">tradeoffs and final decisions</text>
   <circle class="bdot" cx="520" cy="187" r="4"/>
-  <text class="t name" x="534" y="192">Findings</text>
-  <text class="t desc muted" x="534" y="210">what surprised us</text>
+  <text class="t name" x="534" y="192">Approach</text>
+  <text class="t desc muted" x="534" y="210">how the solution is framed</text>
   <circle class="bdot" cx="520" cy="227" r="4"/>
   <text class="t name" x="534" y="232">Scope</text>
   <text class="t desc muted" x="534" y="250">what inspires the work</text>
 
   <!-- Hook between repos -->
-  <path class="hook" d="M486 145 H322"/>
+  <path class="hook" stroke-dasharray="0.1 6" stroke-linecap="round" d="M486 145 H322"/>
   <path class="head" d="M312 145 l12 -6 v12 z"/>
   <text class="t name accent" x="400" y="132" text-anchor="middle">hook</text>
   <text class="t desc muted" x="400" y="168" text-anchor="middle">loads the brain</text>
   <text class="t desc muted" x="400" y="185" text-anchor="middle">on demand</text>
-
-  <!-- Readers -->
-  <path class="wire" d="M165 270 V296 Q165 314 183 314 H244"/>
-  <path class="wire" d="M635 270 V296 Q635 314 617 314 H556"/>
-  <rect class="pill" x="244" y="294" width="312" height="40" rx="20"/>
-  <text class="t name" x="400" y="319" text-anchor="middle">Claude sessions and teammates</text>
 </svg>

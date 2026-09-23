@@ -46,7 +46,7 @@
   <!-- Forward arrows -->
   <path class="wire" d="M182 90 H208"/><path class="head" d="M218 90 l-10 -5 v10 z"/>
   <path class="wire" d="M382 90 H408"/><path class="head" d="M418 90 l-10 -5 v10 z"/>
-  <path class="wire" d="M582 90 H608"/><path class="head" d="M618 90 l-10 -5 v10 z"/>
+  <path class="wire" stroke-dasharray="4 4" d="M582 90 H608"/><path class="head" d="M618 90 l-10 -5 v10 z"/>
 
   <!-- Return loop -->
   <path class="loop" d="M700 142 V178 Q700 196 682 196 H118 Q100 196 100 178 V154"/>

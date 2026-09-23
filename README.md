@@ -8,11 +8,11 @@ Using a **mini-brain** with your codebase helps you iterate and triage faster, a
 
 ## What is a mini-brain?
 
-A mini-brain only captures knowledge about your software project that **can't be derived from code or git history**: what inspires the work, why decisions went one way and not another, what was tried and discarded, what was surprising. Normally these details live in your team's heads or are scattered across tickets, wikis, and project docs. A mini-brain curates these details so every Claude session understands the problem statement, the technical approach, the design tradeoffs, and the implementation decisions behind your codebase.
+A mini-brain only captures knowledge about your software project that **can't be derived from code or commit history**: what inspires the work, why decisions went one way and not another, what was tried and discarded, what was surprising. Normally these details live in your team's heads or are scattered across tickets, wikis, and project docs. A mini-brain curates these details so every Claude session understands the problem statement, the technical approach, the design tradeoffs, and the implementation decisions behind your codebase.
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset=".github/images/what-goes-where-dark.svg">
-  <img src=".github/images/what-goes-where-light.svg" alt="A project repo holds what code, git history, and tickets already answer; a separate mini-brain repo holds decisions, rejected paths, findings, and scope, loaded into sessions by a hook">
+  <img src=".github/images/what-goes-where-light.svg" alt="A project repo of code and tests, commit history, and tickets and PRs is always treated as ground truth; a separate mini-brain repo holds experimental results, findings, approach, and scope, loaded into sessions on demand by a hook">
 </picture>
 
 **Using a mini-brain is just chatting with Claude.** Your coding sessions are the raw material. At each natural stopping point, you'll be prompted to optionally save what the session decided and learned. There's nothing to file, no format to learn, and you never leave the repo you're working in. Even creating a new mini-brain is done by chatting with Claude.
@@ -30,7 +30,7 @@ A mini-brain only captures knowledge about your software project that **can't be
 
 There are many good tools for giving AI agents memory and context: instruction files, production memory systems, knowledge-management patterns like ADRs and Zettelkasten. But most of them merely accumulate. Every interaction adds to the store, and it grows over time.
 
-A mini-brain makes the opposite bet: **store only what the code can't tell you, and shrink as knowledge becomes derivable.** Decisions, rejected paths, and surprising findings stay. Anything the codebase or git history can already answer gets pruned. The result is a small, high-trust store that an AI agent can load incrementally and a new teammate can read in minutes.
+A mini-brain makes the opposite bet: **store only what the code can't tell you, and shrink as knowledge becomes derivable.** Experimental results, findings, approach, and scope stay. Anything the codebase or commit history can already answer gets pruned. The result is a small, high-trust store that an AI agent can load incrementally and a new teammate can read in minutes.
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset=".github/images/curate-not-accumulate-dark.svg">
