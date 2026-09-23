@@ -1,6 +1,6 @@
 # Mini-Brain Toolkit: The Mini-Brain Pattern
 
-> V19, 2026-09-22.
+> V20, 2026-09-22.
 
 This document is the operational definition of a mini-brain: what it *is*, the file set it's made of, and the lifecycle that keeps it true and small.
 
@@ -32,7 +32,7 @@ Ten principles define the pattern, ordered from most to least important. Each is
 
 6. **Namespace every knowledge file with a SCREAMING_SNAKE_CASE lobespace.** Prefix each file with one uppercase lobespace unique to the brain (`ORCHARD_SCOPE.md`, `CDP_APPROACH.md`). The lobespace makes the brain's files unmistakable in a mixed directory and prevents collisions when two brains load in the same session. `CLAUDE.md` and the repo artifacts `README.md` and `CONTRIBUTING.md` are exempt.
 
-7. **Version and date every canonical document.** Open each canonical document with `> V<N>, YYYY-MM-DD.` Bump the number and set the date on each substantive edit. This gives readers a citable version and a freshness signal; full history stays in version control, not in duplicate in-tree copies. The append-only log and burndown checklists (`*_BURNDOWN.md`) are exempt.
+7. **Version and date every canonical document.** Open each canonical document with `> V<N>, YYYY-MM-DD.` Bump the number and set the date on each substantive edit. This gives readers a citable version and a freshness signal; full history stays in version control, not in duplicate in-tree copies. The append-only log, burndown checklists (`*_BURNDOWN.md`), and repo artifacts (`README.md`, `CONTRIBUTING.md`) are exempt.
 
 8. **Keep work-in-progress separate from settled knowledge.** Put experiments and a work item's in-flight documents in a `working/` area, apart from the canonical documents a reader is meant to trust. Nothing in `working/` is authoritative until it is folded into a canonical document.
 
