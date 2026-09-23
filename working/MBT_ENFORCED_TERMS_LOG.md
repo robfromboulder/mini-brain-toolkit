@@ -129,3 +129,20 @@ Rob asked for both to be fixed. A brain with no terms file is now judged against
 - Each dry run against a different kind of brain found gaps the previous one could not. The adopting brain tested the listed-term path, and the virtual-view brain tested the multi-lobe layout and the path with no terms file.
 - Reading the knowledge documents together is where the most valuable results came from: the permissions-boundary collision, the contradicted credential claim, and the parents restating their children. Greps did not surface any of them.
 - How much the unlisted pass costs depends on the brain's size. It was heavy at about 220KB and cheap at about 74KB.
+
+---
+
+# Keep procedure documents in the term check's scope (2026-09-22)
+
+**Session ID**: `a64e0725-e1c6-4004-b30f-58c59b00378b`
+
+Rob and Claude closed the one question the dry runs left open: whether a brain's enforced terms should govern its procedure documents as well as its knowledge documents. Rob decided they should, for consistency. No file changed, because the check already reads every top-level document.
+
+## Decisions
+
+- **Procedure documents stay in scope.** This was Rob's call. Claude agreed for two reasons. First, the dream cycle's drift pass and the work-closeout terminology check both already cover procedures, so exempting them in the check alone would give three different verdicts on one brain. Second, this toolkit's own Finding entry exists mostly to keep procedures from using the word in its generic sense.
+- **Procedure noise is an entry concern, not a reason to exempt procedures.** An everyday verb in a procedure that collides with a listed term, such as delegating a read to an agent, shows that the entry's disambiguation doesn't rule that sense out. The check now reports that as an entry concern, and the brain decides whether to reword the procedure or widen the entry.
+
+## State at close
+
+PR #7 carries every fix from the three dry runs. The two test brains were not edited. Once PR #7 merges, the work item is ready for closeout.
