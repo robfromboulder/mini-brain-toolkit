@@ -1,6 +1,6 @@
 # Mini-Brain Toolkit: Scoping Statement
 
-> V8, 2026-09-21.
+> V9, 2026-09-22.
 
 This document defines the problem that the mini-brain toolkit addresses, separately from design decisions and implementation details, as an objective and unbiased resource.
 
@@ -30,15 +30,19 @@ Standing up a new mini-brain should be a defined procedure that an agent can exe
 
 ### 2.3 Make assessing an existing mini-brain repeatable
 
-Evaluating whether a repo follows the pattern should be a defined procedure that produces *opportunities, not a grade*: a per-principle read, structural checks, and a spot-check that the content hasn't rotted, ending in ranked, concrete recommendations. It should work on any repo — one built from this toolkit or one that grew on its own — and it should observe without modifying the target.
+Evaluating whether a repo follows the pattern should be a defined procedure that produces *opportunities, not a grade*: a per-principle read, structural checks, and a spot-check that the content hasn't rotted, ending in ranked, concrete recommendations. It should work on any repo — one built from this toolkit or one that grew on its own. Assessment is asked for by someone who wants to know whether their brain needs modernizing, so it should work with that person: put to them the calls only they can make, and change the target only where they direct.
 
-### 2.4 Supply base templates for the whole file set
+### 2.4 Keep a mini-brain true and small without supervision
+
+A brain drifts from the truth and grows between the moments anyone thinks to look at it. Keeping it true and small should run on a cadence with nobody present: it should finish without waiting on an answer, correct what is mechanical, and leave everything that needs human judgment in a record its owner reads later.
+
+### 2.5 Supply base templates for the whole file set
 
 Every file in the pattern's file set should have a maintained base template with clear placeholders — the seed set and the mature-lifecycle machinery — so establishment is a copy-and-substitute operation against a single source of truth rather than a copy from whichever neighbor was nearest.
 
-### 2.5 Exemplify the pattern it defines
+### 2.6 Exemplify the pattern it defines
 
-The toolkit should itself be a mini-brain, following its own conventions at the sophistication of a healthy content-stage brain.
+The toolkit should itself be a mini-brain, following its own conventions at whatever stage its own work justifies.
 
 ---
 
@@ -47,7 +51,7 @@ The toolkit should itself be a mini-brain, following its own conventions at the 
 - **A general knowledge-management or "second-brain" system.** The toolkit serves the mini-brain pattern specifically — small, curated, shrink-toward-irreducible. Comprehensive knowledge capture is the opposite bet and is out of scope.
 - **Automated or machine-managed capture.** The pattern is deliberately human-curated. Auto-extracting memories, vector stores, and background ingestion belong to a different family of tools and are explicitly not what this toolkit provides.
 - **Executable tooling — CLI, plugins, packaged automation.** The toolkit is agentic instructions plus templates, consumed by an agent reading markdown. A distributable CLI or IDE integration is a separate concern; this scope does not include it.
-- **Automatic migration of existing brains.** Assessment recommends; it does not rewrite a target brain in place. Bringing an existing brain up to the current pattern is a human-directed activity, not an automated one.
+- **Automatic migration of existing brains.** Bringing an existing brain up to the current pattern is directed by its owner, change by change. Nothing migrates a brain on its own.
 - **Prescribing project-specific content.** The toolkit defines structure and procedure, not what any given project's scope, approach, or findings should say.
 
 ---
@@ -62,14 +66,10 @@ The mature-lifecycle templates are generalized from one mature brain. How much o
 
 The templates are distilled from live brains that keep evolving. When a reference brain improves a convention, nothing yet propagates that improvement back into the templates — the same divergence-by-copy problem the toolkit exists to solve, now between the toolkit and its exemplars. What mechanism (a periodic reconciliation, a designated source-of-truth brain) should keep them aligned is unresolved.
 
-### 4.3 Whether assessment should ever change the target
-
-Assessment is defined as observe-only. But the boundary between assessment and the dream cycle's mechanical fixes (a broken cross-reference, a malformed version header) is thin. Should there be a sanctioned "assess-and-fix-mechanical-only" mode, or does any change belong strictly to establishment and the dream cycle? Left observe-only for now.
-
-### 4.4 Composition across multiple brains
+### 4.3 Composition across multiple brains
 
 The lobespace convention exists so multiple brains can load into one session without collision. As that becomes common — a session spanning several projects' brains — questions arise about cross-brain references, a shared index, and role-lensed recall. The pattern supports co-loading today; it does not yet address coordination between co-loaded brains.
 
-### 4.5 The right maturity floor for a new brain
+### 4.4 The right maturity floor for a new brain
 
 Establishment produces a seed and documents growth into content and mature stages, deferring machinery until "the work justifies it." That judgment is left to the operator. Whether some projects should start further along — or whether a lighter-than-seed brain is legitimate for very small projects — is not settled.

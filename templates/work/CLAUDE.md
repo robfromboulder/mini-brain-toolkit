@@ -4,7 +4,7 @@ Instructions for branch: `<work-branch>`
 
 ## Running Tests
 
-Run the steps from the platform runbook first (if the brain has one), verifying results match the expectations documented there. Then run the work-specific step(s) below.
+Run the steps from the brain's canonical runbook first (if it has one), verifying results match the expectations documented there. Then run the work-specific step(s) below.
 
 ### Step N — <work-specific test> ← NEW in this branch
 

@@ -1,6 +1,6 @@
 # Mini-Brain Toolkit: The Multi-Lobe Layer
 
-> V9, 2026-09-21.
+> V10, 2026-09-22.
 
 This document is the layout convention for a mini-brain whose knowledge divides into several lobes. It is opt-in: a brain with one problem never uses it, and the file set in `MBT_PATTERN.md` applies unchanged.
 
@@ -83,14 +83,11 @@ A permitted reference is cited by name, never by section number. Two classes sta
 
 ## 5. Restructuring
 
-The first three migrations preserve every knowledge document's filename, so no cross-reference resolves differently and no log is rewritten; their real work is authoring the documents the new shape requires, named per row. Maintenance documents are the exception: they live at the hub under its lobespace, so the one migration that gives the hub a new lobespace renames them to it. The last two need no new SCOPE, and collapsing to one problem is the single case that retires knowledge filenames, since folding the hub's documents into the survivor leaves one set of names standing.
-
-A **flat platform split** is the base pattern's convention for one problem delivered across several targets: documents that differ per target take a leading platform qualifier and shared ones do not, with no directories involved.
+The first two migrations preserve every knowledge document's filename, so no cross-reference resolves differently and no log is rewritten; their real work is authoring the documents the new shape requires, named per row. Maintenance documents are the exception: they live at the hub under its lobespace, so the one migration that gives the hub a new lobespace renames them to it. The last two need no new SCOPE, and collapsing to one problem is the single case that retires knowledge filenames, since folding the hub's documents into the survivor leaves one set of names standing.
 
 | From | To | The move |
 |---|---|---|
 | One problem | Multi-lobe | `git mv` the knowledge documents into a child directory — the brain's lobespace, now taken, becomes that child's — then declare a fresh hub lobespace, rename the maintenance documents (and the hub references inside them) to it, author the hub's documents at the root, and replace the entrypoint's file table with the four parts in §3. A brain that already runs a dream cycle comes out of this move with one that assumes a single lobe: its structural checks are scoped to the root and will pass while never examining a child. Treat that cycle as unadapted until it is redesigned. |
-| Flat platform split | Multi-lobe | Move each platform's documents into a directory named for it and declare its existing compound prefix as that child's lobespace. Shared documents stay at the root as the parent, whose lobespace is unchanged. Author each new lobe's missing doctypes — a platform family typically arrives with findings and a log but no SCOPE or APPROACH of its own. |
 | Child lobe | Sub-lobes | The child gains its own child directories, each seeded with its full doctype set; its own documents stay put and become the parent layer, ceding to each grandchild the content that was really that grandchild's. |
 | Multi-lobe | One problem | The reverse of the first, folding the hub's documents into the last remaining child. Each of the hub's logs merges into the survivor's counterpart: entries move whole and in date order, placed among the survivor's rather than after them. Entries sharing a date may sit in either order — the headings carry no finer precision. |
 | Child lobe | Its own brain | **Incomplete — do not run this move yet.** `git mv` the directory to a new repository and replace its registry row with a pointer; the subtree already carries its `working/` and `archive/`, so it moves whole. What is unspecified is everything the subtree lacks on arrival: an entrypoint and a maintenance set, both hub property, and a SCOPE and APPROACH whose sanctioned parent references now dangle across repositories. The pointer's own semantics — what the row holds, and how routing treats a child that has left — are undefined. |

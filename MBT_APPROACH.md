@@ -1,6 +1,6 @@
 # Mini-Brain Toolkit: Technical Approach
 
-> V9, 2026-09-21.
+> V10, 2026-09-22.
 
 This document describes the approach for addressing the problems defined in `MBT_SCOPE.md`. It covers the strategic approach and key design decisions — not delivery sequence.
 
@@ -38,9 +38,9 @@ The toolkit carries a lobespace like any other brain. `MBT` was chosen over mirr
 
 The philosophical description stays in `archive/` and is treated as source, exactly as a content-stage brain keeps its originating design docs in `archive/` and distills them into SCOPE/APPROACH. The distilled, current, operational reference is what the read index carries; the archived philosophical doc remains the fuller "why" for anyone who wants it. This avoids two live copies of the definition drifting apart — the philosophy doc is deliberately kept out of the read index. The improvement roadmap gets the same treatment: the archived source stays in `archive/`, distilled into a living current-state document.
 
-### 2.3 Checking produces opportunities, not grades, and never edits the target
+### 2.3 Checking is a conversation; the dream cycle runs unattended
 
-The assessment procedure is a diagnostic that leads with what's working and frames gaps as ranked opportunities, and it is observe-only. This matches the pattern's stance that adherence is a target, not a gate, and keeps a clean line between reading a brain, building one, and maintaining one. The observe-only boundary is deliberately conservative; whether a mechanical-fix mode is warranted is left open (an open question in `MBT_SCOPE.md`).
+The two procedures that examine an existing brain answer the assessment and unattended-maintenance goals in `MBT_SCOPE.md`, and they sit at opposite ends. A check is a specific ask from a user who wants to know whether their brain needs modernizing, so it is conversational. It leads with what's working and ranks the gaps as opportunities rather than a grade, matching the pattern's stance that adherence is a target, not a gate. It puts judgment calls to the user as they arise — an ambiguous vocabulary hit, a candidate enforced term — and changes the target only where the user directs, item by item. The dream cycle runs on a cadence with nobody present, so it never waits on an answer: it corrects mechanical drift, and every judgment call goes to its log for the user to act on later. Keeping the two apart lets the check ask freely and the dream cycle finish every time.
 
 ### 2.4 Templates are un-namespaced
 

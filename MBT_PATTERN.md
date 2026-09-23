@@ -1,6 +1,6 @@
 # Mini-Brain Toolkit: The Mini-Brain Pattern
 
-> V20, 2026-09-22.
+> V21, 2026-09-22.
 
 This document is the operational definition of a mini-brain: what it *is*, the file set it's made of, and the lifecycle that keeps it true and small.
 
@@ -82,8 +82,6 @@ Added when a brain tracks real work items across many sessions and needs rituals
 | `<LOBESPACE>_DREAM_LOG.md` | Append-only log of dream-cycle runs. |
 | `<LOBESPACE>_ENFORCED_TERMS.md` | The brain's reserved vocabulary — a small set of terms whose meaning is enforced across all documents. |
 | Per-work-item working set | `working/<LOBESPACE>_<WORK>_{PLAN,FINDINGS,LOG,BURNDOWN,CLAUDE,TESTING}.md` — unversioned, out of the read index. |
-
-Brains that serve more than one target platform also split some docs by platform (`<PLATFORM>_<LOBESPACE>_*`), keeping shared findings in the un-prefixed file and platform-specific ones in the platform files.
 
 Brains whose knowledge divides into several lobes — where one SCOPE cannot state the problem honestly, because writing it would force two or more coexisting problems onto the page — instead give each child lobe its own subdirectory, nesting where a lobe's problem divides again. Such a brain declares a lobespace per lobe rather than one brain-wide, and its entrypoint resolves documents from a doctype grammar and a lobe registry instead of enumerating them. The read index names the convention that governs this.
 

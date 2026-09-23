@@ -1,12 +1,10 @@
 # Mini-Brain Toolkit: Implementation Findings
 
-> V18, 2026-09-22.
+> V19, 2026-09-22.
 
 Findings made while building the toolkit that are not evident from reading the files themselves. Each entry names the options considered and the reason the chosen approach won. Assume the current files are available as ground truth — this document does not restate what they already show.
 
 ---
-
-**The lobespace choice carries a generalized lesson.** For a brain whose whole job is to sit beside other brains, the lobespace should be chosen for maximal distinctiveness under co-loading, not just for readability — the driver behind choosing `MBT` over blander alternatives like `BRAIN` or `TOOLKIT`.
 
 **The two procedure docs are named `CREATE_BRAIN` and `CHECK_BRAIN`, not `ESTABLISH` / `ASSESS`.** The names moved twice toward obviousness: from precise verbs (`ESTABLISH`/`ASSESS`) to plain verbs (`CREATE`/`CHECK`) to verb-plus-object (`CREATE_BRAIN`/`CHECK_BRAIN`). The driver each time: the audience is an agent scanning a read index for the obvious action, and naming both the action and its object ("create a brain", "check a brain") is what a user actually types — matching the index entry to that intent lowers the chance of the wrong doc being loaded. Precision lost to obviousness on purpose; the fuller framing survives in each doc's body.
 
@@ -41,3 +39,5 @@ Findings made while building the toolkit that are not evident from reading the f
 **The enforcement hooks were cut back to what the first adopting brain runs.** The first build hooked every point where a term could be touched, including two that a product brain already using enforced terms does without. A callout for terms a work item coins, recorded for closeout to act on, was dropped because nothing downstream reliably consumed it; closeout checks the docs it edited for conformance instead, and proposing new terms is left to the dream cycle. The dream cycle's term check moved out of its mechanical structural phase into a judgment phase of its own, because every hit needs a call about which sense is meant, and an unscoped grep reaches the append-only logs, whose hits can never be fixed. The adopting brain's session-closeout terms rule was not copied, because the entrypoint's write-time rule already covers log entries. The caution that generalizes: when a mechanism has a working adopter, ship the hooks that adopter runs, and make any extra hook name its consumer before it earns a place. PR #7.
 
 **Procedure documents stay in the term check's scope.** Procedures use everyday verbs that collide with listed terms, which invited exempting them. Rob decided against it: the dream cycle's drift pass and work closeout's terminology check already cover procedures, so exempting them in the check alone would give three verdicts on one brain, and this brain's Finding entry exists mostly to keep procedures from using the word generically. Such a collision is an entry concern instead — it shows the entry's disambiguation fails to rule out that sense, and the brain decides whether to reword the procedure or widen the entry. PR #7.
+
+**The flat platform split was struck rather than reconciled with the lobespace rule.** The convention put a platform qualifier ahead of the lobespace (`<PLATFORM>_<LOBESPACE>_*`), where every naming check and the lobe-ownership rule expect the lobespace, so a brain following it failed its own checker. Moving the qualifier behind the lobespace would have fixed the checks but kept a second way to divide a brain's documents beside the multi-lobe layer, with no template, check or maintenance pass of its own. Its migration row went with it, since only one brain used the convention.
