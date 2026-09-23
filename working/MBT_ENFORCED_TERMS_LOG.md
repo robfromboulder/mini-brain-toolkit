@@ -95,3 +95,37 @@ Rob then directed that PR #7 not name the adopting brain. The only mention was i
 
 - Dry-running a procedure against a real brain surfaced ambiguities that reviewing the text had missed.
 - For a listed term, misuse concentrates in the senses the entry rules out and in neighboring vocabularies. Grepping those first finds it faster than reading every consistent hit.
+
+---
+
+# Re-run the dry run, then dry-run a brain without enforced terms (2026-09-22)
+
+**Session ID**: `a64e0725-e1c6-4004-b30f-58c59b00378b`
+
+Rob and Claude, continuing the previous entry's session. Rob had Claude re-run the tightened check against the first product brain to use enforced terms, then run it against the virtual-view brain, which is multi-lobe and declares no enforced terms. Claude fixed five more gaps in the instructions and pushed each round to PR #7.
+
+## Second run against the adopting brain
+
+The brain was unchanged since the first run, so only the term pass was repeated. This time Claude read SCOPE, APPROACH and FINDINGS in full, together, rather than working from greps. Grepping stems and looking at the senses each entry rules out found five more misuses of "grant" in its IAM and OAuth senses. One of them, "a grant's type", collides with the phrase the entry reserves for OAuth. The new entry-concern outcome gave the ambiguous results somewhere to go: attribution used for cost, "grant" as a verb, OAuth's "authorization server", and the Delegation entry not separating delegation from internal identity propagation. The admission-rule filter dropped "token", because the brain's own rule excludes overloaded common words and "User token" is already the precise term. It kept "permissions boundary" and "gateway target". The full read also found a FINDINGS claim that every credential is issued through the identity provider, which three other statements in the brain contradict.
+
+The run exposed three more gaps. The check didn't cover a loose synonym standing in for a listed term, which the dream cycle and the brain's own terms file both treat as misuse. The retirement rule would have retired Delegation, which has no disambiguation clause yet is one of the brain's most misused terms. And the template's rule that an entry stands alone conflicted with its requirement to say what the entry must not be confused with. Four of the brain's entries break its own standalone rule, in exactly their disambiguation clauses, because authentication and authorization can't be told apart without naming each other.
+
+## Fixes to the three gaps
+
+Rob asked for all three to be fixed. The check's unlisted pass now reports a loose synonym as a wording fix. An entry with no disambiguation is flagged as needing one when its term was misused, and as a retirement candidate only when it was not. That applies in the check and in both dream cycle files, where the rule moved from the integrity step into the drift pass because it depends on the drift pass's results. An entry's definition still invokes no other entry, but its disambiguation may name the one listed term it is confused with. That change is in `MBT_ENFORCED_TERMS.md`, `templates/ENFORCED_TERMS.md` and the decision record. Whether procedure documents should be in scope for the term pass stays open for Rob.
+
+## Run against the virtual-view brain
+
+This brain exercised the multi-lobe checks and the path for a brain with no terms file. The structural checks were clean apart from twelve staged but uncommitted work-item docs, stale commented-out index blocks, and heavy use of the old vocabulary. The substance checks found parents explaining what their children elaborate at two levels, and an open question that belongs to the ViewMapper agent lobe. Two counts checked against the code were slightly off. The unlisted term pass proposed "catalog", where the manifesto's naming convention contradicts Trino's usage in the other lobes, and "finding", the collision the toolkit had already harvested for itself.
+
+The run exposed two more gaps. The check's candidate filter deferred to the target's own admission rule, which a brain without a terms file doesn't have, so strictly nothing could be proposed. And old pattern words collided with their ordinary senses inside the brain: "component" names a lobe in the entrypoint and a software part in ViewZoo's design. The one-term pass would propose that as a candidate while vocabulary alignment already recommends the rename that resolves it.
+
+## Fixes to the two gaps
+
+Rob asked for both to be fixed. A brain with no terms file is now judged against the rules in `templates/ENFORCED_TERMS.md`. A collision on an old pattern word is reported under the vocabulary-alignment check, whose rename resolves it, and not as a candidate. Claude put that sentence in the vocabulary check rather than the term check, so the instruction never points ahead to a later section.
+
+## Lessons
+
+- Each dry run against a different kind of brain found gaps the previous one could not. The adopting brain tested the listed-term path, and the virtual-view brain tested the multi-lobe layout and the path with no terms file.
+- Reading the knowledge documents together is where the most valuable results came from: the permissions-boundary collision, the contradicted credential claim, and the parents restating their children. Greps did not surface any of them.
+- How much the unlisted pass costs depends on the brain's size. It was heavy at about 220KB and cheap at about 74KB.
