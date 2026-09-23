@@ -1,6 +1,7 @@
 # mini-brain-toolkit 🧠
 
 [![Claude Code](https://img.shields.io/badge/Built%20with%20Claude%20Code-6366f1?logo=claude&logoColor=white)](https://claude.ai/code)
+[![Contributing](https://img.shields.io/badge/contributions-welcome-green.svg)](https://github.com/robfromboulder/mini-brain-toolkit/blob/main/CONTRIBUTING.md)
 [![License](https://img.shields.io/github/license/robfromboulder/mini-brain-toolkit)](https://github.com/robfromboulder/mini-brain-toolkit/blob/main/LICENSE)
 
 Using a **mini-brain** with your codebase helps you iterate and triage faster, and gives Claude better context to make changes autonomously. This free toolkit provides agentic tools for creating and improving mini-brains.
