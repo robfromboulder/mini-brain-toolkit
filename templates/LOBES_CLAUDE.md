@@ -72,7 +72,7 @@ Match a question's terms against **Routes on** to choose a lobe *before* reading
 **Maintenance-doc boundaries.** Any procedure that appends a log entry cites `<HUB>_SESSION_CLOSEOUT.md` as the entry-format authority. Beyond that, `<HUB>_DREAM_CYCLE.md` references no other maintenance doc, and `<HUB>_WORK_SETUP.md` / `<HUB>_WORK_CLOSEOUT.md` are bookends that may reference each other, but only by that relationship.
 -->
 
-**Version header.** Every canonical document opens with `> V<N>, YYYY-MM-DD.` — version and date, nothing else. **No change note in this line.** If a file needs a description, put it on its own line below. Bump `<N>` by one on each substantive edit (numerically — `V10` > `V9`) and set the date. This applies to `CLAUDE.md` itself. Exempt: `README.md`, `*_LOG.md` files, and `*_BURNDOWN.md` checklists.
+**Version header.** Every canonical document opens with `> V<N>, YYYY-MM-DD.` — version and date, nothing else. **No change note in this line.** If a file needs a description, put it on its own line below. Bump `<N>` by one on each substantive edit (numerically — `V10` > `V9`) and set the date. This applies to `CLAUDE.md` itself. Exempt: `README.md`, `CONTRIBUTING.md`, `*_LOG.md` files, and `*_BURNDOWN.md` checklists.
 
 **Classify every edit:** *editorial* (typos, rewording) — edit in place, don't bump `<N>`, may update date; *substantive* (facts, decisions, scope, structure) — set the version line to `> V<N+1>, <today's date>.` No change note in the line.
 
