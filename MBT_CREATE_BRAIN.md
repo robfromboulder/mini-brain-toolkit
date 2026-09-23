@@ -1,6 +1,6 @@
 # Mini-Brain Toolkit: Create a New Mini-Brain
 
-> V22, 2026-09-22.
+> V23, 2026-09-22.
 
 This document is the procedure for standing up a new mini-brain from `templates/`.
 
@@ -20,7 +20,6 @@ Before creating anything, settle these with the user. Establishment turns a deci
 - **Location** — the repo (principle 2: the brain is its own repository, not a folder inside a project repo). Convention is a sibling repo named `mini-<project>-brain`, so a coding session in a project repo can load it with `Read ../mini-<project>-brain/CLAUDE.md for instructions`.
 - **Project repos (optional)** — the repos whose coding sessions should load the brain. Each gets the hook merged into its `CLAUDE.md` (§4). A brand-new project may have none yet; add the hook to each repo as it appears — this procedure is safe to re-run. In a multi-lobe brain, note which lobe each repo maps to; its hook names that lobe.
 - **Source material (optional)** — existing docs the SCOPE/APPROACH will be distilled from (design docs, PRDs, tickets, prior wikis). If they exist, they go in `archive/` as source, not into the canonical docs verbatim.
-- **Platforms (optional)** — if the project targets more than one platform that will need platform-specific docs later, note it now; it affects the namespace layering (`<PLATFORM>_<LOBESPACE>_*` etc.) but not the seed. Platforms are one problem delivered across several targets; targets holding different problems are the lobes question above.
 
 Don't gather more than this for a seed.
 

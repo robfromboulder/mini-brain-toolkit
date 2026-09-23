@@ -54,7 +54,7 @@ Mostly opaque and machine-managed; they validate the episodic→semantic shape b
 
 ## 3. Academic reflection / memory
 
-The seminal mechanisms our dream cycle echoes. The field has an ICLR 2026 workshop (MemAgents, 110+ submissions). These are mostly **static** (papers) — the recurring work is finding *new* ones, not re-reading these.
+The seminal mechanisms our dream cycle echoes. The field has an ICLR 2026 workshop (MemAgents, 110+ submissions). These are mostly **static** (papers) — the recurring work is discovering *new* ones, not re-reading these.
 
 | System | Type | Canonical source | Verified | Known state | Relevance & change signal |
 |---|---|---|---|---|---|

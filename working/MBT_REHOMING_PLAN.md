@@ -2,20 +2,20 @@
 
 ## Objective
 
-Settle what happens when a work item outgrows the unit it was opened in: it does not move. The item retires as superseded and re-opens in the correct unit. Deliver the policy statement and the one procedure change it needs — a supersede retirement in work closeout.
+Settle what happens when a work item outgrows the lobe it was opened in: it does not move. The item retires as superseded and re-opens in the correct lobe. Deliver the policy statement and the one procedure change it needs — a supersede retirement in work closeout.
 
-Landable whenever wanted. It needs no living example and no particular hierarchy depth, because it removes a procedure rather than adding one — there is no ancestor walk to get wrong and no token rename to verify.
+Landable whenever wanted. It needs no living example and no particular hierarchy depth, because it removes a procedure rather than adding one — there is no ancestor walk to get wrong and no lobespace rename to verify.
 
 ## Context
 
 See `MBT_REHOMING_FINDINGS.md` in this directory for the decision record and alternatives considered.
 
-`MBT_COMPONENTS.md` carries the placement rule a supersession corrects, and the token-ownership rules that decide the successor's document names.
+`templates/WORK_SETUP.md` settles the owning lobe at intake — the placement a supersession corrects. `MBT_LOBES.md` carries the nearest-common-ancestor rule that placement applies, and the lobespace-ownership rule that decides the successor's document names.
 
 ## What changes
 
 - `templates/WORK_CLOSEOUT.md` — a second retirement reason in its retire step: superseded rather than concluded. Archive the working documents without folding their findings, merge the log entries as normal, and record the successor's slug.
-- `templates/WORK_SETUP.md` — the intake step states that an item stays in its opening unit for life and that a corrected owner means opening a successor. The audit reports a same-slug item in another unit as a probable predecessor rather than as an error.
+- `templates/WORK_SETUP.md` — the intake step states that an item stays in its opening lobe for life and that a corrected owner means opening a successor. The audit reports a same-slug item in another lobe as a probable predecessor rather than as an error.
 - `templates/work/FINDINGS.md` — a predecessor line, filled only when the item supersedes another.
 
 ## Interaction with existing docs
@@ -23,14 +23,14 @@ See `MBT_REHOMING_FINDINGS.md` in this directory for the decision record and alt
 | Existing doc | Interaction | Risk |
 |---|---|---|
 | `templates/WORK_SETUP.md` | Setup runs twice for one line of work — once for the item, once for its successor | The successor is scaffolded as a fresh item with no link back, and the predecessor's reasoning is silently orphaned |
-| `MBT_COMPONENTS.md` | Its intake rule settles the owning unit; a supersession is that rule being applied again with better information | The policy reads as licensing careless first placement, when it makes good placement worth more |
-| `templates/SESSION_CLOSEOUT.md` | A session that spans the supersession concerned both units | Its entry routes to the successor's unit by default rather than to the ancestor its work actually reached |
+| `MBT_LOBES.md` | Its nearest-common-ancestor rule is what setup applies to settle the owning lobe; a supersession is that rule applied again with better information | The policy reads as licensing careless first placement, when it makes good placement worth more |
+| `templates/SESSION_CLOSEOUT.md` | A session that spans the supersession concerned both lobes | Its entry routes to the successor's lobe by default rather than to the ancestor its work actually reached |
 
 ## Testing approach
 
-Simulate one supersession on a disposable copy of a two-level component brain — no fixture tree is needed, since the policy has no ancestor walk to exercise. Open an item in a child unit, supersede it into the parent, and verify four things: the archived documents kept their findings unfolded, the successor names its predecessor, the log entries landed in the *original* owner's canonical log under their original session IDs, and setup at the new home reports the predecessor rather than a clean slate.
+Simulate one supersession on a disposable copy of a two-level multi-lobe brain — no fixture tree is needed, since the policy has no ancestor walk to exercise. Open an item in a child lobe, supersede it into the parent, and verify four things: the archived documents kept their findings unfolded, the successor names its predecessor, the log entries landed in the *original* owner's canonical log under their original session IDs, and setup at the new home reports the predecessor rather than a clean slate.
 
-Then run the check procedure on the result; acceptance is a clean structural pass with both items visible in their respective units.
+Then run the check procedure on the result; acceptance is a clean structural pass with both items visible in their respective lobes.
 
 ## Implementation sequence
 
@@ -42,8 +42,8 @@ Then run the check procedure on the result; acceptance is a clean structural pas
 ## Scope boundary — what this does NOT include
 
 - Any move procedure. The policy exists to remove the need for one.
-- How intake derives the owning unit in the first place.
-- The component dream cycle and cross-repository migrations, which are their own work items.
+- How intake derives the owning lobe in the first place.
+- The multi-lobe dream cycle and cross-repository migrations, which are their own work items.
 
 ## Open issues
 

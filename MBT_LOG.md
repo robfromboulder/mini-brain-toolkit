@@ -947,3 +947,33 @@ After PR #9 merged, Rob asked whether the title "Mini-Brain Files" in `CLAUDE.md
 - **Name the role, not the contents.** Claude recommended narrowing. The file holds the read index and the conventions, not the brain's files, so any title naming "files" misleads. Claude proposed "Entrypoint" over "Main Instructions" because `MBT_PATTERN.md` already defines the file by that name, and a second name for the same file would add vocabulary. Rob chose "Entrypoint".
 - **Retitle the templates too.** The old title came from the two entrypoint templates, so leaving them alone would have seeded every new brain with it. Rob agreed to change all three together.
 - **Editorial, not substantive.** A retitle is a rewording, so no version was bumped. A code review of PR #10 found no dependency on the old title in any procedure.
+
+---
+
+# Self-check before 0.70 — platform split struck, check made conversational, work items modernized (2026-09-22)
+
+**Session ID**: `8d062424-d106-4c82-9656-f34b615828d0`
+
+Rob's session, with Claude as co-author. Rob asked for the toolkit to be checked as a brain using its own `MBT_CHECK_BRAIN.md`, as the last gate before tagging 0.70, with any serious observation to be resolved first. The check found the structure clean and two contradictions in the pattern itself. Both were resolved, along with most of the minor issues, on one branch.
+
+## Turn by turn
+
+- Claude ran the check procedure end to end. Read index, version headers, lobespace prefixes, declared reference exemptions and log session IDs all passed. Scored at stage 3, principle 9 came out partial and principle 10 overdue: the only dream cycle on record ran on 2026-07-28.
+- Two issues were ranked serious. First, the pattern sanctioned `<PLATFORM>_<LOBESPACE>_*` filenames, while principle 6, the check's namespace test, the dream cycle's namespace test and lobe ownership all require the lobespace to lead — a brain following the pattern failed its own checker. Second, SCOPE and APPROACH called the check observe-only while the check's vocabulary walkthrough edited the target on opt-in.
+- Lesser issues: the dream cycle claimed the toolkit runs no work-item closeout on itself, though five closed items sit in `archive/`; the four parked work items in `working/` predated the lobe rename and cited `MBT_COMPONENTS.md`; one old log entry had been edited to drop an exemplar's name; a FINDINGS entry repeated APPROACH; "finding" appeared as a verb in `MBT_CHECK_BRAIN.md` and `MBT_COMPARABLES.md`; SCOPE's dogfooding goal still aimed at content stage.
+- Rob struck the platform split as a semi-breaking change between 0.6x and 0.7x. Only one brain uses it, and that brain will remap its platforms as lobes. Implementing it surfaced a third home the check had missed — the platform paragraph and migration row in `MBT_LOBES.md`, whose lowercase "platform" an uppercase grep didn't match. Claude removed the row too, on the precedent that retired TASKS, and flagged that as reversible.
+- Rob resolved the observe-only contradiction by design rather than wording: the check is a conversation for a user who asked whether their brain needs modernizing; the dream cycle is autonomous and leaves its results in the dream log. SCOPE gained a goal for unattended upkeep and lost the open question on whether assessment may change the target; APPROACH states the pairing; the check gained a walk-through step after its report. Claude also changed the dream cycle and its template, since two user touchpoints — reporting a stop to the user, and asking for an unknown model or effort — would otherwise contradict APPROACH.
+- The four work items were rewritten in lobe vocabulary against current references, and `COMPONENT_DREAM` became `MULTI_LOBE_DREAM`, safe because it had no log or branch. Two stale premises were corrected in passing: the dream template's leakage check no longer flags child canonical files, and the extraction row is now marked incomplete.
+- Rob asked whether striking a concept earns a FINDINGS entry. Claude's view: yes, because an absence doesn't explain itself and the reorder alternative is the obvious re-proposal, but the draft restated the TASKS lesson and carried project detail. Rob took the trimmed version.
+
+## Decisions
+
+- **Platform split struck, migration row included** — Rob's call on the split; the row followed the TASKS precedent that a young pattern forgets rather than carrying a rule to migrate away.
+- **Check conversational, dream cycle unattended** — Rob. The two workflows examine the same brain from opposite ends and should not converge.
+- **Left alone:** the redacted log entry, the machine-specific session-ID example path, and the cross-reference checks skipping `working/` — Rob prefers that last one as its own phase.
+- **No dream cycle this session** — Rob will run the first 0.70 cycle separately, as a dry run with other verifications.
+
+## Lessons
+
+- A term grep for a concept being struck must be case-insensitive: the uppercase placeholder grep found two homes and missed the prose third.
+- A rename sweep that stops at canonical docs strands the parked work items in `working/`, and neither procedure's cross-reference check covers them.
