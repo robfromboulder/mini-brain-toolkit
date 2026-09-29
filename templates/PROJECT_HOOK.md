@@ -1,8 +1,10 @@
-<!-- Mini-brain hook: merge the section below into each project repo's CLAUDE.md (create the file if the repo has none — never overwrite an existing one). Substitute <project> and <HUB>, and adjust the relative path if the brain's clone sits elsewhere or under another name. If the brain is multi-lobe, also uncomment the lobe paragraph and fill `<Lobe>`, `<dir>`, and `<LOBESPACE>` for the lobe this repo maps to. -->
+<!-- Mini-brain hook: merge the section below into each project repo's CLAUDE.md (create the file if the repo has none — never overwrite an existing one). Substitute <project> and <HUB>, and adjust the clone's name or location if it sits elsewhere or under another name. If the brain is multi-lobe, also uncomment the lobe paragraph and fill `<Lobe>`, `<dir>`, and `<LOBESPACE>` for the lobe this repo maps to. -->
 
 ## Working in the mini-brain
 
-**When the user says "mini brain", "mini-brain", or "work item"** — pull `../mini-<project>-brain/` to latest (it's a shared repo), then read its `CLAUDE.md` and follow it (sibling clone; if absent, tell the user to clone it beside this repo). Drive the whole workflow from *this* session — never make the user switch repos — and resolve its instructions' relative paths against `../mini-<project>-brain/`. Nothing else loads the brain.
+The mini-brain is the `mini-<project>-brain` clone beside this repo's main checkout, and the main checkout is the parent of `git rev-parse --path-format=absolute --git-common-dir`. Resolve it that way, not from the working directory: in a git worktree, `../` lands beside the worktree instead.
+
+**When the user says "mini brain", "mini-brain", or "work item"** — pull the mini-brain to latest (it's a shared repo), then read its `CLAUDE.md` and follow it (if the clone is absent, tell the user to clone it beside the main checkout). Drive the whole workflow from *this* session — never make the user switch repos — and resolve its instructions' relative paths against the clone. Nothing else loads the brain.
 
 <!-- Multi-lobe brains only — name the lobe this repo maps to:
 
