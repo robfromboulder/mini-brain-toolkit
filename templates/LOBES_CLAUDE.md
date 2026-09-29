@@ -17,7 +17,7 @@ All paths are relative to this repo root (`CLAUDE.md`'s directory). Before readi
 | Problem definition, the world it exists in, goals — the system as a whole | `<HUB>_SCOPE.md` |
 | How the lobes compose, and the decisions spanning them | `<HUB>_APPROACH.md` |
 | Findings that cross lobes (invisible from code) | `<HUB>_FINDINGS.md` |
-| Session log for hub work and sessions that crossed lobes | `<HUB>_LOG.md` (read from last `---`; large) |
+| Session log for hub work and work that crossed lobes | `<HUB>_LOG.md` (read from last `---`; large) |
 | Session log update format and rules | `<HUB>_SESSION_CLOSEOUT.md` (read when asked to update a session log) |
 
 These are the current hub documents. Child lobes' documents are **resolved** from the grammar and registry below rather than listed — a document not derivable that way does not exist.
@@ -86,7 +86,7 @@ Match a question's terms against **Routes on** to choose a lobe *before* reading
 
 **An open question belongs to exactly one lobe: the one whose work would resolve it.** The same question standing in a parent and a child means neither owns it, and both copies will drift as the answer develops. Ask which lobe's session would close the question, and put it there.
 
-**Log routing** is the same rule applied to lineage. A session logs to the nearest common ancestor of the lobes its work concerned — not every lobe it read: one that worked inside a single lobe logs there, one whose work crossed lobes logs above them, however far apart in the tree they sit.
+**Log routing** is the same rule applied to lineage. Lineage that no work item owns logs to the nearest common ancestor of the lobes its work concerned — not every lobe the session read: work inside a single lobe logs there, and work that crossed lobes logs above them, however far apart in the tree they sit.
 
 **Declared reference exemptions.** Orthogonality is the default and it is strict: a knowledge file names *no* sibling and stands on its own. A cross-file reference exists only where an exemption is declared, and an exemption may only point *upstream* — toward the problem a file serves — never *downstream* toward how it was built. A downstream reference is never exemptable; that invariant is what stops content bleed-through. Stated per doctype, so this table stays the same size at any lobe count or depth:
 

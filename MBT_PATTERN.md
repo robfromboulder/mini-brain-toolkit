@@ -1,6 +1,6 @@
 # Mini-Brain Toolkit: The Mini-Brain Pattern
 
-> V21, 2026-09-22.
+> V22, 2026-09-29.
 
 This document is the operational definition of a mini-brain: what it *is*, the file set it's made of, and the lifecycle that keeps it true and small.
 
@@ -89,7 +89,7 @@ Brains whose knowledge divides into several lobes — where one SCOPE cannot sta
 
 ## 4. The lifecycle
 
-- **A session** usually runs in a project repo, where the hook loads the brain on demand; it starts by reading `CLAUDE.md` and only the indexed files the question needs. At a natural stopping point — a PR opened, work paused, the user wrapping up — the agent offers a closeout, and (when there's durable lineage worth keeping) appends one entry to the LOG per `<LOBESPACE>_SESSION_CLOSEOUT.md`.
+- **A session** usually runs in a project repo, where the hook loads the brain on demand; it starts by reading `CLAUDE.md` and only the indexed files the question needs. At a natural stopping point — a PR opened, work paused, the user wrapping up — the agent offers a closeout, and (when there's durable lineage worth keeping) appends an entry to each log its lineage routes to, per `<LOBESPACE>_SESSION_CLOSEOUT.md`.
 - **A work item** — a feature, bug fix, or hardening effort — opens with `WORK_SETUP`, runs across sessions logging to its own `<LOBESPACE>_<WORK>_LOG.md`, and closes with `WORK_CLOSEOUT`.
 - **Maintenance** runs on a cadence via `DREAM_CYCLE`: verify SCOPE's factual claims against the code, refresh APPROACH's external assumptions, promote LOG entries into FINDINGS, prune what's now re-derivable, and flag anything that needs human judgment.
 

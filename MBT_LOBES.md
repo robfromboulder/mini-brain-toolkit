@@ -1,6 +1,6 @@
 # Mini-Brain Toolkit: The Multi-Lobe Layer
 
-> V10, 2026-09-22.
+> V11, 2026-09-29.
 
 This document is the layout convention for a mini-brain whose knowledge divides into several lobes. It is opt-in: a brain with one problem never uses it, and the file set in `MBT_PATTERN.md` applies unchanged.
 
@@ -66,7 +66,7 @@ Seeding creates the full doctype set for every child lobe, so the grammar never 
 
 **An open question belongs to exactly one lobe: the one whose work would resolve it.** The same question standing in a parent and a child means neither owns it, and both copies will drift as the answer develops. Ask which lobe's session would close the question, and put it there.
 
-**Log routing** is the same rule applied to lineage. A session logs to the nearest common ancestor of the lobes its work concerned — not every lobe it read: one that worked inside a single lobe logs there, one whose work crossed lobes logs above them, however far apart in the tree they sit.
+**Log routing** is the same rule applied to lineage. Lineage that no work item owns logs to the nearest common ancestor of the lobes its work concerned — not every lobe the session read: work inside a single lobe logs there, and work that crossed lobes logs above them, however far apart in the tree they sit.
 
 **Declared reference exemptions**, stated per doctype so the table stays fixed-size at any lobe count or depth:
 
