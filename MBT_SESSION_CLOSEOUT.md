@@ -16,7 +16,7 @@ Governs session log entries in both `MBT_LOG.md` and any work item's `working/MB
 
 When a part could belong to more than one open item, ask rather than guess. A part owned by an item this session folds into the canonical docs goes to `MBT_LOG.md`: the item's working log is merged and moved to `archive/` in that same pass, so a fresh entry there would land in `archive/` unmerged.
 
-**Several targets.** Write one entry per target log, each covering only the parts routed to it. A finding or decision that spans several items is stated in full once, in `MBT_LOG.md`, without consulting the signals above. Its consequence for each affected item routes to that item's log as a part of its own, so every affected item gets an entry, and that entry states only the consequence. An item that was only mentioned, with nothing routed to it, gets no entry.
+**Several targets.** Write one entry per target log, each covering only the parts routed to it. A finding or decision that spans several items is stated in full once: in the log the user names, else in `MBT_LOG.md` — the content signal doesn't apply to it. Its consequence for each affected item is a part of its own, routed by the rules above, and states only the consequence. An item that was only mentioned, with nothing routed to it, gets no entry.
 
 **Reading** (never read these large files in full): `grep -n '^---$' <log-file> | tail -1` gives the last separator's line `L`; read from `offset` `L`.
 
