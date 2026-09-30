@@ -14,9 +14,9 @@ Knowledge files in this mini-brain are `<LOBESPACE>_`-namespaced. This conventio
 
 ## Usage
 
-#### 1. Use <project> knowledge from a sibling repo directory:
+#### 1. Use <project> knowledge from a project repo or any of its worktrees:
 
-> Read ../mini-<project>-brain/CLAUDE.md for instructions
+> Read CLAUDE.md in the mini-<project>-brain clone beside this repo's main checkout, for instructions
 
 #### 2. Save notes about this Claude session:
 
