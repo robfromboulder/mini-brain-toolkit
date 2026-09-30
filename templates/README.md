@@ -20,4 +20,4 @@ Knowledge files in this mini-brain are `<LOBESPACE>_`-namespaced. This conventio
 
 #### 2. Save notes about this Claude session:
 
-> Read <HUB>_SESSION_CLOSEOUT.md and append to <HUB>_LOG.md
+> Read <HUB>_SESSION_CLOSEOUT.md and append this session to the logs it routes to
