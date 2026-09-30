@@ -14,7 +14,7 @@ Governs session log entries in both `MBT_LOG.md` and any work item's `working/MB
 2. **Session content** — the part's work advances an open work item: its `working/MBT_<WORK>_*` docs or the change they track.
 3. **No match** — append to `MBT_LOG.md`.
 
-When a part could belong to more than one open item, ask rather than guess. A part owned by an item this session folds into the canonical docs goes to `MBT_LOG.md`: the item's working log is merged and moved to `archive/` in that same pass, so a fresh entry there would land in `archive/` unmerged.
+When a part belongs to a single open item but could be any of several, ask rather than guess. A part owned by an item this session folds into the canonical docs goes to `MBT_LOG.md`: the item's working log is merged and moved to `archive/` in that same pass, so a fresh entry there would land in `archive/` unmerged.
 
 **Several targets.** Write one entry per target log, each covering only the parts routed to it. A finding or decision that spans several items is stated in full once: in the log the user names, else in `MBT_LOG.md` — the content signal doesn't apply to it. Its consequence for each affected item is a part of its own, routed by the rules above, and states only the consequence. An item that was only mentioned, with nothing routed to it, gets no entry.
 
