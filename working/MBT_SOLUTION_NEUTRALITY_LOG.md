@@ -94,3 +94,28 @@ Rob's session, with Claude as co-author, continued after the first closeout. Rob
 ## Open
 
 - The child-lobe premise rule is not yet in the check procedure or the lobes layout.
+
+---
+
+# The child-lobe rule added to the draft PR (2026-10-26)
+
+**Session ID**: `dd0841d2-58d8-4a67-a9fa-ba8cf136e1be`
+
+Rob's session, with Claude as co-author, continued after the second closeout. Rob asked for the child-lobe premise rule, settled during the multi-lobe check and left open at the last closeout, to be added to the toolkit's draft PR. It landed in the lobes layout and both procedures.
+
+## Turn by turn
+
+- Rob asked for the rule to be added to the draft PR. Claude put it in three places:
+  - **The lobes layout:** the rule itself, beside the lobe test. A child's problem often exists because of how its parent chose to answer, so its problem statement names each parent choice it takes as given. Those choices belong to the child's problem.
+  - **The check:** the premise step counts those choices among a child's premises, and reports an unnamed one as an addition.
+  - **The create procedure:** a parent's SCOPE and APPROACH now settle before the child's SCOPE, not just the parent's SCOPE.
+- Claude kept the rule worded so that a child names its parent's choices in its own words. The lobes layout lets a child's SCOPE cite only its parent's SCOPE, never its APPROACH, so the rule could not have the child point at the parent's design.
+- Only the lobes layout took a version bump; both procedures were already bumped in the same unmerged PR. The PR description was updated to list the change and the check it came from.
+
+## Decisions
+
+- **The rule's home is the lobes layout, and the procedures apply it** — Claude, so the rule is stated once.
+
+## Open
+
+- None from this session. The open item recorded at the last closeout is resolved.
