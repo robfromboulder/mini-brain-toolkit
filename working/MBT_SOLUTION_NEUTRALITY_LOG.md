@@ -51,3 +51,46 @@ Rob's session, with Claude as co-author. It set out to review the work item's pl
 - A check that cannot settle premises with the user produces verdicts that depend on the reader. Asking first is what made the dry runs converge.
 - When the user makes a premise a choice, a second approach that still shares it tests nothing at that level, so test that level against an alternative that doesn't share it.
 - Reasons for exclusions often exist only in the owner's head. The check can find a boundary with no reason, but only the owner can say whether its reason is in the problem or the design.
+
+---
+
+# A multi-lobe check, and the calibration brains left as dry runs (2026-10-26)
+
+**Session ID**: `dd0841d2-58d8-4a67-a9fa-ba8cf136e1be`
+
+Rob's session, with Claude as co-author, continued after the first closeout. Rob had the first project brain's changes put up as a draft PR in its own repository. He then ran the check live on a multi-lobe project brain, which settled how child lobes take premises and corrected a factual claim about existing tools. Those changes went up as a second draft PR. Rob kept the remaining calibration brains as dry-run targets only, with no changes and no PRs.
+
+## Turn by turn
+
+- Rob asked for a draft PR for the first project brain. Claude matched that repository's conventions, which carry an attribution trailer and footer where the toolkit carries none. The PR leaves that brain's own log entry, recording its second approach, to its next closeout.
+- **Multi-lobe check.** Rob confirmed the query engine and the architectural pattern as premises in every lobe, and chose a build-tool workflow as the hub's second approach. He agreed that a child lobe's premises include its parent's design choices, stated in its own problem statement.
+- Claude checked two claims about other tools against public documentation before reporting them:
+  - A lobe's claim that no existing tool reconstructs its dependency graph was wrong: a data catalog's ingestion for the engine already does. The rewrite assesses catalogs instead.
+  - A claim about what durable storage requires couldn't be confirmed either way, so it waited on Rob.
+- Claude reported 27 findings across six SCOPEs, with three left to Rob:
+  - Rob placed a client-support exclusion in APPROACH, as a statement of what he tests and validates, along with two exclusions that gave no reason.
+  - He named the engine's native table-format connector as a reasonable alternative to the storage lobe, to be recommended to teams certain to run that format anyway.
+  - He also named that connector over the build tool as the stronger hub alternative, since it stays native to the engine.
+- Rob answered Claude's questions about the connector with a link to its documentation. Claude wrote only what that page and the metastore page establish, dated to the docs' version. Which catalog types hold views, what storage every catalog needs, and the JDBC catalog's caveats went in. Questions the docs leave open stayed out and were listed in the PR.
+- Rob had the multi-lobe brain's changes put up as a draft PR, following that repository's no-attribution rule.
+- Rob said the two remaining calibration brains were only for calibration and dry runs, and asked that this closeout name no projects.
+
+## Decisions
+
+- **A child lobe's premises include its parent's design choices, stated as such** — Rob.
+- **Hub second approach: an engine-native stack on the table-format connector, with the build tool also assessed** — Rob, over Claude's recommendation of the build tool alone.
+- **Client support beyond the tested one is a design limit, not a premise** — Rob.
+- **No changes or PRs for the remaining calibration brains** — Rob.
+
+## What didn't work
+
+- Asking about a connector's behavior in prose questions: Rob answered with its documentation, which settled half of them. The other half stay open, not filled in from memory.
+
+## Lessons
+
+- A check that reads every passage still trusts the scope's own claims about other tools. Verifying one claim against current documentation turned a confident "nothing exists" into an alternative to assess.
+- When a premise is a parent's design choice, the child's problem statement has to say so, or the check reads every passage that depends on it as design drift.
+
+## Open
+
+- The child-lobe premise rule is not yet in the check procedure or the lobes layout.

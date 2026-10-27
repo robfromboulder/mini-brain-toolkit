@@ -62,7 +62,7 @@ Acceptance:
 1. Revise the create rules, templates and pattern sentence. Done, three drafts.
 2. Revise the status check and add the design check. Done, three drafts.
 3. Dry-run each draft blind and fold in the critiques. Done, three rounds.
-4. Run the check cycle against each brain with its owner, as `MBT_CHECK_BRAIN.md` describes, and make the changes the owner approves. Lamarr and the toolkit done; virtual-view, guardrails and nebula remain.
+4. Run the check cycle against each brain with its owner, as `MBT_CHECK_BRAIN.md` describes, and make the changes the owner approves. Done for the toolkit and the two project brains whose owner took the changes; the other calibration brains served as dry-run targets only.
 
 ## Scope boundary — what this does NOT include
 
