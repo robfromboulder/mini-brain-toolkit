@@ -61,7 +61,7 @@ Acceptance:
 
 1. Revise the create rules, templates and pattern sentence. Done, three drafts.
 2. Revise the status check and add the design check. Done, three drafts.
-3. Dry-run each draft blind and fold in the critiques. Done, three rounds.
+3. Dry-run each draft blind and fold in the critiques. Done, six rounds: three before the live checks and three after, the last against an externally authored brain and the multi-lobe brain with its owner's premise answers.
 4. Run the check cycle against each brain with its owner, as `MBT_CHECK_BRAIN.md` describes, and make the changes the owner approves. Done for the toolkit and the two project brains whose owner took the changes; the other calibration brains served as dry-run targets only.
 
 ## Scope boundary — what this does NOT include
@@ -73,5 +73,5 @@ Acceptance:
 
 ## Open issues
 
-1. Whether the check's per-passage findings stay proportionate on a large scope. Nebula and guardrails each produce more than ten groups.
+1. Whether section- and scope-level rewrites keep the check proportionate on a large scope; the later rounds suggest they do, but no owner has yet worked through one.
 2. Whether ordering goals by impact earns its place when the evidence cannot rank them.

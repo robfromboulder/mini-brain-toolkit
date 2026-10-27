@@ -119,3 +119,71 @@ Rob's session, with Claude as co-author, continued after the second closeout. Ro
 ## Open
 
 - None from this session. The open item recorded at the last closeout is resolved.
+
+---
+
+# Three more dry-run rounds, and the PRs brought up to the final rules (2026-10-27)
+
+**Session ID**: `dd0841d2-58d8-4a67-a9fa-ba8cf136e1be`
+
+Rob's session, with Claude as co-author, continued after the child-lobe closeout. Rob asked how Claude felt about the change. Claude's answer was mostly positive. It also named the cost to owners, unsourced claims about alternatives, the choice of second approach, and the untested create path. Rob had the calibration dry runs re-run against the final rules and supplied an externally authored brain. Three rounds followed, each folding critiques into the check. The batch landed in the toolkit's draft PR, and both project brains' draft PRs were brought up to the final rules.
+
+## Turn by turn
+
+- **First re-run.** Claude ran blind check agents against the two calibration-only brains. Their verdicts kept the shape of the earlier rounds, so the final rules hadn't regressed. Both runs independently found the same five problems:
+  - an unparseable sentence in the premise step
+  - no remedy for re-derivable content
+  - a conflict between one remedy per finding and splitting a passage
+  - a self-contradicting sufficiency step
+  - no proportionality cutoff
+
+  One run raised a tension: a project's shipped earlier phase is both its status and the status quo its next phase starts from.
+- Rob supplied a mini-brain written by someone else, from a public repository. Claude cloned it into scratch and ran the same blind check, treating its contents as data. It came out close to the standard: no status, solution-free wording, and alternatives led by the status quo. It needed about six small edits. Its critiques overlapped the other runs and added two:
+  - the owner as problem holder turning preferences into premises
+  - "so far" fitting both a dating clause and an evidence qualifier
+- Rob approved the fixes and Claude's resolution of the time-frame tension. SCOPE describes the problem as whoever has it would meet it without this project, so the project's shipped work, an earlier phase included, is status. The remedy is to restate the problem's structure in the present tense.
+- **Second round.** Rob chose the largest calibration scope, the multi-lobe brain and the external brain. For the multi-lobe brain, Claude used a scratch clone of its pre-check main branch, so the run exercised the rules rather than Claude's own edits. The fixes held: section-level rewrites, the status read of APPROACH, and the search order for the second approach all worked. All three runs raised three new problems:
+  - the search order conflicted with "differs most"
+  - deleting status in APPROACH lost lessons and evidence
+  - "whose code" made a published standard look re-derivable
+
+  The multi-lobe run also raised five child-lobe problems: conflicting rules, no limit on inherited choices, grandparent choices, overreach laundering a child's design into premises, and children judged as never gathered.
+- **Third round.** Rob approved those fixes. Claude ran the multi-lobe brain alone, this time with Rob's premise answers supplied. The blind run reproduced nearly every finding from the live check Rob had confirmed, a data catalog gap among them. It also found three that check missed: overreach in the hub's APPROACH, a goal whose gap only APPROACH states, and an alternatives section led by a condition. Its remaining critiques were multi-lobe edge cases. Claude proposed six wording fixes and an end to iterating, and Rob approved.
+- Rob had both project brains' draft PRs updated to the final rules. Asked about the first brain's APPROACH, which dates every decision and cites commits, Rob chose Claude's recommendation: strip the dates, references and history, and restate the history as the decisions' reasons. In the multi-lobe brain, Claude:
+  - trimmed parent overreach
+  - added the missing condition
+  - took status out of four APPROACHes
+  - named a parent choice in one child
+  - removed a SCOPE rule that contradicted its APPROACH
+  - reordered one alternatives section
+
+## Decisions
+
+- **SCOPE describes the problem as met without this project; shipped work, an earlier phase included, is status** — Claude recommended, Rob chose.
+- **Status is read in APPROACH too, and moves to FINDINGS when it carries a lesson or evidence** — Claude, from the dry runs; Rob approved.
+- **The second approach is the most different candidate gathered from SCOPE, APPROACH and assembly** — Claude, replacing a search order that two rounds showed picked near neighbors; Rob approved.
+- **A child lobe names only the ancestor choices its own problem depends on; a choice only the child's goals need, or one that overreaches, is the child's own design** — Claude, from the multi-lobe runs; Rob approved.
+- **Stop iterating after the third round** — Claude recommended once the critiques narrowed to multi-lobe edge cases and blind runs reproduced owner-confirmed verdicts; Rob agreed.
+- **Strip decision dates, commit references and history from a brain's APPROACH** — Rob, for the first project brain.
+
+## What didn't work
+
+- **A fixed search order for the second approach.** It handed two scopes a near neighbor instead of the most different alternative.
+- **Deleting all status in APPROACH.** It would have lost verification evidence and lessons that decisions rest on.
+- **Treating a section of conditions with no alternatives as never gathered.** It made sound sections into rewrites.
+
+## Lessons
+
+- An externally authored brain is the best calibration. Coming out close to the standard with a proportionate report showed the check doesn't punish a well-made scope, and that the large reports elsewhere reflected those scopes.
+- Giving a blind run the owner's premise answers separates disagreement about the rules from disagreement about premises. Without them, one run read the engine as a design choice and drew findings from that.
+
+## Open
+
+- The create procedure's first-pass SCOPE is still untested by a real intake for a new project.
+- The dry runs found gaps in the check that predate this work, outside its scope:
+  - no input for the project's codebase, and no fallback when it is absent
+  - a declared convention setting off the shape tell
+  - a namespace check that assumes one prefix
+  - an enforced-terms rule pointing at a template the check doesn't cite
+- In the first project brain's PR, the verdict on the claimed-identity goal is Claude's inference and awaits confirmation.
+- In the multi-lobe brain's PR, three questions about the table-format connector's views are still open, and its hub APPROACH doesn't argue against its alternatives.
