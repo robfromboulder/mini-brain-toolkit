@@ -75,3 +75,4 @@ Acceptance:
 
 1. Whether section- and scope-level rewrites keep the check proportionate on a large scope; the later rounds suggest they do, but no owner has yet worked through one.
 2. Whether ordering goals by impact earns its place when the evidence cannot rank them.
+3. Whether the create procedure's first pass holds for a multi-lobe intake and a real owner; one single-lobe test intake with a simulated owner produced a neutral SCOPE.

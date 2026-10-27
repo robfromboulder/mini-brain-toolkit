@@ -187,3 +187,43 @@ Rob's session, with Claude as co-author, continued after the child-lobe closeout
   - an enforced-terms rule pointing at a template the check doesn't cite
 - In the first project brain's PR, the verdict on the claimed-identity goal is Claude's inference and awaits confirmation.
 - In the multi-lobe brain's PR, three questions about the table-format connector's views are still open, and its hub APPROACH doesn't argue against its alternatives.
+
+---
+
+# A structural pass on the check, and a test intake for the create procedure (2026-10-27)
+
+**Session ID**: `dd0841d2-58d8-4a67-a9fa-ba8cf136e1be`
+
+Rob's session, with Claude as co-author, continued after the last dry-run closeout. Asked again how Claude felt, Claude said its confidence had risen. It named the check's density, rules possibly fitted to one brain, the cost to owners, and the untested create path as what still worried it. Rob had the check restructured and the create procedure test-run on a new project, with high-confidence fixes appended to the toolkit's draft PR and nothing merged. The restructure changed no rules. The test intake produced a neutral SCOPE from a pitch with its design baked in, and its critique produced six small fixes.
+
+## Turn by turn
+
+- **Restructure.** Claude broke the status check into labeled sub-points. The design check's first and third steps got the same treatment, and its remedies became a list. Before committing, Claude checked every rule-bearing phrase against the committed version; all survived, one reworded with the same meaning. It took no version bump, since the open PR already bumps that file.
+- **Test setup.** Claude wrote a simulated owner's brief before the run began, so its answers could not be tuned to the questions: a volunteer choir coordinator whose pitch named a hosting platform, a login method, a model and a web app. A fresh agent ran the create procedure in a scratch directory, asking intake and premise questions in turns that Claude answered from the brief. Two questions fell outside the brief, and Claude gave minimal answers that did not bear on what was being tested.
+- **Result.** The agent asked whether each pitched choice was binding before writing SCOPE, and the owner said none were.
+  - The SCOPE names none of them. It leads with the status quo, assesses eight alternatives with dated figures, describes the intended design's class generically by its upkeep, and states three premises with what binds each.
+  - The goals are outcomes, the boundaries carry reasons, and the open questions concern licensing and singers.
+  - The agent's first second approach was the failed status quo. The owner's answer redirected it to a hand-assembled per-part send.
+- **Fixes.** Claude read the SCOPE itself before taking the agent's critique, and appended six fixes:
+  - intake collects the author's name
+  - premises are settled in a round of their own once the seed exists
+  - a stated preference is a goal when it concerns an outcome and a choice when it concerns the design, in the check too
+  - the second approach is confirmed with the user and falls back to the status quo only when nothing else exists, matching the check
+  - the intended design's own class is assessed generically among the alternatives, in the procedure and the SCOPE template
+
+  Claude left lower-confidence items alone: version bumps for an unpublished first version, a fact check with no codebase, a log entry with no session ID, a fixed repository name in the README template, and tracing premises in APPROACH.
+- Claude mistakenly launched an empty agent while resuming the test, and it did nothing. A request to resend a message also paused the test agent mid-research until Claude released it.
+
+## Decisions
+
+- **Restructure without changing rules, verified phrase by phrase** — Claude, at Rob's direction.
+- **Fix the create procedure only where the test was unambiguous, without merging** — Rob set the bar; Claude chose the six fixes.
+
+## Lessons
+
+- Fixing a simulated owner's answers before the run is what makes a create test meaningful. Answers written after seeing the questions would test the tester.
+- The intended design's own class is the most direct route for a design into SCOPE. Assessing it generically, by what it requires, kept the pitched choices out.
+
+## Open
+
+- The create procedure's first pass is now tested by one intake, on a single-lobe project with a simulated owner. A multi-lobe intake and a real owner remain untested.
