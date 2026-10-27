@@ -2,62 +2,76 @@
 
 ## Objective
 
-Make the create procedure produce a solution-neutral SCOPE on the first pass, so the problem statement never needs a developer's nudge to shed the chosen design. Deliver four things: a state-of-the-problem rule that leads with alternatives and admits only conditions binding every approach, a second-approach test applied while authoring, goals that answer the gaps the alternatives leave, and a check that catches a SCOPE that has drifted into design.
+Tighten the instructions that divide SCOPE from APPROACH, so the create procedure produces a solution-neutral SCOPE on the first pass and the check procedure catches a SCOPE that carries its design's choices. Then run the revised check against every existing brain and improve each one's SCOPE/APPROACH split with its owner.
 
-Landable now. The evidence is one brain, but the defect traces to the toolkit's own wording rather than to that brain's source material, so every brain seeded from the current rule is exposed to it.
+The standard is the better line, not the common denominator of the brains it was calibrated on: every one of them fails the revised check somewhere.
 
 ## Context
 
 See `MBT_SOLUTION_NEUTRALITY_FINDINGS.md` in this directory for the decision record and alternatives considered.
 
-The evidence is `lamarr-brain`: its SCOPE as seeded from `MBT_CREATE_BRAIN.md` V24 (commit `62f5627`), the restructure that made it neutral (commit `88496f7`), and its session log entry for 2026-10-23, which records the developer's correction and the test that drove it.
+The evidence is `lamarr-brain`: its SCOPE as seeded under `MBT_CREATE_BRAIN.md` V24 (commit `62f5627`), the developer's restructure (commit `88496f7`), and its session log entry for 2026-10-23. The calibration set is `virtual-view-brain`, `lamarr-brain`, `mini-nebula-brain`, `mini-guardrails-brain` and this toolkit.
 
 ## What changes
 
-- `MBT_CREATE_BRAIN.md`, SCOPE rule on the state of the problem — the section leads with the alternatives a person with the problem would weigh: what each offers, its tradeoffs, and its chief complaints on cost, complexity, security and what it asks of the people involved. A fact about the environment stays only if it binds every plausible approach. Facts about a platform the design picks, and holdings that select which users the design targets, go to APPROACH. The status test stays as it is.
-- `MBT_CREATE_BRAIN.md`, new SCOPE rule — before authoring, name one approach materially different from the intended one. Every sentence in SCOPE must be equally useful to a designer of either.
-- `MBT_CREATE_BRAIN.md`, SCOPE rule on goals — each goal answers a gap or complaint the state of the problem names, and each gap the project takes on has a goal. Goals are ordered by impact on whoever has the problem.
-- `MBT_CREATE_BRAIN.md`, read-back pass over the scopes — the question "would it still hold if the design had gone another way?" becomes "would a different approach still need it?"
-- `MBT_CREATE_BRAIN.md`, APPROACH paragraph — its list of sections names the platform section below.
-- `templates/SCOPE.md`, comments on §2 and §3 — mirror the revised rules.
-- `templates/APPROACH.md` — an optional Platform section after the strategic approach: what the chosen platform requires, provides and withholds.
-- `MBT_CHECK_BRAIN.md`, substance checks — a "SCOPE drifted into design" check beside the status-drift check. It applies the second-approach test to the state of the problem and the goals, and reports a section that fails as a rewrite.
-- `MBT_PATTERN.md`, file-set description — the demarcation as two questions: whether a different approach could reuse a piece of content separates SCOPE from APPROACH, and whether it shaped the design separates APPROACH from FINDINGS.
+- `MBT_CREATE_BRAIN.md`, the SCOPE paragraph:
+  - **Definitions.** Choices and premises are defined: a choice is anything a reasonable designer could decide otherwise. A premise is something the problem holder brings, and something they already have is a premise only when the problem requires every approach to use it.
+  - **Premises.** Premises are settled with the user and stated in the problem statement.
+  - **The second approach.** It is named before writing: the most different alternative to the whole design that honors the premises, assessed in SCOPE. A premise it shares with the intended design is tested against an alternative that does not share it.
+  - **Seven rules:**
+    - The state of the problem leads with the alternatives, the status quo and doing it by hand among them, described by structure and dated where they carry figures.
+    - Status has no place in any section of SCOPE.
+    - Every boundary carries the problem's reason.
+    - Goals answer gaps and are stated in terms any approach can be judged against.
+    - Open questions are about the problem.
+    - Source material carries its own shape (kept as is).
+    - Evidence is reported at its strength (kept as is).
+- `MBT_CREATE_BRAIN.md`, the rest:
+  - **APPROACH.** It opens with the choices SCOPE leaves open, argues against the alternatives SCOPE assesses with the second approach among them, and states undecided decisions as open.
+  - **Read-back pass.** It asks whether that scope's second approach would still need each claim.
+  - **Closeout.** The closeout's LOG entry records the second approach.
+- `MBT_CHECK_BRAIN.md`:
+  - **Status drift.** The check reaches every section and names status's hiding places. It defines "the project" and reports status as a deletion.
+  - **New check: "SCOPE drifted into design".** It runs in three steps: settle the premises and the second approach with the user, read as that approach's designer, then read for sufficiency. It names its remedies (delete, move, rewrite, reorder, add, user), and the report section names the new failure.
+- `templates/SCOPE.md` and `templates/APPROACH.md`: the comments mirror the rules.
+- `MBT_PATTERN.md`, the file-set description: what divides SCOPE from APPROACH is whether a different approach could reuse a piece of content.
 
 ## Interaction with existing docs
 
 | Existing doc | Interaction | Risk |
 |---|---|---|
-| `MBT_CREATE_BRAIN.md` status rule | The status test and the relevance test guard different drifts and share one section | Merging them into one rule loses the status test, which still catches the changelog scope |
+| `MBT_CREATE_BRAIN.md` status rule | Kept, widened to every section, and keyed to this project's releases | A market-led scope reads competitors' changes as status unless the test names the project |
 | `templates/SCOPE.md` comments | They restate the create procedure's rules | Changing one without the other is the divergence the dream cycle's teaching-artifact check exists to flag |
-| `MBT_DREAM_CYCLE.md` and `templates/DREAM_CYCLE.md` | A market-led state of the problem carries prices and product claims that date | The dream cycle checks SCOPE against code and refreshes only APPROACH's external assumptions, so dated market figures in SCOPE go unrefreshed |
-| `MBT_CHECK_BRAIN.md` status-drift check | A competitor's release changes market prose, which the status test reads as project status | The two checks contradict each other on every market-led scope unless the status test names the project's own releases |
-| Brains seeded under the current rule | The new check flags their scopes | The check reports a rewrite that the brain's owner did not ask for and may not want |
+| `MBT_DREAM_CYCLE.md` and `templates/DREAM_CYCLE.md` | A market-led state of the problem carries claims about other products | Structural description and dated figures keep them from going stale unseen; the dream cycle is unchanged |
+| Brains seeded under the current rules | Every calibration brain fails the new check somewhere | Its owner decides each finding; nothing is rewritten unasked |
 
 ## Testing approach
 
-Re-seed `lamarr-brain`'s SCOPE and APPROACH from its archived design treatment in a fresh session that follows the revised procedure, with no developer nudging. Then run the revised check against the SCOPE at `62f5627`, the SCOPE at `88496f7`, and `MBT_SCOPE.md`.
+Blind dry runs in scratch copies, by fresh agents that see only the procedure and the target, iterated until the critiques stop changing the verdicts:
 
-Acceptance has four parts. The re-seeded SCOPE names no macOS or Messages internals and leads with the alternatives. Each of its goals traces to a gap it names. The check flags the scope at `62f5627` and passes the one at `88496f7`. The check also passes `MBT_SCOPE.md`, which shows the market framing does not misfire on a project without a commercial market.
+- **Check runs** against all five brains, with lamarr at both `62f5627` and HEAD.
+- **Re-author runs** of lamarr from its seeded SCOPE and APPROACH, and of the VV hub.
+
+Acceptance:
+- The check flags lamarr at `62f5627` for the same moves the developer made at `88496f7`, including leading with the alternatives.
+- A blind re-author of lamarr moves the platform internals and the owner's holdings to APPROACH, and leads with the alternatives.
+- Readers of the same scope agree on the premises to put to the user and on the shape of the verdict.
 
 ## Implementation sequence
 
-1. Revise the state-of-the-problem rule and add the second-approach test.
-2. Revise the goals rule and the read-back question.
-3. Mirror the rules into `templates/SCOPE.md`, and add the Platform section to `templates/APPROACH.md` and the APPROACH paragraph.
-4. Add the check, and narrow the status test to the project's own releases.
-5. Add the two-question demarcation to `MBT_PATTERN.md`.
-6. Run the re-seed and the three check cases.
+1. Revise the create rules, templates and pattern sentence. Done, three drafts.
+2. Revise the status check and add the design check. Done, three drafts.
+3. Dry-run each draft blind and fold in the critiques. Done, three rounds.
+4. Run the check cycle against each brain with its owner, as `MBT_CHECK_BRAIN.md` describes, and make the changes the owner approves. Lamarr and the toolkit done; virtual-view, guardrails and nebula remain.
 
 ## Scope boundary — what this does NOT include
 
-- Renaming the "State of the Problem" heading. "State of the Market" fits `lamarr-brain` but not an internal library, and the check already treats a heading as cosmetic.
-- Rewriting scopes in existing brains. The check reports them, and their owners decide.
-- The boundary between APPROACH and FINDINGS, beyond naming it in `MBT_PATTERN.md`.
+- **A Platform section in APPROACH.** Not every project is a platform; the strategic approach states what the design builds on.
+- **The APPROACH–FINDINGS boundary.** Deferred to a separate item, along with whether untested reasoning about unbuilt work belongs in FINDINGS.
+- **Renaming the "State of the Problem" heading.**
+- **Rewriting existing scopes without their owners.**
 
 ## Open issues
 
-1. Whether the Platform section belongs in the APPROACH template, where an unused section must be deleted, or only in the create procedure's APPROACH paragraph.
-2. Whether the second approach must be written down, such as in the session log, or only named in the session. A written one makes the test auditable but adds an artifact nothing else reads.
-3. Whether the dream cycle refreshes dated market claims in SCOPE, or whether a market section carries an "as of" date and is left to the check.
-4. Whether the rule that untested reasoning about unbuilt work is an open question for the work item that will build it, rather than a finding, belongs in `templates/FINDINGS.md`, in `templates/WORK_CLOSEOUT.md`, or in a separate work item.
+1. Whether the check's per-passage findings stay proportionate on a large scope. Nebula and guardrails each produce more than ten groups.
+2. Whether ordering goals by impact earns its place when the evidence cannot rank them.

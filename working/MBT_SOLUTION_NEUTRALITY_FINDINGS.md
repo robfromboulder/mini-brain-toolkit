@@ -15,21 +15,33 @@ Four gaps in the toolkit let the seeded version through:
 
 The same session needed less correction on the APPROACH–FINDINGS boundary: duplicates, one contradiction, and four entries reasoning about unbuilt work. The developer observed that the toolkit's existing guidance holds this boundary better.
 
-## Preferred approach: lead with alternatives, and test relevance against a second approach
+## Preferred approach: SCOPE holds premises, APPROACH holds choices
 
-The state of the problem describes what a person with the problem would weigh: the alternatives, their tradeoffs, and their chief complaints. A fact about the environment earns a place only when it binds every plausible approach. In `lamarr-brain`, those were group chats degrading to their least capable member, spoofable identity outside iMessage, and the expectation that AI discloses itself. Every one of them binds a Twilio design as much as a Mac design.
+A choice is anything a reasonable designer of the problem could decide otherwise, however early it was made. What stays in SCOPE is what no designer could: the conditions every option faces, the evidence, and the premises the problem holder brings. Something the problem holder already has is a premise only when the problem requires every approach to use it. Only the problem holder can say which premises are theirs, so the author settles them with the user and states each in the problem statement. In `lamarr-brain`, the owner's one number is a premise, because clients know it. The Mac and the Claude subscription are choices, which is why the developer moved them to APPROACH.
 
-The second-approach test enforces this. The author names one approach materially different from the intended one before writing. Each sentence must serve a designer of either. The test has to be concrete, because "solution-neutral" in the abstract is what the seeded version already claimed to be. Naming an actual second approach is what gave the developer's correction its force.
+The second approach makes the line visible. It is the reasonable alternative to the whole design that differs from it most while honoring the premises, and SCOPE assesses it among the alternatives. A sentence only the intended design needs is a choice. The test has to be concrete, because the seeded scope already claimed to be neutral; naming Twilio is what gave the developer's correction its force. A premise the two approaches share unstated, such as a model, goes untested, so it is tested against an alternative that does not share it.
 
-Goals then answer the gaps. The alternatives' complaints are the reason the project exists, so a goal that answers none of them, or a gap the project takes on with no goal, is a defect visible only when the two sections are read against each other. Ordering goals by impact on whoever has the problem keeps that reading honest.
+The state of the problem leads with the alternatives, the status quo and doing it by hand among them. Goals answer the gaps those alternatives and the shared conditions leave, and they are stated so any approach can be judged against them. The second approach may fail a goal, since ruling approaches out is what goals are for.
+
+The calibration brains showed one rule covers what looked like separate defects. These are a chosen platform presented as the world (lamarr's seeded scope, viewzoo's plugin interface), a boundary justified by what the design can test (VV's Trino-only exclusion), a problem framed by its answer (guardrails' "layer" that evaluates content, this toolkit's list of its own deliverables as the gap), and goals and open questions written in the design's terms (all five).
 
 ## Alternatives considered
 
 - **Rename the heading to "State of the Market."** Rejected. It fits a product with commercial alternatives and misfits an internal library, and the check already treats a heading as cosmetic. The content rule does the work.
 - **Rely on the read-back pass, with its question sharpened.** Rejected as the whole answer. A leak caught at read-back costs a rewrite of the section the scope leads with, as it did in `lamarr-brain`. The test belongs where the sentences are written, and the read-back pass keeps it as a second line.
 - **Forbid platform facts in SCOPE outright.** Rejected. Some environment facts bind every approach and are part of the problem. The test admits them by what they constrain, not by what they describe.
+- **A Platform section in APPROACH.** Rejected by the developer: not every project is a platform. The strategic approach opens with the choices SCOPE leaves open, including what the design builds on.
+- **Require the second approach to satisfy every goal.** Rejected after the first dry runs. Goals exist to rule approaches out; the test that holds is whether a goal is stated in terms another design could be judged against.
+- **Require every sentence to be one the second approach would also need.** Rejected after a blind re-author pushed group-chat degradation out of lamarr's scope, a condition most alternatives face. Only the negative form holds: a sentence only the intended design needs is a choice.
+- **Narrow the status test to the project's own releases, and leave market figures free.** Rejected for figures. Alternatives are described by what they require and how they charge, which survives a price change, and a figure kept is dated.
+
+## What the dry runs showed
+
+- **Blind readers converge once the premises are settled first.** In round one, verdicts swung with the reader's choice of second approach. Once the check required listing the premises and confirming the second approach with the user, readers of the same scope agreed on which premises were the problem holder's and which were the design's.
+- **A blind re-author reproduces the developer's correction.** Working from lamarr's seeded scope alone, it led with the alternatives and moved the Messages internals to APPROACH. Under the first draft it kept the owner's Mac and subscription as conditions; the premise rule moved them in the second draft.
+- **The status check reached only one section.** Status hides in goal status lines, resolutions recorded under open questions, roadmap notes and clauses like "not yet".
 
 ## What this doesn't solve
 
-- **Choosing the second approach.** A strawman second approach passes everything. The test depends on the author naming one that a reasonable designer would pursue.
+- **The premises themselves.** The check surfaces them; only the problem holder can settle them, and a brain whose owner calls every holding a premise keeps its design in SCOPE.
 - **Source material's own shape.** A design treatment organized around its design still pulls a scope toward it. The existing rule on source material addresses that, and this item leaves it unchanged.
