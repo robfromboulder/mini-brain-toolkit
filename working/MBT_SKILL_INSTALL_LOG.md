@@ -69,3 +69,56 @@ Rob's session, with Claude as co-author, continued after the work item opened. R
 
 - A README that serves several harnesses reads best when every step has the same shape; a note telling the reader to adapt a command is the thing to remove, not to place better.
 - "Skill" names the installed unit and "command" the argument it takes; the README's paragraphs each describe a command.
+
+---
+
+# Skill install split into two PRs, Claude Code half tested and ready (2026-10-30)
+
+**Session ID**: `b749aeb1-ac6c-4678-9211-27eef0e29cc8`
+
+Rob's session, with Claude as co-author, which ran over two days. It started from a review of PR #17 and Rob's question about how harness support should shape the README. Checking the harness docs showed that Codex and OpenCode needed more than install lines: brains created there would never load. Rob reframed the work item as two PRs. PR #17 now covers Claude Code plus a fallback for other harnesses that reads `SKILL.md` by path. It passed acceptance in Claude Code and is ready for review. Codex and OpenCode wait for a second PR after #18.
+
+## Turn by turn
+
+- Rob had Claude read the work item and check out `skill-install`. The branch sat on the commit that opened the work item, six commits behind `main`.
+- Rob pointed to the review of PR #17 and asked for recommendations on harness support. Claude checked the OpenCode and Codex skills docs. OpenCode's main docs describe skills loaded only by the model, so `/mini-brain-toolkit` would fail there, and OpenCode reads both `~/.claude/skills` and `~/.agents/skills`. Codex documents `agents/openai.yaml` for turning off implicit invocation. Claude recommended:
+  - grouping install lines by directory;
+  - a `description` guard against auto-invocation;
+  - an "Other agents" fallback through `SKILL.md`;
+  - command wording that works however the command arrives;
+  - no shallow clone.
+- Rob found OpenCode's V2 docs, which Claude had missed. V2 invokes a skill with `@name`, honors `disable-model-invocation`, takes a skill's ID from its folder name, and resolves duplicates by registration order, so the `~/.agents` copy wins. Claude revised: OpenCode 2 gets its own `@` heading, the `description` guard drops to optional, and Codex's yaml stays.
+- Rob had the README and `SKILL.md` changed without committing. Claude added a Codex-or-OpenCode-2 install into `~/.agents/skills`, `@` command blocks, and Other agents blocks. It also fixed the review's path-rule bug: only `MBT_*.md` files and `templates/` paths resolve against the install, so a procedure's bare `CLAUDE.md` names the target brain's. Rob hadn't asked for that fix, and Claude flagged it.
+- Rob asked why the yaml was needed. Claude found that the project hook goes only into `CLAUDE.md`, which Codex never reads. So the conflict the yaml guards against can't happen in Codex, and neither can loading a brain at all. Rob ruled that Codex support that doesn't work has no place in the project, and widened the scope.
+- Claude proposed an `AGENTS.md` hook imported by `CLAUDE.md`, a one-line `AGENTS.md` in the brain, harness-aware session-ID lookup, and a check for hooks that reach only `CLAUDE.md`. Rob chose the import and at first kept everything in one PR. Claude compared the planned edits with PR #18: they share the create and check procedures, `MBT_PATTERN.md` and the dream cycle, with mostly version-line conflicts and one adjacent edit in the create intake.
+- Rob reframed the work. #17 became "install the toolkit as a Claude skill", shown under Claude Code and Other harnesses, and merges before #18. Codex and OpenCode follow as part 2 once #18 merges. Claude agreed, and proposed renaming the fallback "Without installing", because a brain created from another harness still won't load there. Rob kept "Other harnesses": the fallback does install a clone, the structure leaves room for Codex and OpenCode blocks in part 2, and create and check never depend on the hook. Rob accepted the loading gap until part 2, and decided one work item would carry both PRs.
+- Claude trimmed the branch to `README.md`, `SKILL.md` and `CLAUDE.md` and added `SKILL.md` to the read index. It kept `CLAUDE.md` at V27 with a new date rather than bumping a version the unmerged PR had already bumped. It rewrote the plan and findings on `main` in a separate worktree. The force-push to amend the branch's one commit was blocked by the permission classifier, so the narrowing landed as a second commit. Claude retitled and redescribed the PR.
+- Rob had the acceptance tests run in Claude Code. Claude installed the branch into `~/.claude/skills` and drove headless `claude -p` sessions against scratch copies with no remote:
+  - no argument asked which command to run;
+  - `check` on a copy of lamarr-brain read the procedure and pattern from the install and the brain's own `CLAUDE.md`;
+  - `create` from a scratch project read every template from the install and wrote the new brain and the project's `CLAUDE.md`, leaving the install clean;
+  - the install line, rerun on a clone moved one commit back, fast-forwarded it;
+  - the `Read ~/mini-brain-toolkit/SKILL.md` form ran the check from that clone instead of the installed skill.
+- Rob had the PR's testing section replaced with those results and the PR marked ready.
+
+## Decisions
+
+- **Two PRs, one work item** — Rob. #17 ships Claude Code and Other harnesses and merges before #18; Codex and OpenCode follow it.
+- **No harness in the README until brains created there load there** — Rob.
+- **Project hook in `AGENTS.md`, imported by `CLAUDE.md`** for part 2 — Rob, over writing the hook into both files.
+- **"Other harnesses", not "Without installing"** — Rob.
+- **OpenCode 2 targeted through `@`, OpenCode 1 left out** — Claude, after Rob found the V2 docs.
+- **Path rule narrowed to `MBT_*.md` and `templates/`** — Claude, from the review; it shipped in part 1.
+- **Merge order #17, then #18** — Rob.
+
+## What didn't work
+
+- Recommending from OpenCode's main docs: they describe OpenCode 1, and V2 changed invocation, auto-invocation and duplicate handling.
+- Treating `agents/openai.yaml` as a fix on its own: the conflict it guards against needs a hook Codex never reads.
+- Amending the branch's single commit: the force-push was refused, so the branch carries two commits.
+
+## Lessons
+
+- Listing a harness is a promise about the brains create produces, not only about running the procedures. Check the whole loop — install, invoke, then load the created brain — before offering a harness.
+- Harness docs version underneath you. Check the version a page describes before recommending from it.
+- "Already up to date" does not test an update path. Roll the clone back first.
