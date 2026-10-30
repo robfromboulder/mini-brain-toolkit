@@ -4,7 +4,7 @@
 
 Let a user create or check a brain by running the toolkit's skill with a `create` or `check` argument, with the toolkit installed and updated by one pasteable line per harness, and let brains created from any supported harness load in that harness.
 
-The work lands in two PRs. Part 1, PR #17 on branch `skill-install`, installs the toolkit as a Claude Code skill and runs it by path from other harnesses; it merges before PR #18. Part 2 adds Codex and OpenCode after PR #18 merges.
+The work lands in two PRs. Part 1, PR #17, installs the toolkit as a Claude Code skill and runs it by path from other harnesses; it merged ahead of PR #18. Part 2 adds Codex and OpenCode after PR #18 merges.
 
 ## Context
 
@@ -26,7 +26,7 @@ See `MBT_SKILL_INSTALL_FINDINGS.md` in this directory for the decision record an
 | `MBT_CREATE_BRAIN.md`, `MBT_CHECK_BRAIN.md` | Their toolkit paths resolve against the directory holding `SKILL.md`, set only in `SKILL.md` | A toolkit file outside `MBT_*.md` and `templates/` would resolve into the target brain |
 | `MBT_CHECK_BRAIN.md` namespace check | Its exempt list names `CLAUDE.md`, `README.md` and `CONTRIBUTING.md` | Running the check on a copy of the toolkit flags `SKILL.md`; other target brains are unaffected. Fixed in part 2 |
 | `SKILL.md`'s path rule | It sends every `MBT_*.md` file to the install, which is safe only while no target shares the `MBT` lobespace | Checking a copy of the toolkit reads that copy's `MBT_*.md` files from the install, where approved fixes could also land. Fixed in part 2 |
-| PR #18 | Both bump `MBT_DREAM_CYCLE.md`'s version | #18 renumbers on rebase |
+| PR #18 | Both bump `MBT_DREAM_CYCLE.md`'s version | #18 rebased onto #17 at V24 |
 
 ### Testing approach
 
@@ -42,7 +42,8 @@ Acceptance has five parts. `check` against an existing brain reads `MBT_PATTERN.
 4. Reframe to Claude Code and other harnesses, fix `SKILL.md`'s path rule, and index `SKILL.md`. Done.
 5. Retitle and redescribe PR #17, run the acceptance tests, then mark it ready. Done.
 6. Address the code review of PR #17: the README's install intro no longer says every line configures a skill, `CLAUDE.md` adds that `SKILL.md` sets where toolkit paths resolve, and the dream cycle drops `SKILL.md`'s orphan exemption. Done.
-7. Merge PR #17, ahead of #18.
+7. Merge PR #17, ahead of #18. Done. The README's install line, run from `main` against a scratch `HOME` in zsh and bash, cloned the merged toolkit and reported up to date on a rerun.
+8. Run the installed skill from `main` in Claude Code. Rob, pending.
 
 ## Part 2: Codex and OpenCode (after PR #18)
 

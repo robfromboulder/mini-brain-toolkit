@@ -122,3 +122,51 @@ Rob's session, with Claude as co-author, which ran over two days. It started fro
 - Listing a harness is a promise about the brains create produces, not only about running the procedures. Check the whole loop — install, invoke, then load the created brain — before offering a harness.
 - Harness docs version underneath you. Check the version a page describes before recommending from it.
 - "Already up to date" does not test an update path. Roll the clone back first.
+
+---
+
+# PR #17 reviewed, squashed and merged; #18 rebased onto it (2026-10-30)
+
+**Session ID**: `ecf1ef40-2322-4c2c-af99-a36c53dacd10`
+
+Rob's session, with Claude as co-author. It started by reading the work item and ended with PR #17 merged and #18 rebased onto it. A code review of #17 produced three wording fixes and moved two gaps in checking the toolkit itself into part 2. Along the way Claude edited stale copies of the work-item docs on the branch, which put #17 in conflict with `main` until those edits were reversed.
+
+## Turn by turn
+
+- Rob asked Claude to read the work item. Claude read it from the `skill-install` checkout and reported the docs out of date against the branch's latest commit. They were out of date only on the branch: the previous session had moved the work-item docs to `main`, and the branch carried the copies from where it forked.
+- Rob had the plan and findings updated without touching the log. Claude rewrote the branch's copies from the latest commit and from the PR description. It noted that the dream cycle's orphan check still excluded `SKILL.md`, though the read index now lists it. Rob had the exclusion dropped in part 1, and had the change committed, pushed and reflected in the PR description.
+- Rob ran a medium code review of #17, which returned eight findings. Claude's first triage recommended fixing two, and Rob asked for each to be confirmed and thought through. Checking each against the files:
+  - the path rule sends a target's `MBT_*.md` files to the install, so checking a copy of the toolkit, the one target sharing the `MBT` lobespace, reads the install's files instead — real but narrow, deferred to part 2;
+  - the check's namespace test flags `SKILL.md` — real, already in part 2, where `main`'s plan has the check read the target's declared exemptions rather than name `SKILL.md`;
+  - the path rule living only in `SKILL.md`, and the install line treating any existing directory as a clone — accurate, dismissed;
+  - the `~` path in the Other harnesses prompt — untested outside Claude Code, added to part 2's testing;
+  - `CLAUDE.md` saying `SKILL.md` "references nothing else" — weaker than Claude first stated, reworded anyway;
+  - the README's install intro promising every line configures a skill — reworded;
+  - no migration note for clones beside a project — left to the release notes.
+- Rob had the fixes made, committed, pushed and reflected in the PR description.
+- Asked what review remained, Claude found #17 conflicting with `main` in the two work-item docs, and `main`'s versions current and fuller than the branch's. Claude named the mistake and proposed the recovery, which Rob approved: a new commit reset the branch's copies to the merge base, the review's content went into `main`'s docs through a worktree, and GitHub reported #17 mergeable.
+- Rob asked for the branch squashed. The force-push was blocked by the permission classifier, so Claude squashed locally and Rob pushed.
+- Asked about remaining review tasks, Claude ran the toolkit's mechanical checks on the branch — namespace, read index, version headers, and references to the old clone-beside-the-project route — and all passed. A trial merge of #18 onto #17 conflicted only on the dream cycle's version line, so Claude corrected #17's description to say #18 takes V24.
+- Rob merged #17. Claude ran the README's install line from `main` against a scratch `HOME` in zsh and bash: it cloned the merged toolkit, and a rerun reported up to date. Running the skill needs a real install, which Rob kept to do personally, and Claude removed the scratch installs.
+- Rob had #18 rebased. Three of its commits bump the dream cycle, and Claude raised each by one. After the second resolution both sides read V23, so git applied the third commit cleanly and dropped its bump; Claude amended the last commit to V24. Rob force-pushed, and Claude updated #18's description, whose version numbers all predated its review rounds.
+- Rob had this entry written and the work item's landing on `main` verified.
+
+## Decisions
+
+- **Drop `SKILL.md`'s orphan exemption in part 1** — Rob.
+- **Wording fixes in part 1; the toolkit's self-check gaps and the `~` path in part 2; the rest dismissed or left to release notes** — Rob, on Claude's per-finding triage.
+- **Work-item docs stay on `main`; the branch's copies reset by a new commit, not a force-push** — Claude, approved by Rob.
+- **#17 merged as one squashed commit** — Rob.
+- **Running the installed skill from `main` is Rob's to test** — Rob.
+
+## What didn't work
+
+- Reading the work item from the PR branch: it carried the copies from where it forked, and two commits edited them before the conflict exposed it.
+- Force-pushing from the session: the classifier blocked both the squash and the #18 rebase, so Rob ran each push.
+- Trusting a rebase to carry a chain of version bumps: once both sides held the same number, git merged cleanly and a bump vanished.
+
+## Lessons
+
+- A work item whose docs live on `main` is read from `main`, not from a feature branch. Check `origin/main` for the item's docs before reading or editing them.
+- After resolving version-line conflicts across a rebase, check the final number against the count of bumps; a clean merge can hide a lost one.
+- A first triage of review findings can overstate one. Checking each against the files changed a recommendation.
