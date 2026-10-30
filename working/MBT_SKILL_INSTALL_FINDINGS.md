@@ -26,7 +26,7 @@ OpenCode 1 has no user invocation of skills; the model loads them through its `s
 
 A `SKILL.md` at the repo root makes a clone in a harness's skills directory a skill named `mini-brain-toolkit`. It dispatches the command the user asked for to the matching procedure, a wording that serves `/`, `$` and `@` invocation and a plain `Read` alike. It resolves `MBT_*.md` files and `templates/` paths against the directory holding `SKILL.md` and every other path against the brain or project being worked on, because the procedures also name files of the target brain, such as its `CLAUDE.md`, that would otherwise resolve into the install. The procedures need no edits. `disable-model-invocation: true` stays, because create and check are always started by the user and an auto-invoked skill would compete with the project hook's trigger phrases.
 
-The toolkit's own conventions absorb the new file in `CLAUDE.md`: `SKILL.md` is exempt from the `MBT` lobespace because the agents that load skills fix its name, and from the version header because its frontmatter must open the file. The dream cycle excludes it from the orphan and namespace checks and counts it as product.
+The toolkit's own conventions absorb the new file in `CLAUDE.md`: `SKILL.md` is exempt from the `MBT` lobespace because the agents that load skills fix its name, and from the version header because its frontmatter must open the file. The dream cycle excludes it from the namespace check and counts it as product. The read index lists it, so the orphan check needs no exemption.
 
 Each install line runs `git -C "$d" pull --ff-only` when the clone exists and clones otherwise. An `if` test is used rather than `pull || clone`, because a failed pull would fall through to a clone that fails on the existing directory with a misleading error. `--ff-only` makes an install someone has edited stop with an error instead of gaining a merge commit.
 
@@ -60,3 +60,4 @@ Part 1 ships Claude Code and other harnesses; part 2 adds Codex and OpenCode 2. 
 
 - **Discoverability.** A user still has to learn the command from the README; the skill appears in a harness's command list only after it is installed, and its argument appears only as hint text.
 - **Existing sibling clones.** Nothing moves them to a skills directory.
+- **The toolkit checking itself, until part 2.** The check's namespace test flags `SKILL.md`. And `SKILL.md`'s path rule relies on no target sharing the `MBT` lobespace, so checking a copy of the toolkit reads that copy's `MBT_*.md` files from the install. The toolkit maintains itself through the dream cycle, so neither blocks part 1.

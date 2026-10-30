@@ -4,7 +4,7 @@
 
 Let a user create or check a brain by running the toolkit's skill with a `create` or `check` argument, with the toolkit installed and updated by one pasteable line per harness, and let brains created from any supported harness load in that harness.
 
-The work lands in two PRs. Part 1, draft PR #17 on branch `skill-install`, installs the toolkit as a Claude Code skill and runs it by path from other harnesses; it merges before PR #18. Part 2 adds Codex and OpenCode after PR #18 merges.
+The work lands in two PRs. Part 1, PR #17 on branch `skill-install`, installs the toolkit as a Claude Code skill and runs it by path from other harnesses; it merges before PR #18. Part 2 adds Codex and OpenCode after PR #18 merges.
 
 ## Context
 
@@ -15,8 +15,8 @@ See `MBT_SKILL_INSTALL_FINDINGS.md` in this directory for the decision record an
 ### What changes
 
 - `SKILL.md` (new) — dispatches `create` and `check` to `MBT_CREATE_BRAIN.md` and `MBT_CHECK_BRAIN.md`, and asks when the user named neither. `MBT_*.md` files and `templates/` paths resolve against the directory holding `SKILL.md`; every other path belongs to the brain or project the procedure works on.
-- `CLAUDE.md` — `SKILL.md` joins the read index and the file-naming and version-header exemptions, and is declared a dispatcher that references only the two procedures.
-- `MBT_DREAM_CYCLE.md` — `SKILL.md` counts as product, and the orphan and namespace checks exclude it.
+- `CLAUDE.md` — `SKILL.md` joins the read index and the file-naming and version-header exemptions, and is declared a dispatcher that references only the two procedures and sets where their toolkit paths resolve.
+- `MBT_DREAM_CYCLE.md` — `SKILL.md` counts as product, and the namespace check excludes it. The read index lists it, so the orphan check needs no exemption.
 - `README.md` — install, create and check sections each open with a paragraph describing the step, then give one command under a **Claude Code** heading and one under **Other harnesses**. Other harnesses clone to `~/mini-brain-toolkit` and run `Read ~/mini-brain-toolkit/SKILL.md and run create` (or `check`).
 
 ### Interaction with existing docs
@@ -24,7 +24,8 @@ See `MBT_SKILL_INSTALL_FINDINGS.md` in this directory for the decision record an
 | Existing doc | Interaction | Risk |
 |---|---|---|
 | `MBT_CREATE_BRAIN.md`, `MBT_CHECK_BRAIN.md` | Their toolkit paths resolve against the directory holding `SKILL.md`, set only in `SKILL.md` | A toolkit file outside `MBT_*.md` and `templates/` would resolve into the target brain |
-| `MBT_CHECK_BRAIN.md` namespace check | Its exempt list names `CLAUDE.md`, `README.md` and `CONTRIBUTING.md` | Running the check on the toolkit itself flags `SKILL.md`; target brains are unaffected. Fixed in part 2 |
+| `MBT_CHECK_BRAIN.md` namespace check | Its exempt list names `CLAUDE.md`, `README.md` and `CONTRIBUTING.md` | Running the check on a copy of the toolkit flags `SKILL.md`; other target brains are unaffected. Fixed in part 2 |
+| `SKILL.md`'s path rule | It sends every `MBT_*.md` file to the install, which is safe only while no target shares the `MBT` lobespace | Checking a copy of the toolkit reads that copy's `MBT_*.md` files from the install, where approved fixes could also land. Fixed in part 2 |
 | PR #18 | Both bump `MBT_DREAM_CYCLE.md`'s version | #18 renumbers on rebase |
 
 ### Testing approach
@@ -38,8 +39,10 @@ Acceptance has five parts. `check` against an existing brain reads `MBT_PATTERN.
 1. Add `SKILL.md` and the `CLAUDE.md` and dream cycle exemptions. Done.
 2. Rewrite the README's install, create and check sections. Done.
 3. Open the draft PR. Done (#17).
-4. Reframe to Claude Code and other harnesses, fix `SKILL.md`'s path rule, and index `SKILL.md`. Done, uncommitted.
-5. Retitle and redescribe PR #17, run the acceptance tests, then mark it ready.
+4. Reframe to Claude Code and other harnesses, fix `SKILL.md`'s path rule, and index `SKILL.md`. Done.
+5. Retitle and redescribe PR #17, run the acceptance tests, then mark it ready. Done.
+6. Address the code review of PR #17: the README's install intro no longer says every line configures a skill, `CLAUDE.md` adds that `SKILL.md` sets where toolkit paths resolve, and the dream cycle drops `SKILL.md`'s orphan exemption. Done.
+7. Merge PR #17, ahead of #18.
 
 ## Part 2: Codex and OpenCode (after PR #18)
 
@@ -52,10 +55,11 @@ Acceptance has five parts. `check` against an existing brain reads `MBT_PATTERN.
 - `templates/README.md`, `templates/SESSION_CLOSEOUT.md` — "Claude session" and "Claude as co-author" stop naming one harness.
 - `agents/openai.yaml` (new) — `policy.allow_implicit_invocation: false`.
 - `MBT_PATTERN.md`, `MBT_CHECK_BRAIN.md`, `MBT_DREAM_CYCLE.md`, `templates/DREAM_CYCLE.md`, `CLAUDE.md` — `AGENTS.md` joins the file set and the exemptions. The check reads naming exemptions from the target's `CLAUDE.md` instead of a hard-coded list, and flags a hook or entrypoint that reaches only `CLAUDE.md`.
+- `SKILL.md` — checking a copy of the toolkit resolves its `MBT_*.md` files against that copy, not the install, since the toolkit is the one target that shares the `MBT` lobespace.
 
 ### Testing approach
 
-The part 1 acceptance, in Codex and OpenCode 2. Plus: a brain created in each harness loads from a project repo on the trigger phrase, in that harness and in Claude Code; text after `$mini-brain-toolkit` and `@mini-brain-toolkit` reaches the skill; and in OpenCode 2 a skill with `disable-model-invocation` still resolves by `@` from `~/.agents/skills`.
+The part 1 acceptance, in Codex and OpenCode 2. Plus: a brain created in each harness loads from a project repo on the trigger phrase, in that harness and in Claude Code; text after `$mini-brain-toolkit` and `@mini-brain-toolkit` reaches the skill; and in OpenCode 2 a skill with `disable-model-invocation` still resolves by `@` from `~/.agents/skills`. Also: the Other harnesses prompt's `~` path resolves outside Claude Code, and `check` against a copy of the toolkit reads and edits only that copy.
 
 ## Scope boundary — what this does NOT include
 
