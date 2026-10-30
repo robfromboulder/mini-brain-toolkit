@@ -42,18 +42,50 @@ If you're curious about the design:
 - [MBT_RESEARCH.md](MBT_RESEARCH.md) — how mini-brains compare to related approaches
 - [MBT_BIOLOGY.md](MBT_BIOLOGY.md) — the cognitive-science models the pattern draws on
 
+## Installing the toolkit
+
+The toolkit installs as a skill. Use the command below for your harness to install the toolkit, or to update it to the latest version.
+
+**Claude Code**
+
+```sh
+d=~/.claude/skills/mini-brain-toolkit; if [ -d "$d" ]; then git -C "$d" pull --ff-only; else git clone https://github.com/robfromboulder/mini-brain-toolkit "$d"; fi
+```
+
+**Other harnesses**
+
+```sh
+d=~/mini-brain-toolkit; if [ -d "$d" ]; then git -C "$d" pull --ff-only; else git clone https://github.com/robfromboulder/mini-brain-toolkit "$d"; fi
+```
+
 ## Creating a mini-brain
 
-With this toolkit cloned alongside your project, paste this into a Claude session — works whether you're starting a new project or adding a mini-brain to an existing codebase:
+The `create` command helps seed a new mini-brain, whether you're starting a brand new project or adding a mini-brain to an existing codebase. It asks a few questions, configures knowledge files in a dedicated repo for the mini-brain, and hooks the brain into your project repos.
 
-> Read ../mini-brain-toolkit/MBT_CREATE_BRAIN
+**Claude Code**
 
-This asks a few questions, generates seed files in a dedicated repo for the mini-brain, and hooks the brain into your project repos.
+```
+/mini-brain-toolkit create
+```
+
+**Other harnesses**
+
+```
+Read ~/mini-brain-toolkit/SKILL.md and run create
+```
 
 ## Improving a mini-brain
 
-A new brain starts small — run this to see where it stands and what to add next as it matures:
+The `check` command evaluates your mini-brain and suggests how to improve its structure and function. It asks which brains to check, then walks you through the recommendations it finds.
 
-> Read ../mini-brain-toolkit/MBT_CHECK_BRAIN
+**Claude Code**
 
-This asks which brains to check, then walks you through the recommendations it finds.
+```
+/mini-brain-toolkit check
+```
+
+**Other harnesses**
+
+```
+Read ~/mini-brain-toolkit/SKILL.md and run check
+```

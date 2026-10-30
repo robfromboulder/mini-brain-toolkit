@@ -1,6 +1,6 @@
 # Mini-Brain Toolkit: Entrypoint
 
-> V26, 2026-09-22.
+> V27, 2026-10-30.
 
 ---
 
@@ -14,6 +14,7 @@ All paths are relative to this repo root (`CLAUDE.md`'s directory). Before readi
 | Layout convention for a brain whose knowledge divides into several lobes | `MBT_LOBES.md` |
 | Procedure: create a new mini-brain | `MBT_CREATE_BRAIN.md` |
 | Procedure: check an existing mini-brain against the pattern | `MBT_CHECK_BRAIN.md` |
+| Skill entrypoint — dispatches `create` and `check` to the two procedures | `SKILL.md` |
 | Research agenda — where the pattern could go, and how it compares to related work | `MBT_RESEARCH.md` |
 | Comparable systems — the second-brain / agent-memory landscape (read during the dream cycle's competitive-landscape pass) | `MBT_COMPARABLES.md` |
 | Cognitive-science grounding — biological models the pattern draws on (read during the dream cycle's biological-grounding pass) | `MBT_BIOLOGY.md` |
@@ -38,9 +39,9 @@ Only files in this table are current. `templates/` holds the base files `MBT_CRE
 
 **Append-only logs.** LOG files are never archived and never edited after the fact. Append-only governs an entry's content, not its position: once written, an entry is never revised, split, or merged. New entries go at the end. The one exception is folding another log into this one, which places that log's entries whole and in date order among the existing ones, so the last separator still holds the most recently written entry.
 
-**File naming.** Every mini-brain filename carries the `MBT` lobespace — shared docs as `MBT_*`. Three files are exempt: `CLAUDE.md` (entrypoint) and the repo artifacts `README.md` and `CONTRIBUTING.md`. New top-level knowledge files must include the lobespace; files in `archive/` keep whatever basename they were retired under.
+**File naming.** Every mini-brain filename carries the `MBT` lobespace — shared docs as `MBT_*`. Four files are exempt: `CLAUDE.md` (entrypoint), `SKILL.md` (skill entrypoint, a name the agents that load skills fix), and the repo artifacts `README.md` and `CONTRIBUTING.md`. New top-level knowledge files must include the lobespace; files in `archive/` keep whatever basename they were retired under.
 
-**Version header.** Every top-level file except the version-exempt ones opens with `> V<N>, YYYY-MM-DD.` — version and date, nothing else. **No change note in this line.** If a file needs a description, put it on its own line below. Bump `<N>` by one on each substantive edit (numerically — `V10` > `V9`) and set the date. This applies to `CLAUDE.md` itself. Exempt: `README.md`, `CONTRIBUTING.md`, `*_LOG.md` files, and `*_BURNDOWN.md` checklists.
+**Version header.** Every top-level file except the version-exempt ones opens with `> V<N>, YYYY-MM-DD.` — version and date, nothing else. **No change note in this line.** If a file needs a description, put it on its own line below. Bump `<N>` by one on each substantive edit (numerically — `V10` > `V9`) and set the date. This applies to `CLAUDE.md` itself. Exempt: `README.md`, `CONTRIBUTING.md`, `SKILL.md` (its frontmatter must open the file), `*_LOG.md` files, and `*_BURNDOWN.md` checklists.
 
 **Classify every edit:** *editorial* (typos, rewording) — edit in place, don't bump `<N>`, may update date; *substantive* (facts, decisions, scope, structure) — set the version line to `> V<N+1>, <today's date>.` No change note in the line.
 
@@ -64,7 +65,7 @@ Only files in this table are current. `templates/` holds the base files `MBT_CRE
 
 Absent a declared exemption, full orthogonality holds; a different project would declare its own set. A permitted reference still follows the Cross-references rule above — cited by name, never by section number.
 
-**Maintenance-doc boundaries.** `MBT_DREAM_CYCLE.md` and the procedure docs `MBT_CREATE_BRAIN.md` / `MBT_CHECK_BRAIN.md` enact the pattern, so each may cite `MBT_PATTERN.md` and `MBT_LOBES.md` as the definitions it implements. Any procedure that appends a log entry cites `MBT_SESSION_CLOSEOUT.md` as the entry-format authority; beyond that they do not reference one another, and naming the knowledge files they operate on is inherent to being a procedure, not a cross-reference. `MBT_SESSION_CLOSEOUT.md` governs the session logs — `MBT_LOG.md` and any open work item's working log — and references nothing else.
+**Maintenance-doc boundaries.** `MBT_DREAM_CYCLE.md` and the procedure docs `MBT_CREATE_BRAIN.md` / `MBT_CHECK_BRAIN.md` enact the pattern, so each may cite `MBT_PATTERN.md` and `MBT_LOBES.md` as the definitions it implements. Any procedure that appends a log entry cites `MBT_SESSION_CLOSEOUT.md` as the entry-format authority; beyond that they do not reference one another, and naming the knowledge files they operate on is inherent to being a procedure, not a cross-reference. `MBT_SESSION_CLOSEOUT.md` governs the session logs — `MBT_LOG.md` and any open work item's working log — and references nothing else. `SKILL.md` dispatches to `MBT_CREATE_BRAIN.md` and `MBT_CHECK_BRAIN.md`, sets where their toolkit paths resolve, and references nothing else.
 
 **No harness memory.** Don't use the persistent memory feature. All persistent project information belongs in the markdown files in this directory.
 
