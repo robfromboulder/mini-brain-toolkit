@@ -227,3 +227,105 @@ Rob's session, with Claude as co-author, continued after the last dry-run closeo
 ## Open
 
 - The create procedure's first pass is now tested by one intake, on a single-lobe project with a simulated owner. A multi-lobe intake and a real owner remain untested.
+
+---
+
+# Six review rounds, a settled test, and a four-brain dry run (2026-10-30)
+
+**Session ID**: `c0b8b268-e845-4487-8346-f144ad51ce91`
+
+Rob's session, with Claude as co-author. Rob ran `/code-review` on PR #18 repeatedly and had Claude fix each round. He then moved from review rounds to settling the toolkit's own test and dry-running the rules against real brains. The PR ended as one squashed commit that met a merge criterion Rob accepted: no rule misfiring on owner-approved content, no opposite verdicts between create and check, and nothing that stops an unattended run.
+
+## Turn by turn
+
+- **Rounds one to three.** Claude stashed the skill-install branch's uncommitted edits, switched to this branch, and fixed every reported issue, committing and pushing each round at Rob's direction. Round one found create and check contradicting each other on where shipped work goes, the enforced term "finding" used generically, and the toolkit's own SCOPE and APPROACH failing rules the PR added. Each later round found about ten more, a third of them caused by Claude's previous fixes. The count held at ten because the review caps its findings at ten by default.
+- **Convergence.** Asked whether the review was converging, Claude said no. The review had become an audit of the whole toolkit against the PR's rules, and Claude had been settling the toolkit's premises, second approach and goals on Rob's behalf, the call the PR reserves for the owner. Asked which changes were churning, Claude measured the commits: procedure and template edits shrank each round and were never reversed, and the churn was in the toolkit's own SCOPE and APPROACH. Rob kept both in one PR, since the toolkit's own documents are the test bed for the pattern changes.
+- **Settling the test.** Rob confirmed developers working through coding agents as a binding premise, chose wikis and second brains as the second approach over Claude's pick of automatic memory, and kept the owner-related goals as written. Mid-turn, Rob merged #17 and rebased this branch; the rebase overlapped nothing, and the stash was gone after the merge.
+- **Squash and an uncapped review.** Rob had the PR squashed to one commit, and an uncapped review found 22 issues. Rob asked Claude to confirm every claim before changing anything. The top one held: the read-back and the pattern's dividing sentence had restored the positive test this item rejected after the lamarr re-author. Rob also redirected two terms. "Repository" means git, a fair premise for a developer audience, and a store is inherent to the concept rather than a design leak. Claude defined a knowledge store once in SCOPE as wherever a project's why is kept.
+- **Confirming as a set.** Rob asked that the next round's claims be confirmed together, since edits applied one by one hide their interactions. Read together, several claims were one problem: create, check, the pattern and both dream cycles each checked a different subset of SCOPE's facts. Rob chose to fold copying and scaffolders into the curated-store class.
+- **Scaling back.** The next review showed that Claude's widening of what dream cycles verify would stop unattended cycles on claims nothing can verify, and would send web checks to agents that cannot reach the web. At Rob's direction Claude scaled it back: create and check verify alternatives and evidence with a person present, and dream cycles verify only the systems in reach and list the rest as unverified.
+- **PR description.** Rob had Claude check the description against the branch. Two claims were wrong, an overstated goal trace and an unmentioned intake item, and a Still open section was added.
+- **Dry run.** Rob had Claude dry-run the rules by hand against lamarr-brain, virtual-view-brain and mini-nebula-brain. Mid-run he added an externally authored brain, mini-subtitle-wizard-brain, which Claude cloned to the scratchpad and only read. Eight places faltered. The worst two misfired on owner-approved scopes: defining an alternative as covering the whole problem misclassified partial options in three of the four brains, and the parent-choice qualifier left virtual-view's portfolio constraint, a parent choice made for no goal, fitting neither branch.
+- **Rob's principles.** Rob answered with four:
+  - an alternative is the next-best option, stating where it falls short
+  - lobes align top-down: ancestors' SCOPE and APPROACH define the space a child inhabits, and changes ripple down
+  - the check uses the latest definition, the second approach included
+  - APPROACH honors SCOPE's premises and keeps its own assumptions without mirroring them
+
+  Claude applied them, adding an approach check to CHECK, and re-ran the dry run, which met the merge criterion. Asked whether the round reduced the instructions, Claude measured it: 158 words net added, the approach check accounting for all of it, while four conditional rules became two principles.
+
+## Decisions
+
+- **One PR, with the toolkit's own documents as the test bed** — Rob.
+- **The premise, wikis and second brains as the second approach, and the owner-related goals as written** — Rob.
+- **Git as a premise and a defined knowledge store** — Rob's direction, Claude's wording.
+- **Copying and scaffolders folded into the curated-store class** — Rob, on Claude's recommendation.
+- **Dream cycles verify only the systems in reach** — Rob, on Claude's recommendation to scale back rather than add rotation and web agents to every brain.
+- **Partial alternatives, top-down alignment, an approach check mirroring create, and premises honored by APPROACH** — Rob.
+- **Parent overreach stays a defect corrected in the parent, its choice given to the child meanwhile** — Claude's default, accepted by Rob.
+- **The merge criterion** — proposed by Claude, accepted by Rob.
+- **Declined across rounds:** dropping the Author intake line, which the first log entry uses; unwrapping template comments, which predate the PR; and merging the SCOPE and APPROACH open questions, which ask different things.
+- **Deferred:** one home for the definitions, as a follow-up work item; the toolkit's remaining wording issues, to the first dream cycle after merge.
+
+## What didn't work
+
+- Fixing findings one by one. Each round's fixes seeded about a third of the next round's findings, and Claude's choices for the toolkit's test were re-litigated every round until Rob settled them.
+- Widening maintenance to verify every kind of SCOPE claim, which would have stopped unattended cycles. It was scaled back a round later.
+- An install clause added to a goal to give a gap a home was itself a design leak, and came out the next round.
+
+## Lessons
+
+- A capped review always returns its cap. Only an uncapped run shows whether findings are shrinking.
+- Settle the owner's test before reviewing the toolkit's own documents against the rules; otherwise every round tests the reviewer's guesses.
+- Confirming review claims as a set catches the interactions that one-by-one fixes create.
+- A dry run against real brains is a better merge gate than a review count, because it tests whether the rules work rather than whether the toolkit's own prose survives every rule.
+- Conditional qualifiers are where rules misfire. Replacing them with general principles fixed the worst dry-run failures.
+
+## Open
+
+- One home for premise, choice, alternative and second approach, whose copies differ today.
+- Re-gathering a scope under a kept status convention, and nothing prompting a child's revision when an ancestor changes.
+- The toolkit's own wording issues listed in the PR, for the first dream cycle after merge.
+- `backup/solution-neutrality-pre-squash` is still in this checkout.
+
+---
+
+# A historical and a blind dry run on lamarr (2026-10-30)
+
+**Session ID**: `c0b8b268-e845-4487-8346-f144ad51ce91`
+
+Rob's session, with Claude as co-author, continuing after the closeout entry above. Rob judged that further review would turn up wording issues that don't change interpretation, and asked for dry runs instead. Two runs tested the current check against lamarr-brain as it stood before Rob's hand restructure, the effort that started this work item. Both landed close to what Rob did, and between them they found two gaps in the check, both fixed.
+
+## Turn by turn
+
+- **The criterion.** Rob asked whether preferring dry runs and synthetic tests to abstract review was wrong. Claude agreed: a review checks the text against the rules, while a dry run checks whether the rules reach the owner's verdict on a real brain. Claude proposed blind runs by fresh agents and a set of synthetic brains with planted defects for a later testing work item.
+- **Historical dry run.** Rob proposed comparing the check's recommendations on lamarr's pre-restructure state with what he actually did. Claude took the state just before the restructure, wrote 27 predictions before reading any later commit, and scored them against the hand restructure and the later check-guided commits.
+  - Every move of the hand restructure matched a named rule, and the later commits covered the rest, so the check would have raised in one report what took four commits over five days.
+  - The check went further in three places: the live check's second approach was recorded only in a commit message, no generic entry described the intended design's class, and the model was assumed without a stated reason.
+  - It missed one thing. Lamarr's evidence paragraph was lost in a later word-collision fix, and the check never asks for evidence although the create procedure requires it. At Rob's direction Claude added that to the check's sufficiency step.
+  - Claude flagged that it had read lamarr's current state earlier in the session, so two predictions might have been steered.
+- **Blind check.** Rob asked for a fresh agent. Claude gave it only the procedure's files and an export of the pre-restructure commit, with no history, no toolkit repository and no web access. Claude wrote a simulated owner's answers from Rob's real decisions before the agent started, and relayed only those.
+  - Before seeing an answer, the agent proposed the same second approach Rob's live check used.
+  - It reproduced about 20 of the 27 predictions, including every design move of the hand restructure apart from the platform facts, which hinged on a premise the simulated answers left open.
+  - It did not find the two goals Claude had flagged as possibly steered, which suggests they were.
+  - It found three issues neither Rob nor Claude had: a disclosure requirement quoted in SCOPE that APPROACH's closing label never argues it meets, the owner's number restated in APPROACH as a choice, and a goal half with no answering decision.
+  - It listed ten places the procedure was unclear. At Rob's direction Claude fixed two, a line each: commit references and decision dates count as status, and the approach check reads SCOPE as the design check's remedies would leave it.
+
+## Decisions
+
+- **Dry runs over further abstract review as the merge evidence** — Rob, with Claude agreeing.
+- **Add evidence to the check's sufficiency step** — Rob, on Claude's recommendation from the historical run.
+- **Fix two of the blind run's unclear points, one line each, and leave proportion to the testing work item** — Rob, on Claude's recommendation.
+- **Leave lamarr-brain unchanged** — its next check should take up the evidence paragraph, the second approach, and the blind run's three new issues.
+
+## Lessons
+
+- A reviewer who knows the answer can't run a check blind. Writing predictions down before reading the history helps, but only a fresh agent with the history withheld shows which predictions were steered.
+- Fixing a simulated owner's answers before the run, and relaying nothing else, keeps the tester's judgment out of a blind check.
+- A dry run on a brain's own history is a direct test of a procedure: the owner's later fixes are the expected result.
+
+## Open
+
+- The blind run reported 33 issues item by item, despite the check's rule to report a section once when issues cover most of it. Proportion on a large scope stays an open issue for the testing work item.
+- The blind run's remaining unclear points (identifiers in a platform vendor's code, by hand versus the status quo, holdings mentioned only implicitly in APPROACH, vendor-specific conditions, published patterns) belong with the definitions and testing work items.
+- The blind-run setup can be rebuilt as a seed for synthetic testing: an export of lamarr's pre-restructure commit, the check's four files, and owner answers fixed from the owner's recorded decisions.
