@@ -17,7 +17,7 @@ A mini-brain only captures knowledge about your software project that **can't be
 
 **Using a mini-brain is just chatting with Claude.** Your coding sessions are the raw material. At each natural stopping point, you'll be prompted to optionally save what the session decided and learned. There's nothing to file, no format to learn, and you never leave the repo you're working in. Even creating a new mini-brain is done by chatting with Claude.
 
-**Mini-brains are self-improving.** On a schedule, a mini-brain dreams: verifying all claims against the codebase, pruning what's become derivable, and doing follow-on research. The brain stays small enough to read completely, and curious about what it doesn't know. Each dream cycle re-evaluates drift between the codebase, the mini-brain, and their surroundings.
+**Mini-brains are self-improving.** On a schedule, a mini-brain dreams: verifying its claims against the code, pruning what's become derivable, and doing follow-on research. The brain stays small enough to read completely, and curious about what it doesn't know. Each dream cycle re-evaluates drift between the codebase, the mini-brain, and their surroundings.
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset=".github/images/lifecycle-dark.svg">

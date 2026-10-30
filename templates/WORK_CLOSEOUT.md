@@ -22,8 +22,8 @@ Do not work from a hand-written task list alone — it is easy to name the obvio
 |---|---|
 | `<LOBESPACE>_LOG.md` | did any implementation work worth a session log (almost always) |
 | `<LOBESPACE>_FINDINGS.md` | made a non-obvious decision worth preserving |
-| `<LOBESPACE>_SCOPE.md` | changed a factual or absence claim about the codebase (verify even if you think not) |
-| `<LOBESPACE>_APPROACH.md` | changed a design assumption or external dependency |
+| `<LOBESPACE>_SCOPE.md` | showed a claim about the problem or the world it describes to be false (verify even if you think not) — never to record what the item shipped, which goes to APPROACH as a decision |
+| `<LOBESPACE>_APPROACH.md` | shipped or changed a design decision, or changed a design assumption or external dependency |
 | any canonical testing/runbook doc | added a manual or automated check worth keeping — the work item's `<LOBESPACE>_<WORK>_TESTING.md` / `<LOBESPACE>_<WORK>_CLAUDE.md` fold in here |
 
 One working file commonly fans out to several targets; do not assume one source maps to one target. Decide each finding's home by the **durability and reach of the decision, not the location of the code that implemented it**.

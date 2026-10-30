@@ -1,6 +1,6 @@
 # Mini-Brain Toolkit: The Mini-Brain Pattern
 
-> V22, 2026-09-29.
+> V28, 2026-10-30.
 
 This document is the operational definition of a mini-brain: what it *is*, the file set it's made of, and the lifecycle that keeps it true and small.
 
@@ -62,13 +62,13 @@ The minimum viable brain.
 | `archive/` | Source material and retired docs. | — |
 | `working/` | Experiments and in-flight work-item docs (principle 8). | — |
 
-SCOPE and APPROACH are deliberately **orthogonal** (principle 3): SCOPE describes the problem space without bias toward any solution; APPROACH makes the case for a specific design against that neutral problem statement.
+SCOPE and APPROACH are deliberately **orthogonal** (principle 3): SCOPE describes the problem space without bias toward any solution; APPROACH makes the case for a specific design against that neutral problem statement. What divides them is whether a reasonable designer of the problem could decide a piece of content otherwise: if so, it is a choice and APPROACH's, however many designs share it; if not, it describes the problem and is SCOPE's. The problem holder's premises and goals are SCOPE's whoever designs; the test applies to everything else.
 
 One piece of the seed lives *outside* the brain: the hook section merged into each project repo's `CLAUDE.md` (principle 2's load-on-demand mechanism). A brain can precede its project repos — early work is thought through in the brain and rolled out as code — and the hook is added to each project repo as it appears, so the workflow follows the developer in both directions.
 
 ### Stage 2 — Content
 
-Same file set, now filled. SCOPE and APPROACH are authored (often distilled from source material parked in `archive/`, then fact-checked against the real codebase), the LOG accumulates session entries, and FINDINGS starts collecting the non-obvious. This is where a brain spends most of its life.
+Same file set, now filled. SCOPE and APPROACH are authored (often distilled from source material parked in `archive/`, then fact-checked against the world they describe), the LOG accumulates session entries, and FINDINGS starts collecting the non-obvious. This is where a brain spends most of its life.
 
 ### Stage 3 — Mature lifecycle
 
@@ -91,6 +91,6 @@ Brains whose knowledge divides into several lobes — where one SCOPE cannot sta
 
 - **A session** usually runs in a project repo, where the hook loads the brain on demand; it starts by reading `CLAUDE.md` and only the indexed files the question needs. At a natural stopping point — a PR opened, work paused, the user wrapping up — the agent offers a closeout, and (when there's durable lineage worth keeping) appends an entry to each log its lineage routes to, per `<LOBESPACE>_SESSION_CLOSEOUT.md`.
 - **A work item** — a feature, bug fix, or hardening effort — opens with `WORK_SETUP`, runs across sessions logging to its own `<LOBESPACE>_<WORK>_LOG.md`, and closes with `WORK_CLOSEOUT`.
-- **Maintenance** runs on a cadence via `DREAM_CYCLE`: verify SCOPE's factual claims against the code, refresh APPROACH's external assumptions, promote LOG entries into FINDINGS, prune what's now re-derivable, and flag anything that needs human judgment.
+- **Maintenance** runs on a cadence via `DREAM_CYCLE`: verify SCOPE's factual claims about the systems in reach, refresh APPROACH's external assumptions, promote LOG entries into FINDINGS, prune what's now re-derivable, and flag anything that needs human judgment.
 
 The through-line across all three: knowledge is captured as lineage in the LOG, distilled into the living docs on a known cadence, and continuously pruned toward the irreducible core.

@@ -1,6 +1,6 @@
 # Mini-Brain Toolkit: The Multi-Lobe Layer
 
-> V11, 2026-09-29.
+> V15, 2026-10-30.
 
 This document is the layout convention for a mini-brain whose knowledge divides into several lobes. It is opt-in: a brain with one problem never uses it, and the file set in `MBT_PATTERN.md` applies unchanged.
 
@@ -13,6 +13,8 @@ A **lobe** is any node in the brain's tree — the hub or any of its children, a
 A lobe holds **child lobes** when one SCOPE cannot state its problem honestly: writing it forces two or more problems onto the page that merely coexist. Each of those problems becomes a child lobe. A lobe whose problem states cleanly in a single SCOPE has no children, and a brain with no children does not use this layer at all.
 
 Apply the test to each child lobe in turn. A child whose own problem splits again holds its own children, and everything below applies to it exactly as it applies to the hub.
+
+Alignment runs top-down. A child's problem exists within its ancestors' answers to theirs, so the child takes their SCOPE and APPROACH as given, and its own approach works within theirs. Its problem statement names, in its own words, each ancestor choice its own problem depends on, since a child's SCOPE cites only its parent's SCOPE, and a choice named there belongs to the child's problem, not to its design. The restatement is inherent, as a parent naming its parts is, and a change upstream ripples down: when an ancestor revises a choice, the child's problem statement and approach are revised with it.
 
 The layer pays off when the problem decomposes tree-like. Placement (§4) sends every fact spanning two lobes to the lobe above them, so lobes that interact many-to-many push most of their knowledge to the hub — graceful degradation, not failure, but a brain shaped that way quietly rebuilds the monolith there; grouping the tightly-coupled lobes under an intermediate parent is the mitigation.
 
