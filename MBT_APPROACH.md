@@ -1,6 +1,6 @@
 # Mini-Brain Toolkit: Technical Approach
 
-> V18, 2026-10-30.
+> V19, 2026-10-30.
 
 This document describes the approach for addressing the problems defined in `MBT_SCOPE.md`. It covers the strategic approach and key design decisions — not delivery sequence.
 
@@ -91,3 +91,23 @@ Establishment produces a seed and defers machinery until the work justifies it (
 ### 2.11 Open: coordination between co-loaded brains
 
 The lobespace convention lets several brains load into one session without collision, but the pattern does not coordinate them. Whether co-loaded brains need references between them, a shared index, or recall that reads each through the role it plays is not settled.
+
+### 2.12 Open: a check's proportion on a large scope
+
+The check reports a section once as a rewrite when issues cover most of it, and a scope once as one to re-gather when most sections need that. Whether this keeps a report proportionate on a large scope is unsettled: a blind check of a mid-sized scope still reported its 33 issues item by item.
+
+### 2.13 Open: ordering goals by impact
+
+The create procedure orders goals by their impact on whoever has the problem, as far as the evidence ranks them. Whether that ordering earns its place when the evidence cannot rank them is undecided.
+
+### 2.14 Open: the create procedure on a multi-lobe intake
+
+One single-lobe test intake, answered by a simulated owner, produced a neutral SCOPE on the first pass. Whether the first pass holds for a multi-lobe intake and a real owner is untested.
+
+### 2.15 Open: one home for the definitions
+
+Premise, choice, alternative and second approach are defined in the create and check procedures, the dream cycle and three templates, and the copies differ: create decides whether something the problem holder has is a premise by whether every approach must use it, while check lets the owner's answer decide. Whether each definition should live once, in the pattern's reference document, for the procedures to cite, is undecided.
+
+### 2.16 Open: testing the instructions by running them
+
+A review checks the instructions against their own rules. A dry run, in which an agent holding only a procedure runs it on a real brain, checks whether it reaches the owner's verdict, and it found what review did not. Whether to keep a fixed set of synthetic brains with planted defects and expected results, run blind after each change to the instructions, is undecided.
