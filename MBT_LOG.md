@@ -1331,3 +1331,41 @@ Rob's session, with Claude as co-author, continuing after the dry-run entry abov
 
 - Saving and verifying content before overwriting the file that holds it should be separate steps; the blocked command combined them.
 - The work-closeout template has no home for a closed item's unresolved questions, so each closeout has to ask.
+
+---
+
+# A 0.72 preflight: the installed skill and the template dream cycle tested (2026-10-30)
+
+**Session ID**: `c0b8b268-e845-4487-8346-f144ad51ce91`
+
+Rob's session, with Claude as co-author, continuing after the closeout entry above. Rob proposed a 0.72 release covering neutral SCOPE and APPROACH and the Claude skill, leaving other harnesses for 0.73, after more testing. Claude agreed and proposed four bounded tests rather than waiting for a test harness. Two ran this session; both passed, and each produced a fix.
+
+## Turn by turn
+
+- **The plan.** Claude judged the split sound: 0.72 breaks nothing structurally, and `SKILL.md` is harness-neutral, so 0.73 should change install paths rather than instructions. It advised keeping the definitions work item out of both releases until the testing work exists. Rob had the pre-release steps written to a preflight checklist outside the repo.
+- **Installed-skill test.** Claude installed the skill with the README's own command and built fixtures outside the toolkit repo: lamarr at its pre-restructure commit, an empty brain repo and a small project repo. Rob ran discovery, check and create as separate sessions, and Claude audited the transcripts and the results on disk.
+  - Procedures and templates resolved from the skill directory, and nothing was written into it.
+  - The check proposed the same second approach as before, applied the new decision-date rule, and found a likely factual drift in lamarr's SCOPE through the web. It missed "agent" as a candidate term, which the blind run had found.
+  - Create seeded the brain and merged the hook correctly. Its intake read the test script left in the session's working directory, so the intake was not tested blind.
+- **Premise question.** The check had bundled a binding premise with two that weren't into one option, and offered "Claude" where the scope said a language model. At Rob's direction Claude added a line asking about each premise on its own, committed to `main`.
+- **Template dream cycle.** Claude instantiated `templates/DREAM_CYCLE.md` into a scratch clone of `lamarr-brain` beside a clone of its code, with no script within reach. Rob started it with "dream".
+  - It ran all six phases unattended and asked nothing.
+  - It listed the claims it could not reach as unverified without stopping, edited no premise, covered APPROACH's open decisions, and left six self-contained decisions.
+  - It surfaced a contradiction in Phase 2: the introduction verified claims about any system with code in reach, while the extraction step named only the systems the problem holder works within. It reasoned that SCOPE never describes the project, so the project's own code is no target, and it verified a market alternative from its source on disk. Claude fixed the extraction step and the matching example in the update step, each committed to `main`.
+
+## Decisions
+
+- **0.72 now, other harnesses in 0.73, the definitions work item later** — Rob, with Claude agreeing.
+- **Bounded pre-release tests instead of waiting for a test harness** — Claude's recommendation, accepted by Rob.
+- **Ask about each premise on its own** — Rob, from the installed-skill test.
+- **A dream cycle's Phase 2 verifies what SCOPE describes, never the project's own code** — Rob, on Claude's recommendation from the dream-cycle test.
+
+## Lessons
+
+- A test script in the session's working directory is within the tested agent's reach. One session read it before the user stopped it, and another read it to the end.
+- In 0.72, a dream cycle's Phase 2 no longer verifies SCOPE against the codebase; the release notes need to say so.
+- An agent told to verify "code in reach" reads the whole machine. That was harmless here, but a scratch test is only as isolated as its instructions.
+
+## Open
+
+- The preflight's blind check of a multi-lobe brain, the optional blind create intake, and the toolkit's own dream cycle remain before tagging.
