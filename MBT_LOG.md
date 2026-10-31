@@ -1305,3 +1305,29 @@ Rob's session, with Claude as co-author, continuing after the closeout entry abo
 - The blind run reported 33 issues item by item, despite the check's rule to report a section once when issues cover most of it. Proportion on a large scope stays an open issue for the testing work item.
 - The blind run's remaining unclear points (identifiers in a platform vendor's code, by hand versus the status quo, holdings mentioned only implicitly in APPROACH, vendor-specific conditions, published patterns) belong with the definitions and testing work items.
 - The blind-run setup can be rebuilt as a seed for synthetic testing: an export of lamarr's pre-restructure commit, the check's four files, and owner answers fixed from the owner's recorded decisions.
+
+---
+
+# PR #18 merged, and the SOLUTION_NEUTRALITY work item closed out (2026-10-30)
+
+**Session ID**: `c0b8b268-e845-4487-8346-f144ad51ce91`
+
+Rob's session, with Claude as co-author, continuing after the dry-run entry above. Rob moved the session log off the PR and onto `main`, merged PR #18, and had Claude close out the work item and clear the branches the work left behind.
+
+## Turn by turn
+
+- **The log moves to main.** Claude had squashed the session's closeout entries into the PR commit. Rob directed that log updates go straight to `main`, not into a PR. Claude saved the appended entries and confirmed they rebuilt the working log exactly, restored the PR's copy of the log to `main`'s, force-pushed the PR, and committed the entries to `main` through a temporary worktree. A permission check had blocked the first attempt, which would have overwritten the uncommitted entry in the same step that saved it.
+- **Merge and branches.** Rob merged #18. Claude deleted the squash backup branch and `solution-neutrality`, locally and on GitHub, after confirming `main` held everything on them. It later deleted `pr18`, fetched by the review runs, and `skill-install`, which #17 had merged, after the same check.
+- **Closeout.** At Rob's direction Claude followed the work-closeout template. Four decisions folded into `MBT_FINDINGS.md`, the seven working log entries merged into this log with their original session IDs, and the working docs retired to `archive/`. The structural check came back clean.
+- **Open issues.** The template doesn't say where a closed item's unresolved questions go. Rob put the plan's three open issues and the PR's two follow-ups into `MBT_APPROACH.md` as open decisions: a check's proportion on a large scope, ordering goals by impact, the create procedure on a multi-lobe intake, one home for the definitions, and testing the instructions by running them.
+
+## Decisions
+
+- **Session log updates go to `main`, not to a PR** — Rob. Rob chose not to record the rule in the session-log instructions.
+- **The closed item's open issues become open decisions in APPROACH** — Rob, choosing among options Claude offered.
+- **Merged branches deleted locally and on GitHub** — Rob.
+
+## Lessons
+
+- Saving and verifying content before overwriting the file that holds it should be separate steps; the blocked command combined them.
+- The work-closeout template has no home for a closed item's unresolved questions, so each closeout has to ask.
