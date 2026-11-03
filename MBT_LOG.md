@@ -1409,3 +1409,49 @@ Rob's session, with Claude as co-author, continuing the 0.72 preflight. The test
 
 - Left for the definitions and testing work items: a factual claim versus a preference under "not a premise", whether working docs fall under the cross-reference rules, misrouted log entries, edge cases of status, and how a check pauses when run as a subagent.
 - The optional blind create intake and the toolkit's own dream cycle remain before tagging.
+
+---
+
+# A 0.72 preflight: a blind create, then a blind check of what it made (2026-11-02)
+
+**Session ID**: `c0b8b268-e845-4487-8346-f144ad51ce91`
+
+Rob's session, with Claude as co-author, continuing the 0.72 preflight. The installed-skill test had left create's intake untested blind. Rob agreed to run it only if Claude could drive it end to end. Claude ran create through stage 2 on a small invented project, then ran a fresh check on the brain it made, to look for the release blocker of create and check giving opposite verdicts. Both passed.
+
+## Turn by turn
+
+- **Setup.** Claude built `dotsync`, a small invented bash tool that syncs dotfiles across a Mac and a Linux workstation, with design notes as source material. It sat beside an empty brain repo, with a copy of the toolkit from `main` installed outside the test directory. Claude wrote the owner's answers before the run: one binding premise (the two machines); git, GitHub, bash and symlinks as the design's choices; keeping secrets out of plaintext as a goal; Nix home-manager as the second approach; and no commit. A fresh agent ran create and handed each question back, and Claude answered only from the file.
+- **Create.**
+  - It asked all seven intake items and then each premise on its own, and committed nothing.
+  - Its SCOPE kept every design choice out, assessing git, symlinks and the rest only as alternatives, and kept the README's status line out.
+  - Its fact-check found a real bug in the fixture script, which silently replaces an existing symlink. It reported the bug rather than writing it into the brain.
+  - It proposed chezmoi as the second approach while calling home-manager the option that "differs most of all", until the owner's answer settled it.
+- **Check.** A second fresh agent checked a committed copy with the same answers.
+  - It agreed with create on the premises and the second approach.
+  - It found SCOPE neutral apart from one passage: create had listed a git-only fact (no git on a fresh Mac) as a condition every option faces. Both procedures apply the same rule, so create misapplied it rather than the two disagreeing.
+  - It found that APPROACH's case against home-manager rested on editing files in place, which no one had settled as a premise, and reported it against APPROACH rather than SCOPE.
+  - It found quality issues create's read-back had missed: a goal marked "Met" that the script contradicts, an inconsistently marked goal, dating words in APPROACH, a gap no goal covers, an overstated claim, a missing alternative, and one term doing two jobs.
+
+## Decisions
+
+- **Run the create test only if Claude can drive it fully** — Rob.
+- **Add a blind check of the created brain, to test for opposite verdicts** — Claude.
+- **Step 3 passes the release gate** — Claude's judgment, which Rob accepted.
+
+## Lessons
+
+- Create's read-back catches less than a check does, so a brain from create should get a check soon after.
+- Agents drift on the second approach in both directions. Here the agent picked the familiar option over the most different one; the virtual-view agents assembled designs more different than the owner's.
+- Answers like "use your judgment, and record it as open" worked: both agents turned them into open questions rather than premises.
+
+## Open
+
+- For the testing and definitions work items:
+  - code that contradicts APPROACH has no check;
+  - the status tells are written for SCOPE only;
+  - neither procedure says how to pause for an absent user;
+  - research comes before the premise questions in practice but after them in the text;
+  - how many version bumps filling a skeleton takes;
+  - the intake never settles a display name;
+  - the closeout file's placeholder differs between create and the pattern.
+- The toolkit's own dream cycle remains before tagging.
