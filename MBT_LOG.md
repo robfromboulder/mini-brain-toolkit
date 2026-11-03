@@ -1455,3 +1455,44 @@ Rob's session, with Claude as co-author, continuing the 0.72 preflight. The inst
   - the intake never settles a display name;
   - the closeout file's placeholder differs between create and the pattern.
 - The toolkit's own dream cycle remains before tagging.
+
+---
+
+# Dream-cycle dry runs harden the instructions for a full re-baseline, and the Dreams API docs move the positioning (2026-11-02)
+
+**Session ID**: `cd62646a-e1c5-42f5-b575-50342c8c2301`
+
+Rob's session, with Claude as co-author. Rob asked for a dream-cycle dry run: no phases run, just a search of `MBT_DREAM_CYCLE.md` for instructions that conflict or can't be followed, and an estimate of which phases cost most. Four dry runs followed, each one checking the fixes from the last. Six fixes landed in the dream cycle and one in `templates/DREAM_CYCLE.md`. Rob also supplied Anthropic's Dreams API docs, which changed the registry entry for Anthropic Dreaming and the research conclusions built on it. The session ended with the instructions judged ready for a full re-baseline run.
+
+## Turn by turn
+
+- **First dry run.** Claude read the cycle, the last dream-log entry, file sizes and registry dates. Three conflicts could change what a run does:
+  - error recovery stopped the cycle whenever a claim couldn't be verified, which Phase 3 hits on almost every run, while confidence discipline and the unattended rule said to flag and carry on;
+  - Phase 2 runs `MBT_CHECK_BRAIN.md` as written, but that procedure is a conversation with the user, and the cycle runs with nobody present;
+  - the cycle log rule kept an entry "even for a dry run," which a user-requested dry run would not want.
+
+  Lesser findings: Phase 4 sends a log too large to read directly to an Explore agent that cannot judge; the read index has no visible boundary between the product docs and the brain's own docs; the agent cap does not fit the search counts; the "~5 stalest" registry pick ties because nearly every row shares one date; the last cycle's lesson about spot-checking agent corrections never reached the instructions; working logs sit outside Phase 4. Ranked by cost: Phase 3, then Phase 4, then Phase 2.
+- **Fixes, round one.** Rob asked for the three conflicts fixed. Error recovery now stops only on breakage; weak evidence is flagged and scored. Phase 2 sends each question the check procedure would ask to the needs-human-decision list and fixes or flags its findings under the phase's own update rule. A user-requested dry run edits nothing, the dream log included.
+- **The template.** The template's error recovery had the same stop-on-unverifiable rule, which also contradicted its own report's list of unverified claims. Rob asked for the same fix there. Neither of the other two conflicts applies to the template.
+- **Anthropic Dreams.** Rob gave the Dreams page from Anthropic's API docs. The registry already listed Anthropic Dreaming from its launch blog post, which described the human review gate as opt-in. The API docs show a different design: a dream writes a new memory store and never changes its input, so nothing is forgotten until a human attaches the output. The review is still coarse: the human accepts or discards the machine-written store whole and steers it only with free-text instructions. The launch post's automatic mode, scheduling and two sub-phases do not appear in the API docs. Claude updated the registry row in place. At Rob's direction it then reworded the research conclusions: the review gate no longer separates the mini-brain from Anthropic Dreaming; authorship and granularity do. The sharpened positioning claim is unchanged. The two-phase dream-cycle candidate now notes that its Anthropic parallel rests only on the launch post.
+- **Second dry run.** The error-recovery fix created a new conflict: Phase 3's change-check expects fetches to fail and falls back to an agent, while error recovery stopped on any tool failure and forbade workarounds. Rob asked for it fixed: a failure that a step names its own fallback for is that step's work, and the cycle stops only if the fallback fails too.
+- **Third dry run.** Phase 4 said both to scan the log forward from the last cycle and to read it end to end, and the context-management rule still claimed Phase 4's log read stays in the active context. Rob asked for the scope fixed: Phase 4 reads the log since the last cycle, or all of it on a first run, plus FINDINGS end to end, with the size rule measured on what is read.
+- **Fourth turn.** Asked what remained before a real run, Claude listed the Phase 4 agent mismatch as the only problem a real run would certainly hit. Rob asked for it fixed. An agent now only indexes the log slice, giving each entry's title, date and one-line summary. The active context picks the entries whose summaries show a decision, discovery, constraint or abandoned approach and reads each one in full. The context-management rule now says an agent handed a read only locates and summarizes, and every judgment stays in the active context.
+
+## Decisions
+
+- **Fix the stop-on-weak-evidence, unattended-check and dry-run conflicts, in the cycle and the template** — Rob.
+- **Fold the Dreams API docs into the registry and reword the research conclusions** — Rob.
+- **Fix the fetch-fallback conflict, the Phase 4 log scope and the Phase 4 agent mismatch** — Rob.
+- **Run the next cycle as a full re-baseline**, since the registry is about 90 days stale — Rob.
+
+## Lessons
+
+- A dry run catches conflicts cheaply. Each round found something the previous fix introduced or exposed, and the third round found nothing that could stop the cycle.
+- A rule that stops a cycle needs to separate breakage from weak evidence. Otherwise a research phase, whose normal output includes claims it can't verify, stops itself.
+- Vendor launch posts and API docs can describe a product differently. Here the launch post called a review gate optional, and the API docs showed it was built in. Registry rows should cite the API docs where they exist.
+
+## Open
+
+- From the dry runs, not blocking: the two read-index blocks have no visible boundary; the agent cap does not fit the per-family and per-field search counts; the cycle has no spot-check step for agent-proposed corrections and no rule for scoring a skipped Phase 3; working logs sit outside Phase 4; the check procedure's own Explore-agent delegation can conflict with the cycle's size rule.
+- The broader rewording of the differentiator in `MBT_SCOPE.md`, `MBT_APPROACH.md` and the README is still Rob's call.
