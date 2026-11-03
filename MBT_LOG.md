@@ -1383,7 +1383,7 @@ Rob's session, with Claude as co-author, continuing the 0.72 preflight. The test
 - **Setup.** Rob had an unmerged PR in `virtual-view-brain` that applied the 0.72 rules to its SCOPE and APPROACH documents, and chose to check both `main` and the PR branch in parallel. Claude exported each with `git archive` into scratch repos holding an installed copy of the toolkit and nothing else. Claude wrote the owner's answers from the PR's description before the runs, and Rob confirmed them: the binding premises (Trino, and views as the data contract), each lobe's second approach, and "yours to settle" for anything else. Two fresh agents ran the check, each answering only from that file.
 - **The `main` run against the PR.** Working from the state before Rob's PR, the check reproduced roughly 25 of its ~30 changes across all six lobes. That included the hub's alternatives, the hub explaining ViewMapper's problem, DataHub missing from ViewMapper's SCOPE, the MCP server's three design-shaped open questions, and ViewZoo's goal, almost word for word. It placed two open questions differently from Rob and deleted a third that Rob had kept.
 - **The PR-branch run.** No rule misfired on content Rob had approved: the structural checks were clean, create and check never disagreed, and nothing stopped the run. The rest of its issues came from rules written after the PR, such as no lobe's APPROACH naming its second approach.
-- **Second approaches.** Both agents proposed second approaches that matched Rob's poorly, one exact match out of six on `main`. They assembled the most different designs, where Rob had picked established alternatives his scopes already assessed. Three of Rob's second approaches broke choices the child takes from its parent: DataHub, an Iceberg catalog, and a client-held thread.
+- **Second approaches.** Both agents proposed second approaches that matched Rob's poorly, one exact match out of six on `main`. They assembled the most different designs, where Rob had picked established alternatives the scopes already assessed. Three of Rob's second approaches broke choices the child takes from its parent: DataHub, an Iceberg catalog, and a client-held thread.
 - **Gaps both agents hit.** Both improvised in the same three places. At Rob's direction Claude settled each with one sentence in `MBT_CHECK_BRAIN.md`:
   - a child takes its ancestors' choices as given without asking the user (the `main` agent had spent about 12 of its 33 questions on them);
   - content that parent overreach or question ownership places in another lobe moves to that lobe's SCOPE;
@@ -1402,7 +1402,7 @@ Rob's session, with Claude as co-author, continuing the 0.72 preflight. The test
 ## Lessons
 
 - A blind check that reproduces an owner's own PR is a stronger test than one judged against expected results written for it.
-- Agents choose the most different second approach; owners choose the established one. The definition favours the agents, so the gap is in the instruction, not the agents.
+- Agents choose the most different second approach; owners choose the established one. The definition favors the agents, so the gap is in the instruction, not the agents.
 - Owner answers written for a test need the same care as the test itself: one misworded default biased both runs.
 
 ## Open
