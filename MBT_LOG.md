@@ -1496,3 +1496,29 @@ Rob's session, with Claude as co-author. Rob asked for a dream-cycle dry run: no
 
 - From the dry runs, not blocking: the two read-index blocks have no visible boundary; the agent cap does not fit the per-family and per-field search counts; the cycle has no spot-check step for agent-proposed corrections and no rule for scoring a skipped Phase 3; working logs sit outside Phase 4; the check procedure's own Explore-agent delegation can conflict with the cycle's size rule.
 - The broader rewording of the differentiator in `MBT_SCOPE.md`, `MBT_APPROACH.md` and the README is still Rob's call.
+
+---
+
+# Launch plan for the full re-baseline dream cycle (2026-11-02)
+
+**Session ID**: `cd62646a-e1c5-42f5-b575-50342c8c2301`
+
+Rob's session, with Claude as co-author, continuing after the dream-cycle hardening was committed and pushed. Rob asked for a launch prompt for the full re-baseline and an effort recommendation. Claude supplied both, and the plan below records what the next cycle was told to do and why.
+
+## Decisions
+
+- **The launch prompt asks for a full re-baseline:** override the nap gate, change-check every living registry entry, and run every biology field — Rob's call, since the registries are about 90 days stale.
+- **The prompt asks for spot-checks:** every correction an agent proposes to an existing registry fact, and the claims behind any thesis-level flag, are checked directly before they are folded in, preferring a vendor's API docs over its blog posts. This carries the last cycle's Mem0 lesson, which the instructions still lack — Claude, accepted by Rob.
+- **Effort xhigh, on a 1M-context model where available** — Claude's recommendation. Web fetches and low-effort retrieval agents dominate the cost and don't scale with effort; the main session's synthesis, extraction and design check do, and a shallow pass is how a research cycle ends up only reconfirming its thesis. `max` would go mostly to verification, which the spot-check line already covers. `high` is the lowest acceptable setting.
+- **The prompt states the model and effort**, because the cycle can't detect the effort level for its dream-log header, and asks for no commit so Rob can review the diff.
+
+## The launch prompt
+
+```
+Dream. This is a full re-baseline: the registries are ~90 days stale, so override the nap gate and change-check every living entry in MBT_COMPARABLES.md, and run every field in MBT_BIOLOGY.md.
+
+- Spot-check directly (WebFetch/WebSearch in the active context) every correction an agent proposes to an existing registry fact before folding it in, plus the claims behind any thesis-level flag. Prefer a vendor's API docs over its blog posts.
+- Keep to roughly 10 sub-agents; brief them as narrow, low-effort retrieval and do all synthesis yourself. If you need more, stop and say why in the report.
+- Model/effort for the dream-log header: Opus 5.5, effort xhigh.
+- Don't commit. I'll review the working-tree diff.
+```
