@@ -1,4 +1,4 @@
-<!-- Mini-brain hook: merge the section below into each project repo's CLAUDE.md (create the file if the repo has none — never overwrite an existing one). Substitute <project> and <HUB>, and adjust the clone's name or location if it sits elsewhere or under another name. If the brain is multi-lobe, also uncomment the lobe paragraph and fill `<Lobe>`, `<dir>`, and `<LOBESPACE>` for the lobe this repo maps to. -->
+<!-- Mini-brain hook: merge the section below into each project repo's AGENTS.md, which every supported harness reads, and give the repo's CLAUDE.md an `@AGENTS.md` line, which Claude Code needs to read it. Create either file if the repo has none — never overwrite an existing one — and if the repo's CLAUDE.md already holds this section, move it to AGENTS.md rather than adding a second copy. Substitute <project> and <HUB>, and adjust the clone's name or location if it sits elsewhere or under another name. If the brain is multi-lobe, also uncomment the lobe paragraph and fill `<Lobe>`, `<dir>`, and `<LOBESPACE>` for the lobe this repo maps to. -->
 
 ## Working in the mini-brain
 

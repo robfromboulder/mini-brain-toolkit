@@ -4,18 +4,18 @@
 [![Contributing](https://img.shields.io/badge/contributions-welcome-green.svg)](https://github.com/robfromboulder/mini-brain-toolkit/blob/main/CONTRIBUTING.md)
 [![License](https://img.shields.io/github/license/robfromboulder/mini-brain-toolkit)](https://github.com/robfromboulder/mini-brain-toolkit/blob/main/LICENSE)
 
-Using a **mini-brain** with your codebase helps you iterate and triage faster, and gives Claude better context to make changes autonomously. This free toolkit provides agentic tools for creating and improving mini-brains.
+Using a **mini-brain** with your codebase helps you iterate and triage faster, and gives your coding agent better context to make changes autonomously. This free toolkit provides agentic tools for creating and improving mini-brains.
 
 ## What is a mini-brain?
 
-A mini-brain only captures knowledge about your software project that **can't be derived from code or commit history**: what inspires the work, why decisions went one way and not another, what was tried and discarded, what was surprising. Normally these details live in your team's heads or are scattered across tickets, wikis, and project docs. A mini-brain curates these details so every Claude session understands the problem statement, the technical approach, the design tradeoffs, and the implementation decisions behind your codebase.
+A mini-brain only captures knowledge about your software project that **can't be derived from code or commit history**: what inspires the work, why decisions went one way and not another, what was tried and discarded, what was surprising. Normally these details live in your team's heads or are scattered across tickets, wikis, and project docs. A mini-brain curates these details so every coding session understands the problem statement, the technical approach, the design tradeoffs, and the implementation decisions behind your codebase.
 
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset=".github/images/what-goes-where-dark.svg">
   <img src=".github/images/what-goes-where-light.svg" alt="A project repo of code and tests, commit history, and tickets and PRs is always treated as ground truth; a separate mini-brain repo holds experimental results, findings, approach, and scope, loaded into sessions on demand by a hook">
 </picture>
 
-**Using a mini-brain is just chatting with Claude.** Your coding sessions are the raw material. At each natural stopping point, you'll be prompted to optionally save what the session decided and learned. There's nothing to file, no format to learn, and you never leave the repo you're working in. Even creating a new mini-brain is done by chatting with Claude.
+**Using a mini-brain is just chatting with your coding agent.** Your coding sessions are the raw material. At each natural stopping point, you'll be prompted to optionally save what the session decided and learned. There's nothing to file, no format to learn, and you never leave the repo you're working in. Even creating a new mini-brain is done by chatting with your agent.
 
 **Mini-brains are self-improving.** On a schedule, a mini-brain dreams: verifying its claims against the code, pruning what's become derivable, and doing follow-on research. The brain stays small enough to read completely, and curious about what it doesn't know. Each dream cycle re-evaluates drift between the codebase, the mini-brain, and their surroundings.
 
@@ -52,6 +52,18 @@ The toolkit installs as a skill. Use the command below for your harness to insta
 d=~/.claude/skills/mini-brain-toolkit; if [ -d "$d" ]; then git -C "$d" pull --ff-only; else git clone https://github.com/robfromboulder/mini-brain-toolkit "$d"; fi
 ```
 
+**Codex**
+
+```sh
+d=~/.agents/skills/mini-brain-toolkit; if [ -d "$d" ]; then git -C "$d" pull --ff-only; else git clone https://github.com/robfromboulder/mini-brain-toolkit "$d"; fi
+```
+
+**OpenCode 2**
+
+```sh
+d=~/.agents/skills/mini-brain-toolkit; if [ -d "$d" ]; then git -C "$d" pull --ff-only; else git clone https://github.com/robfromboulder/mini-brain-toolkit "$d"; fi
+```
+
 **Other harnesses**
 
 ```sh
@@ -68,6 +80,18 @@ The `create` command helps seed a new mini-brain, whether you're starting a bran
 /mini-brain-toolkit create
 ```
 
+**Codex**
+
+```
+$mini-brain-toolkit create
+```
+
+**OpenCode 2** (select the skill from the menu `@` opens, rather than copying and pasting)
+
+```
+@mini-brain-toolkit create
+```
+
 **Other harnesses**
 
 ```
@@ -82,6 +106,18 @@ The `check` command evaluates your mini-brain and suggests how to improve its st
 
 ```
 /mini-brain-toolkit check
+```
+
+**Codex**
+
+```
+$mini-brain-toolkit check
+```
+
+**OpenCode 2** (select the skill from the menu `@` opens, rather than copying and pasting)
+
+```
+@mini-brain-toolkit check
 ```
 
 **Other harnesses**

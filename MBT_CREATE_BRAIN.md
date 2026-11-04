@@ -1,6 +1,6 @@
 # Mini-Brain Toolkit: Create a New Mini-Brain
 
-> V32, 2026-10-30.
+> V33, 2026-11-03.
 
 This document is the procedure for standing up a new mini-brain from `templates/`.
 
@@ -18,7 +18,7 @@ Before creating anything, settle these with the user. Establishment turns a deci
 - **Lobes** — whether the knowledge divides. Ask whether one SCOPE can state the problem honestly, or whether writing it would force two or more coexisting problems onto the page. If it divides, the brain is multi-lobe and `MBT_LOBES.md` governs its layout; ask again of any lobe whose own problem divides. For each child lobe, also settle the terms that should route a question to it — the registry's **Routes on** cell. Most brains hold one problem and answer no. Settle this before the lobespace, because the answer changes how many lobespaces there are.
 - **Lobespace** — the SCREAMING_SNAKE_CASE lobespace every knowledge file carries (principle 6). Short, distinctive, unlikely to collide with another brain loaded in the same session. Mirror the project name where natural (`orchard` → `ORCHARD`); pick an acronym when the name is long (`customer-data-platform` → `CDP`). Confirm it with the user — it touches every filename and is churn to change later. A multi-lobe brain settles one lobespace for the hub and one for each child lobe, each under the same collision test.
 - **Location** — the repo (principle 2: the brain is its own repository, not a folder inside a project repo). Convention is a repo named `mini-<project>-brain` beside the project repo's main checkout, where a coding session in that project repo — or any of its worktrees — finds it.
-- **Project repos (optional)** — the repos whose coding sessions should load the brain. Each gets the hook merged into its `CLAUDE.md` (§4). A brand-new project may have none yet; add the hook to each repo as it appears — this procedure is safe to re-run. In a multi-lobe brain, note which lobe each repo maps to; its hook names that lobe.
+- **Project repos (optional)** — the repos whose coding sessions should load the brain. Each gets the hook merged into its `AGENTS.md`, which its `CLAUDE.md` imports (§4). A brand-new project may have none yet; add the hook to each repo as it appears — this procedure is safe to re-run. In a multi-lobe brain, note which lobe each repo maps to; its hook names that lobe.
 - **Author** — the name of the human author, which the first session log entry names.
 - **Source material (optional)** — existing docs the SCOPE/APPROACH will be distilled from (design docs, PRDs, tickets, prior wikis). If they exist, they go in `archive/` as source, not into the canonical docs verbatim.
 
@@ -66,7 +66,8 @@ Substitute only these. `<WORK>` is always a runtime variable, not a creation pla
 | `templates/FINDINGS.md` | `<LOBESPACE>_FINDINGS.md` | Header + `*No findings recorded yet.*` |
 | `templates/LOG.md` | `<LOBESPACE>_LOG.md` | Header only; first entry is appended at first session closeout. |
 | `templates/SESSION_CLOSEOUT.md` | `<HUB>_SESSION_CLOSEOUT.md` | The authoritative LOG-entry format. |
-| `templates/PROJECT_HOOK.md` | each project repo's `CLAUDE.md` | *Merge* as a section into the existing file (create the file if the repo has none). Skip when no project repo exists yet. |
+| `templates/AGENTS.md` | `AGENTS.md` | Sends an agent that reads only `AGENTS.md` to the entrypoint. Copied unchanged. |
+| `templates/PROJECT_HOOK.md` | each project repo's `AGENTS.md`, imported by its `CLAUDE.md` | *Merge* as a section, as the template's opening comment directs. Skip when no project repo exists yet. |
 
 Then create the two directories: `archive/` (drop any source material here) and `working/`. Git won't track empty directories — add a `.gitkeep` to `working/` if it would otherwise be empty, and remove it once real content lands.
 

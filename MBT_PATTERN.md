@@ -1,6 +1,6 @@
 # Mini-Brain Toolkit: The Mini-Brain Pattern
 
-> V28, 2026-10-30.
+> V29, 2026-11-03.
 
 This document is the operational definition of a mini-brain: what it *is*, the file set it's made of, and the lifecycle that keeps it true and small.
 
@@ -22,7 +22,7 @@ Ten principles define the pattern, ordered from most to least important. Each is
 
 1. **Keep only what can't be re-derived.** Record the decisions, reasons, rejected paths, and lessons that the code, its version-control history, and the project's tickets do not already contain. Leave everything derivable where it lives. Expect the brain to shrink as content becomes re-derivable — that is health, not decay.
 
-2. **Store the mini-brain in its own repository, separate from the code it describes.** The brain records how and why the product was built, so it must not be embedded in, versioned with, or shipped as part of the product. It sits beside the project repositories, is loaded on demand, and outlives any single one of them. A short hook merged into each project repo's entrypoint pulls the brain to latest and loads it into a coding session on demand, so working with the brain never requires leaving the project repo — the separation costs the developer nothing.
+2. **Store the mini-brain in its own repository, separate from the code it describes.** The brain records how and why the product was built, so it must not be embedded in, versioned with, or shipped as part of the product. It sits beside the project repositories, is loaded on demand, and outlives any single one of them. A short hook merged into each project repo's instruction file pulls the brain to latest and loads it into a coding session on demand, so working with the brain never requires leaving the project repo — the separation costs the developer nothing.
 
 3. **Organize knowledge into orthogonal documents.** Give each document one dimension of the project — problem, approach, findings, session history — with no overlap between documents. Orthogonality lets each question map to exactly one file, lets each document be judged on its own terms, and keeps any one file small enough to load without the rest. That orthogonality has to hold in the prose, not just at the file boundaries: each document describes its own dimension without narrating its neighbors, and a reader reaches another document as a whole through the read index — not by reaching into its sections or threading cross-references through the body. (These numbered principles are a deliberate exception; most documents should expose no such independently-citable parts, or the read-index partitioning collapses back toward a wiki.)
 
@@ -30,7 +30,7 @@ Ten principles define the pattern, ordered from most to least important. Each is
 
 5. **Provide an entrypoint with a read index.** Put one file (`CLAUDE.md`) that a reader always opens first — the entrypoint — and have it carry a read index: a table listing every document, what each is for, and which are current. The reader consults the index and loads only the documents a given question needs.
 
-6. **Namespace every knowledge file with a SCREAMING_SNAKE_CASE lobespace.** Prefix each file with one uppercase lobespace unique to the brain (`ORCHARD_SCOPE.md`, `CDP_APPROACH.md`). The lobespace makes the brain's files unmistakable in a mixed directory and prevents collisions when two brains load in the same session. `CLAUDE.md` and the repo artifacts `README.md` and `CONTRIBUTING.md` are exempt.
+6. **Namespace every knowledge file with a SCREAMING_SNAKE_CASE lobespace.** Prefix each file with one uppercase lobespace unique to the brain (`ORCHARD_SCOPE.md`, `CDP_APPROACH.md`). The lobespace makes the brain's files unmistakable in a mixed directory and prevents collisions when two brains load in the same session. `CLAUDE.md`, `AGENTS.md` and the repo artifacts `README.md` and `CONTRIBUTING.md` are exempt.
 
 7. **Version and date every canonical document.** Open each canonical document with `> V<N>, YYYY-MM-DD.` Bump the number and set the date on each substantive edit. This gives readers a citable version and a freshness signal; full history stays in version control, not in duplicate in-tree copies. The append-only log, burndown checklists (`*_BURNDOWN.md`), and repo artifacts (`README.md`, `CONTRIBUTING.md`) are exempt.
 
@@ -53,6 +53,7 @@ The minimum viable brain.
 | File | Role | Namespaced? |
 |---|---|---|
 | `CLAUDE.md` | Entrypoint: read index + file conventions (principle 5). | Exempt |
+| `AGENTS.md` | Sends an agent that reads only `AGENTS.md` to the entrypoint. | Exempt |
 | `README.md` | Repo artifact: what this is and how to load it. | Exempt |
 | `<LOBESPACE>_SCOPE.md` | The problem, the world it exists in, goals — objective, solution-free. | Yes |
 | `<LOBESPACE>_APPROACH.md` | The chosen design and key decisions that address SCOPE. | Yes |
@@ -64,7 +65,7 @@ The minimum viable brain.
 
 SCOPE and APPROACH are deliberately **orthogonal** (principle 3): SCOPE describes the problem space without bias toward any solution; APPROACH makes the case for a specific design against that neutral problem statement. What divides them is whether a reasonable designer of the problem could decide a piece of content otherwise: if so, it is a choice and APPROACH's, however many designs share it; if not, it describes the problem and is SCOPE's. The problem holder's premises and goals are SCOPE's whoever designs; the test applies to everything else.
 
-One piece of the seed lives *outside* the brain: the hook section merged into each project repo's `CLAUDE.md` (principle 2's load-on-demand mechanism). A brain can precede its project repos — early work is thought through in the brain and rolled out as code — and the hook is added to each project repo as it appears, so the workflow follows the developer in both directions.
+One piece of the seed lives *outside* the brain: the hook section merged into each project repo's `AGENTS.md`, which the repo's `CLAUDE.md` imports (principle 2's load-on-demand mechanism). A brain can precede its project repos — early work is thought through in the brain and rolled out as code — and the hook is added to each project repo as it appears, so the workflow follows the developer in both directions.
 
 ### Stage 2 — Content
 
