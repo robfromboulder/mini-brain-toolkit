@@ -1522,3 +1522,32 @@ Dream. This is a full re-baseline: the registries are ~90 days stale, so overrid
 - Model/effort for the dream-log header: Opus 5.5, effort xhigh.
 - Don't commit. I'll review the working-tree diff.
 ```
+
+---
+
+# The pre-release dream cycle lands, owner reviews move into the dream log, and the template's Phase 4 is fixed for 0.72 (2026-11-03)
+
+**Session ID**: `9535653a-3513-4448-8bd4-300296ef971d`
+
+Rob's session, with Claude as co-author. The session ran the full re-baseline dream cycle from the launch plan, which `MBT_DREAM_LOG.md` records with Rob's owner review of it. This entry covers what followed the review: where an owner's review of a cycle belongs, whether the cycle found anything that blocks the 0.72 release, the commit of the cycle, and the port of a Phase 4 fix to the template dream cycle.
+
+## Turn by turn
+
+- **Where the owner review goes.** Rob asked for a session-log update, then stopped it to ask whether his reaction to the cycle belonged in the dream log instead, where it would hold the cycle accountable. Claude agreed. The next cycle's orientation reads only the last dream-log entry and sorts its decision items into resolved and open. This log is read in Phase 4, after the landscape pass, and only for FINDINGS candidates. A decision to leave something unchanged leaves no trace in the files, so without a recorded disposition the next cycle would raise it again. Claude raised append-only as a catch: a review written after the cycle's commit would need its own entry, which orientation's last-entry read would mistake for the cycle. Claude proposed a convention in `MBT_DREAM_CYCLE.md` to handle that. Rob declined the instruction change and had Claude write the review as a section at the end of the cycle's entry.
+- **Release check.** Asked whether the cycle found anything that would prevent releasing 0.72, Claude found no blocker: the structural and consistency phases passed, and the cycle's other items concern this brain's research, positioning or its own docs, not the shipped toolkit. One shipped defect was worth fixing first. `templates/DREAM_CYCLE.md` still had both Phase 4 defects the 2026-11-02 dry runs fixed only in this brain's cycle: an Explore agent made the extraction judgment, and the whole LOG was read every cycle. A grep confirmed both were still present.
+- **Commit and port.** Rob asked for the working tree committed as the pre-release dream cycle, then the fix ported and pushed. The template's Phase 4 now reads FINDINGS directly and only the LOG entries since the last cycle, with an Explore agent limited to indexing the slice when it is too large to read; its context-management rule says an agent handed a read only locates and summarizes. Both commits were pushed.
+
+## Decisions
+
+- **An owner's review of a dream cycle goes in a section at the end of that cycle's dream-log entry, not in this log** — Rob.
+- **Append-only applies once an entry is committed; until then the entry can still be added to** — Rob, declining an instruction change in `MBT_DREAM_CYCLE.md` to cover reviews written after commit.
+- **Nothing in the cycle blocks 0.72; port the template's Phase 4 fix before tagging** — Claude's assessment, which Rob accepted.
+
+## Lessons
+
+- A fix made to this brain's maintenance docs doesn't reach the templates unless someone ports it, and here the gap surfaced only because the cycle compared the two unprompted.
+- Claude told Rob the instruction changes in `MBT_DREAM_CYCLE.md` were separate hunks before checking the diff, and they weren't; a claim about a diff's shape should come from the diff.
+
+## Open
+
+- The committed owner review still lists the template-lag decision as open; the port resolved it after the commit.
