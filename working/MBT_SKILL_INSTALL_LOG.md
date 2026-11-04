@@ -170,3 +170,64 @@ Rob's session, with Claude as co-author. It started by reading the work item and
 - A work item whose docs live on `main` is read from `main`, not from a feature branch. Check `origin/main` for the item's docs before reading or editing them.
 - After resolving version-line conflicts across a rebase, check the final number against the count of bumps; a clean merge can hide a lost one.
 - A first triage of review findings can overstate one. Checking each against the files changed a recommendation.
+
+---
+
+# Part 2 probed in each harness, revised by Rob, and opened as PR #19 (2026-11-04)
+
+**Session ID**: `2321d25a-038a-4c05-abd6-4ec4f6cd8116`
+
+Rob's session, with Claude as co-author, on a machine running Claude Code, Codex and OpenCode 2. Rob asked Claude to drive part 2 by experiment until the toolkit installed, loaded and worked in each harness. Claude probed each harness, built the planned changes on `skill-install-part-2`, and ran the acceptance in Codex and OpenCode 2, which passed. Rob then moved the OpenCode menu instruction and replaced the toolkit-copy rule with an install guard. A re-test with a control passed, and the work went up as PR #19.
+
+## Turn by turn
+
+- Claude read the work item from `main` and asked one question: whether the README's intro, diagrams and badge should stop naming Claude. Rob chose prose only.
+- Claude probed each harness with a throwaway skill, `zz-probe`:
+  - Codex passes the text after `$name` through, and ignores `disable-model-invocation`, which `agents/openai.yaml` overrides.
+  - OpenCode 2 attached the skill neither from `opencode run '@zz-probe'` nor from a mention typed out in the TUI. Claude drove the TUI through a pty and the server API, and found the skill attaches only when picked from the `@` menu.
+  - OpenCode 2 has no `CLAUDE.md` fallback, and Claude Code follows a symlink in `~/.claude/skills`.
+  - Each harness exports its session ID as a variable. OpenCode 2 keeps sessions in SQLite, which ruled out the planned transcript lookup.
+- Claude implemented the plan's part 2 list, with two additions:
+  - a loading-reach check;
+  - "read-only subagents" in place of "Explore agents", since OpenCode and Codex have subagents of other names.
+- In the acceptance, a toolkit copy tested whether `check` stayed out of the install. That led to a `SKILL.md` rule resolving every path against the copy.
+- Claude reported, and Rob asked two questions:
+  - whether the OpenCode note between the install blocks earned its place;
+  - whether the toolkit-copy rule positioned forking the toolkit as a user story.
+- Claude answered both:
+  - a pasted `@mini-brain-toolkit` silently fails, so the note steers away from a real failure;
+  - the toolkit-copy rule came from part 1's deferred finding, not a fork story.
+  
+  Claude moved the note under the create command and proposed a general guard against writes to the install.
+- Rob directed:
+  - the instruction goes in the OpenCode 2 label of both create and check, since a reader copies a command without rereading install, and may run check without reading create;
+  - the guard goes in general form.
+  
+  Claude made both changes.
+- Rob asked for a re-test before the PR. Claude planted a missing version header in a toolkit copy and a writable test install, and told `check` to apply every fix:
+  - With the guard, Codex and OpenCode 2 fixed only the copy.
+  - On an ordinary brain wired the old way, Codex applied the loading-reach fix, moving the hook rather than copying it.
+  - A control with `main`'s `SKILL.md` also fixed only the copy.
+  
+  The install stayed byte-identical throughout.
+- Rob had the branch committed, pushed and opened as PR #19, and the work item updated on `main`.
+
+## Decisions
+
+- **README intro prose names no single harness; diagrams, alt text and badge unchanged** — Rob.
+- **Session ID from the running harness's own variable** — Claude, on the OpenCode 2 finding.
+- **OpenCode 2 menu instruction in the create and check labels, not after the install blocks** — Rob.
+- **A general install-write guard in `SKILL.md`, not a rule for toolkit copies** — Rob, on Claude's proposal. The reason was to avoid framing a copy of the toolkit as an expected workflow.
+- **No symlink in the README for now, and create's branch-first wording left alone** — Claude, raised with Rob as open issues.
+
+## What didn't work
+
+- **`opencode run '@name'`:** it never attaches a skill. Testing OpenCode 2 headlessly needed the server API.
+- **An allow-all permission ruleset:** a helper session created with one was blocked by the permission classifier. The default build permissions served.
+- **A Codex run from a directory that wasn't a git repo:** it exited without running, so the fixture needed `--skip-git-repo-check`.
+
+## Lessons
+
+- **A note placed before the step it governs fails the reader who copies that step.** Put an instruction beside the command it qualifies, in every section a reader might enter at.
+- **A rule written for one collision can frame that case as supported.** A general fail-closed rule covers the hazard without endorsing the case.
+- **A guard that passes its test also needs a control.** Here the control showed the models already behaved, which makes the guard a backstop rather than a fix.

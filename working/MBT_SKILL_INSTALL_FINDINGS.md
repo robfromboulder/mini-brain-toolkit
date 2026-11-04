@@ -10,17 +10,18 @@ The brains create produces depend on Claude Code. The project hook merges into t
 
 ## Harness facts
 
-Verified against each harness's docs on 2026-10-29 and 2026-10-30.
+Verified against each harness's docs on 2026-10-29 and 2026-10-30, then by experiment on 2026-11-03 in Claude Code 2.1.318, Codex 0.166.0 and OpenCode 2.2.5.
 
 | | Claude Code | Codex | OpenCode 2 |
 |---|---|---|---|
 | Global skill directories | `~/.claude/skills` | `~/.agents/skills` | `~/.config/opencode/skills`, `~/.claude/skills`, `~/.agents/skills` |
-| User invocation | `/name args` | `$name`, or the `/skills` menu | `@name` |
-| Suppressing model invocation | `disable-model-invocation: true` | `agents/openai.yaml`: `policy.allow_implicit_invocation: false` | `disable-model-invocation: true`, or `metadata.opencode/autoinvoke: false` |
+| User invocation | `/name args` | `$name args`, or the `/skills` menu | `@name args`, with the skill picked from the `@` menu; typed or passed to `opencode run`, the mention reaches the model as plain text |
+| Suppressing model invocation | `disable-model-invocation: true` | `agents/openai.yaml`: `policy.allow_implicit_invocation: false`; `disable-model-invocation` is ignored | `disable-model-invocation: true`, or `metadata.opencode/autoinvoke: false`; `@` still invokes the skill |
 | Duplicate skills | — | Not merged; both appear | Resolved by ID from the folder name; the later source wins, and `~/.agents/skills` registers after `~/.claude/skills` |
-| Instruction file | `CLAUDE.md`, which can import `@AGENTS.md` | `AGENTS.md`, plus names in `project_doc_fallback_filenames` | `AGENTS.md`; a `CLAUDE.md` fallback when it is absent is documented but reported removed |
+| Instruction file | `CLAUDE.md`, which can import `@AGENTS.md`; `AGENTS.md` only when no `CLAUDE.md` exists | `AGENTS.md`, plus names in `project_doc_fallback_filenames` | `AGENTS.md`, with no `CLAUDE.md` fallback |
+| Session ID | `CLAUDE_CODE_SESSION_ID`, matching the transcript filename | `CODEX_THREAD_ID`, matching the rollout filename | `OPENCODE_SESSION_ID`; sessions live in SQLite, not files |
 
-OpenCode 1 has no user invocation of skills; the model loads them through its `skill` tool. Neither Codex nor OpenCode 2 documents whether text after the mention reaches the skill.
+OpenCode 1 has no user invocation of skills; the model loads them through its `skill` tool. Claude Code follows a symlink in `~/.claude/skills` to a clone elsewhere. A harness started from another's session inherits that one's session variable. OpenCode 2's read tool does not expand `~`; Codex expands it through its shell.
 
 ## Preferred approach: the repo root is the skill
 
@@ -42,7 +43,10 @@ Part 1 ships Claude Code and other harnesses; part 2 adds Codex and OpenCode 2. 
 - **Brain entrypoint stays `CLAUDE.md`, with a one-line `AGENTS.md`** telling the agent to read it. The pattern, the lobe layout and every template name `CLAUDE.md`, so renaming the entrypoint would touch all of them.
 - **Codex and OpenCode 2 install into `~/.agents/skills`**, the one directory both read. A user with both installs gets the `~/.agents` copy in OpenCode 2, the one the README assigns it.
 - **`agents/openai.yaml` with `allow_implicit_invocation: false`.** Codex is the only one of the three that ignores `disable-model-invocation`, and once the hook reaches `AGENTS.md` its trigger phrases would compete with the skill.
-- **Closeout names each harness's transcript location**, keeping the fallback of asking.
+- **Closeout reads the running harness's session ID variable**, keeping the fallback of asking. OpenCode 2 writes no transcript file to name, and reading only the running harness's variable skips one inherited from a parent session.
+- **Check flags a brain or hook that only `CLAUDE.md` reaches**, so an existing brain gains the `AGENTS.md` wiring by running check.
+- **`SKILL.md` forbids writes under the install.** One fail-closed sentence keeps any target, a toolkit copy included, from editing the install, without framing a copy of the toolkit as a supported target.
+- **The OpenCode 2 menu instruction sits in the create and check labels**, beside the command a reader copies.
 
 ## Alternatives considered
 
@@ -54,10 +58,13 @@ Part 1 ships Claude Code and other harnesses; part 2 adds Codex and OpenCode 2. 
 - **Codex and OpenCode in PR #17.** Rejected: listing them before brains load there promises what create does not deliver, and making it deliver widens #17 into the files #18 edits.
 - **The hook written into both `CLAUDE.md` and `AGENTS.md`.** Rejected: two copies to keep in sync.
 - **A plain-language command for OpenCode.** Rejected: OpenCode 2's `@` invocation replaces it, and OpenCode 1 is out of scope.
+- **Resolving every path against the target when it is a copy of the toolkit.** Rejected by Rob: it frames maintaining a copy of the toolkit as an expected workflow. The install guard covers the hazard.
+- **The OpenCode 2 menu note once, after the install blocks.** Rejected by Rob: a reader who copies a command later never sees it, and a reader of check may not have read create.
+- **Finding the session ID from each harness's transcript location.** Rejected: OpenCode 2 keeps sessions in SQLite, and every harness exports the ID as a variable.
 - **`--depth 1` on the install.** Rejected: the packed repo is about 344 KB, and a shallow clone complicates later pulls.
 
 ## What this doesn't solve
 
 - **Discoverability.** A user still has to learn the command from the README; the skill appears in a harness's command list only after it is installed, and its argument appears only as hint text.
 - **Existing sibling clones.** Nothing moves them to a skills directory.
-- **The toolkit checking itself, until part 2.** The check's namespace test flags `SKILL.md`. And `SKILL.md`'s path rule relies on no target sharing the `MBT` lobespace, so checking a copy of the toolkit reads that copy's `MBT_*.md` files from the install. The toolkit maintains itself through the dream cycle, so neither blocks part 1.
+- **Checking a copy of the toolkit through the skill.** The procedure still comes from the install, and `SKILL.md`'s path rule names the install for every `MBT_*.md` file. The install guard keeps fixes out of the install, and in tests both harnesses audited and fixed the copy's own files, as did a control without the guard. The toolkit maintains itself through the dream cycle.
