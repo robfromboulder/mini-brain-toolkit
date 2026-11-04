@@ -1,6 +1,6 @@
 # Mini-Brain Toolkit: Technical Approach
 
-> V19, 2026-10-30.
+> V20, 2026-11-03.
 
 This document describes the approach for addressing the problems defined in `MBT_SCOPE.md`. It covers the strategic approach and key design decisions — not delivery sequence.
 
@@ -10,15 +10,15 @@ This document describes the approach for addressing the problems defined in `MBT
 
 ### 1.1 Curate what can't be re-derived
 
-The toolkit serves developers whose coding agent loads an instruction file at session start. That is narrower than whoever has the problem in `MBT_SCOPE.md`: a project worked through an agent that loads no instruction file is not served, and every goal goes unmet for it. It builds on SCOPE's premises rather than choosing them: git provides history, review and sharing on the project's own terms but holds no why beyond commit messages, and the coding agent provides the judgment to read, check and revise prose, reading its instruction file first.
+The toolkit serves developers whose coding agent loads an instruction file at session start. That is narrower than whoever has the problem in `MBT_SCOPE.md`: a project worked through an agent that loads no instruction file is not served, and every goal goes unmet for it. It builds on SCOPE's premises rather than choosing them: git provides history, review and sharing on the project's own terms but holds no why beyond commit messages, and the coding agent provides the judgment to read, check and revise prose, reading its instruction file first. It uses no harness's memory feature: the brain is plain markdown in its own repository, so what is kept survives a change of coding agent. Its one tie to a harness is a filename: the hook merges into the project repo's `CLAUDE.md`, so a harness that never reads that file loads the brain only when asked to.
 
 On those foundations the toolkit's answer is the mini-brain pattern, an unusual bet: capture only what can't be re-derived, keep lineage separate from distilled truth, and shrink toward an irreducible core rather than accumulate. A few well-sized, indexed markdown files live in a repository of their own beside the project's code, curated by a person working with an agent. The bet is that a knowledge store kept small can be checked whole, so it stays true as it grows (*what is kept stays true as it grows*). Against the alternatives `MBT_SCOPE.md` assesses:
 
 - **Wikis and second brains** are the second approach, the one that differs most: they make the opposite bet, capturing comprehensively and linking everything rather than keeping only what can't be re-derived. They could meet the context budget by loading pages selectively, but nothing forces a page to be revised, so their trustworthiness falls as they grow. The pattern keeps less, prunes what has become re-derivable, and re-checks all of it on a schedule (§2.3).
-- **Automatic memory** captures as a side effect of work and retrieves on demand, with nobody curating. It removes the curation burden, but keeps whatever its extractor kept, accumulates, and leaves what was stored and who can read it hard to govern. The toolkit curates instead, and keeps what is kept in a repository under version control and review, so the owner sees and corrects it as they do code (*the owner governs what is kept*). That goal is only partly met: the brain's repository has its own access settings, so it is shared as the project is only where the owner sets it to match. Automatic capture is not ruled out; it is not what this toolkit provides.
+- **Automatic memory** captures as a side effect of work and retrieves on demand, with nobody curating. It removes the curation burden, but keeps whatever its extractor kept, accumulates or forgets only mechanically, and leaves what was stored and who can read it hard to govern. The toolkit curates instead, and keeps what is kept in a repository under version control and review, so the owner sees and corrects it as they do code (*the owner governs what is kept*). That goal is only partly met: the brain's repository has its own access settings, so it is shared as the project is only where the owner sets it to match. Automatic capture is not ruled out; it is not what this toolkit provides.
 - **Leaving it to the artifacts** keeps the code clean by keeping the why out. The pattern keeps the why beside the code rather than in it, so neither has to compromise (*the why survives sessions and people*).
 - **Remembering it** leaves with the person and is re-explained every session. The pattern writes it where every session's agent loads it (*the why survives sessions and people*).
-- **Agent instruction files** are the closest alternative, and the pattern builds on one: its entrypoint is the instruction file the agent loads first. It holds only a read index and conventions, and the why lives in separate files loaded on demand, so the file loaded every session stays within the context budget and rationale has a home the convention excludes (*an agent loads only what its question needs*).
+- **Agent instruction files** are the closest alternative, and the pattern builds on one: its entrypoint is the instruction file the agent loads first. It holds only a read index and conventions, and the why lives in separate files loaded on demand, so the file loaded every session stays within the context budget, and the why and its lineage get a home the convention gives them no room for (*an agent loads only what its question needs*). Harness tooling can trim an instruction file toward what the code can't say, the pattern's own criterion, but one file at a time; the pattern applies it to everything the project keeps.
 - **Architecture decision records** hold lineage but leave the current state to be reconstructed. The pattern keeps lineage in an append-only log and revises the distilled truth in place.
 
 The pattern belongs to the curated-store class `MBT_SCOPE.md` assesses, and within that class the toolkit settles how a store is set up and checked:
@@ -86,7 +86,7 @@ The templates are distilled from live brains that keep evolving, and an improvem
 
 ### 2.10 Open: the maturity floor for a new brain
 
-Establishment produces a seed and defers machinery until the work justifies it (§2.5), leaving that judgment to the operator. Whether some projects should start further along, or whether a lighter-than-seed brain is legitimate for very small projects, is not settled.
+Establishment produces a seed and defers machinery until the work justifies it (§2.5), leaving that judgment to the operator. Whether some projects should start further along, or whether a lighter-than-seed brain is legitimate for very small projects, is not settled. One external result bears on it: inline comments recording each instruction's reason halted instruction-file growth in controlled tests (Chakrabarti, 2026), so for a small project a recorded reason may do much of a seed's work.
 
 ### 2.11 Open: coordination between co-loaded brains
 

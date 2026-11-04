@@ -1,6 +1,6 @@
 # Mini-Brain Toolkit: Scoping Statement
 
-> V15, 2026-10-30.
+> V16, 2026-11-03.
 
 This document defines the problem that the mini-brain toolkit addresses, separately from design decisions and implementation details, as an objective and unbiased resource.
 
@@ -20,7 +20,7 @@ Whatever form the knowledge store takes, it has to be set up and kept true by pe
 
 ## 2. State of the Problem
 
-This assessment is as of October 2026.
+This assessment is as of November 2026.
 
 **Leaving it to the artifacts.** Code, comments, commit messages, pull request descriptions and tickets. Nothing new to set up or maintain. The why survives only in fragments scattered across history, which an agent finds only by knowing to search for them, and a clean codebase keeps most of it out.
 
@@ -30,9 +30,9 @@ This assessment is as of October 2026.
 
 **Wikis and second-brain systems.** Comprehensive, linked and searchable. They grow without bound, drift because nothing forces a page to be revised, and lose trust as they grow. Most live outside the repository and its review.
 
-**Agent instruction files (AGENTS.md, CLAUDE.md and kin).** One file at the repository root that tells an agent how to act, loaded every session. They are cheap and widely supported, but by convention hold instructions and exclude rationale and lineage, and a single file that tries to hold more outgrows the context budget.
+**Agent instruction files (AGENTS.md, CLAUDE.md and kin).** One file at the repository root that tells an agent how to act, loaded every session. They are cheap and widely supported, but by convention hold instructions and at most a short reason beside one, and exclude lineage; a single file that tries to hold more outgrows the context budget. Harness tooling can trim such a file toward what the code can't show, but only that one file.
 
-**Automatic memory (agent-memory frameworks, harness memory features).** Capture happens as a side effect of work: memories are extracted from sessions, often into a vector store, and retrieved on demand. Nobody has to curate. What is kept is whatever the extractor kept, it accumulates, and retrieval returns fragments rather than a coherent account. Capturing what sessions see raises privacy and governance questions that aren't trivial to answer: what was stored, who can read it, and how to remove it. Many keep memory outside the repository, per user or per machine.
+**Automatic memory (agent-memory frameworks, harness memory features).** Capture happens as a side effect of work: memories are extracted from sessions, often into a vector store, and retrieved on demand. Nobody has to curate, though some ask a person to approve each memory before it is saved. What is kept is whatever the extractor kept. Most systems let it accumulate, and those that forget do it mechanically, by expiry or automatic merging and purging. Retrieval returns fragments rather than a coherent account. Capturing what sessions see raises privacy and governance questions that aren't trivial to answer: what was stored, who can read it, and how to remove it. Many keep memory outside the repository, per user or per machine.
 
 **A small curated knowledge store beside the code.** A handful of documents kept deliberately, holding only what the artifacts can't express, indexed so an agent loads the one a question needs, and revised in place as the project changes. It stays small enough to check whole and to fit the context budget. It asks someone to curate it and to check it against the project; left alone, it drifts like any document. It also has to be set up to a convention, in one of three ways. Set up by hand, it works only if the person setting it up already understands the convention. Copied from a neighboring project, it looks right at once but inherits the source's drift and project-specific detail, and depends on the copier understanding which parts carry the intent. Generated from templates and checked by a linter, its setup and structure are repeatable and mechanical, but the linter checks form, not whether the content is true or still worth keeping, and both tools are installed and versioned beside each project.
 
@@ -46,7 +46,7 @@ This assessment is as of October 2026.
 
 ### Evidence the problem is real
 
-Each alternative above is in use. Architecture decision records have been practiced since Michael Nygard proposed them in 2011 as a record of each architectural decision's context and consequences. Agent instruction files are a convention shared across coding agents. Agent-memory frameworks are published, and coding agents ship memory features of their own. Each keeps some part of what a project's artifacts leave out.
+Each alternative above is in use. Architecture decision records have been practiced since Michael Nygard proposed them in 2011 as a record of each architectural decision's context and consequences. Agent instruction files are a convention shared across coding agents. Agent-memory frameworks are published, and coding agents ship memory features of their own. Each keeps some part of what a project's artifacts leave out. Instruction files also show the loss directly: a study of 1,867 repositories found agent instruction files more than tripling over their lifetimes, and attributes the growth to instructions becoming risky to delete once their reason is lost (Chakrabarti, 2026); a sample of 356 repositories found stale code references in the AI configuration files of 23% of them (Treude and Baltes, 2026).
 
 ---
 
