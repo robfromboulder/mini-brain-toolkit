@@ -29,6 +29,8 @@ Knowledge files are never compared, and neither are a work item's docs, which `t
 - `MBT_CHECK_BRAIN.md`, structural checks — a procedure-drift check: for each file in the table the brain holds, substitute the brain's placeholder values into the current template and compare the two section by section. A section the brain filled in (its read index, exemption table, lobe registry, the hook's lobe paragraph and work-item block) is compared only for the template's own text around it.
 - `MBT_CHECK_BRAIN.md`, report — procedure drift gets its own entry among the structural issues: each differing section, with a one-line reading of what the template's current text changes. The report names the toolkit version it compared against.
 - `MBT_CHECK_BRAIN.md`, walk-through — an approved update replaces that section with the template's text, keeping the brain's filled-in parts. A declined one stays as it is.
+- `templates/DREAM_CYCLE.md` — fix two defects that the drift check would otherwise carry into every brain. Codex and OpenCode 2 each found both independently during the PR #19 retest. Check 6 exempts names carrying `<LOBESPACE>` as placeholder notation, but `create` substitutes the lobespace, so a seeded brain exempts its own real `working/` filenames and lets leaked references through; the exemption must describe placeholder notation in words that `create`'s substitution leaves alone. Checks 1 and 4 don't say to skip read-index rows commented out in HTML, as check 1 in `MBT_CHECK_BRAIN.md` does, so followed literally they flag the rows staged for docs that don't exist yet.
+- `templates/DREAM_CYCLE.md` — verify three wording issues Codex raised in the same retest, which haven't yet been checked against the template: the enforced-terms rules when the brain has no enforced-terms file, discoveries that shaped the approach being routed to FINDINGS, and "LOG files are never archived" against retiring merged working logs.
 - `MBT_PATTERN.md` — the distinction between knowledge files and procedure files, if the pattern doesn't already draw it in terms `check` can cite.
 
 ## Interaction with existing docs
@@ -52,8 +54,9 @@ Then run it against lamarr-brain, whose copies were updated by hand, a multi-lob
 ## Implementation sequence
 
 1. Settle where the placeholder rules and the procedure-file list live.
-2. Write the drift check, report entry and walk-through step in `MBT_CHECK_BRAIN.md`.
-3. Run the 0.72-seeded and 0.70-seeded brain tests, then the three existing brains.
+2. Fix the two `templates/DREAM_CYCLE.md` defects, and verify Codex's three wording issues against the template.
+3. Write the drift check, report entry and walk-through step in `MBT_CHECK_BRAIN.md`.
+4. Run the 0.72-seeded and 0.70-seeded brain tests, then the three existing brains.
 
 ## Scope boundary — what this does NOT include
 
