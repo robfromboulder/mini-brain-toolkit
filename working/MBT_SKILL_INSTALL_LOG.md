@@ -298,3 +298,41 @@ Rob's session, with Claude as co-author, continuing past this session's earlier 
 ## Lessons
 
 - **A handed-off test script should be checked against the fixture it reproduces.** A substitution written for convenience can change what is under test without anyone noticing.
+
+---
+
+# Loading-reach retest passes in Codex and OpenCode 2 (2026-11-04)
+
+**Session ID**: `31469f03-bf9e-487c-94c8-d4a3f4c2a56f`
+
+Rob's session, with Claude as co-author. Rob asked Claude to run the retest procedure that the previous session posted to PR #19, driving Codex and OpenCode 2 headless on this machine. Both harnesses passed every step against `0bd87bf`. The results went to PR #19 as a comment, and the fixtures were deleted.
+
+## Turn by turn
+
+- Claude read the procedure from the PR comments, extracted `seed.sh` from it unchanged, and seeded one fixture per harness. Both `new` clones were at `0bd87bf`. The installed versions were Codex 0.166.0 and OpenCode v2.2.5.
+- **Step 2, check with every fix applied.** Claude ran Codex through `codex exec` in a `workspace-write` sandbox, with `--add-dir` granting the sibling project repo. For OpenCode, the permission classifier blocked `opencode run --auto`, which approves every request. Claude ran it without `--auto` instead, with an `OPENCODE_CONFIG_CONTENT` override allowing only the project repo and the toolkit clone as external directories. That matched the procedure's "allow writes to `../orchard`". OpenCode ran on Rob's configured default model, `gpt-6.1-sol`.
+- Both step 2 runs met every pass criterion, which Claude graded from the diffs rather than the agents' reports. Codex verified its own fix with a script, which first tripped on a reference to `CONTRIBUTING.md` and then passed. Codex also rewrote the brain's session closeout to remove its Claude-only session ID and attribution. That is TEMPLATE_DRIFT's ground, and the rewrite still called the ID a UUID. OpenCode left the file alone.
+- **Step 3, report only.** Claude ran Codex in a `read-only` sandbox. OpenCode has no equivalent switch, so Claude snapshotted the fixture's working tree before the run and compared it afterwards; nothing changed. Neither run raised a finding about `AGENTS.md`. OpenCode cited the project's `AGENTS.md` once, because its pull and push to `main` can't run in a fixture that has only a local `master` and no remote. Claude classed that as a fixture artifact, not a loading-reach gap.
+- **Step 4** passed in both: each install was clean, and the namespace command printed nothing.
+- The two harnesses independently raised the same two problems in the dream cycle, and Claude confirmed both are still in the current template. Check 6's placeholder exemption names `<LOBESPACE>`, which `create` substitutes, so a seeded brain exempts its own real `working/` filenames from the leakage check. Checks 1 and 4 don't say to skip HTML-commented read-index rows, so followed literally they flag the rows staged for docs that don't exist yet. Codex raised three more wording issues in the dream cycle, which Claude did not check against the current templates.
+- Rob had the results posted to PR #19. Claude wrote the fixture paths as `<dir>` so the comment carried no home directory.
+- Rob had the fixtures deleted, and Claude listed both directories before removing them.
+- Rob asked for the session log updated. Claude began with `MBT_LOG.md` on the PR branch. Rob redirected the entry to this work item's log on `main`, which Claude wrote through a worktree.
+
+## Decisions
+
+- **OpenCode runs with a scoped external-directory allowance, not `--auto`** — Claude, after the classifier blocked `--auto`.
+- **Codex's extra edit to the session closeout doesn't fail step 2** — Claude. The prompt said to apply every fix, and the pass criteria don't rule out fixes beyond the loading-reach fix.
+- **The two dream-cycle template problems are reported on PR #19 as out of scope, not fixed there** — Claude, posted at Rob's direction.
+- **This entry goes to the SKILL_INSTALL log on `main`** — Rob.
+
+## What didn't work
+
+- `opencode run --auto` was blocked by the classifier, so OpenCode needed a narrower permission override.
+- Starting the closeout from `MBT_LOG.md` on the PR branch. The previous session's lesson already said this work item is read from `main`.
+
+## Lessons
+
+- **A report-only step needs a mechanism, not just the prompt.** Use a read-only sandbox where the harness has one, and compare against a snapshot where it doesn't.
+- **"Apply every fix" lets a harness fix things outside the test.** Grade each changed file against the pass criteria, not the agent's own summary.
+- **Two harnesses raising the same finding independently is a signal worth keeping**, even when the finding is outside the test's scope.
