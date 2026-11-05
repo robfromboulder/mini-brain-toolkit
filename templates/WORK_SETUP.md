@@ -21,7 +21,7 @@ The working docs and their roles:
 
 PLAN and BURNDOWN are two halves of the same work: the plan gets the code written, the burndown gets it merged. The burndown's Routine rows are inherited defaults: a brain adopting this procedure refines them once, outside any setup run, to match its PR conventions — the closeout-notes row is not a PR convention and stays. Custom rows are always per-item; the scaffold's category placeholders there are prompts to fill or strike, not standing work.
 
-These are **working files**, so per `CLAUDE.md` they are *not* versioned (no `> V<N>` header), are *not* added to the read index, and are not read in future sessions unless explicitly asked.
+These are **working files**, so per `CLAUDE.md` they are *not* versioned (no `> V<N>` header), are *not* added to the read index, and are not read in future sessions unless explicitly asked or another item's setup aligns against them.
 
 ---
 
@@ -39,24 +39,26 @@ Before scaffolding anything, have the conversation. Setup turns a settled discus
 
 If the chosen approach makes an existing canonical claim false (a reversal, not just an addition), note it now — record it in FINDINGS and flag it for closeout. A reversal is the one thing a wording-based grep won't catch at merge time, so the merge relies on it being called out explicitly here.
 
+**Align against other open items.** Read the PLAN and FINDINGS of each other work item in the owning lobe's `working/`. Record any overlap or conflict with this item in the new PLAN's open issues, so concurrent plans don't diverge.
+
 ---
 
 ## 2. Derive the slug and audit what exists
 
-**Slug.** Every filename this procedure produces is `<LOBESPACE>_<WORK>_*` — derive `<WORK>` from the work-item name and lead with the owning lobe's lobespace, always. `<WORK>` is a SCREAMING_SNAKE_CASE slug and never carries a lobe's lobespace, its own or another's. A handed SCREAMING_SNAKE identifier is the slug verbatim, minus any lobe's lobespace it opens with, taking the longest match (a handed `<LOBESPACE>_FOO` gives `<WORK>` = `FOO` and files `<LOBESPACE>_FOO_*`); any other handed name gets a short, specific slug written for it. Check the compound `<LOBESPACE>_<WORK>` before use, rewording the slug — handed or written — until both checks pass. Distinctness in the **prefix** sense: the procedures find an item's docs by the glob `<LOBESPACE>_<WORK>_*`, so `<LOBESPACE>_<WORK>_` must not begin any canonical document's name or another open item's compound, and no other item's compound may begin this one's — a slug `PLUM` beside an item slugged `PLUM_JAM` would sweep that item's docs into its own closeout. And in a multi-lobe brain: no other lobe's lobespace may be a longer prefix of `<LOBESPACE>_<WORK>` than `<LOBESPACE>` itself — ownership goes to the longest match, so a parent's slug that continues into a child's lobespace hands the item's files to that child. The fuller name lives in the `# <Work-Item Name>` heading.
+**Slug.** Every filename this procedure produces is `<LOBESPACE>_<WORK>_*` — derive `<WORK>` from the work-item name and lead with the owning lobe's lobespace, always. `<WORK>` is a SCREAMING_SNAKE_CASE slug and never carries a lobe's lobespace, its own or another's. A handed SCREAMING_SNAKE identifier is the slug verbatim, minus any lobe's lobespace it opens with, taking the longest match (a handed `<LOBESPACE>_FOO` gives `<WORK>` = `FOO` and files `<LOBESPACE>_FOO_*`); any other handed name gets a short, specific slug written for it. Check the compound `<LOBESPACE>_<WORK>` before use, rewording the slug — handed or written — until both checks pass. Distinctness in the **prefix** sense: the procedures find an item's docs by the glob `<LOBESPACE>_<WORK>_*`, so `<LOBESPACE>_<WORK>_` must not begin any canonical document's name or the compound of another open item in `working/`, and no other item's compound may begin this one's — a slug `PLUM` beside an item slugged `PLUM_JAM` would sweep that item's docs into its own closeout. And in a multi-lobe brain: no other lobe's lobespace may be a longer prefix of `<LOBESPACE>_<WORK>` than `<LOBESPACE>` itself — ownership goes to the longest match, so a parent's slug that continues into a child's lobespace hands the item's files to that child. Names in `archive/` don't count: no procedure finds an item's docs there, and slug choice shouldn't be hostage to retired material. The fuller name lives in the `# <Work-Item Name>` heading.
 
-**Audit (this is what makes setup safe on partial/existing work items).** Before creating anything, list the owning lobe's `working/` and `archive/` for the slug. From the owning lobe's directory — the repo root for a single-lobe brain:
+**Audit (this is what makes setup safe on partial/existing work items).** Before creating anything, list the owning lobe's `working/` for the slug. From the owning lobe's directory — the repo root for a single-lobe brain:
 
 ```bash
-find working archive -maxdepth 1 -name '<LOBESPACE>_<WORK>_*.md' 2>/dev/null
+ls -1 working/<LOBESPACE>_<WORK>_*.md 2>/dev/null
 ```
 
-A lobe missing one of the two directories is normal and doesn't hide the other's matches. Empty output means a brand-new item **only if the command ran in the owning lobe's directory** — confirm the location before trusting an empty audit, because everything below builds on it.
+`archive/` is not searched, because it accumulates stale, abandoned and older-convention material whose names can match a new slug without belonging to it. Empty output means a brand-new item **only if the command ran in the owning lobe's directory** — confirm the location before trusting an empty audit, because everything below builds on it.
 
 Classify each doc — first match wins:
-- **Missing** — create from the template (§3).
 - **Exists in `working/`** — leave it. Do not overwrite. If the intake chat adds genuinely new material, append it; never rewrite existing working content from a setup run.
-- **Exists in `archive/`** — already implemented and retired (as a `<LOBESPACE>_<WORK>_PLAN.md` often is once its plan has shipped). Do **not** recreate it in `working/`; note that it is done and move on.
+- **Missing PLAN on an item with other docs in `working/`** — ask the developer whether the PLAN was retired early before creating one; if it was, don't recreate it.
+- **Missing** — create from the template (§3).
 
 A brand-new work item has nothing on disk, so the full set is created. A partial one (commonly PLAN+FINDINGS) gets only its missing docs created.
 
@@ -76,6 +78,6 @@ Base templates for each doc live in the toolkit's `templates/work/` (`PLAN.md`, 
 
 After creating the docs:
 
-1. Report the owning lobe, the slug used, which docs were **created**, and which already **existed** (and where — `working/` or `archive/`).
+1. Report the owning lobe, the slug used, which docs were **created**, and which already **existed** in `working/`.
 2. Remind that these are working files: they stay out of the read index, and the canonical mini-brain is untouched until the work concludes.
 3. Point at `<HUB>_WORK_CLOSEOUT.md` as the closeout bookend — it consumes exactly these docs.
