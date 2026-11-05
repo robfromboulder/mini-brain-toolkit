@@ -1,12 +1,12 @@
 # Mini-Brain Toolkit: Create a New Mini-Brain
 
-> V32, 2026-10-30.
+> V34, 2026-11-04.
 
 This document is the procedure for standing up a new mini-brain from `templates/`.
 
 The output of a first run is a **stage-1 seed** (the first of the stages defined in `MBT_PATTERN.md`): a working brain with an entrypoint, empty canonical docs, and the working/archive structure — ready to be filled. Filling SCOPE and APPROACH (stage 2) and adding lifecycle machinery (stage 3) are later steps in this same document.
 
-This procedure is **additive and idempotent**: it creates only what's missing and never overwrites existing work, so it's safe to re-run as the brain grows.
+This procedure is **additive and idempotent**: it creates missing files and merges the loading instructions and exemptions into existing files without overwriting existing work, so it's safe to re-run as the brain grows.
 
 ---
 
@@ -18,7 +18,7 @@ Before creating anything, settle these with the user. Establishment turns a deci
 - **Lobes** — whether the knowledge divides. Ask whether one SCOPE can state the problem honestly, or whether writing it would force two or more coexisting problems onto the page. If it divides, the brain is multi-lobe and `MBT_LOBES.md` governs its layout; ask again of any lobe whose own problem divides. For each child lobe, also settle the terms that should route a question to it — the registry's **Routes on** cell. Most brains hold one problem and answer no. Settle this before the lobespace, because the answer changes how many lobespaces there are.
 - **Lobespace** — the SCREAMING_SNAKE_CASE lobespace every knowledge file carries (principle 6). Short, distinctive, unlikely to collide with another brain loaded in the same session. Mirror the project name where natural (`orchard` → `ORCHARD`); pick an acronym when the name is long (`customer-data-platform` → `CDP`). Confirm it with the user — it touches every filename and is churn to change later. A multi-lobe brain settles one lobespace for the hub and one for each child lobe, each under the same collision test.
 - **Location** — the repo (principle 2: the brain is its own repository, not a folder inside a project repo). Convention is a repo named `mini-<project>-brain` beside the project repo's main checkout, where a coding session in that project repo — or any of its worktrees — finds it.
-- **Project repos (optional)** — the repos whose coding sessions should load the brain. Each gets the hook merged into its `CLAUDE.md` (§4). A brand-new project may have none yet; add the hook to each repo as it appears — this procedure is safe to re-run. In a multi-lobe brain, note which lobe each repo maps to; its hook names that lobe.
+- **Project repos (optional)** — the repos whose coding sessions should load the brain. Each gets the hook merged into its `AGENTS.md`, which its `CLAUDE.md` imports (§4). A brand-new project may have none yet; add the hook to each repo as it appears — this procedure is safe to re-run. In a multi-lobe brain, note which lobe each repo maps to; its hook names that lobe.
 - **Author** — the name of the human author, which the first session log entry names.
 - **Source material (optional)** — existing docs the SCOPE/APPROACH will be distilled from (design docs, PRDs, tickets, prior wikis). If they exist, they go in `archive/` as source, not into the canonical docs verbatim.
 
@@ -39,7 +39,7 @@ When the brain accompanies an existing project, this procedure creates the brain
 Before writing, list the target directory — every lobe directory, in a multi-lobe brain. Classify each seed file:
 
 - **Missing** — create it from the template (§4).
-- **Exists** — leave it. Never overwrite.
+- **Exists** — preserve it, applying only the merges and loading-exemption updates specified in §4. Never overwrite.
 
 A brand-new repo has nothing but perhaps a `README.md`, `LICENSE`, and `.git`; all seed files are created. A repo you're formalizing (e.g. a stray `NOTES.md`) gets only its missing pieces, and existing notes are treated as source material to fold in later, not clobbered.
 
@@ -66,11 +66,14 @@ Substitute only these. `<WORK>` is always a runtime variable, not a creation pla
 | `templates/FINDINGS.md` | `<LOBESPACE>_FINDINGS.md` | Header + `*No findings recorded yet.*` |
 | `templates/LOG.md` | `<LOBESPACE>_LOG.md` | Header only; first entry is appended at first session closeout. |
 | `templates/SESSION_CLOSEOUT.md` | `<HUB>_SESSION_CLOSEOUT.md` | The authoritative LOG-entry format. |
-| `templates/PROJECT_HOOK.md` | each project repo's `CLAUDE.md` | *Merge* as a section into the existing file (create the file if the repo has none). Skip when no project repo exists yet. |
+| `templates/AGENTS.md` | `AGENTS.md` | Copy unchanged only when missing. If an existing file does not already direct the agent to read and follow `CLAUDE.md`, merge the template's line into it, preserving its existing instructions. |
+| `templates/PROJECT_HOOK.md` | each project repo's `AGENTS.md`, imported by its `CLAUDE.md` | *Merge* as a section, as the template's opening comment directs. Skip when no project repo exists yet. |
+
+For an existing brain, add `AGENTS.md` to its `CLAUDE.md` naming and version-header exemptions, preserving any other exemptions. If it has a dream cycle, update its orphan and namespace exclusions and any explicit version-header exclusions to exempt `AGENTS.md` too, in prose and commands. Apply the brain's version-bump rules to changed files.
 
 Then create the two directories: `archive/` (drop any source material here) and `working/`. Git won't track empty directories — add a `.gitkeep` to `working/` if it would otherwise be empty, and remove it once real content lands.
 
-All canonical docs open with `> V1, <date>.`; apply `CLAUDE.md`'s version convention and exemptions.
+New canonical docs open with `> V1, <date>.`; apply `CLAUDE.md`'s version convention and exemptions.
 
 **For a multi-lobe brain**, seed the hub's documents at the root under the hub lobespace, create one directory per child lobe — nested where lobes nest — and seed each child's full doctype set from the same `SCOPE`, `APPROACH`, `FINDINGS` and `LOG` templates under that child's lobespace. Those four are substituted per lobe — `<LOBESPACE>` with the lobe's lobespace, `<Project>` with its display name — and work identically at any depth. Use `templates/LOBES_CLAUDE.md` for the entrypoint in place of `templates/CLAUDE.md`, filling its registry from the intake conversation — one row per child lobe, replacing the placeholder rows. Reword the seeded README's namespace sentence to per-lobe lobespaces — the template states one brain-wide lobespace, which a multi-lobe brain's own registry contradicts. `SESSION_CLOSEOUT` stays at the hub, one per brain, as does every maintenance document added later; `archive/` and `working/` belong to whichever lobe first needs them, so create only the hub's now. `MBT_LOBES.md` carries the registry's shape and the naming rules.
 
@@ -123,6 +126,6 @@ Don't scaffold these into a stage-1 brain; add them the first time a real work i
 
 1. Append the first LOG entry per `<HUB>_SESSION_CLOSEOUT.md`, recording what this establishment session did and decided (namespace choice, source material, the premises the user settled and the second approach SCOPE was tested against, fact-check corrections).
 2. Run a structural check — read index ↔ disk, version headers, cross-references, namespace prefix; for a multi-lobe brain, also registry ↔ disk and each lobe's full doctype set and lobespace — and fix anything it flags.
-3. Report to the user: the lobespace used — or the lobe tree and its per-lobe lobespaces, for a multi-lobe brain — which files were **created** vs. already **existed**, what stage the brain is at, and the natural next step (fill SCOPE, or add lifecycle machinery).
+3. Report to the user: the lobespace used — or the lobe tree and its per-lobe lobespaces, for a multi-lobe brain — which files were **created**, **updated**, or already **existed unchanged**, what stage the brain is at, and the natural next step (fill SCOPE, or add lifecycle machinery).
 
 Do not commit unless the user asks. If the repo is on its default branch, branch first.

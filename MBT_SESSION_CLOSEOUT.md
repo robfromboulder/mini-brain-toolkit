@@ -1,6 +1,6 @@
 # Mini-Brain Toolkit: Session Closeout Instructions
 
-> V5, 2026-09-29.
+> V7, 2026-11-04.
 
 ---
 
@@ -23,9 +23,9 @@ When a part belongs to a single open item but could be any of several, ask rathe
 **Appending:**
 1. Determine the target log files using the routing rule above; steps 2–4 apply to each entry.
 2. Add a `---` at the end of that file, then the entry below it. **Append only — never revise or correct prior sessions.**
-3. Entry shape: an H1 with a short title and date (`# <title> (YYYY-MM-DD)`); a `` **Session ID**: `<uuid>` `` line; a one-paragraph lead (what the session set out to do and what landed); then `##` subsections for the turn-by-turn lineage, decisions, what didn't work, and lessons — chosen per session, not a fixed template.
-4. Session ID = newest transcript filename minus `.jsonl`, taken from the current session's project dir under `~/.claude/projects/`. This repo is the mini-brain itself, so its transcripts live under this repo's own project dir — e.g. `ls -t ~/.claude/projects/-Users-rob-dickinson-Projects-robfromboulder-mini-brain-toolkit/*.jsonl | head -1`. Ask if it can't be determined.
+3. Entry shape: an H1 with a short title and date (`# <title> (YYYY-MM-DD)`); a `` **Session ID**: `<session-id>` `` line; a one-paragraph lead (what the session set out to do and what landed); then `##` subsections for the turn-by-turn lineage, decisions, what didn't work, and lessons — chosen per session, not a fixed template.
+4. Session ID = the current session's ID, which the harness sets in its shell environment: `$CLAUDE_CODE_SESSION_ID` in Claude Code, `$CODEX_THREAD_ID` in Codex, `$OPENCODE_SESSION_ID` in OpenCode. Read only the variable of the harness running this session, since a harness started from another's session inherits that one's variable. Ask if it isn't set.
 
 **Content rules:** trace the lineage turn-by-turn (don't summarize the destination); filenames and section names are fine but no line numbers, no cross-document section or finding numbers (`§N`, "finding #N"), and no other drift-prone specifics — reference decisions and findings by their substance, which stays readable as the docs are renumbered and re-homed; skip anything re-derivable from the files themselves; don't restate scope or approach.
 
-**Name the people.** The entry must make clear whose session it was: the lead names the human author (with Claude as co-author), and decisions stay attributed to whoever made each call. Don't lean on the Session ID to carry this — it's an opaque UUID.
+**Name the people.** The entry must make clear whose session it was: the lead names the human author (with the coding agent as co-author), and decisions stay attributed to whoever made each call. Don't lean on the Session ID to carry this — it's an opaque identifier.
