@@ -336,3 +336,34 @@ Rob's session, with Claude as co-author. Rob asked Claude to run the retest proc
 - **A report-only step needs a mechanism, not just the prompt.** Use a read-only sandbox where the harness has one, and compare against a snapshot where it doesn't.
 - **"Apply every fix" lets a harness fix things outside the test.** Grade each changed file against the pass criteria, not the agent's own summary.
 - **Two harnesses raising the same finding independently is a signal worth keeping**, even when the finding is outside the test's scope.
+
+---
+
+# PR #19 merged and the branch deleted; dream-cycle template defects handed to TEMPLATE_DRIFT (2026-11-05)
+
+**Session ID**: `cf4030de-2361-4185-accc-4a9f1aecf56e`
+
+Rob's session, with Claude as co-author. It started with a status read of this work item and PR #19, and ended with #19 merged and its branch deleted. Before the merge, the dream-cycle template defects that the Codex and OpenCode 2 retest raised went into the TEMPLATE_DRIFT plan, so they outlive the PR.
+
+## Turn by turn
+
+- Rob asked for the work item's status and the latest test comments on PR #19. Claude first read the work-item docs from the `skill-install-part-2` checkout. Following the earlier lesson, it then compared them with `origin/main`, found them stale, and reported from `main`'s copies. On `main` only merging #19 remained for part 2, alongside part 1's pending run of the installed skill by Rob. The PR's last comment recorded the retest passing in both harnesses. Claude noted that nothing tracked the two dream-cycle template defects that both harnesses had found, or Codex's three unverified wording issues, and recommended recording them before the merge.
+- Rob had the defects added to the TEMPLATE_DRIFT plan. Claude confirmed both are still in `templates/DREAM_CYCLE.md` on `main`. In a worktree of `main` it added them, and the three wording issues to verify, to the plan's changes. It also added an implementation step that fixes the defects before the drift check is written, because the drift check would otherwise copy them into every brain it upgrades. Rob had the change committed and pushed to `main`.
+- Rob had #19 merged. Claude squash-merged it as #17 and #18 were, with a prose body and no attribution trailer. It added `(#19)` to the subject, which neither earlier squash carried, and left it rather than rewrite `main`.
+- Rob had the plan updated, the branch deleted, and the checkout moved to `main`. Claude marked the merge step done and recorded the merge date. It also corrected a stale note in the review-fixes step that still said the retest hadn't run in Codex or OpenCode 2. It deleted the branch on GitHub and locally.
+- Rob asked for this entry.
+
+## Decisions
+
+- **The template defects go into the TEMPLATE_DRIFT plan, ahead of the drift check** — Rob chose the plan; Claude placed them as a step before the drift check.
+- **#19 squash-merged** — Rob directed the merge; Claude chose squash to match the earlier PRs.
+- **This entry goes to the SKILL_INSTALL log**, including the TEMPLATE_DRIFT plan edit — Rob named this log.
+
+## What didn't work
+
+- The squash subject's `(#19)` suffix broke the convention set by the earlier merges. It was noticed after the merge and kept.
+
+## Lessons
+
+- Before squash-merging, copy the subject format from the previous squash commits on `main`, not just their body style.
+- When a step is marked done, reread the neighboring steps for notes that the same work has made stale.
