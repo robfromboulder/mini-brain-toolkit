@@ -1,6 +1,6 @@
 # Mini-Brain Toolkit: Technical Approach
 
-> V20, 2026-11-03.
+> V21, 2026-11-04.
 
 This document describes the approach for addressing the problems defined in `MBT_SCOPE.md`. It covers the strategic approach and key design decisions — not delivery sequence.
 
@@ -10,7 +10,7 @@ This document describes the approach for addressing the problems defined in `MBT
 
 ### 1.1 Curate what can't be re-derived
 
-The toolkit serves developers whose coding agent loads an instruction file at session start. That is narrower than whoever has the problem in `MBT_SCOPE.md`: a project worked through an agent that loads no instruction file is not served, and every goal goes unmet for it. It builds on SCOPE's premises rather than choosing them: git provides history, review and sharing on the project's own terms but holds no why beyond commit messages, and the coding agent provides the judgment to read, check and revise prose, reading its instruction file first. It uses no harness's memory feature: the brain is plain markdown in its own repository, so what is kept survives a change of coding agent. Its one tie to a harness is a filename: the hook merges into the project repo's `CLAUDE.md`, so a harness that never reads that file loads the brain only when asked to.
+The toolkit serves developers whose coding agent loads an instruction file at session start. That is narrower than whoever has the problem in `MBT_SCOPE.md`: a project worked through an agent that loads no instruction file is not served, and every goal goes unmet for it. It builds on SCOPE's premises rather than choosing them: git provides history, review and sharing on the project's own terms but holds no why beyond commit messages, and the coding agent provides the judgment to read, check and revise prose, reading its instruction file first. It uses no harness's memory feature: the brain is plain markdown in its own repository, so what is kept survives a change of coding agent.
 
 On those foundations the toolkit's answer is the mini-brain pattern, an unusual bet: capture only what can't be re-derived, keep lineage separate from distilled truth, and shrink toward an irreducible core rather than accumulate. A few well-sized, indexed markdown files live in a repository of their own beside the project's code, curated by a person working with an agent. The bet is that a knowledge store kept small can be checked whole, so it stays true as it grows (*what is kept stays true as it grows*). Against the alternatives `MBT_SCOPE.md` assesses:
 
@@ -70,7 +70,7 @@ A new brain gets the seed only. The mature-lifecycle docs are real read-index en
 
 ### 2.6 The project-repo hook is merged, not copied
 
-Where a developer works migrates over a project's life: before project code exists, work items are thought through in the brain itself; once the project is established, iteration happens in a project repo, and switching directories to use the brain is friction that kills the habit. The hook template answers this — a section merged into each project repo's `CLAUDE.md` that loads the brain into that repo's sessions on demand and has the agent proactively offer a session closeout at natural stopping points — so the brain's workflows run wherever the developer already is, in both directions and at every stage. It was distilled from the exemplar where it emerged, where the closeout prompt measurably increased brain use. Because the target `CLAUDE.md` belongs to the project repo and may already exist, the hook is merged in as a section, never copied over — the same rule as `README.md`.
+Where a developer works migrates over a project's life: before project code exists, work items are thought through in the brain itself; once the project is established, iteration happens in a project repo, and switching directories to use the brain is friction that kills the habit. The hook template answers this — a section merged into each project repo's `AGENTS.md` that loads the brain into that repo's sessions on demand and has the agent proactively offer a session closeout at natural stopping points — so the brain's workflows run wherever the developer already is, in both directions and at every stage. It was distilled from the exemplar where it emerged, where the closeout prompt measurably increased brain use. The project's `CLAUDE.md` imports `AGENTS.md` with an `@AGENTS.md` line so Claude Code reaches the same hook as agents that load `AGENTS.md` directly. Both instruction files belong to the project repo and may already exist, so additions are merged in, never copied over — the same rule as `README.md`.
 
 ### 2.7 An entrypoint routes each question to one file
 

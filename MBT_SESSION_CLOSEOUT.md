@@ -1,6 +1,6 @@
 # Mini-Brain Toolkit: Session Closeout Instructions
 
-> V6, 2026-11-03.
+> V7, 2026-11-04.
 
 ---
 
@@ -28,4 +28,4 @@ When a part belongs to a single open item but could be any of several, ask rathe
 
 **Content rules:** trace the lineage turn-by-turn (don't summarize the destination); filenames and section names are fine but no line numbers, no cross-document section or finding numbers (`§N`, "finding #N"), and no other drift-prone specifics — reference decisions and findings by their substance, which stays readable as the docs are renumbered and re-homed; skip anything re-derivable from the files themselves; don't restate scope or approach.
 
-**Name the people.** The entry must make clear whose session it was: the lead names the human author (with Claude as co-author), and decisions stay attributed to whoever made each call. Don't lean on the Session ID to carry this — it's an opaque UUID.
+**Name the people.** The entry must make clear whose session it was: the lead names the human author (with the coding agent as co-author), and decisions stay attributed to whoever made each call. Don't lean on the Session ID to carry this — it's an opaque identifier.
