@@ -4,7 +4,7 @@
 
 Let a user create or check a brain by running the toolkit's skill with a `create` or `check` argument, with the toolkit installed and updated by one pasteable line per harness, and let brains created from any supported harness load in that harness.
 
-The work lands in two PRs. Part 1, PR #17, installs the toolkit as a Claude Code skill and runs it by path from other harnesses; it merged ahead of PR #18. Part 2, PR #19, adds Codex and OpenCode 2.
+The work lands in two PRs. Part 1, PR #17, installs the toolkit as a Claude Code skill and runs it by path from other harnesses; it merged ahead of PR #18. Part 2, PR #19, adds Codex and OpenCode 2; it merged on 2026-11-05.
 
 ## Context
 
@@ -71,7 +71,7 @@ The part 1 acceptance, in Codex and OpenCode 2. Plus: a brain created in each ha
 4. Relocate the OpenCode menu note from install to the create and check labels, and replace `SKILL.md`'s toolkit-copy rule with the install guard, both at Rob's direction. Re-test the guard in Codex and OpenCode 2 with a control. Done.
 5. Open PR #19. Done.
 6. Address Rob's review of PR #19: check 8's fix and `create` add `AGENTS.md` to an existing brain's exemptions and dream-cycle exclusions; an existing brain `AGENTS.md` is merged into, not overwritten; APPROACH, RESEARCH and COMPARABLES follow the hook to `AGENTS.md`; principle 7 exempts `AGENTS.md`; `MBT_SESSION_CLOSEOUT.md` credits the coding agent; the template dream cycle builds its namespace exemptions from `CLAUDE.md`. Done. Retested in Claude Code 2.1.318 on a brain and project repo seeded from the `2aebc68` templates: `check` applied the loading-reach fix, a second `check` reported nothing for `AGENTS.md`, and the install stayed unchanged. Not yet run in Codex or OpenCode 2; the steps and seeding script are a comment on PR #19.
-7. Merge PR #19.
+7. Merge PR #19. Done, squashed as `8ad8deb`.
 
 ## Scope boundary — what this does NOT include
 
