@@ -51,12 +51,13 @@ Acceptance has five parts. `check` against an existing brain reads `MBT_PATTERN.
 
 - `README.md` — a Codex block and an OpenCode 2 block between Claude Code and Other harnesses in each section, with no other change to the structure. Codex and OpenCode 2 install into `~/.agents/skills`; the commands are `$mini-brain-toolkit` and `@mini-brain-toolkit`. The OpenCode 2 label in create and check says to select the skill from the `@` menu rather than paste the command. The intro prose names no single harness; the diagrams and badge are unchanged.
 - `templates/PROJECT_HOOK.md`, `MBT_CREATE_BRAIN.md` — the hook merges into the project repo's `AGENTS.md`, and the repo's `CLAUDE.md` carries `@AGENTS.md`. Either file is created if missing and never overwritten.
-- A brain-side `AGENTS.md` template — one line telling the agent to read `CLAUDE.md` and follow it. The toolkit repo gains the same file.
+- A brain-side `AGENTS.md` template — one line telling the agent to read `CLAUDE.md` and follow it, copied when the brain lacks the file and merged into one that doesn't already point there. The toolkit repo gains the same file.
 - `templates/SESSION_CLOSEOUT.md`, `MBT_SESSION_CLOSEOUT.md` — the session ID is the running harness's own environment variable, still asking when it isn't set.
 - `templates/README.md`, `templates/SESSION_CLOSEOUT.md` — "Claude session" and "Claude as co-author" stop naming one harness.
 - `agents/openai.yaml` (new) — `policy.allow_implicit_invocation: false`.
-- `MBT_PATTERN.md`, `MBT_CHECK_BRAIN.md`, `MBT_DREAM_CYCLE.md`, `templates/DREAM_CYCLE.md`, `CLAUDE.md` — `AGENTS.md` joins the file set and the exemptions. The check reads naming exemptions from the target's `CLAUDE.md` instead of a hard-coded list, and a new loading-reach check flags a hook or entrypoint that reaches only `CLAUDE.md`. "Explore agents" become "read-only subagents" in the check and the template dream cycle.
+- `MBT_PATTERN.md`, `MBT_CHECK_BRAIN.md`, `MBT_DREAM_CYCLE.md`, `templates/DREAM_CYCLE.md`, `CLAUDE.md` — `AGENTS.md` joins the file set and the exemptions. The check reads naming exemptions from the target's `CLAUDE.md` instead of a hard-coded list, and a new loading-reach check flags a hook or entrypoint that reaches only `CLAUDE.md`. Its fix, and `create` on an existing brain, also add `AGENTS.md` to the brain's `CLAUDE.md` exemptions and its dream cycle's exclusions. "Explore agents" become "read-only subagents" in the check and the template dream cycle.
 - `SKILL.md` — never write to a file under the install.
+- `MBT_APPROACH.md`, `MBT_RESEARCH.md`, `MBT_COMPARABLES.md` — the hook lives in the project repo's `AGENTS.md`, and harness-neutrality no longer rests on one filename.
 
 ### Testing approach
 
@@ -69,6 +70,8 @@ The part 1 acceptance, in Codex and OpenCode 2. Plus: a brain created in each ha
 3. Run the acceptance in Codex and OpenCode 2. Done; every part passed.
 4. Relocate the OpenCode menu note from install to the create and check labels, and replace `SKILL.md`'s toolkit-copy rule with the install guard, both at Rob's direction. Re-test the guard in Codex and OpenCode 2 with a control. Done.
 5. Open PR #19. Done.
+6. Address Rob's review of PR #19: check 8's fix and `create` add `AGENTS.md` to an existing brain's exemptions and dream-cycle exclusions; an existing brain `AGENTS.md` is merged into, not overwritten; APPROACH, RESEARCH and COMPARABLES follow the hook to `AGENTS.md`; principle 7 exempts `AGENTS.md`; `MBT_SESSION_CLOSEOUT.md` credits the coding agent; the template dream cycle builds its namespace exemptions from `CLAUDE.md`. Done. Retested in Claude Code 2.1.318 on a brain and project repo seeded from the `2aebc68` templates: `check` applied the loading-reach fix, a second `check` reported nothing for `AGENTS.md`, and the install stayed unchanged. Not yet run in Codex or OpenCode 2.
+7. Merge PR #19.
 
 ## Scope boundary — what this does NOT include
 

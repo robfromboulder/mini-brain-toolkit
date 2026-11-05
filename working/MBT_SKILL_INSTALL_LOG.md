@@ -231,3 +231,52 @@ Rob's session, with Claude as co-author, on a machine running Claude Code, Codex
 - **A note placed before the step it governs fails the reader who copies that step.** Put an instruction beside the command it qualifies, in every section a reader might enter at.
 - **A rule written for one collision can frame that case as supported.** A general fail-closed rule covers the hazard without endorsing the case.
 - **A guard that passes its test also needs a control.** Here the control showed the models already behaved, which makes the guard a backstop rather than a fix.
+
+---
+
+# PR #19 reviewed by Rob, fixes landed, and the review recorded (2026-11-04)
+
+**Session ID**: `0c40dcd0-74de-49e6-85a5-945479e994cb`
+
+Rob's session, with Claude as co-author. Rob reported that part 2 had been implemented and reviewed in PR #19. Rob's review of `cbdf12e` was posted to the PR as a comment, and `0bd87bf` on `skill-install-part-2`, authored by Rob, fixed every finding. This session recorded the round in the plan and, at Rob's direction, moved the review's substance from the PR comment into this log.
+
+## The review
+
+Rob framed it this way: most findings sit in procedures an agent follows literally, so each one is an instruction that gives a wrong result when followed as written.
+
+- **Blocking: check's loading-reach fix made the next check flag the file it added.** On a brain seeded before part 2, the fix added `AGENTS.md`, but nothing updated that brain's `CLAUDE.md` exemptions. The next check would flag the file as un-namespaced and as missing a version header. The brain's own dream cycle, copied from the old template, would flag it again as an orphan, un-namespaced and unversioned: up to five new findings from following check's advice. Re-running `create` had the same result, since it left an existing `CLAUDE.md` alone. Rob asked whether the dream-cycle exclusions belonged in the same step or in TEMPLATE_DRIFT.
+- **Before release: an existing brain `AGENTS.md`.** A brain grown in Codex may already hold its own `AGENTS.md`. `create` kept it, so Codex and OpenCode sessions never reached `CLAUDE.md`, and check's fix read as copying the one-line template over it.
+- **Before release: the design docs still put the hook in `CLAUDE.md`.** `MBT_APPROACH.md`'s harness-tie sentence and its hook decision, `MBT_RESEARCH.md`'s harness-neutrality claim and `MBT_COMPARABLES.md`'s `CLAUDE.md` row were outside the diff. Because APPROACH is the design authority, a dream cycle reading it would treat the new behavior as drift. Rob left the "tie to a harness" wording as a judgment call, since Claude Code still needs the import line.
+- **Minor: principle 7 omitted `AGENTS.md`.** Principle 6 and both entrypoint templates exempted it from the version header, but principle 7 didn't. Check falls back to principle 7 for a brain that declares no exemptions, so it would flag the `AGENTS.md` it had just added.
+- **Minor: `MBT_SESSION_CLOSEOUT.md` still credited Claude and called the session ID a UUID.** The template copy had been updated. With `AGENTS.md` in place, a Codex session closing out this repo would credit Claude in the append-only log.
+- **Minor: the template dream cycle's namespace command contradicted its prose.** The prose deferred to `CLAUDE.md`'s exemptions, while the command hard-coded four names. A brain declaring another exemption, as this repo declares `SKILL.md`, would get a false positive, and check and the dream cycle would disagree.
+
+## Resolution
+
+- Check's loading-reach fix now has three parts: the brain entrypoint, the brain conventions and the project hook. The conventions part adds `AGENTS.md` to the target `CLAUDE.md`'s naming and version-header exemptions, and to the dream cycle's exclusions in both prose and commands. It then reruns the affected structural checks. That answered Rob's question: the dream cycle is patched in the same step, not deferred to TEMPLATE_DRIFT.
+- `create` on an existing brain applies the same exemption updates. Its idempotence statement now covers merges into existing files, and its report distinguishes files that were created, updated and left unchanged.
+- An existing brain `AGENTS.md` is merged into, keeping its instructions, unless it already points to `CLAUDE.md`. Both `create` and check say so.
+- APPROACH's hook decision now merges into the project repo's `AGENTS.md`, with an `@AGENTS.md` import in `CLAUDE.md`. The "one tie to a harness is a filename" sentence was cut rather than reworded. RESEARCH says loading still depends on each harness's instruction-file discovery and import conventions. COMPARABLES calls `CLAUDE.md` the brain's entrypoint filename, which in project repos imports the `AGENTS.md` holding the hook.
+- Principle 7, `MBT_SESSION_CLOSEOUT.md` and the template dream cycle's namespace command were fixed as the review asked. The command builds its exempt list from `CLAUDE.md`, the same way check does.
+
+## This session
+
+- Claude read the plan, the PR and the fix commit, and confirmed that each finding was addressed. It then recorded the round in the plan's change list and implementation sequence, leaving the merge of PR #19 as the open step.
+- Claude first offered to log only what this session did, on the grounds that the fixes came from another session. Rob pointed out that the review findings had been written to the PR as comments rather than to the work item log, so this entry records them here.
+- Claude listed what was left on the work item. The review had asked for a retest of the loading-reach fix, and no record showed one had been run.
+- Rob asked for the retest. Codex and OpenCode were not on this machine's PATH, so it ran in Claude Code 2.1.318, headless:
+  - **Fixture.** Claude seeded a brain from the `2aebc68` templates. It had a dream cycle, and a sibling project repo held the hook in `CLAUDE.md`. A baseline of the old structural checks was clean.
+  - **First run.** `check` ran from the PR branch's `SKILL.md`, told to apply every fix. Loading reach was its only structural finding, and the fix did the following:
+    - added the brain's `AGENTS.md`;
+    - added `AGENTS.md` to the brain's naming and version-header exemptions in `CLAUDE.md`;
+    - added it to the dream cycle's orphan and namespace exclusions, in prose and in the command;
+    - moved the project hook to `AGENTS.md`, behind an `@AGENTS.md` import.
+
+    It then reran the affected checks.
+  - **Second run.** A report-only `check` flagged nothing for `AGENTS.md`, and the install worktree was byte-identical throughout.
+  - **Out-of-scope findings.** The second run also reported drift from the current templates: the closeout's transcript-based session ID, and "Explore agents" wording in the dream cycle. That belongs to TEMPLATE_DRIFT. It also noted that `archive/` was missing from git, since the old `create` puts a `.gitkeep` only in `working/`. That predates this PR.
+- Rob had the retest folded into this entry, the work item committed on `main`, and the scratch worktrees removed.
+
+## Lessons
+
+- **A review's findings are lineage.** A PR comment lives outside the brain, so a review whose findings shaped the work belongs in the work item's log too.
