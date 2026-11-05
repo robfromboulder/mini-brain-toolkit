@@ -18,7 +18,7 @@ All paths are relative to this repo root (`CLAUDE.md`'s directory). Before readi
 
 Only files in this table are current. `archive/` holds source material, retired/absorbed docs, and retired work-item working files — ignore it unless asked.
 
-`working/` holds experiments and a work item's in-flight `<LOBESPACE>_<WORK>_*` docs. When a work item concludes, fold them into the canonical docs and **move** (not delete) them to `archive/`. The item's PLAN, once consumed (converted to code), may move there early at the developer's request — walk its significant unaddressed items with the developer first.
+`working/` holds experiments and a work item's in-flight `<LOBESPACE>_<WORK>_*` docs. When a work item concludes, fold them into the canonical docs and **move** (not delete) them to `archive/`. A move never overwrites: if `archive/` already holds a file of that name, stop and ask the developer for a new name for the incoming file. `git mv` enforces this for tracked files; for an untracked file, check the destination before moving. The item's PLAN, once consumed (converted to code), may move there early at the developer's request — walk its significant unaddressed items with the developer first.
 
 <!-- As the brain matures, add the lifecycle docs to this index:
 | Enforced terms — the brain's reserved vocabulary | `<LOBESPACE>_ENFORCED_TERMS.md` |
