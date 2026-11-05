@@ -1551,3 +1551,37 @@ Rob's session, with Claude as co-author. The session ran the full re-baseline dr
 ## Open
 
 - The committed owner review still lists the template-lag decision as open; the port resolved it after the commit.
+
+---
+
+# Work setup stops reading `archive/`, and a retire move never overwrites (2026-11-05)
+
+**Session ID**: `c5e1fed4-3845-44c1-b3b4-f7d2e9864123`
+
+Rob's session, with Claude as co-author. Rob asked whether the TEMPLATE_DRIFT work item and issue #16 belong together. They don't, and the session went on to implement all of #16 in PR #20: work setup audits only `working/`, aligns a new item against other open items, and the `working/` convention in `CLAUDE.md` and both `CLAUDE.md` templates says a move to `archive/` never overwrites.
+
+## Turn by turn
+
+- **Reading the issue.** Auto mode's safety classifier returned no verdict on every `gh` call and web fetch, so Claude read the two TEMPLATE_DRIFT docs and asked Rob for the issue. Rob ran `gh issue view 16 --comments`, which printed the follow-up comment but not the issue body. The comment proposed `git mv` in work closeout's retire step, so a slug reused after setup stops reading `archive/` would stop at the collision instead of silently overwriting the archived file.
+- **Separate from TEMPLATE_DRIFT.** Working from the comment alone, Claude judged #16 a small template fix that TEMPLATE_DRIFT's check would later carry to existing brains, not part of building that check. Claude raised two gaps: `git mv` refuses an untracked source, and early plan archival and the `working/` paragraph in `CLAUDE.md` retire files too.
+- **Where the rule lives.** Claude drafted the rule for the `working/` paragraph of `CLAUDE.md` rather than work closeout's retire step, since work closeout reads `CLAUDE.md` first and the paragraph covers early archival as well. On a collision the agent asks for a new name for the incoming file, so old log entries that name the archived file still reach it. A one-clause reminder in the retire step was offered as optional; Rob took the `CLAUDE.md` change without it. The same sentences went into `templates/CLAUDE.md`, this repo's `CLAUDE.md`, and `templates/LOBES_CLAUDE.md`, where the move targets the owning lobe's `archive/`.
+- **PR, then the full issue.** Rob had Claude open PR #20, which said it addresses #16 rather than closing it, because the body was still unread. Rob asked Claude to try the full issue again; a `--json body,comments` read worked. The body asked for five changes to `templates/WORK_SETUP.md`, none of them in place, and the comment had assumed them landed. Rob had Claude do all five in the same PR: the audit lists `working/` only and says why; the archive classification is replaced by asking whether a PLAN missing from an item with other docs in `working/` was retired early; slug distinctness ignores names in `archive/`; the handoff reports `working/` only; and a new intake paragraph reads each other open item's PLAN and FINDINGS and records overlap in the new PLAN's open issues. Claude also rewrote the working-files sentence that said those files are never read unless asked, which the alignment read would contradict. The PR now closes #16.
+
+## Decisions
+
+- **#16 is a standalone fix, not part of TEMPLATE_DRIFT** — Claude's recommendation, which Rob accepted.
+- **The no-overwrite rule lives in the `working/` convention of `CLAUDE.md`, with no reminder in work closeout's retire step** — Rob, choosing between Claude's two drafts.
+- **All five of the issue's setup changes ship in PR #20, including the new alignment step** — Rob, after Claude offered to hold the alignment step for a separate call.
+
+## What didn't work
+
+- `gh issue view --comments` prints the comments without the body, so the first answer and the first PR were built on the follow-up alone. `--json body,comments` returns both.
+
+## Lessons
+
+- Read an issue's body before judging its scope; a follow-up comment can presuppose changes the body proposes.
+
+## Open
+
+- The new setup wasn't exercised on a scratch brain.
+- REHOMING's testing approach expects setup at a superseded item's new home to report its predecessor rather than a clean slate. With setup no longer reading `archive/`, that has to come from the successor naming its predecessor.
