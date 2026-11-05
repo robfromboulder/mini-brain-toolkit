@@ -280,3 +280,21 @@ Rob framed it this way: most findings sit in procedures an agent follows literal
 ## Lessons
 
 - **A review's findings are lineage.** A PR comment lives outside the brain, so a review whose findings shaped the work belongs in the work item's log too.
+
+---
+
+# Loading-reach retest handed off for Codex and OpenCode 2 (2026-11-04)
+
+**Session ID**: `0c40dcd0-74de-49e6-85a5-945479e994cb`
+
+Rob's session, with Claude as co-author, continuing past this session's earlier entry. That entry was already committed, so this follow-on is a new entry rather than an edit to it. Rob wanted to repeat the loading-reach retest on another machine that has Codex and OpenCode 2. He asked for the instructions as a comment on PR #19, and then a closeout.
+
+## Turn by turn
+
+- Claude turned the retest's manual seeding into a standalone `seed.sh`. The script clones the toolkit at `2aebc68` and at the PR branch, then seeds the brain and project repo.
+- Claude ran the script in a scratch directory and diffed the result against the fixture the Claude Code retest had used. The first draft also substituted the `<LOBESPACE>_<WORK>` placeholders in the session closeout, which the tested fixture had left intact. Claude limited those substitutions to the files they had touched in the tested run. One difference was kept on purpose: the script adds an `archive/.gitkeep`, so the second run doesn't report a missing `archive/`.
+- Claude posted the comment to PR #19. It holds the script, the two `check` prompts, the pass criteria for each run, the noise to ignore, and a final check that the install is untouched.
+
+## Lessons
+
+- **A handed-off test script should be checked against the fixture it reproduces.** A substitution written for convenience can change what is under test without anyone noticing.
