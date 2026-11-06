@@ -56,7 +56,7 @@ Follow `CLAUDE.md` for every edit: classify editorial vs. substantive, bump the 
 
 ## 4. Retire the working files
 
-Once the content is integrated, move each `working/<LOBESPACE>_<WORK>_*` file into the **owning lobe's** `archive/` under its own name — no version suffix, since working files are not versioned; create that `archive/` if the lobe does not have one yet. A work item retires where it lived, even when some of its knowledge folded upward. Move, don't delete: the content is preserved in the canonical docs, but the original is cheap to keep and occasionally worth consulting. Drop any now-dangling cross-references left behind by the merge.
+Once the content is integrated, move each `working/<LOBESPACE>_<WORK>_*` file into the **owning lobe's** `archive/` with no version suffix, since working files are not versioned, and renamed only on a collision, per `CLAUDE.md`; create that `archive/` if the lobe does not have one yet. A work item retires where it lived, even when some of its knowledge folded upward. Move, don't delete: the content is preserved in the canonical docs, but the original is cheap to keep and occasionally worth consulting. Drop any now-dangling cross-references left behind by the merge.
 
 ---
 
