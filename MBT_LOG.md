@@ -1585,3 +1585,44 @@ Rob's session, with Claude as co-author. Rob asked whether the TEMPLATE_DRIFT wo
 
 - The new setup wasn't exercised on a scratch brain.
 - REHOMING's testing approach expects setup at a superseded item's new home to report its predecessor rather than a clean slate. With setup no longer reading `archive/`, that has to come from the successor naming its predecessor.
+
+---
+
+# PR #20's review is addressed, and dry runs exercise the new work setup on two platforms (2026-11-05)
+
+**Session ID**: `54761ceb-23f6-4fe5-bafc-9802939b8a06`
+
+Rob's session, with Claude as co-author. Rob had Claude read his review of PR #20 and address all of it, then test the result before merge. Three commits landed on the PR branch: the audit goes back to `find`, a retire-move collision renames the item's whole set, the alignment step moves after the audit and reaches every concerned lobe, and two older seeding and append gaps the dry runs found are closed. Both setup cases left open by the previous session were run on a scratch brain.
+
+## Turn by turn
+
+- **The review.** Rob's review comment had one blocking finding and five minor ones. The `ls` glob the previous session introduced for the audit fails under zsh: an empty match is a shell error that `2>/dev/null` can't silence, and a quoted pattern finds nothing. Renaming one colliding file would leave its siblings citing the old item's files. The alignment step read only the owning lobe and ran before the slug existed, and it had nowhere to record overlaps on a re-run or after early PLAN retirement. Rob asked for all of it addressed.
+- **First fix commit.** The audit returned to `find working -maxdepth 1`. The no-overwrite rule in `CLAUDE.md` and both `CLAUDE.md` templates now asks for a new slug on a collision, then renames all of the item's files still in `working/` and rewrites their references to each other before any move. Work closeout's retire step drops "under its own name" for "renamed only on a collision". Alignment moved to the end of work setup's slug-and-audit section and reads the `working/` of each concerned lobe, the owner, and the owner's ancestors. It finds other items with a `find` over each lobe's own lobespace, records overlaps in a new PLAN or adds them to an existing one, and uses FINDINGS when the PLAN was retired early. Claude kept `CLAUDE.md` at V29, since the branch had already bumped it that day, and replied on the PR.
+- **Ready to merge?** Asked, Claude judged the `find` fix verified but alignment untested, and proposed three dry-run cases. Rob asked for all three, plus a macOS-versus-Linux check in Docker.
+- **Dry runs.** Claude built a two-lobe fixture: hub `SHOP`, children `BILL` and `CAT`. `BILL` held an open item that conflicts with the new one, `CAT` held an unrelated one, and the hub's `working/` held an experiment file. Three fresh agents ran work setup cold under zsh, and Claude checked each end state with `git diff`. A new hub item recorded the `BILL` conflict in its PLAN and skipped the rest. A re-run with an existing PLAN added the overlap without removing a line. A retired-early PLAN was asked about and not recreated, and the overlap went to FINDINGS. The two `find` commands gave identical output on macOS (BSD find under zsh, bash and sh), Debian (GNU find under bash, dash and zsh) and Alpine (BusyBox).
+- **What the agents tripped on.** FINDINGS had no section for an overlap, so case 3's agent invented a heading; Rob had Claude name `## Open issues` in the procedure. Three older gaps came up as well. Claude found the missing `<HUB>` substitution an artifact of the fixture, since brain creation fills `<HUB>` when it inlines the templates. That left two: intake's testing bullet and the generate step disagreed on seeding the runbook and testing docs, and "append" was unclear inside a structured doc. Rob chose to seed test names and to fix both in this PR. The working-docs table's seeded column became the one seeding rule, and new material goes under its matching section with every existing line unchanged. Claude posted a follow-up on the PR with the dry-run results.
+- **Where the log goes.** Claude began appending this entry on the PR branch. Rob stopped it: session-log changes go to `main`, not to a PR branch.
+
+## Decisions
+
+- **Address every review finding in PR #20, the minor ones included** — Rob.
+- **Dry-run three alignment cases and compare shells across macOS and Linux before merging** — Rob, on Claude's proposal of the cases.
+- **Seed the runbook and testing docs with test names only, with the table's seeded column as the single rule** — Rob, choosing between Claude's two options.
+- **Close the two older setup gaps in this PR rather than a follow-up item** — Rob.
+- **Session-log entries go on `main`, not on a PR branch** — Rob.
+
+## What didn't work
+
+- The `ls` glob the previous session chose for the audit, under zsh.
+- The review predicted that `find` exits 0 when `working/` is missing; every platform tested exits 1, with empty output. The procedure reads only the output, so nothing depends on it.
+- The fixture pointed agents at the toolkit's raw templates instead of inlining them, so two agents reported a `<HUB>` gap that a created brain doesn't have.
+
+## Lessons
+
+- A shell command a procedure prescribes needs running under zsh as well as bash; a glob that bash leaves unexpanded is an error in zsh.
+- Fresh agents following a procedure cold find gaps the author reads past. Two of the three gaps they found predate the change being tested.
+
+## Open
+
+- Not dry-run: a child-owned item whose alignment reaches up into an ancestor, and a collision rename.
+- WORK_PLACEMENT and REHOMING both plan edits to work setup's audit step, which this PR rewrote; their plans describe the step as it stood before.
