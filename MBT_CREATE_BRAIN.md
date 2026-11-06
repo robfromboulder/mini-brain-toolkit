@@ -1,6 +1,6 @@
 # Mini-Brain Toolkit: Create a New Mini-Brain
 
-> V34, 2026-11-04.
+> V35, 2026-11-05.
 
 This document is the procedure for standing up a new mini-brain from `templates/`.
 
@@ -128,4 +128,4 @@ Don't scaffold these into a stage-1 brain; add them the first time a real work i
 2. Run a structural check — read index ↔ disk, version headers, cross-references, namespace prefix; for a multi-lobe brain, also registry ↔ disk and each lobe's full doctype set and lobespace — and fix anything it flags.
 3. Report to the user: the lobespace used — or the lobe tree and its per-lobe lobespaces, for a multi-lobe brain — which files were **created**, **updated**, or already **existed unchanged**, what stage the brain is at, and the natural next step (fill SCOPE, or add lifecycle machinery).
 
-Do not commit unless the user asks. If the repo is on its default branch, branch first.
+Do not commit unless the user asks. Before committing to a repo on its default branch, branch first.
