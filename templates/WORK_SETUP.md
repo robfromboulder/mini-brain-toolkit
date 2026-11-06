@@ -66,7 +66,7 @@ A brand-new work item has nothing on disk, so the full set is created. A partial
 find working -maxdepth 1 \( -name '<L>_*_PLAN.md' -o -name '<L>_*_FINDINGS.md' \) 2>/dev/null
 ```
 
-Group the matches by compound, the name before `_PLAN.md` or `_FINDINGS.md`, and skip this item's own. Record each overlap or conflict in this item's PLAN under open issues — written into the PLAN §3 creates, or appended to the PLAN that already exists. When the PLAN was retired early, record it in FINDINGS instead.
+Group the matches by compound, the name before `_PLAN.md` or `_FINDINGS.md`, and skip this item's own. Record each overlap or conflict in this item's PLAN under open issues — written into the PLAN §3 creates, or appended to the PLAN that already exists. When the PLAN was retired early, record it in FINDINGS under an `## Open issues` heading instead, adding the heading if FINDINGS lacks one.
 
 ---
 
