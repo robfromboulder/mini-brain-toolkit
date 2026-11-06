@@ -53,3 +53,50 @@ Rob's session, with Claude as co-author. Rob asked for a review of this item's p
 - **A plan written before a sibling item lands needs re-reading against what landed**, especially its tests. A test written for a future change can pass on code that already exists, and so test nothing.
 - **Check a test brain's history before assigning it a role.** Two of the plan's three test brains had been cast wrongly from memory.
 - **A merge needs a base, so a comparison that must tell adaptation from drift needs one too.** Recording the base per file is what lets a declined change stay declined.
+
+---
+
+# Drift check implemented and tested, stamps dropped for inference, PR #22 opened (2026-11-06)
+
+**Session ID**: `ee2c2ade-b187-4574-8c63-6ac120cef31c`
+
+Rob's session, with Claude as co-author, continuing the review session above. Rob had all four implementation steps run on branch `template-drift`. Along the way he set the rule for every open choice: upgrades take no manual step. He also overturned three of Claude's design choices: per-file version stamps, a pin decided without him, and HTML-comment skips. Headless tests on two fixtures and three real brains passed after two defects they exposed were fixed. The branch went up as one squashed commit in PR #22. The PLAN and FINDINGS stayed off the branch, at Rob's request, so the PR carries only the change under review.
+
+## Turn by turn
+
+- **Step 1.** Claude fixed the template dream cycle's leakage exemption, its Phase 4 routing (this brain's own dream cycle too) and its Phase 5 rule for proposing a term. It also narrowed the log convention to canonical logs, and added skips for HTML-commented rows to check 3, the dream cycle and work closeout. Rob set the no-manual-step rule. Under it Claude resolved three open issues: follow renamed templates, compare the enforced-terms rules, and keep `archive/` tracked.
+- Rob asked that PLAN and FINDINGS changes stay out of feature-branch commits, so a PR reviews only the change, and land on `main` at session end.
+- **Step 2.** Claude added a per-file stamp line naming the toolkit version and template to every procedure template, and the `.gitkeep` and check 9.
+- **Step 3.** Claude asked how an owner learns a `check` is due. Rob pointed out that the install lines tracked `main`, so any toolkit-version comparison would fire on every merged PR. He chose to pin installs to the newest release, and to have the dream cycle prompt for a `check`. Claude wrote check 10, check 8's split-hook move, the release pin, the dream cycle's release check and the pattern's two file kinds.
+- **Step 4, first round.** Claude built two fixtures and scratch copies of the three brains, and ran Claude Code headless on each. The 0.72 fixture, the 0.70 fixture and lamarr passed on disk.
+- **Stamps dropped.** Rob objected to the stamps: a version line in every file, every file rewritten on each check, an implied linearity, and `check` turned from a reader into a bookkeeper. Claude offered three options: inference, one brain-wide stamp, or keeping per-file stamps. Rob chose inference. He wanted logic based on the state of the file, not on version numbers, and the dream cycle limited to checking whether the installed toolkit has a newer published release.
+- **HTML-comment skips dropped.** Rob asked for a review of the comment-handling lines. Claude found them too broad and blind to comments spanning several lines. Rob said the branch should never have added rules for docs a brain may add later, and kept the staged comment blocks, accepting that a seeded brain's dream cycle flags them. Claude reverted all five skips.
+- **Step 4, retest.** A usage limit killed the first batch of retests; they ran again after the reset. The 0.72 fixture passed, along with a report-only second check. Subwiz's and lamarr's hooks inferred 0.70 and raised false conflicts. Settled in the template's favor, as the test prompt directed, they overwrote subwiz's fixed clone path and lamarr's clone name. Claude found the cause: counting differing lines rewards an older, shorter template once a paragraph is rewritten. It switched inference to counting paragraphs matched word for word, which picked the right base on every file it tested, and made the walk-through keep a brain's own values. Reruns of lamarr and subwiz passed, and so did lamarr's second check. Virtual-view-brain passed on the old rule; its hooks were re-scored by script.
+- Rob had the branch squashed into one commit and PR #22 opened, then this entry written and the working docs committed to `main`.
+
+## Decisions
+
+- **No upgrade takes a manual step, and that rule decides every open choice in this item** — Rob.
+- **Working docs stay off the feature branch and land on `main` at session end** — Rob.
+- **Installs pin to the newest release tag** — Rob, after spotting that tracking `main` would make every merged PR look like a release.
+- **No version stamps; each file's base is inferred from its text on every run** — Rob, over one brain-wide stamp and per-file stamps.
+- **The dream cycle prompts a `check` only when the toolkit's remote has a newer release than the installed one** — Rob.
+- **No HTML-comment skips; staged comment blocks stay, and a seeded brain's dream cycle may flag them** — Rob.
+- **Infer the base by paragraphs matched word for word, not lines differing** — Claude, from the retest evidence.
+- **Keep a brain's own values, such as its clone's name, in applied template text** — Claude.
+- **One squashed commit for the PR** — Rob.
+
+## What didn't work
+
+- Per-file stamps: built, then removed as the wrong contract for `check`.
+- HTML-comment skips: built, then removed as rules for docs a brain may add later.
+- Counting differing lines to infer a base: it misread two adapted hooks, and the false conflicts destroyed adaptations when settled in the template's favor.
+- A report-only run feeding the merge through pipes: `git merge-file` misreads them on macOS and reports false conflicts.
+- Launching four headless runs at once ran into the usage limit, and the batch had to be rerun.
+
+## Lessons
+
+- **Choose how to measure fit by how adaptation happens.** Brains rewrite whole paragraphs, so count the paragraphs that match, not the lines that differ.
+- **A test prompt that settles every conflict for the template turns a false conflict into lost work.** That made the defect visible, and it is also the cost a real owner would pay for the same mistake.
+- **Bookkeeping a procedure writes into the files it checks changes what the procedure promises.** Infer from state where the evidence allows.
+- **Run expensive headless tests in small batches**, grading each before launching the next.
