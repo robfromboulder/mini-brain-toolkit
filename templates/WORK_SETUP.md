@@ -16,8 +16,8 @@ The working docs and their roles:
 | `<LOBESPACE>_<WORK>_FINDINGS.md` | The decision record: problem, preferred approach, tradeoffs, alternatives | Yes — written from the intake conversation |
 | `<LOBESPACE>_<WORK>_LOG.md` | Append-only session log; one entry per implementation session | No — header only; the first session appends the first entry |
 | `<LOBESPACE>_<WORK>_BURNDOWN.md` | Finishing checklist: what remains to land the change | No — template checklist |
-| `<LOBESPACE>_<WORK>_CLAUDE.md` | Runbook for automated tests — declares the item's branch (the session-routing join key), defers to the brain's canonical runbook, then adds work-specific steps | No — template with a placeholder step |
-| `<LOBESPACE>_<WORK>_TESTING.md` | Manual test plan: steps to verify the work item by hand; folds into the canonical testing doc at closeout | No — template scaffold |
+| `<LOBESPACE>_<WORK>_CLAUDE.md` | Runbook for automated tests — declares the item's branch (the session-routing join key), defers to the brain's canonical runbook, then adds work-specific steps | Test names only — one step per automated test in the testing approach; commands and expected results stay placeholders |
+| `<LOBESPACE>_<WORK>_TESTING.md` | Manual test plan: steps to verify the work item by hand; folds into the canonical testing doc at closeout | Case names only — one case per manual check in the testing approach; prerequisites, steps and expected results stay placeholders |
 
 PLAN and BURNDOWN are two halves of the same work: the plan gets the code written, the burndown gets it merged. The burndown's Routine rows are inherited defaults: a brain adopting this procedure refines them once, outside any setup run, to match its PR conventions — the closeout-notes row is not a PR convention and stays. Custom rows are always per-item; the scaffold's category placeholders there are prompts to fill or strike, not standing work.
 
@@ -35,7 +35,7 @@ Before scaffolding anything, have the conversation. Setup turns a settled discus
 - **Problem** — what's broken or missing, and who feels it. This anchors FINDINGS.
 - **Preferred approach + tradeoffs** — the chosen direction and *why*, plus the alternatives weighed and rejected. This is the heart of FINDINGS; capture the reasoning, not just the verdict.
 - **Scope boundary** — what the work item explicitly does *not* touch. Goes into PLAN's "what this does NOT include"; it is the cheapest way to prevent scope creep.
-- **Testing approach** — what's covered by automated tests and what can only be checked by hand. Seeds PLAN's testing section, the BURNDOWN checklist, and the runbook/testing docs.
+- **Testing approach** — what's covered by automated tests and what can only be checked by hand. Seeds PLAN's testing section and the test names in the runbook and testing docs.
 
 If the chosen approach makes an existing canonical claim false (a reversal, not just an addition), note it now — record it in FINDINGS and flag it for closeout. A reversal is the one thing a wording-based grep won't catch at merge time, so the merge relies on it being called out explicitly here.
 
@@ -54,7 +54,7 @@ find working -maxdepth 1 -name '<LOBESPACE>_<WORK>_*.md' 2>/dev/null
 The audit does not search `archive/`. Its stale, abandoned and older-convention material can carry names that match a new slug without belonging to it. Empty output means a brand-new item **only if the command ran in the owning lobe's directory** — confirm the location before trusting an empty audit, because everything below builds on it.
 
 Classify each doc — first match wins:
-- **Exists in `working/`** — leave it. Do not overwrite. If the intake chat adds genuinely new material, append it; never rewrite existing working content from a setup run.
+- **Exists in `working/`** — leave it. Do not overwrite. If the intake chat adds genuinely new material, add it under its matching section and leave every existing line unchanged.
 - **Missing PLAN on an item with other docs in `working/`** — ask the developer whether the PLAN was retired early before creating one; if it was, don't recreate it.
 - **Missing** — create from the template (§3).
 
@@ -66,13 +66,13 @@ A brand-new work item has nothing on disk, so the full set is created. A partial
 find working -maxdepth 1 \( -name '<L>_*_PLAN.md' -o -name '<L>_*_FINDINGS.md' \) 2>/dev/null
 ```
 
-Group the matches by compound, the name before `_PLAN.md` or `_FINDINGS.md`, and skip this item's own. Record each overlap or conflict in this item's PLAN under open issues — written into the PLAN §3 creates, or appended to the PLAN that already exists. When the PLAN was retired early, record it in FINDINGS under an `## Open issues` heading instead, adding the heading if FINDINGS lacks one.
+Group the matches by compound, the name before `_PLAN.md` or `_FINDINGS.md`, and skip this item's own. Record each overlap or conflict in this item's PLAN under open issues — written into the PLAN §3 creates, or added to an existing PLAN without changing its existing lines. When the PLAN was retired early, record it in FINDINGS under an `## Open issues` heading instead, adding the heading if FINDINGS lacks one.
 
 ---
 
 ## 3. Generate the docs
 
-Create each missing doc in the owning lobe's `working/`, from its base template, substituting `<LOBESPACE>` (the owning lobe's lobespace), `<WORK>` (SCREAMING_SNAKE), `<Work-Item Name>` (Title Case), and `<work-branch>` — a single branch name, or a glob when the item will land across several branches/PRs; setup declares the name — creating the branch belongs to the project's workflow, when coding starts. Create that `working/` if the lobe does not have one yet. Fill PLAN and FINDINGS with real content from the intake chat; leave the others as scaffolds for the implementer.
+Create each missing doc in the owning lobe's `working/`, from its base template, substituting `<LOBESPACE>` (the owning lobe's lobespace), `<WORK>` (SCREAMING_SNAKE), `<Work-Item Name>` (Title Case), and `<work-branch>` — a single branch name, or a glob when the item will land across several branches/PRs; setup declares the name — creating the branch belongs to the project's workflow, when coding starts. Create that `working/` if the lobe does not have one yet. Seed each doc as far as the table's seeded column says; everything else stays a scaffold for the implementer.
 
 Do not add a `> V<N>` version header to any of these — working files are unversioned. Do not copy them into `archive/` (docs land there only when they retire). Do not touch the read index or any canonical doc.
 
