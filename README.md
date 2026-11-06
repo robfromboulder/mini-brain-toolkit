@@ -44,30 +44,30 @@ If you're curious about the design:
 
 ## Installing the toolkit
 
-The toolkit installs as a skill. Use the command below for your harness to install the toolkit, or to update it to the latest version.
+The toolkit installs as a skill. Use the command below for your harness to install the toolkit, or to update it to the latest release.
 
 **Claude Code**
 
 ```sh
-d=~/.claude/skills/mini-brain-toolkit; if [ -d "$d" ]; then git -C "$d" pull --ff-only; else git clone https://github.com/robfromboulder/mini-brain-toolkit "$d"; fi
+d=~/.claude/skills/mini-brain-toolkit; if [ -d "$d" ]; then git -C "$d" fetch -q --tags; else git clone -q https://github.com/robfromboulder/mini-brain-toolkit "$d"; fi; git -C "$d" checkout -q "$(git -C "$d" tag --sort=-v:refname | head -1)"
 ```
 
 **Codex**
 
 ```sh
-d=~/.agents/skills/mini-brain-toolkit; if [ -d "$d" ]; then git -C "$d" pull --ff-only; else git clone https://github.com/robfromboulder/mini-brain-toolkit "$d"; fi
+d=~/.agents/skills/mini-brain-toolkit; if [ -d "$d" ]; then git -C "$d" fetch -q --tags; else git clone -q https://github.com/robfromboulder/mini-brain-toolkit "$d"; fi; git -C "$d" checkout -q "$(git -C "$d" tag --sort=-v:refname | head -1)"
 ```
 
 **OpenCode 2**
 
 ```sh
-d=~/.agents/skills/mini-brain-toolkit; if [ -d "$d" ]; then git -C "$d" pull --ff-only; else git clone https://github.com/robfromboulder/mini-brain-toolkit "$d"; fi
+d=~/.agents/skills/mini-brain-toolkit; if [ -d "$d" ]; then git -C "$d" fetch -q --tags; else git clone -q https://github.com/robfromboulder/mini-brain-toolkit "$d"; fi; git -C "$d" checkout -q "$(git -C "$d" tag --sort=-v:refname | head -1)"
 ```
 
 **Other harnesses**
 
 ```sh
-d=~/mini-brain-toolkit; if [ -d "$d" ]; then git -C "$d" pull --ff-only; else git clone https://github.com/robfromboulder/mini-brain-toolkit "$d"; fi
+d=~/mini-brain-toolkit; if [ -d "$d" ]; then git -C "$d" fetch -q --tags; else git clone -q https://github.com/robfromboulder/mini-brain-toolkit "$d"; fi; git -C "$d" checkout -q "$(git -C "$d" tag --sort=-v:refname | head -1)"
 ```
 
 ## Creating a mini-brain
@@ -100,7 +100,7 @@ Read ~/mini-brain-toolkit/SKILL.md and run create
 
 ## Improving a mini-brain
 
-The `check` command evaluates your mini-brain and suggests how to improve its structure and function. It asks which brains to check, then walks you through the recommendations it finds.
+The `check` command evaluates your mini-brain and suggests how to improve its structure and function. It asks which brains to check, then walks you through the recommendations it finds. It also brings the brain's procedures up to date with the installed toolkit, so updating the toolkit and running `check` is the whole upgrade.
 
 **Claude Code**
 
