@@ -2,11 +2,11 @@
 
 ## Objective
 
-Make upgrading a brain the same act every release: run `check` and follow its recommendations. Deliver a `check` step that merges each procedure template's change since a brain's copy was last brought up to date into that copy, reports each change as a recommendation carrying the template's text, and leaves every change to the owner in the walk-through. Release notes then never carry upgrade steps.
+Make upgrading a brain the same act every release: run `check` and follow its recommendations. Deliver a `check` step that compares each procedure file a brain copied from a template with the current template, paragraph by paragraph, reports each toolkit change the brain lacks as a recommendation carrying the template's text and each owner's edit with both texts, and leaves every change to the owner in the walk-through. Release notes then never carry upgrade steps.
 
 ## Context
 
-See `MBT_TEMPLATE_DRIFT_FINDINGS.md` in this directory for the decision record, the evidence and the alternatives considered. `MBT_TEMPLATE_DRIFT_EXPERIMENT.py` in this directory runs the comparison by script against a given base; `MBT_TEMPLATE_DRIFT_INFER.py` infers the base by check 10's rule, then merges.
+See `MBT_TEMPLATE_DRIFT_FINDINGS.md` in this directory for the decision record, the evidence and the alternatives considered. `MBT_TEMPLATE_DRIFT_COMPARE.py` in this directory runs check 10's two-way comparison by script and grades the tests. `MBT_TEMPLATE_DRIFT_EXPERIMENT.py` and `MBT_TEMPLATE_DRIFT_INFER.py` ran the superseded three-way merge, against a given and an inferred base.
 
 The procedure files and their templates:
 
@@ -28,21 +28,21 @@ Knowledge files are never compared, and neither are a work item's docs. The scaf
 ## What changes
 
 - `MBT_CHECK_BRAIN.md`, structural checks — a procedure-drift check. For each file in the table the brain holds:
-  - Infer its base on every run, matching paragraphs word for word. Bound it by the oldest release whose dropped text the file still holds. Below that bound, take the candidate holding the most of the file's paragraphs; on a tie, the one holding the fewest paragraphs the file has no version of, verbatim or rewritten; then the newest.
-  - Take the base and current templates from the install's git history (`git -C <install> show <ref>:templates/<file>`).
-  - Normalize all three texts: fold the brain's lobespace back to `<LOBESPACE>`, read `<HUB>` as `<LOBESPACE>`, fill the display and lowercase names, and drop version lines.
-  - Merge paragraph by paragraph. A paragraph only the template changed is a recommendation; one both changed is a conflict; one only the brain changed is not reported.
-  - Split work setup's inlined scaffolds out by content, whatever their heading or fence, and merge each against its `templates/work/` file.
+  - Take the current template from the install and each release's from its history (`git -C <install> show <tag>:templates/<file>`).
+  - Normalize every text: fold the brain's lobespace back to `<LOBESPACE>`, read `<HUB>` as `<LOBESPACE>`, fill the display and lowercase names, and drop version lines.
+  - Pair each current-template paragraph with the brain's version of it, word for word or rewritten, and label it current, missing (no version), behind (the brain's version is a release's text) or an own edit (in no release). A brain paragraph that pairs with nothing is dropped if a release held it, and otherwise the brain's own addition.
+  - Recommend adding missing paragraphs, updating behind ones and removing dropped ones; report own edits with both texts.
+  - Leave out what `create` resolves: the template's staged comments unless the brain uncommented them, the rows of `CLAUDE.md`'s read index and registry, and work setup's pointer to `templates/work/`.
+  - Split work setup's inlined scaffolds out by content, whatever their heading or fence, and compare each with its `templates/work/` file.
   - Match the hook's paragraphs by content in the project repo's instruction files.
   - Skip the paragraphs check 8 rewrites.
-  - Treat a paragraph the base and current template hold and the brain lacks as the brain's own, without consulting the brain's history.
   - Skip a multi-lobe brain's dream cycle, which adapts the single-lobe template whole, and say so in the report.
   - Follow a template that no longer exists under the name this check gives it through the install's history, and recommend the matching rename of the brain's file.
-  - Work in a temporary directory outside the brain and the install, even when reporting only, since `git merge-file` misreads pipes.
-  - Without git history in the install, compare two ways and put every difference to the user.
-- `MBT_CHECK_BRAIN.md`, report — procedure drift gets its own entry among the structural issues: each recommendation with a one-line reading of what the template's text changes, then each conflict with both texts. The report names the release the install has checked out, the newest its remote publishes, each file's base and any comparison skipped.
-- `MBT_CHECK_BRAIN.md`, walk-through — check 8's fix runs before drift updates. An approved recommendation or a resolved conflict replaces that paragraph, filling placeholders as the brain's copy fills them around it. A declined one stays as it is, and nothing records the decision. A declined added paragraph goes quiet once the file takes a change from that release or a later one; a declined change to an existing paragraph comes back on every check.
-- `MBT_CHECK_BRAIN.md`, check 8 — in a brain copied from the templates, the conventions fix takes the current template's wording for the paragraphs it changes, so the drift check finds them current rather than in conflict.
+  - Work on copies in a temporary directory outside the brain and the install, even when reporting only.
+  - Without git history in the install, report every changed paragraph as an own edit.
+- `MBT_CHECK_BRAIN.md`, report — procedure drift gets its own entry among the structural issues: the release the install has checked out and the newest its remote publishes, any comparison skipped, each missing, behind and dropped paragraph as a recommendation with a one-line reading of what it changes and the template's text, then each own edit with both texts.
+- `MBT_CHECK_BRAIN.md`, walk-through — check 8's fix runs before drift updates. An approved change replaces, adds or removes that paragraph, filling placeholders as the brain's copy fills them around it and keeping the brain's own values. Nothing records a decision, so every check reports each own edit and declined change again, for the owner to revisit.
+- `MBT_CHECK_BRAIN.md`, check 8 — where the brain's paragraph is a release's template text word for word, the conventions fix takes the current template's wording, so the drift check finds it current rather than an own edit.
 - `MBT_CREATE_BRAIN.md` — a staged `.gitkeep` in `archive/` as well as `working/` when either would be empty. `MBT_CHECK_BRAIN.md`'s structural checks flag an empty `archive/` or `working/` that git doesn't track, with the same fix, and tell the user the directory survives a clone once committed.
 - `templates/DREAM_CYCLE.md` — fix a defect that the drift check would otherwise carry into every brain. Codex and OpenCode 2 each found it independently during the PR #19 retest. Check 6 exempts names carrying `<LOBESPACE>` as placeholder notation, but `create` substitutes the lobespace, so a seeded brain exempts its own real `working/` filenames and lets leaked references through. The exemption becomes "a name carrying an angle-bracketed variable such as `<WORK>`", which survives `create`'s substitution and still exempts `working/ORCHARD_<WORK>_PLAN.md` while flagging `working/ORCHARD_FOO_PLAN.md`. Its checks 1 and 4 also flag the rows the entrypoint template stages in comments; Rob kept that, on 2026-11-06, rather than add rules for docs a brain may add later.
 - `templates/DREAM_CYCLE.md`, Phase 5 — with no enforced terms file, the drift pass still proposes a term by "the enforced terms file's rule for adding an entry", which doesn't exist. `MBT_CHECK_BRAIN.md` falls back to `templates/ENFORCED_TERMS.md`, but a brain's dream cycle never sees the toolkit, so the rule must be stated in the dream cycle itself.
@@ -57,7 +57,7 @@ Knowledge files are never compared, and neither are a work item's docs. The scaf
 
 | Existing doc | Interaction | Risk |
 |---|---|---|
-| `MBT_CHECK_BRAIN.md` check 8 | Owns the loading path through `AGENTS.md`, including paragraphs of the brain's `CLAUDE.md`, its dream cycle and the project hook that the drift check also compares | If check 8's fix words a paragraph differently from the current template, the next drift check reports it as a conflict |
+| `MBT_CHECK_BRAIN.md` check 8 | Owns the loading path through `AGENTS.md`, including paragraphs of the brain's `CLAUDE.md`, its dream cycle and the project hook that the drift check also compares | If check 8's fix words a paragraph differently from the current template, every later drift check reports it as an own edit |
 | `MBT_CREATE_BRAIN.md` placeholder rules | The walk-through fills placeholders in the template text it applies | Filling by the brain's own surrounding text can't follow a rule the copy never exercised; a new placeholder needs the user |
 | `SKILL.md` path rule | Templates and their history resolve against the install | A stale install compares against stale templates; the report states the install's release and the remote's newest, and says when the remote's answer is missing |
 | `templates/DREAM_CYCLE.md` | A brain's own dream cycle compares a standard-path clone's release with its remote's newest | A toolkit installed elsewhere, or a machine offline, never prompts a `check` |
@@ -66,24 +66,23 @@ Knowledge files are never compared, and neither are a work item's docs. The scaf
 
 ## Testing approach
 
-Each test also runs `MBT_TEMPLATE_DRIFT_EXPERIMENT.py` against the same brain and base. The agent's recommendations and conflicts must match the script's, file by file.
+Each test also runs `MBT_TEMPLATE_DRIFT_COMPARE.py` against the same brain. The agent's recommendations and own edits must match the script's, file by file, and a report-only run must leave every repository's `git status` unchanged.
 
-1. **0.72 fixture.** Seed a brain in a scratch directory from the 0.72 templates with the PR #19 retest's `seed.sh`, pointed at tag 0.72 and extended with work setup (scaffolds inlined) and work closeout. Run `check` from `main`.
-   - Check 8 moves the hook into the project repo's `AGENTS.md`, adds the brain-side `AGENTS.md` and its exemptions, and keeps the hook's work-item block.
-   - The drift check reports the rest of 0.73's procedure changes once each, with no conflicts: the session-ID variables and harness-neutral wording in session closeout and the README, work setup's audit and alignment changes, the retire-move rule in `CLAUDE.md` and work closeout, and the dream cycle's naming exemptions read from `CLAUDE.md` and its read-only subagent wording. It reports nothing check 8 handled.
-   - A second `check` reports no drift.
+1. **0.72 fixture.** Seed a single-lobe brain in a scratch directory from the 0.72 templates, with every procedure file, work setup's scaffolds inlined, and a sibling project repo whose `CLAUDE.md` holds the hook beside its own instructions. Run `check` from the branch.
+   - Before `check`, every difference is behind or missing, with no own edits.
+   - Check 8 moves the hook into the project repo's `AGENTS.md`, adds the brain-side `AGENTS.md` and its exemptions, and keeps the hook's work-item block and the project's own instructions.
+   - A walk-through approving every change leaves every procedure file current, the scaffolds intact.
+   - A second `check` reports no drift and changes nothing.
 
    Every existing brain needs this upgrade for 0.73, so it is the test that matters most.
-2. **0.70 fixture.** The same, seeded at tag 0.70. It reports each change to a procedure template between 0.70 and `main` once, with the template's text, and no knowledge file. The walk-through, approving every update, leaves the filled-in placeholders and work-item block intact.
-3. **lamarr-brain**, seeded from 0.71. `check` proposes 0.71 as the base. It reports the upstream changes to session closeout, work setup's procedure, work closeout, `CLAUDE.md` and the README with no conflicts, nothing for the scaffolds, and none of the brain's adaptations. The hook is split across sections of the project's `CLAUDE.md`, and has no drift.
-4. **mini-subtitle-wizard-brain** (https://codeberg.org/kolin-newby/mini-subtitle-wizard-brain), seeded from 0.71 by an outside author. `check` reports the same upstream changes, and one conflict in work setup step 3. The deviations its first log entry records survive, as does its Codeberg burndown rule. The brain lives in `~/mini-brains/`, so the user names its project repo (https://codeberg.org/kolin-newby/subtitle-wizard) for check 8 and the hook.
-5. **virtual-view-brain**, predating 0.70. Session closeout fits 0.70 and takes its upstream changes cleanly. Work setup, work closeout, `CLAUDE.md` and the README raise the conflicts the script finds, each put to the owner with both texts. The brain has no dream cycle.
-
-6. **Added paragraph.** A multi-lobe `CLAUDE.md` seeded from the 0.71 `LOBES_CLAUDE.md`. `check` infers 0.71 and recommends 0.72's "A child works within its ancestors' choices" paragraph.
-7. **Partly applied update.** A dream cycle seeded from 0.72 with every other 0.72-to-`main` change applied by hand. `check` infers 0.72, recommends the missed changes, and reports none of the applied ones.
-8. **Declines and check 9.** The fixture from test 6 with an empty, untracked `archive/`. The walk-through approves check 9's fix, declines the added `CLAUDE.md` paragraph and the session-closeout session-ID rewrite, and takes the rest. A second `check` reports no check 9 entry, does not report or mention the declined paragraph, and recommends the declined rewrite again.
-
-After each walk-through, a second `check` reports nothing for a declined added paragraph once the file took a later change, and reports a declined rewrite again.
+2. **0.70 fixture.** The same, seeded at tag 0.70. It reports each change to a procedure template between 0.70 and the branch once, with the template's text, and no knowledge file.
+3. **lamarr-brain**, seeded from 0.71. Every difference is a recommendation or an own edit; its clone name and rewritten maturity comments are own edits, never applied unasked.
+4. **mini-subtitle-wizard-brain** (https://codeberg.org/kolin-newby/mini-subtitle-wizard-brain), seeded from 0.71 by an outside author, with its project repo (https://codeberg.org/kolin-newby/subtitle-wizard) named for check 8 and the hook. Its fixed `~/mini-brains/` clone path, its work-setup step 3 and its Codeberg burndown rule are own edits, never applied unasked.
+5. **virtual-view-brain**, predating 0.70. Its adaptations are own edits, and its 0.70-era hooks show 0.71's worktree paragraph as missing. The brain has no dream cycle.
+6. **Added paragraph.** A multi-lobe `CLAUDE.md` seeded from the 0.71 `LOBES_CLAUDE.md`. `check` reports 0.72's "A child works within its ancestors' choices" paragraph as missing.
+7. **Partly applied update.** A dream cycle seeded from 0.72 with every other 0.72-to-branch change applied by hand. `check` reports exactly the untaken changes as missing or behind, and no own edits.
+8. **Declines and check 9.** The fixture from test 6 with an empty, untracked `archive/`. The walk-through approves check 9's fix, declines the added `CLAUDE.md` paragraph and the session-closeout session-ID change, and takes the rest. A second `check` passes check 9 and reports both declined changes again.
+9. **Declines in a real brain, by script.** Take all but one of lamarr's README changes, in each of the three ways. The comparison reports only the declined change, beside the brain's standing own edits.
 
 ## Implementation sequence
 
@@ -93,6 +92,7 @@ After each walk-through, a second `check` reports nothing for a declined added p
 4. Run the fixture tests, then the three existing brains. Done on 2026-11-06 in Claude Code 2.1.319, headless, against `3c8f54a` on scratch copies, each graded on disk against `MBT_TEMPLATE_DRIFT_EXPERIMENT.py`. The 0.72 and 0.70 fixtures, lamarr, subwiz and virtual-view-brain all ended with every procedure file current apart from the brain's own changes. Subwiz raised its one expected conflict, lamarr's declined README paragraph stayed declined, and second checks on the 0.72 fixture and lamarr reported nothing and changed nothing. Earlier rounds found that counting differing lines inferred the wrong base for adapted hooks, which led to the switch to matching paragraphs, and that a report-only run needs a temporary directory. The 0.70 fixture and virtual-view-brain ran before that switch; their brain-side results do not depend on it.
 5. Open the PR. Done: PR #22, one squashed commit (`dfea6c0`) holding only the toolkit's files.
 6. Address the PR #22 review. Done on 2026-11-07 as `bb2f6b9` on branch `template-drift`: the bounded base rule, the release in the report, the multi-lobe dream-cycle skip, check 9's staged `.gitkeep`, the install lines' `&&`, and the findings and forward-reference wording. Tests 6–8 passed headless in Claude Code 2.1.319 against a scratch install of the branch, each graded on disk against `MBT_TEMPLATE_DRIFT_INFER.py`. The new rule leaves lamarr's bases unchanged and infers 0.70 for virtual-view-brain's three hooks.
+7. Replace base inference with a two-way comparison. Done on 2026-11-07 at Rob's direction, as `2e2ccd9` and `e57f1a3` on branch `template-drift`, after scripted retests found the bounded rule gave subwiz's hook a false conflict and `git merge-file` joined a declined lamarr README change with the brain's own line. Tests 1 and 6–8 passed headless in Claude Code 2.1.319 against a scratch install of the branch, and tests 3–5 and 9 by script, each graded on disk against `MBT_TEMPLATE_DRIFT_COMPARE.py`. Test 2 was not rerun.
 
 ## Scope boundary — what this does NOT include
 
@@ -102,4 +102,5 @@ After each walk-through, a second `check` reports nothing for a declined added p
 
 ## Open issues
 
-1. Overlaps with open work items. WORK_PLACEMENT and REHOMING both change `templates/WORK_SETUP.md`. MULTI_LOBE_DREAM redesigns `templates/DREAM_CYCLE.md` and requires `MBT_CHECK_BRAIN.md` and the dream cycle to flag the same things. Whichever lands after this item changes what its tests expect.
+1. Offering to file a toolkit issue for an own edit the owner keeps because the template broke for them. Rob's follow-up for a release after this one, once the two-way comparison is in use.
+2. Overlaps with open work items. WORK_PLACEMENT and REHOMING both change `templates/WORK_SETUP.md`. MULTI_LOBE_DREAM redesigns `templates/DREAM_CYCLE.md` and requires `MBT_CHECK_BRAIN.md` and the dream cycle to flag the same things. Whichever lands after this item changes what its tests expect.

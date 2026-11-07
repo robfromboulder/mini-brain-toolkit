@@ -142,3 +142,40 @@ Rob's session, with Claude as co-author. Rob had Claude read his review comment 
 - **Test a tie-break against an adapted copy, not only a pristine one.** The fixture cases passed with the rule that broke lamarr's hook.
 - **Say what a procedure must not do when an agent can see evidence the procedure ignores.** The headless agent overruled check 10 from git history until the procedure ruled that out.
 - **A rule that infers state can't tell a decline from a miss.** Name which one comes back, so owners aren't surprised.
+
+---
+
+# Drift check reset to a two-way comparison against the current template (2026-11-07)
+
+**Session ID**: `29f05522-fc6f-4cc4-9b42-a0d41b06d7c1`
+
+A continuation of Rob's session above, with Claude as co-author. Retesting the bounded base rule against mini-subtitle-wizard-brain and lamarr turned up two more false conflicts. Rob asked why check looks for the release a file most resembles at all, rather than comparing it with the current template, and gave his reason for refusing version stamps: an owner may edit a procedure file on purpose, so no version identifies what the file holds. Check 10 became a two-way comparison with a per-paragraph label from the release history, and every test passed headless and by script.
+
+## Turn by turn
+
+- Rob asked for the remaining tests and a rewritten PR description. Claude cloned subwiz and its project repo from Codeberg into its scratchpad. By script, subwiz's brain files behaved as before, but its hook took 0.70 under the bounded rule and raised a false conflict over its fixed clone path: its rewrite of 0.71's worktree paragraph was too short to count as a version.
+- Claude prototyped a resemblance tie-break, which fixed subwiz's hook. A simulated walk-through declining one of lamarr's README changes then showed `git merge-file` joining the declined change with lamarr's own description line into a false conflict. Claude stopped and put both defects to Rob, proposing the resemblance tie-break and a paragraph-level merge.
+- Rob questioned the premise: compare the brain's file with the current template, offer to add a missing paragraph, and offer to update a changed one or keep it knowingly. Claude measured that on the real brains. The release history labels each changed paragraph on its own as behind (a release's text) or an own edit (in no release), so no base is needed, and every item stays a proposal.
+- Rob had Claude rewrite check 10 that way, update this item and rerun the tests. He said he welcomes own edits reappearing on every check, as a prompt to revisit them or suggest them upstream, and deferred offering to file a toolkit issue to a later release.
+- Claude added a dropped label for a paragraph the toolkit removed. The first scripted pass showed three kinds of noise, all from text `create` resolves: staged comments, read-index and registry rows, and work setup's pointer to `templates/work/`. Claude left them out of the comparison.
+- The 0.72 fixture, with a project repo and inlined scaffolds, came out fully current after an approve-everything walk-through, and a second check reported nothing. Both review cases and the decline walk-through passed headless; lamarr, subwiz, virtual-view and the lamarr README declines passed by script.
+
+## Decisions
+
+- **No version stamps, because an owner's edits mean a version doesn't identify a file's contents** — Rob, stating the reason behind his earlier refusals.
+- **Compare each procedure file with the current template, two ways, and drop base inference and `git merge-file`** — Rob, over Claude's resemblance tie-break and paragraph-level merge.
+- **Report own edits and declined changes on every check, as a recurring review** — Rob.
+- **Label a paragraph behind when the brain's text is any release's, and dropped when the toolkit removed it** — Claude.
+- **Leave what `create` resolves out of the comparison** — Claude, from the scripted noise.
+- **Defer offering to file a toolkit issue for a kept edit** — Rob.
+
+## What didn't work
+
+- The bounded base rule's tie-break by paragraphs with no version: a short rewrite falls under any similarity line, and subwiz's hook took the wrong base.
+- `git merge-file` for a paragraph-level merge: it joins changes on nearby lines into one conflict region.
+- Running test loops in zsh, which doesn't word-split an unquoted variable; the loops moved into bash scripts.
+
+## Lessons
+
+- **When a rule keeps needing tie-breaks, question what it is choosing between.** Each fix to base inference handled one brain and broke another; the two-way comparison needs no choice.
+- **Ask what the owner's edits mean before designing around them.** Stamps, bases and merges each tried to hide edits that the owner is entitled to make and should see again.
