@@ -1,6 +1,6 @@
 # Mini-Brain Toolkit: Dream Cycle
 
-> V33, 2026-11-03.
+> V34, 2026-11-05.
 
 Follow these instructions when the user asks the toolkit to dream and improve itself — the periodic reflection pass that keeps this brain true and small (principle 10).
 
@@ -95,7 +95,7 @@ Bump `MBT_BIOLOGY.md`. Refresh the headline verdict in `MBT_RESEARCH.md` only if
 
 `MBT_LOG.md` accumulates decisions; some belong in `MBT_FINDINGS.md`. Work-item closeouts promote their own findings, but much of this brain's work is logged in `MBT_LOG.md` outside any work item, where nothing has promoted it. Treat extraction as **primary** for those entries and as a backstop for entries recording a work item's closeout: scan the LOG forward from the last cycle for promotable material. Then reflow. Read `MBT_FINDINGS.md` end to end, directly. The LOG slice is every entry dated after the last cycle (all of them on a first run). Read it directly when it is under the context-management size threshold. Over it, an Explore agent indexes the slice — each entry's title, date, and a one-line summary of its decisions — and the active context picks from the index every entry whose summary shows a decision, discovery, constraint, or abandoned approach, and reads each one in full. From these reads, collect extraction candidates, contradictions/supersessions, internal contradictions, and reflow issues.
 
-**Extraction.** Candidates: decisions where one option won for non-obvious reasons, discoveries that reframed the work, constraints that would surprise a future maintainer, approaches tried and abandoned. Grep `MBT_FINDINGS.md` for each candidate's key terms. A **duplicate** is skipped. A **contradiction/supersession** — the candidate makes an existing finding false or reverses a committed direction — is a rewrite in place (bump the version), not a second finding beside the old one. Write in the existing format: **bold statement**, then a reasoning paragraph that stands without the LOG entry it came from.
+**Extraction.** Candidates: implementation decisions where one option won for non-obvious reasons, constraints that would surprise a future maintainer, approaches tried and abandoned. A discovery that reframed the work, or a decision that shaped the approach, belongs in `MBT_SCOPE.md` or `MBT_APPROACH.md`, not `MBT_FINDINGS.md`: flag it for the user rather than extracting it. Grep `MBT_FINDINGS.md` for each candidate's key terms. A **duplicate** is skipped. A **contradiction/supersession** — the candidate makes an existing finding false or reverses a committed direction — is a rewrite in place (bump the version), not a second finding beside the old one. Write in the existing format: **bold statement**, then a reasoning paragraph that stands without the LOG entry it came from.
 
 **Reflow.** Read `MBT_FINDINGS.md` end to end. Its own rule is "assume the current files are ground truth — don't restate what they show," so a finding now made self-evident by the shipped files is a **stale-now-obvious** removal candidate. Also check redundancy/overlap (merge, preserving every distinct reason) and section drift (wrong grouping, split-worthy section, duplicated/empty header from an append). Structural fixes (merges, section repair) — do directly, bump the version. Removing a finding's *substance* or rewriting a conclusion — flag for the user.
 
