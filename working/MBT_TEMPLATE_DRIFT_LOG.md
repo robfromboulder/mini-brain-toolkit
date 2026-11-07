@@ -100,3 +100,45 @@ Rob's session, with Claude as co-author, continuing the review session above. Ro
 - **A test prompt that settles every conflict for the template turns a false conflict into lost work.** That made the defect visible, and it is also the cost a real owner would pay for the same mistake.
 - **Bookkeeping a procedure writes into the files it checks changes what the procedure promises.** Infer from state where the evidence allows.
 - **Run expensive headless tests in small batches**, grading each before launching the next.
+
+---
+
+# PR #22 review addressed: bounded base inference, declines, and headless tests (2026-11-07)
+
+**Session ID**: `29f05522-fc6f-4cc4-9b42-a0d41b06d7c1`
+
+Rob's session, with Claude as co-author. Rob had Claude read his review comment on PR #22 and address all eight items on branch `template-drift`. He kept inference over a recorded base for the blocking item. Claude rewrote check 10's base rule so a release's added paragraphs and the missed half of a hand update are both recommended. Headless tests of the review's two cases passed, as did a declined-change walk-through. The walk-through exposed an agent second-guessing the merge, which a wording fix closed. The fixes went up as `bb2f6b9`.
+
+## Turn by turn
+
+- Rob asked for the work item's status, then for the latest PR #22 review comment and a switch to the branch. Claude summarized the comment: one blocking item (newest-on-tie inference misses an added paragraph and a partly applied update), two items to settle before `check` carries upgrades (the report names no release; a multi-lobe dream cycle compared with the single-lobe template), and five minor ones. It flagged the blocking item as Rob's call between changing the scoring and recording a base.
+- Rob ruled out stamping each file and keying off it, and asked for the scoring to cover both cases. Claude bounded the base by the oldest release whose dropped text the file still holds, broke ties toward the fewest paragraphs the file lacks, and pointed out the cost: without a record, a declined rewrite reads like a missed one and comes back.
+- Claude scripted the rule against the review's two cases and the real brains. Counting every lacked paragraph made 0.70 win for lamarr's adapted hook, the false conflict from the previous session. Counting a rewritten paragraph as present fixed it. The same run showed virtual-view-brain's hooks are 0.70 text, so the new rule recommends a worktree fix the old rule had missed.
+- The minor items went in alongside: the release and remote's newest in the report, the multi-lobe dream-cycle skip, check 9 and `create` staging the `.gitkeep`, `fi &&` in the install lines (tested against an unreachable remote), the findings sentence narrowed to uncommitted edits rather than a `merge-base` guard that would refuse every fresh clone, and check 10 reordered to define normalization before use.
+- Rob asked for headless tests of the two review cases. Claude seeded both fixtures in its scratchpad against a scratch clone of the branch. Both report-only runs inferred the expected base, recommended the expected paragraphs, raised no conflicts and changed nothing.
+- Rob asked for check 9's fix and a walk-through that declines a change. The scripted walk-through applied every decision exactly and staged the `.gitkeep`. The second check passed check 9 and asked again about the declined rewrite. The merge left out the declined added paragraph, but the agent read the brain's git history and recommended it anyway as "a gap in check 10". The run also showed that a declined addition goes quiet after a later release's change, not only the same release's.
+- Rob approved both wording fixes. Check 10 now treats a paragraph the brain lacks as its own whatever its history, and the decline sentence names "that release or a later one". A rerun of the second check did not mention the paragraph.
+- Rob had the branch committed and pushed to PR #22 as `bb2f6b9`, then this entry and the working-doc updates written on `main`.
+
+## Decisions
+
+- **Cover added and partly applied changes by scoring, not by recording a base** — Rob.
+- **Bound the base by dropped text, then break ties by paragraphs the file has no version of, then newest** — Claude, from the scripted evidence.
+- **Accept that a declined rewrite comes back on every check** — Claude proposed it as the cost of no record; Rob proceeded without a record.
+- **Narrow the install-line finding to uncommitted edits rather than guard with `merge-base`** — Claude.
+- **Skip a multi-lobe brain's dream cycle and say so** — Claude, from the review's question.
+- **Tell check 10 not to second-guess an absent paragraph from history** — Rob approved Claude's proposed wording.
+- **Push the review fixes as a second commit, not squashed** — Claude; offered to squash.
+
+## What didn't work
+
+- Counting every template paragraph the file lacks as the tie-break: it rewarded an older, shorter hook template over lamarr's adapted one.
+- A `merge-base --is-ancestor` guard on the install line: it would refuse a fresh clone and any install that had tracked `main`.
+- Leaving an absent paragraph to the merge alone: the agent searched history and recommended it.
+- A shell loop under zsh, which doesn't word-split an unquoted variable, so the first regression run read directories instead of files.
+
+## Lessons
+
+- **Test a tie-break against an adapted copy, not only a pristine one.** The fixture cases passed with the rule that broke lamarr's hook.
+- **Say what a procedure must not do when an agent can see evidence the procedure ignores.** The headless agent overruled check 10 from git history until the procedure ruled that out.
+- **A rule that infers state can't tell a decline from a miss.** Name which one comes back, so owners aren't surprised.
