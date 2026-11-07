@@ -1,6 +1,6 @@
 # Mini-Brain Toolkit: Entrypoint
 
-> V29, 2026-11-05.
+> V30, 2026-11-07.
 
 ---
 
@@ -14,6 +14,8 @@ All paths are relative to this repo root (`CLAUDE.md`'s directory). Before readi
 | Layout convention for a brain whose knowledge divides into several lobes | `MBT_LOBES.md` |
 | Procedure: create a new mini-brain | `MBT_CREATE_BRAIN.md` |
 | Procedure: check an existing mini-brain against the pattern | `MBT_CHECK_BRAIN.md` |
+| Procedure: open or formalize a work item | `templates/WORK_SETUP.md` (applied as bound below) |
+| Procedure: close out a work item, or archive its PLAN early | `templates/WORK_CLOSEOUT.md` (applied as bound below) |
 | Skill entrypoint — dispatches `create` and `check` to the two procedures | `SKILL.md` |
 | Research agenda — where the pattern could go, and how it compares to related work | `MBT_RESEARCH.md` |
 | Comparable systems — the second-brain / agent-memory landscape (read during the dream cycle's competitive-landscape pass) | `MBT_COMPARABLES.md` |
@@ -27,9 +29,18 @@ All paths are relative to this repo root (`CLAUDE.md`'s directory). Before readi
 | Dream cycle — periodic self-improvement pass | `MBT_DREAM_CYCLE.md` (read when asked to dream) |
 | Dream cycle session log | `MBT_DREAM_LOG.md` |
 
-Only files in this table are current. `templates/` holds the base files `MBT_CREATE_BRAIN.md` copies; `archive/` holds source material and retired docs — ignore both unless asked.
+Only files in this table are current. `templates/` holds the base files `MBT_CREATE_BRAIN.md` copies; `archive/` holds source material and retired docs — ignore both unless asked or routed by the table.
 
 `working/` holds experiments and a work item's in-flight `MBT_<WORK>_*` docs, where `<WORK>` is the item's slug. When a work item concludes, fold them into the canonical docs and **move** (not delete) them to `archive/`. A move never overwrites. `git mv` enforces this for tracked files; for an untracked file, check the destination before moving. If `archive/` already holds a file of an incoming file's name, stop and ask the developer for a new slug. Before moving any file, rename all of the item's files still in `working/` to that slug and rewrite their references to each other. The item's PLAN, once consumed (converted to code), may move there early at the developer's request — walk its significant unaddressed items with the developer first.
+
+**Work-item templates, bound to this brain.** This brain keeps no instantiated work-item procedures; follow the two templates in place, never by imitating existing items. Bind them as follows:
+
+- `<LOBESPACE>` is `MBT`. This brain has one lobe, so skip every multi-lobe step.
+- `<HUB>_WORK_SETUP.md` and `<HUB>_WORK_CLOSEOUT.md` mean the templates themselves; every other `<HUB>_*` name means its `MBT_*` file. Write the resolved names into the scaffolds too.
+- Scaffolds come from `templates/work/`.
+- A work item's code is this toolkit's docs and templates, so doc-only work is code-changing work.
+- Closeout's target walk covers every file in the read index, plus `templates/` and `README.md`.
+- This brain has no canonical testing doc, so an item's `_TESTING` and `_CLAUDE` docs retire to `archive/` unfolded.
 
 ---
 
@@ -41,7 +52,7 @@ Only files in this table are current. `templates/` holds the base files `MBT_CRE
 
 **File naming.** Every mini-brain filename carries the `MBT` lobespace — shared docs as `MBT_*`. Five files are exempt: `CLAUDE.md` (entrypoint), `AGENTS.md` (sends agents that read only it to the entrypoint), `SKILL.md` (skill entrypoint, a name the agents that load skills fix), and the repo artifacts `README.md` and `CONTRIBUTING.md`. New top-level knowledge files must include the lobespace; files in `archive/` keep whatever basename they were retired under.
 
-**Version header.** Every top-level file except the version-exempt ones opens with `> V<N>, YYYY-MM-DD.` — version and date, nothing else. **No change note in this line.** If a file needs a description, put it on its own line below. Bump `<N>` by one on each substantive edit (numerically — `V10` > `V9`) and set the date. This applies to `CLAUDE.md` itself. Exempt: `AGENTS.md`, `README.md`, `CONTRIBUTING.md`, `SKILL.md` (its frontmatter must open the file), `*_LOG.md` files, and `*_BURNDOWN.md` checklists.
+**Version header.** Every top-level file except the version-exempt ones opens with `> V<N>, YYYY-MM-DD.` — version and date, nothing else. **No change note in this line.** If a file needs a description, put it on its own line below. Bump `<N>` by one on each substantive edit (numerically — `V10` > `V9`) and set the date. This applies to `CLAUDE.md` itself. A file in `templates/` keeps its `> V1, <date>.` line through every edit, because that line is the version a newly seeded brain starts from. Exempt: `AGENTS.md`, `README.md`, `CONTRIBUTING.md`, `SKILL.md` (its frontmatter must open the file), `*_LOG.md` files, and `*_BURNDOWN.md` checklists.
 
 **Classify every edit:** *editorial* (typos, rewording) — edit in place, don't bump `<N>`, may update date; *substantive* (facts, decisions, scope, structure) — set the version line to `> V<N+1>, <today's date>.` No change note in the line.
 
