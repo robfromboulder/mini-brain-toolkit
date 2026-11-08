@@ -1,6 +1,6 @@
 # Mini-Brain Toolkit: The Mini-Brain Pattern
 
-> V31, 2026-11-05.
+> V31, 2026-11-07.
 
 This document is the operational definition of a mini-brain: what it *is*, the file set it's made of, and the lifecycle that keeps it true and small.
 
@@ -46,7 +46,7 @@ Ten principles define the pattern, ordered from most to least important. Each is
 
 A mini-brain grows in three stages. Not every brain reaches stage 3, and that's fine — grow the machinery when the work justifies it, never ahead of need.
 
-The files are of two kinds. Knowledge files — SCOPE, APPROACH, FINDINGS, the logs and the enforced-terms entries — hold the project's own content, and differ from the template they started from by design. Procedure files — the session closeout, the stage-3 rituals, the enforced-terms rules, the entrypoint's conventions, the README and the hook — are the toolkit's procedures with the brain's names filled in, so they follow the toolkit's templates as those improve, apart from changes the brain chose.
+The files are of two kinds. Knowledge files — SCOPE, APPROACH, FINDINGS, the logs and the enforced-terms entries — hold the project's own content, and differ from the template they started from by design. Procedure files — the session closeout, work setup, work closeout and dream cycle, the enforced-terms rules, the entrypoint's conventions, the README and the hook — are the toolkit's procedures with the brain's names filled in, so they follow the toolkit's templates as those improve, apart from changes the brain chose.
 
 ### Stage 1 — Seed (every brain starts here)
 

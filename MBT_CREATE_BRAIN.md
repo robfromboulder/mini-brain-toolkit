@@ -55,7 +55,7 @@ For each missing file, copy the corresponding file from `templates/` and substit
 - `<project>` → the lowercase name used in prose/README (e.g. `orchard`).
 - `<date>` → today's date, `YYYY-MM-DD`.
 
-Substitute only these. `<WORK>` is always a runtime variable, not a creation placeholder — the procedures resolve it later, per work item — so leave it intact wherever a template carries it. Two spots are creation-time despite carrying `<LOBESPACE>`: the lobe registry's placeholder rows and the project hook's lobe paragraph are filled from the intake conversation when this procedure instantiates them, and only there.
+Substitute only these. `<WORK>` is always a runtime variable, not a creation placeholder — the procedures resolve it later, per work item — so leave it intact wherever a template carries it. In a multi-lobe brain, `<LOBESPACE>` in session closeout, work setup and the scaffolds it inlines, work closeout and the hook's work-item block names the lobe that owns the session's part or the work item, so it is a runtime variable there too: leave it intact. Two spots are creation-time despite carrying `<LOBESPACE>`: the lobe registry's placeholder rows and the project hook's lobe paragraph are filled from the intake conversation when this procedure instantiates them, and only there.
 
 | Create from template | To | Notes |
 |---|---|---|
