@@ -48,8 +48,8 @@ Key references in the mini-brain:
     16. *Session closeout*, in each harness. It appends an entry in the entry format, with the running harness's session ID.
   - **Judgment.**
     17. *Blind check against an owner's revision*, headless, and optional. It needs a reachable real brain that has a known owner revision, such as a merged PR that reworked SCOPE or APPROACH. Check the brain as it stood just before the revision, with an answers file drawn from the revision's description. Score how much of the revision the check reproduces, and list where it placed content differently or removed something the owner kept. No fixed score passes. The report gives the score and the differences, for the releaser to judge. The 0.72 preflight's check of virtual-view-brain against its owner's PR is the model case.
-- `MBT_EXAMPLES.md` — new canonical list of example brains, seeded with mini-nebula-brain, mini-guardrails-brain, virtual-view-brain, mini-subtitle-wizard-brain, lamarr-brain and mini-alien-brain (`starburstdata/mini-alien-brain`). Each entry gives the brain's name, where it is published or who holds it, its author, the release it was seeded from and its shape, and nothing about the project the brain describes. A private brain is listed by name and holder only.
-- `CLAUDE.md` — read-index rows for both documents, the `tests/` directory beside `templates/` and `archive/`, and maintenance-doc boundaries saying what each may reference. The work-item binding's no-testing-doc bullet and its `_TESTING` text replacement go. An item's `_TESTING` doc then folds into `MBT_TESTING.md` at closeout, adding as scenarios the cases worth repeating at each release.
+- `MBT_EXAMPLES.md` — new canonical list of example brains, seeded with mini-nebula-brain, mini-guardrails-brain, virtual-view-brain, mini-subtitle-wizard-brain, lamarr-brain and mini-alien-brain (`starburstdata/mini-alien-brain`). Each entry gives the brain's name, where it is published or who holds it, its author, the release it was seeded from and its shape, and nothing about the project the brain describes. A private brain gives its holder in place of a link.
+- `CLAUDE.md` — read-index and declared-exemptions rows for both documents, the `tests/` directory beside `templates/` and `archive/`, and maintenance-doc boundaries saying what each may reference. The work-item binding's no-testing-doc bullet and its `_TESTING` text replacement go. An item's `_TESTING` doc then folds into `MBT_TESTING.md` at closeout, adding as scenarios the cases worth repeating at each release.
 
 ## Interaction with existing docs
 
@@ -75,7 +75,7 @@ Manual checks live in `MBT_MAT_TESTING.md`.
 
 ## Implementation sequence
 
-1. Write `MBT_EXAMPLES.md` from the seed list.
+1. Write `MBT_EXAMPLES.md` from the seed list, with its read-index and declared-exemptions rows. Done on 2026-11-08.
 2. Move the comparison script to `tests/MBT_DRIFT_COMPARE.py` with `git mv`, and check it against check 10's current exclusions.
 3. Write `MBT_TESTING.md`: the five parts, then the seed scenarios.
 4. Build the fixture recipe: seeding a brain from the templates at a given tag, with a sibling project repo.
