@@ -77,11 +77,11 @@ Manual checks live in `MBT_MAT_TESTING.md`.
 
 1. Write `MBT_EXAMPLES.md` from the seed list, with its read-index and declared-exemptions rows. Done on 2026-11-08.
 2. Move the comparison script to `tests/MBT_DRIFT_COMPARE.py` with `git mv`, and check it against check 10's current exclusions. Done on 2026-11-08 on branch `minimum-acceptance-testing`. The check found three divergences, which are now fixed: tables outside `CLAUDE.md` went unpaired, a multi-lobe brain's literal hub name in a runtime slot matched, and pre-0.70 copies showed false own edits. A compound prefix such as `NEBULA_<WORK>` is still unhandled.
-3. Write `MBT_TESTING.md`: the five parts, then the seed scenarios.
+3. Write `MBT_TESTING.md`: the five parts, then the seed scenarios. Done on 2026-11-08 on branch `minimum-acceptance-testing`, with fixtures as a part of their own.
 4. Build the fixture recipe: seeding a brain from the templates at a given tag, with a sibling project repo.
 5. Run it on this machine, then against the reintroduced defects.
 6. Run it on a second machine.
-7. Update `CLAUDE.md` (read-index rows, `tests/`, boundaries, and the binding) and `MBT_DREAM_CYCLE.md`.
+7. Update `CLAUDE.md` (read-index rows, `tests/`, boundaries, and the binding) and `MBT_DREAM_CYCLE.md`. Done on 2026-11-08 with step 3, so that no commit leaves a top-level doc out of the read index. `MBT_TESTING.md` is the canonical testing doc only, and `_CLAUDE` docs still retire unfolded, since this brain has no canonical runbook.
 
 ## Scope boundary — what this does NOT include
 
@@ -93,6 +93,6 @@ Manual checks live in `MBT_MAT_TESTING.md`.
 
 ## Open issues
 
-1. How the install-line scenario runs before the release tag exists. The pinned line checks out the newest tag, which is the previous release until tagging, so the scenario points the line at a local clone with a scratch tag. For 0.73 there's a further wrinkle. The pinned lines and the template dream cycle's release check exist only on PR #24's branch, which merges after the tag. Until then, scenario 1 and scenario 12's release check test that branch.
+1. PR #24's pinned install lines and the template dream cycle's release check exist only on its branch until after the 0.73 tag. Scenario 1 runs against a bare clone with a scratch tag above the newest release, and expects whatever the README at the commit under test says, so it holds either way. Scenario 12's release check can only run on #24's branch until it merges.
 2. Where each harness keeps its model login, and whether a scratch `HOME` reaches it. Credentials stored in the macOS keychain may work unchanged, while files under `HOME` need copying. Verify this per harness when the recipe is first run, and record the results with the harness facts in `MBT_FINDINGS.md`.
 3. Overlaps with open work items. MIGRATIONS (an extract-and-absorb round trip), REHOMING (a simulated supersession), WORK_PLACEMENT (intake cases against the six-lobe prototype) and MULTI_LOBE_DREAM (a cycle against the prototype and a single-lobe exemplar) each plan tests that join the battery as scenarios when they land. MULTI_LOBE_DREAM also replaces check 10's multi-lobe dream-cycle skip, which scenario 10 tests.

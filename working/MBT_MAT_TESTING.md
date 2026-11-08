@@ -1,6 +1,6 @@
 # Minimum Acceptance Testing: Manual Test Plan
 
-Checks run by hand for this work item (UI, API calls, data checks). At closeout this doc retires to `archive/` unfolded.
+Checks run by hand for this work item (UI, API calls, data checks). At closeout these fold into the canonical testing doc.
 
 ## Setup
 
