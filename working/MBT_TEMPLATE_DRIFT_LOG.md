@@ -142,3 +142,92 @@ Rob's session, with Claude as co-author. Rob had Claude read his review comment 
 - **Test a tie-break against an adapted copy, not only a pristine one.** The fixture cases passed with the rule that broke lamarr's hook.
 - **Say what a procedure must not do when an agent can see evidence the procedure ignores.** The headless agent overruled check 10 from git history until the procedure ruled that out.
 - **A rule that infers state can't tell a decline from a miss.** Name which one comes back, so owners aren't surprised.
+
+---
+
+# Drift check reset to a two-way comparison against the current template (2026-11-07)
+
+**Session ID**: `29f05522-fc6f-4cc4-9b42-a0d41b06d7c1`
+
+A continuation of Rob's session above, with Claude as co-author. Retesting the bounded base rule against mini-subtitle-wizard-brain and lamarr turned up two more false conflicts. Rob asked why check looks for the release a file most resembles at all, rather than comparing it with the current template, and gave his reason for refusing version stamps: an owner may edit a procedure file on purpose, so no version identifies what the file holds. Check 10 became a two-way comparison with a per-paragraph label from the release history, and every test passed headless and by script.
+
+## Turn by turn
+
+- Rob asked for the remaining tests and a rewritten PR description. Claude cloned subwiz and its project repo from Codeberg into its scratchpad. By script, subwiz's brain files behaved as before, but its hook took 0.70 under the bounded rule and raised a false conflict over its fixed clone path: its rewrite of 0.71's worktree paragraph was too short to count as a version.
+- Claude prototyped a resemblance tie-break, which fixed subwiz's hook. A simulated walk-through declining one of lamarr's README changes then showed `git merge-file` joining the declined change with lamarr's own description line into a false conflict. Claude stopped and put both defects to Rob, proposing the resemblance tie-break and a paragraph-level merge.
+- Rob questioned the premise: compare the brain's file with the current template, offer to add a missing paragraph, and offer to update a changed one or keep it knowingly. Claude measured that on the real brains. The release history labels each changed paragraph on its own as behind (a release's text) or an own edit (in no release), so no base is needed, and every item stays a proposal.
+- Rob had Claude rewrite check 10 that way, update this item and rerun the tests. He said he welcomes own edits reappearing on every check, as a prompt to revisit them or suggest them upstream, and deferred offering to file a toolkit issue to a later release.
+- Claude added a dropped label for a paragraph the toolkit removed. The first scripted pass showed three kinds of noise, all from text `create` resolves: staged comments, read-index and registry rows, and work setup's pointer to `templates/work/`. Claude left them out of the comparison.
+- The 0.72 fixture, with a project repo and inlined scaffolds, came out fully current after an approve-everything walk-through, and a second check reported nothing. Both review cases and the decline walk-through passed headless; lamarr, subwiz, virtual-view and the lamarr README declines passed by script.
+
+## Decisions
+
+- **No version stamps, because an owner's edits mean a version doesn't identify a file's contents** — Rob, stating the reason behind his earlier refusals.
+- **Compare each procedure file with the current template, two ways, and drop base inference and `git merge-file`** — Rob, over Claude's resemblance tie-break and paragraph-level merge.
+- **Report own edits and declined changes on every check, as a recurring review** — Rob.
+- **Label a paragraph behind when the brain's text is any release's, and dropped when the toolkit removed it** — Claude.
+- **Leave what `create` resolves out of the comparison** — Claude, from the scripted noise.
+- **Defer offering to file a toolkit issue for a kept edit** — Rob.
+
+## What didn't work
+
+- The bounded base rule's tie-break by paragraphs with no version: a short rewrite falls under any similarity line, and subwiz's hook took the wrong base.
+- `git merge-file` for a paragraph-level merge: it joins changes on nearby lines into one conflict region.
+- Running test loops in zsh, which doesn't word-split an unquoted variable; the loops moved into bash scripts.
+
+## Lessons
+
+- **When a rule keeps needing tie-breaks, question what it is choosing between.** Each fix to base inference handled one brain and broke another; the two-way comparison needs no choice.
+- **Ask what the owner's edits mean before designing around them.** Stamps, bases and merges each tried to hide edits that the owner is entitled to make and should see again.
+
+---
+
+# Install pin split out, PR #22 review addressed, plan retired, and every test rerun (2026-11-07)
+
+**Session ID**: `7852c504-efdb-4b1b-b31f-74f45aea2acb`
+
+Rob's session, with Claude as co-author. Rob asked for this item's status and wanted PR #22 mergeable, counting only his last review comment on `8090a94`, since the three-way design it replaced was squashed away. Claude addressed every point of that review except the release tag. Rob moved the release-pinned install lines out to their own PR, #24, rather than tag a release to make #22 safe. He retired the PLAN early in favor of a burndown that tracks both PRs. All nine tests passed against the pushed head, `08d8012`.
+
+## Turn by turn
+
+- **Status.** Claude found the local `main` behind `origin/main`, where the two-way switch was recorded, and read the work item from there. Implementation steps 1–7 were done. Test 2 hadn't run since the switch to two-way.
+- **Review triage.** Claude checked the review's claims against the repo and found all twelve held. The blocking one besides the tag was that check 10 compared only tagged releases. Installs had tracked `main`, so a brain seeded between tags would see toolkit text as own edits. One example, a work setup copied after #19, didn't actually show the defect, because work setup didn't change between `0.70` and #20. A dream cycle copied at the same point did.
+- **The tag.** Claude first held that merging #22 without a new tag would roll every install back to `0.72`. Rob countered that the README didn't advertise Codex or OpenCode 2. Claude showed that `main`'s README does, from #19, and that `main`-tracking Claude Code installs would lose #19, #20 and #22 as well. Rob objected that tagging `0.73` to merge #22 was exactly the pressure he wanted to avoid, and asked about a release-candidate tag. Claude tested git's version sort: by default it ranks `0.73-rc1` above `0.73`, so the line would need `versionsort.suffix`. Rob then asked whether the install-line change could move to its own PR. Claude listed what moves with it, including the dream cycle's toolkit-release check, which never fires on a `main`-tracking install. With installs still tracking `main`, the off-release fix and the full-history fix become required in #22.
+- **Split and fixes.** On Rob's go-ahead, Claude reverted the pin on `template-drift` and applied the review fixes:
+  - earlier template versions read from every commit that changed a template, each distinct blob once;
+  - `--exact-match` for the installed release, with any other install reported as off-release;
+  - the brain's own text left out of the comparison: exemptions-table rows, the hook's lobe paragraph, and a multi-lobe README's namespace sentence;
+  - check 8 no longer replacing paragraphs itself, with check 10's approved change still applying to a paragraph check 8 edited;
+  - the toolkit recognized by `SKILL.md` and `MBT_CHECK_BRAIN.md`;
+  - a multi-lobe dream cycle's skip listing the template's changes, and the README's "whole upgrade" qualified to match;
+  - check 9's separate outcomes for an empty directory, untracked files and a non-git brain;
+  - `create` leaving `<LOBESPACE>` intact where it names the owning lobe at runtime;
+  - the pattern naming its four procedures.
+
+  `install-pin` took the reverted pin back, with `--exact-match` in the dream cycle's check and the "update is a `git pull`" finding corrected.
+- **Script.** Claude gave `MBT_TEMPLATE_DRIFT_COMPARE.py` the full-history rule. Its first parse paired the lines of `git log --name-only` two by two, which misaligns on a commit that lists no file, so it now keys on commit hashes. Claude then ran the case the review suggested, procedure files copied at `8ad8deb`: every difference came out behind, missing or dropped. Against lamarr, subwiz and virtual-view, virtual-view's four pre-0.70 own edits became behind.
+- **Plan retired.** Claude walked Rob through the PLAN's unaddressed items: the retests, the review's new case, the deferred offer to file a toolkit issue, and the overlaps with other items. It left the accepted risks out. Rob had the PLAN moved to `archive/` and a burndown tracking both PRs written in its place. The MAT plan's pointer to the test expectations moved to the archived path.
+- **Push.** Rob asked for a separate commit on the PR branch, so Claude squashed the split and the fixes into `08d8012` on top of `8090a94` and moved `install-pin` onto it. At Rob's request Claude rewrote #22's description.
+- **Retests.** Claude rebuilt the previous session's fixtures from its scratchpad scripts against a scratch install of `08d8012`. It ran three headless batches in Claude Code 2.1.319 and graded each on disk. Tests 1, 2 and 6–8 passed. Each report-only run left every repository unchanged, and every run reported the install as off-release at `0.72-18-g08d8012`. Test 7 now shows six behind and no missing paragraph, since the missing one had been the dream cycle's release check. Tests 3–5 and 9 passed by script. Two mismatches between agent and script were the script's own. It counted a multi-lobe README's unchanged namespace sentence as dropped, which Claude fixed. It also treats Phase 1's numbered list as one paragraph, so its four behind paragraphs are the agent's six items.
+- **PR #24.** Claude reran the pinned install line on a scratch path: a fresh install and a rerun land on `0.72`, a bad URL exits 128, and check 7's commands behave on and off a tag. It then pushed `install-pin` and opened #24, based on `template-drift`, with its merge order stated.
+
+## Decisions
+
+- **Ship the install pin in its own PR rather than tag a release to merge #22** — Rob, over Claude's proposal to tag `0.73` at merge and the release-candidate option, so no release is cut under pressure.
+- **Merge #24 only after #22, and only once a release tag exists at or after #22's merge** — Claude, from the rollback to `0.72` that an earlier merge would cause; Rob accepted it with the split.
+- **Move the dream cycle's toolkit-release check with the pin** — Claude, since it never fires on a `main`-tracking install.
+- **Read every commit's version of a template, not only releases** — the review's fix, which Claude adopted, with distinct blobs read once.
+- **Track both PRs under TEMPLATE_DRIFT, with no new work item, and retire the PLAN early for a focused burndown** — Rob.
+- **Push the review round as one new commit, not an amendment** — Rob.
+
+## What didn't work
+
+- An RC tag with the line's default version sort: `0.73-rc1` outranks `0.73`, so installs would stay on the last candidate.
+- Parsing `git log --name-only` in fixed pairs, which a commit listing no file throws out of step.
+- `echo` lines starting with `=` in zsh, which expands them as a command lookup and fails.
+
+## Lessons
+
+- **Check a reviewer's premise against what the repo publishes before conceding or rebutting.** Both the reviewer's work-setup example and Rob's claim about the README were partly wrong, and each was settled by one grep.
+- **When an inert feature depends on a later change, ship them together.** The dream cycle's release check only means something once installs are pinned.
+- **Grade a headless run's counts against what the script calls a paragraph.** A numbered list is one paragraph to the script and several items to the agent.

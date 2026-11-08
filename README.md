@@ -100,7 +100,7 @@ Read ~/mini-brain-toolkit/SKILL.md and run create
 
 ## Improving a mini-brain
 
-The `check` command evaluates your mini-brain and suggests how to improve its structure and function. It asks which brains to check, then walks you through the recommendations it finds.
+The `check` command evaluates your mini-brain and suggests how to improve its structure and function. It asks which brains to check, then walks you through the recommendations it finds. It also brings the brain's procedures up to date with the installed toolkit, so updating the toolkit and running `check` is the whole upgrade. The one exception is a multi-lobe brain's dream cycle, which adapts the template throughout: `check` lists the template's changes for you to adapt by hand.
 
 **Claude Code**
 

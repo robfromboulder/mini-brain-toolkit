@@ -1,6 +1,6 @@
 # Mini-Brain Toolkit: Create a New Mini-Brain
 
-> V35, 2026-11-05.
+> V36, 2026-11-07.
 
 This document is the procedure for standing up a new mini-brain from `templates/`.
 
@@ -55,12 +55,12 @@ For each missing file, copy the corresponding file from `templates/` and substit
 - `<project>` → the lowercase name used in prose/README (e.g. `orchard`).
 - `<date>` → today's date, `YYYY-MM-DD`.
 
-Substitute only these. `<WORK>` is always a runtime variable, not a creation placeholder — the procedures resolve it later, per work item — so leave it intact wherever a template carries it. Two spots are creation-time despite carrying `<LOBESPACE>`: the lobe registry's placeholder rows and the project hook's lobe paragraph are filled from the intake conversation when this procedure instantiates them, and only there.
+Substitute only these. `<WORK>` is always a runtime variable, not a creation placeholder — the procedures resolve it later, per work item — so leave it intact wherever a template carries it. In a multi-lobe brain, `<LOBESPACE>` in session closeout, work setup and the scaffolds it inlines, work closeout and the hook's work-item block names the lobe that owns the session's part or the work item, so it is a runtime variable there too: leave it intact. Two spots are creation-time despite carrying `<LOBESPACE>`: the lobe registry's placeholder rows and the project hook's lobe paragraph are filled from the intake conversation when this procedure instantiates them, and only there.
 
 | Create from template | To | Notes |
 |---|---|---|
 | `templates/CLAUDE.md` | `CLAUDE.md` | Read index + conventions. The read index lists only the seed canonical docs at first; extend it as files are added. |
-| `templates/README.md` | `README.md` | If a README already exists (repo artifact), *merge* the mini-brain usage section in rather than overwriting. |
+| `templates/README.md` | `README.md` | If a README already exists (repo artifact), *merge* the mini-brain sections in rather than overwriting. |
 | `templates/SCOPE.md` | `<LOBESPACE>_SCOPE.md` | Section skeleton with `*To be filled in.*` placeholders. Each section carries a comment saying what belongs in it; leave those in place at seed time — they are deleted section by section as §5 fills them. |
 | `templates/APPROACH.md` | `<LOBESPACE>_APPROACH.md` | Section skeleton with `*To be filled in.*` placeholders, carrying the same per-section comments. |
 | `templates/FINDINGS.md` | `<LOBESPACE>_FINDINGS.md` | Header + `*No findings recorded yet.*` |
@@ -71,7 +71,7 @@ Substitute only these. `<WORK>` is always a runtime variable, not a creation pla
 
 For an existing brain, add `AGENTS.md` to its `CLAUDE.md` naming and version-header exemptions, preserving any other exemptions. If it has a dream cycle, update its orphan and namespace exclusions and any explicit version-header exclusions to exempt `AGENTS.md` too, in prose and commands. Apply the brain's version-bump rules to changed files.
 
-Then create the two directories: `archive/` (drop any source material here) and `working/`. Git won't track empty directories — add a `.gitkeep` to `working/` if it would otherwise be empty, and remove it once real content lands.
+Then create the two directories: `archive/` (drop any source material here) and `working/`. Git won't track empty directories — add a `.gitkeep` to each of them that would otherwise be empty, stage it with `git add`, and remove it once real content lands.
 
 New canonical docs open with `> V1, <date>.`; apply `CLAUDE.md`'s version convention and exemptions.
 
@@ -110,7 +110,7 @@ Record the reasoning and course-corrections of this authoring work in the LOG at
 
 ## 6. Grow into the mature lifecycle (stage 3)
 
-Add these **only when the work justifies them** (the stage model in `MBT_PATTERN.md`) — typically when the brain starts tracking work items across many sessions. Each is copied from `templates/`, namespaced, added to the read index, and bumps `CLAUDE.md`.
+Add these **only when the work justifies them** (the stage model in `MBT_PATTERN.md`) — typically when the brain starts tracking work items across many sessions. Each is copied from `templates/` with the §4 substitutions, namespaced, added to the read index, and bumps `CLAUDE.md`.
 
 - `templates/WORK_SETUP.md` → `<HUB>_WORK_SETUP.md` and `templates/WORK_CLOSEOUT.md` → `<HUB>_WORK_CLOSEOUT.md` — the open/close bookends for work items (a feature, bug fix, or hardening effort). They reference the per-work-item working set in `templates/work/` — inline those six scaffolds into `<HUB>_WORK_SETUP.md` where it points at them, so the brain stands alone without the toolkit.
 - `templates/DREAM_CYCLE.md` → `<HUB>_DREAM_CYCLE.md` plus a `<HUB>_DREAM_LOG.md` (header only) — the periodic reflection pass. The template assumes a single lobe; don't instantiate it unadapted into a multi-lobe brain.
