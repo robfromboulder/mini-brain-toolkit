@@ -76,7 +76,7 @@ Manual checks live in `MBT_MAT_TESTING.md`.
 ## Implementation sequence
 
 1. Write `MBT_EXAMPLES.md` from the seed list, with its read-index and declared-exemptions rows. Done on 2026-11-08.
-2. Move the comparison script to `tests/MBT_DRIFT_COMPARE.py` with `git mv`, and check it against check 10's current exclusions. Moved on 2026-11-08 on branch `minimum-acceptance-testing`; the check against check 10's exclusions is not done.
+2. Move the comparison script to `tests/MBT_DRIFT_COMPARE.py` with `git mv`, and check it against check 10's current exclusions. Done on 2026-11-08 on branch `minimum-acceptance-testing`. The check found three divergences, which are now fixed: tables outside `CLAUDE.md` went unpaired, a multi-lobe brain's literal hub name in a runtime slot matched, and pre-0.70 copies showed false own edits. A compound prefix such as `NEBULA_<WORK>` is still unhandled.
 3. Write `MBT_TESTING.md`: the five parts, then the seed scenarios.
 4. Build the fixture recipe: seeding a brain from the templates at a given tag, with a sibling project repo.
 5. Run it on this machine, then against the reintroduced defects.
