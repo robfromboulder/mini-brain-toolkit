@@ -36,7 +36,7 @@ for p in now:
         paired.add(best); out["behind" if best in old else "own-edit"].append(p)
 pointer = lambda q: q.startswith("Base templates for each doc live in the toolkit's `templates/work/`")
 for q in paras(re.sub(r"<!--.*?-->", "", norm(open(bf).read(),False), flags=re.S)):   # the brain's still-staged comments are create's, not drift
-    if pointer(q): continue
+    if pointer(q) or (lobes and tmpl=="README.md" and q.startswith("Knowledge files in this mini-brain are")): continue
     if q not in paired and q not in ns and q in old and q not in staged and not q.startswith('|'): out["dropped"].append(q)
 print(f"{tmpl:20} {bf.split('/')[-1]:28} " + " ".join(f"{k}={len(v)}" for k,v in out.items()))
 if verbose:
