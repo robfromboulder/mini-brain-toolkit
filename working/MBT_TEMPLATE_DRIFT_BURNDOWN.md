@@ -4,7 +4,7 @@ Everything between working code and two merged PRs: PR #22 (branch `template-dri
 
 ## PR #22
 
-* push `5050c4b` (the split) and `34b65ef` (the review fixes), and update the PR description to match
+* update the PR description to match `08d8012` (the review fixes and the split, pushed 2026-11-07)
 * automated retest on the PR code, each run graded on disk against `MBT_TEMPLATE_DRIFT_COMPARE.py` — tests 1 and 6–8 headless, tests 3–5 and 9 by script, and test 2, which has not run since the two-way switch
 * new test from the review: procedure files copied at `8ad8deb`, between releases, report every difference as behind, missing or dropped, with no own edits — passed by script on 2026-11-07
 * respond to review feedback
