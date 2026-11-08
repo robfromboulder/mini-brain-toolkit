@@ -1,6 +1,6 @@
 # Mini-Brain Toolkit: Entrypoint
 
-> V30, 2026-11-07.
+> V31, 2026-11-07.
 
 ---
 
@@ -14,8 +14,8 @@ All paths are relative to this repo root (`CLAUDE.md`'s directory). Before readi
 | Layout convention for a brain whose knowledge divides into several lobes | `MBT_LOBES.md` |
 | Procedure: create a new mini-brain | `MBT_CREATE_BRAIN.md` |
 | Procedure: check an existing mini-brain against the pattern | `MBT_CHECK_BRAIN.md` |
-| Procedure: open or formalize a work item | `templates/WORK_SETUP.md` (applied as bound below) |
-| Procedure: close out a work item, or archive its PLAN early | `templates/WORK_CLOSEOUT.md` (applied as bound below) |
+| Procedure: open or formalize a work item | `templates/WORK_SETUP.md` |
+| Procedure: close out a work item, or archive its PLAN early | `templates/WORK_CLOSEOUT.md` |
 | Skill entrypoint — dispatches `create` and `check` to the two procedures | `SKILL.md` |
 | Research agenda — where the pattern could go, and how it compares to related work | `MBT_RESEARCH.md` |
 | Comparable systems — the second-brain / agent-memory landscape (read during the dream cycle's competitive-landscape pass) | `MBT_COMPARABLES.md` |
@@ -39,8 +39,10 @@ Only files in this table are current. `templates/` holds the base files `MBT_CRE
 - `<HUB>_WORK_SETUP.md` and `<HUB>_WORK_CLOSEOUT.md` mean the templates themselves; every other `<HUB>_*` name means its `MBT_*` file. Write the resolved names into the scaffolds too.
 - Scaffolds come from `templates/work/`.
 - A work item's code is this toolkit's docs and templates, so doc-only work is code-changing work.
-- Closeout's target walk covers every file in the read index, plus `templates/` and `README.md`.
+- Closeout's target walk covers the read index, the rest of `templates/`, and `README.md`.
+- A substantively edited file in `templates/` keeps its `> V1, <date>.` line if it carries one. Closeout's version-header check does not apply to files in `templates/`.
 - This brain has no canonical testing doc, so an item's `_TESTING` and `_CLAUDE` docs retire to `archive/` unfolded.
+- In generated `_TESTING` docs, replace "At closeout these fold into the canonical testing doc." with "At closeout this doc retires to `archive/` unfolded."
 
 ---
 
@@ -52,9 +54,9 @@ Only files in this table are current. `templates/` holds the base files `MBT_CRE
 
 **File naming.** Every mini-brain filename carries the `MBT` lobespace — shared docs as `MBT_*`. Five files are exempt: `CLAUDE.md` (entrypoint), `AGENTS.md` (sends agents that read only it to the entrypoint), `SKILL.md` (skill entrypoint, a name the agents that load skills fix), and the repo artifacts `README.md` and `CONTRIBUTING.md`. New top-level knowledge files must include the lobespace; files in `archive/` keep whatever basename they were retired under.
 
-**Version header.** Every top-level file except the version-exempt ones opens with `> V<N>, YYYY-MM-DD.` — version and date, nothing else. **No change note in this line.** If a file needs a description, put it on its own line below. Bump `<N>` by one on each substantive edit (numerically — `V10` > `V9`) and set the date. This applies to `CLAUDE.md` itself. A file in `templates/` keeps its `> V1, <date>.` line through every edit, because that line is the version a newly seeded brain starts from. Exempt: `AGENTS.md`, `README.md`, `CONTRIBUTING.md`, `SKILL.md` (its frontmatter must open the file), `*_LOG.md` files, and `*_BURNDOWN.md` checklists.
+**Version header.** Every top-level file except the version-exempt ones opens with `> V<N>, YYYY-MM-DD.` — version and date, nothing else. **No change note in this line.** If a file needs a description, put it on its own line below. Bump `<N>` by one on each substantive edit (numerically — `V10` > `V9`) and set the date. This applies to `CLAUDE.md` itself. A template in `templates/` that carries a `> V1, <date>.` line keeps it through every edit, because that line is the version a newly seeded brain starts from. Exempt: `AGENTS.md`, `README.md`, `CONTRIBUTING.md`, `SKILL.md` (its frontmatter must open the file), `*_LOG.md` files, and `*_BURNDOWN.md` checklists.
 
-**Classify every edit:** *editorial* (typos, rewording) — edit in place, don't bump `<N>`, may update date; *substantive* (facts, decisions, scope, structure) — set the version line to `> V<N+1>, <today's date>.` No change note in the line.
+**Classify every edit:** *editorial* (typos, rewording) — edit in place, don't bump `<N>`, may update date; *substantive* (facts, decisions, scope, structure) — set the version line to `> V<N+1>, <today's date>.` The version-header exemptions and template-preservation rule apply to both classes. No change note in the line.
 
 **Cross-references.** Cite the canonical top-level filename, never a retired copy in `archive/`. Reference a file's *own* sections freely (`§1.3`, "the roadmap below"); reference *another* file by name plus a short description of what's there — never by its section or phase number ("the comparative analysis in `MBT_RESEARCH.md`," not "`MBT_RESEARCH.md` §1.3"), since foreign section numbers break silently on renumber.
 
