@@ -231,3 +231,11 @@ Rob's session, with Claude as co-author. Rob asked for this item's status and wa
 - **Check a reviewer's premise against what the repo publishes before conceding or rebutting.** Both the reviewer's work-setup example and Rob's claim about the README were partly wrong, and each was settled by one grep.
 - **When an inert feature depends on a later change, ship them together.** The dream cycle's release check only means something once installs are pinned.
 - **Grade a headless run's counts against what the script calls a paragraph.** A numbered list is one paragraph to the script and several items to the agent.
+
+---
+
+# The comparison script moves to `tests/` for MAT (2026-11-08)
+
+**Session ID**: `9dd62b33-2b95-4dd2-b2de-07c645e0d576`
+
+Rob's session, with Claude as co-author, recorded in full in `MBT_LOG.md`. The consequence for this item: `MBT_TEMPLATE_DRIFT_COMPARE.py` doesn't retire to `archive/` at closeout. It moves to `tests/MBT_DRIFT_COMPARE.py` as MAT's drift grader, and whichever item closes first makes the move.

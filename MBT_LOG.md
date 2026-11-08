@@ -2017,3 +2017,16 @@ Rob's session, with Claude as co-author. Rob asked for the SKILL_INSTALL status,
 - **Plugin packaging recorded as a rejected alternative in `MBT_FINDINGS.md`, not as a research question** — Rob, on Claude's recommendation.
 - **No README symlink from `~/.claude/skills` to the `~/.agents/skills` clone** — Rob, on Claude's recommendation; each harness keeps its own install line.
 - **Moving existing users off the sibling clone left to the release, not the docs** — Rob, on Claude's recommendation.
+
+---
+
+# The drift-grading script ships in `tests/` (2026-11-08)
+
+**Session ID**: `9dd62b33-2b95-4dd2-b2de-07c645e0d576`
+
+Rob's session, with Claude as co-author, replanning MAT. The decision spans MAT and TEMPLATE_DRIFT. TEMPLATE_DRIFT's comparison script, which grades check 10's paragraph labels without an agent's judgment, becomes MAT's drift grader, so it has to ship with every clone.
+
+## Decisions
+
+- **The script moves to a new top-level `tests/` as `tests/MBT_DRIFT_COMPARE.py`, and changes whenever check 10's labels or exclusions do** — Rob, asking that the battery run on several machines.
+- **Not `archive/`** — Rob, on Claude's analysis. `MBT_TESTING.md` would cite an archived file, which the cross-reference rule forbids, and the dream cycle's leakage check would try to inline the script. `tests/` needs a line in `CLAUDE.md`, an entry in the dream cycle's product list, and an allowance for `tests/` paths in its cross-reference check.
