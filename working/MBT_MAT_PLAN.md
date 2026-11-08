@@ -21,7 +21,7 @@ Stub until research begins. Expected surface:
 - `MBT_EXAMPLES.md` — new canonical list of example brains, seeded with mini-nebula-brain, mini-guardrails-brain, virtual-view-brain and mini-subtitle-wizard-brain: each entry's name, where it is published or who holds it, its author, the release it was seeded from, and its shape. Nothing about the project the brain describes.
 - `CLAUDE.md` — read-index rows for both documents, and the maintenance-doc boundaries that say what each may reference.
 
-Seed tests for `MBT_TESTING.md`, from the TEMPLATE_DRIFT work item (its PLAN's testing approach carries the full expectations):
+Seed tests for `MBT_TESTING.md`, from the TEMPLATE_DRIFT work item (the testing approach in its archived plan, `archive/MBT_TEMPLATE_DRIFT_PLAN.md`, carries the full expectations):
 
 1. **0.72 upgrade.** A brain seeded from the 0.72 templates, with every procedure file, work setup's scaffolds inlined, a dream cycle, and a sibling project repo whose `CLAUDE.md` holds the hook beside its own instructions. `check` reports only behind and missing paragraphs. A walk-through approving everything leaves every procedure file current, the hook in the project's `AGENTS.md` and the scaffolds intact. A second `check` reports no drift.
 2. **0.70 upgrade.** The same, seeded at 0.70.
