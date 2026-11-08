@@ -1,6 +1,6 @@
 # Template Drift: Burndown
 
-Everything between working code and two merged PRs: PR #22 (branch `template-drift`), which brings brains up to date through `check`, and the install-pin PR (branch `install-pin`), which pins the install lines to the newest release and has the template dream cycle prompt a `check` when a newer one is published. The testing approach in `archive/MBT_TEMPLATE_DRIFT_PLAN.md` carries each test's expectations.
+Everything between working code and two merged PRs: PR #22 (branch `template-drift`), which brings brains up to date through `check`, and the install-pin PR, #24 (branch `install-pin`), which pins the install lines to the newest release and has the template dream cycle prompt a `check` when a newer one is published. The testing approach in `archive/MBT_TEMPLATE_DRIFT_PLAN.md` carries each test's expectations.
 
 ## PR #22
 
@@ -12,7 +12,7 @@ Everything between working code and two merged PRs: PR #22 (branch `template-dri
 
 ## Install-pin PR
 
-* open it, stacked on `template-drift`
+* open it, stacked on `template-drift` — done 2026-11-07 as PR #24, at `56deada`
 * after #22 squash-merges, rebase it onto `main` (`git rebase --onto main template-drift install-pin`)
 * merge only once a release tag exists at or after #22's merge, since until then the install line checks out `0.72`, which predates #19, #20 and #22
 
