@@ -2030,3 +2030,16 @@ Rob's session, with Claude as co-author, replanning MAT. The decision spans MAT 
 
 - **The script moves to a new top-level `tests/` as `tests/MBT_DRIFT_COMPARE.py`, and changes whenever check 10's labels or exclusions do** — Rob, asking that the battery run on several machines.
 - **Not `archive/`** — Rob, on Claude's analysis. `MBT_TESTING.md` would cite an archived file, which the cross-reference rule forbids, and the dream cycle's leakage check would try to inline the script. `tests/` needs a line in `CLAUDE.md`, an entry in the dream cycle's product list, and an allowance for `tests/` paths in its cross-reference check.
+
+---
+
+# The drift grader is copied to `tests/`, not moved, so a PR carries no working file (2026-11-09)
+
+**Session ID**: `9dd62b33-2b95-4dd2-b2de-07c645e0d576`
+
+Rob's session, with Claude as co-author. This reverses the decision recorded above, "The drift-grading script ships in `tests/`". That decision moved TEMPLATE_DRIFT's comparison script out of `working/`, so PR #25 deleted the working file. Rob pointed out that a reviewer reviews whatever a PR's diff shows, and would treat the deleted working file as load-bearing.
+
+## Decisions
+
+- **A PR never carries a working file** — Rob. When a work item produces something the toolkit keeps, the PR adds a copy at its canonical home. The original stays in `working/` and retires to `archive/` with its item.
+- **`tests/MBT_DRIFT_COMPARE.py` is a new file built from TEMPLATE_DRIFT's script, and `working/MBT_TEMPLATE_DRIFT_COMPARE.py` is left untouched** — Rob, applied by Claude by amending PR #25's commit.

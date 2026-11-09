@@ -124,3 +124,19 @@ Rob's session, with Claude as co-author, continuing from the entry above. Rob ha
 - Reintroduce a defect only after naming the scenario that should catch it. Two of four had none.
 - A defect that doesn't reproduce from its sentence alone needs the fixture that triggered it originally, not a weaker test.
 - A known own edit has to be checked on the brain's side of the pair, on the file that holds it.
+
+---
+
+# PR #25 squashed, and its working file taken out (2026-11-09)
+
+**Session ID**: `9dd62b33-2b95-4dd2-b2de-07c645e0d576`
+
+Rob's session, with Claude as co-author, continuing after the entry above. Rob had PR #25's branch squashed to one commit. Claude checked that the tree was unchanged and force-pushed with lease. Rob then asked what becomes of TEMPLATE_DRIFT's comparison script. Claude first answered that it would be promoted rather than archived, and suggested a burndown note to keep TEMPLATE_DRIFT's closeout from archiving it. Rob said a review would treat the deleted working file as load-bearing, and that working files don't go in PRs. The decision is recorded in full in `MBT_LOG.md`.
+
+## Turn by turn
+
+- **The consequence for this item.** Claude restored `working/MBT_TEMPLATE_DRIFT_COMPARE.py` on the branch, amended the squashed commit as `abce7be`, and force-pushed with lease. PR #25 now changes six files, none in `working/` or `archive/`. The commit message, the PR description, the plan and FINDINGS now say the grader is a copy, not a move.
+
+## Lessons
+
+- A move out of `working/` puts the working file in the PR's diff. Copying keeps it out, and leaves the original to retire with its item.

@@ -239,3 +239,11 @@ Rob's session, with Claude as co-author. Rob asked for this item's status and wa
 **Session ID**: `9dd62b33-2b95-4dd2-b2de-07c645e0d576`
 
 Rob's session, with Claude as co-author, recorded in full in `MBT_LOG.md`. The consequence for this item: `MBT_TEMPLATE_DRIFT_COMPARE.py` doesn't retire to `archive/` at closeout. It moves to `tests/MBT_DRIFT_COMPARE.py` as MAT's drift grader, and whichever item closes first makes the move.
+
+---
+
+# The comparison script retires with this item after all (2026-11-09)
+
+**Session ID**: `9dd62b33-2b95-4dd2-b2de-07c645e0d576`
+
+Rob's session, with Claude as co-author, recorded in full in `MBT_LOG.md`. The consequence for this item reverses the entry above, "The comparison script moves to `tests/` for MAT". MAT copied the script to `tests/MBT_DRIFT_COMPARE.py` instead of moving it. `MBT_TEMPLATE_DRIFT_COMPARE.py` stays in `working/` and retires to `archive/` at closeout, like this item's other working files.
