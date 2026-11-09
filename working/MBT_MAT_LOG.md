@@ -78,3 +78,49 @@ Rob's session, with Claude as co-author, continuing after the replan above. Rob 
 - Run a grader change against every example brain before and after, and diff the two runs. The targeted tests passed on the change that regressed virtual-view.
 - Seeding fixtures at every ref and grading them tests the grader and the seeder together. A HEAD fixture must come out fully current, and no fixture may show an own edit.
 - A claim about a brain's shape should come from the brain, not from a log entry about it.
+
+---
+
+# MAT's first run, its reintroduced defects, and draft PR #25 (2026-11-09)
+
+**Session ID**: `9dd62b33-2b95-4dd2-b2de-07c645e0d576`
+
+Rob's session, with Claude as co-author, continuing from the entry above. Rob had Claude check the scratch `HOME`, which failed and was replaced by a test-named install. Claude then ran the recipe for the first time on this machine and fixed what the run found. It ran four reintroduced defects against controls, reworked the scenarios that couldn't catch them, and opened draft PR #25.
+
+## Turn by turn
+
+- **Scratch `HOME`.** A one-line headless prompt under an empty scratch `HOME` reported "Not logged in". Claude's next command would have listed keychain item names. The auto-mode classifier blocked it, and Claude stopped and gave Rob three options instead. Rob chose to install the commit under test as `mini-brain-toolkit-mat` beside his own install. His reasons: it leaves every harness's sign-in alone, and nobody knows what Codex or OpenCode do with a moved `HOME`. The renamed skill loaded and asked whether to run create or check. Its sign-in warning showed that Rob's Claude Code sign-in ends between 2026-11-13 and 2026-11-16, so the probe now reports such warnings.
+- **First run**, against `7048ac3` on a small budget, with Claude as the running agent. Claude Code was the only harness found. The install line passed in all eight runs across zsh and bash. In the upgrade from 0.72, an approve-all check fixed every file, and a report-only second check found no drift and changed nothing. The two runs cost $4.91 and took 13 minutes. Drift edge cases a–c and all six example brains passed by script. The transcripts gave five notes:
+  - the tested agent found the grader inside the test install and tried to run it for check 10;
+  - check 10's temp directory and `python3` were outside the run's permissions;
+  - the agent and the grader counted a list differently;
+  - the seeder named the brain `fix-brain`, where the hook expects `mini-fix-brain`;
+  - the grader showed only the template's side of an own edit.
+- **Fixes.** Rob had all five made. Testing them showed that Claude had called scenario 8 a pass by pairing paragraphs by hand from the wrong file. The grader had missed subwiz's fixed-path hook paragraph, a 28-word rewrite of a 67-word template paragraph. At Rob's direction the grader now pairs a rewrite in place: the one unpaired paragraph between its neighbours' versions that opens with the same four words.
+- **Reintroduced defects.** Claude first worked out which scenario would catch each defect. Two had no scenario.
+  - The install line checking out a tag after a failed fetch: caught by scenario 1, at no cost.
+  - Check 10 reporting create's staged comments as missing, reintroduced by deleting the sentence that guards against it: the agent behaved correctly anyway. The run also showed agents splitting lists differently from one run to the next.
+  - Rob had three changes made. The grader now compares list items one by one. Scenario 6 plants an own edit. Scenario 12 plants a `working/` citation.
+  - In a second round, against controls: the own-edit defect was caught. The staged-comment defect reproduced on a stage-1 fixture with the comments deleted, so that fixture joined scenario 7. The template dream cycle's exemption defect didn't reproduce, because both runs flagged the citation. The runs cost about $8.
+- **PR.** Rob had Claude open draft PR #25 from `minimum-acceptance-testing`, then close out the session.
+
+## Decisions
+
+- **Install the commit under test under a test name, not under a scratch `HOME`** — Rob.
+- **Fix all five of the first run's notes** — Rob, on Claude's proposals.
+- **Pair heavy rewrites in place in the grader** — Rob, choosing between Claude's two options.
+- **Compare list items one by one, plant an own edit in scenario 6 and a `working/` citation in scenario 12, and pay for the additional runs** — Rob.
+
+## What didn't work
+
+- A scratch `HOME`: Claude Code's sign-in doesn't follow it.
+- Claude's first check of scenario 8's known own edits searched the grader's template-side output. Its next check paired paragraphs from the wrong file and reported a pass that wasn't one.
+- Two reintroduced defects didn't reproduce from a one-sentence deletion. Agents fell back on the template's own comments, or on whether a file actually exists.
+- A setup script edit that assumed the hook's paragraph order matched nothing, and the setup had to be rebuilt.
+
+## Lessons
+
+- A grader in reach of the tested agent gets used. Isolation has to be enforced by what's installed, not by what the procedures cite.
+- Reintroduce a defect only after naming the scenario that should catch it. Two of four had none.
+- A defect that doesn't reproduce from its sentence alone needs the fixture that triggered it originally, not a weaker test.
+- A known own edit has to be checked on the brain's side of the pair, on the file that holds it.
