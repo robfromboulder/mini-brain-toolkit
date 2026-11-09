@@ -140,3 +140,11 @@ Rob's session, with Claude as co-author, continuing after the entry above. Rob h
 ## Lessons
 
 - A move out of `working/` puts the working file in the PR's diff. Copying keeps it out, and leaves the original to retire with its item.
+
+---
+
+# PR #25 rebased onto #26 at V33 (2026-11-09)
+
+**Session ID**: `9dd62b33-2b95-4dd2-b2de-07c645e0d576`
+
+Rob's session, with Claude as co-author. The merge order and the rebase-only rule are recorded in `MBT_LOG.md`. The consequence for this item: once #26 merged, Claude rebased #25's single commit onto `main` as `b293660`. The only conflict was `CLAUDE.md`'s version line, which Rob had resolved to V33, one bump for one commit. #25 still changes the same six files, with nothing in `working/` or `archive/`.

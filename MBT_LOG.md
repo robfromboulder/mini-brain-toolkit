@@ -2064,3 +2064,22 @@ Rob's session, with Claude as co-author, continuing after the entry above. Rob h
 - **No working or archived files in a PR, and no AI attribution in commits or PR descriptions** — Rob.
 - **Keep both rules out of `templates/CLAUDE.md`** — Rob: they are this project's conventions, not the pattern's.
 - **#26 at V35, merged after #24 and #25** — Rob.
+
+---
+
+# PR #26 merges first, with a rebase-only rule, and #24 is set to merge last (2026-11-09)
+
+**Session ID**: `9dd62b33-2b95-4dd2-b2de-07c645e0d576`
+
+Rob's session, with Claude as co-author, continuing after the entry above. This corrects the merge plan recorded there. #26 merged first, at V32. #25 follows, and #24 merges last, as the final commit before the 0.73 release.
+
+## Turn by turn
+
+- **Merge order.** Rob set #26 to merge first and #24 last. Claude had placed the merge plan in #26's description, and Rob had it removed, since #26's changes are developer experience only and are validated by the normal dev process. Claude set #26's `CLAUDE.md` back to V32 and amended its commit.
+- **Rebase only.** Rob had turned off merge commits and squash merges for the repo, and asked whether `CLAUDE.md` needed to say so. Claude checked the settings: GitHub enforces rebase-only, so a squash or merge attempt fails, and Claude doesn't read the settings unless it goes looking. The setting can't cover how a branch is prepared. Every commit lands on `main` as is, and a branch is updated by rebasing onto `main`. Rob had that sentence added to #26, which then merged.
+
+## Decisions
+
+- **#26 first, then #25, then #24 as the last commit before the release** — Rob.
+- **A PR description carries no merge plan** — Rob.
+- **PRs merge by rebase only, and `CLAUDE.md` says what that requires of a branch** — Rob, on Claude's analysis.
