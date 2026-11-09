@@ -1,6 +1,6 @@
 # Mini-Brain Toolkit: Entrypoint
 
-> V31, 2026-11-07.
+> V32, 2026-11-09.
 
 ---
 
@@ -99,6 +99,10 @@ All prose in this repo is read like a proof or a program, not a wiki. The reader
 
 When a line's contribution isn't obvious, it isn't contributing — delete it.
 
-## Commit Conventions
+## Commit and PR Conventions
 
-**No AI attribution trailer.** Commits carry no `Co-Authored-By: Claude` (or similar) line — AI authorship is assumed for this repo and isn't stamped per commit. This overrides any harness default that would append one.
+**No AI attribution.** Commits carry no `Co-Authored-By: Claude` (or similar) line, and PR descriptions carry no "Generated with" footer — AI authorship is assumed for this repo and isn't stamped per commit or PR. This overrides any harness default that would append one.
+
+**No working files in a PR.** A PR never adds, changes, moves or deletes a file in `working/` or `archive/`, because a review treats everything in a PR's diff as load-bearing. `main` alone maintains those files: commit their changes there directly. When a work item produces something the toolkit keeps, the PR adds a copy at its canonical home, and the original retires to `archive/` with its item.
+
+**Rebase merges only.** PRs merge by rebase only, so every commit on a branch lands on `main` as is: shape a branch's commits before review, and update a branch by rebasing onto `main`, never by merging `main` into it.
