@@ -2043,3 +2043,24 @@ Rob's session, with Claude as co-author. This reverses the decision recorded abo
 
 - **A PR never carries a working file** — Rob. When a work item produces something the toolkit keeps, the PR adds a copy at its canonical home. The original stays in `working/` and retires to `archive/` with its item.
 - **`tests/MBT_DRIFT_COMPARE.py` is a new file built from TEMPLATE_DRIFT's script, and `working/MBT_TEMPLATE_DRIFT_COMPARE.py` is left untouched** — Rob, applied by Claude by amending PR #25's commit.
+
+---
+
+# Commit and PR conventions: no working files and no AI attribution in a PR (2026-11-09)
+
+**Session ID**: `9dd62b33-2b95-4dd2-b2de-07c645e0d576`
+
+Rob's session, with Claude as co-author, continuing after the entry above. Rob had PR #26 opened to write two rules into `CLAUDE.md`, whose "Commit Conventions" section becomes "Commit and PR Conventions".
+
+## Turn by turn
+
+- **The rules.** Rob asked for both. The first keeps working and archived files out of PRs, so that `main` alone maintains them; it generalizes the copy-not-move decision above. The second keeps AI attribution out of PR descriptions too, since AI authorship is assumed for this repo. Claude put both in the commit conventions section, which already kept attribution trailers out of commits, and opened PR #26 on branch `pr-conventions` with no footer.
+- **Templates.** Claude noted that `templates/CLAUDE.md` carries neither rule. Rob kept the rules to this project.
+- **Version.** #25 takes `CLAUDE.md` from V31 to V34, and #24 doesn't touch it. Rob had #26 set to V35 on the assumption that #24 and #25 merge first. Claude amended #26's commit and rewrote its merge-order note.
+- **PR #25's footer.** Rob agreed to strip the "Generated with" footer from #25's description. Claude found it already gone. It had most likely been lost when Claude re-saved that description earlier, not removed on purpose.
+
+## Decisions
+
+- **No working or archived files in a PR, and no AI attribution in commits or PR descriptions** — Rob.
+- **Keep both rules out of `templates/CLAUDE.md`** — Rob: they are this project's conventions, not the pattern's.
+- **#26 at V35, merged after #24 and #25** — Rob.
