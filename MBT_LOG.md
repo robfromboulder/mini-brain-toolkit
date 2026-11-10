@@ -3049,3 +3049,48 @@ Rob's session, with Claude as co-author, continuing after the entry above. Rob a
 ## Open
 
 - The two cycle items the review did not take up, as the entry above lists.
+
+---
+
+# Review of the four parked work items: REHOMING folded into WORK_PLACEMENT (2026-11-10)
+
+**Session ID**: `7c2b9d32-fb57-405b-a124-62f1f716a7f1`
+
+Rob's session, with Claude as co-author. Rob asked for the open work items to be read and checked for accuracy, expecting some to be out of date. All four — MIGRATIONS, MULTI_LOBE_DREAM, REHOMING and WORK_PLACEMENT — had last changed on 2026-09-22 and each had stale claims. REHOMING was folded into WORK_PLACEMENT and its two files moved to `archive/`, the three remaining items were corrected, and a read-back caught six errors in Claude's own corrections. Three items remain open, each a PLAN and FINDINGS pair.
+
+## Turn by turn
+
+- Claude read all eight working files against `MBT_LOBES.md`, the work setup, work closeout, session closeout and dream cycle templates, `MBT_CHECK_BRAIN.md`, `MBT_TESTING.md` and the local clone of virtual-view-brain. Every item's core problem still held. What had moved was the procedures around them: work setup's audit no longer reads `archive/` and gained an alignment step, session closeout routes per part, the template dream cycle's scope phase was repointed and it has an enforced-terms phase, and a brain now carries `AGENTS.md`, a README and a hook in each project repo.
+- Three earlier entries in this log had already flagged the REHOMING and WORK_PLACEMENT overlap and the predecessor problem under their open notes. None of that had reached the plans.
+- Rob asked whether all four were still valid and whether any should be combined or retired. Claude recommended combining REHOMING and WORK_PLACEMENT, keeping MULTI_LOBE_DREAM separate, and keeping MIGRATIONS parked as the one to retire if any. Rob chose the combine, under the WORK_PLACEMENT slug, with the fixes applied.
+- Claude rewrote the WORK_PLACEMENT pair as one item and edited the other two in place. The REHOMING files moved to `archive/` unfolded, with no closeout: the item had no log, and nothing in it had reached a canonical doc.
+- Rob asked for the new items to be read back and verified one at a time. Claude seeded a multi-lobe fixture to confirm what the plans now say about it, and found six errors of its own, listed below.
+- Rob asked which item to take next. Claude said WORK_PLACEMENT. Rob pointed out that every open item is a multi-lobe or dream-cycle topic. Claude agreed that the backlog serves the advanced end only, and offered to check this log's open notes on create and check for a basics item. Rob declined.
+- The eight files were committed to `main` and pushed as `cf8b9aa`.
+
+## Decisions
+
+- **Combine, not retire** (Rob, on Claude's recommendation). REHOMING and WORK_PLACEMENT edit the same two steps of work setup, WORK_PLACEMENT's problem statement leaned on REHOMING's policy as if it had landed, and each named the other as its scope boundary.
+- **Audit-based predecessor discovery is dropped** (Claude, in the rewrite, unchallenged by Rob). The successor names its predecessor from the intake conversation, since setup never reads `archive/`. The widened audit is kept as a rejected alternative.
+- **No basics item opened** (Rob).
+
+## What the read-back caught
+
+Each was introduced by Claude's first pass and passed its own summary:
+
+- The supersede retirement was narrowed to "PLAN and FINDINGS unfolded", though an item's testing and runbook docs fold at closeout too.
+- A test expected the session's entries in each item's own log, against session closeout's rule for an item that closes in the session.
+- `MBT_LOBES.md` was credited with the owning-lobe rule, which lives in work setup.
+- Every child lobe was assumed to have a project repo.
+- Absorption was said to leave the hook naming a brain that no longer exists.
+- The prototype's open work was put in a third lobe, from a file listing cut off at eighty lines. Its open items sit in the same two lobes as its closed ones.
+
+## Lessons
+
+- A parked item rots through the procedures it names, not through its own claims. Open notes in this log recorded the damage three times without anyone carrying it into the plans.
+- A correction pass needs its own read-back against the sources. Half of the six errors were claims a second look at the cited file settled at once.
+
+## Open
+
+- The row for a child lobe leaving, in `MBT_LOBES.md`, still says the subtree lacks only an entrypoint and a maintenance set. MIGRATIONS rewrites that row; until then the canonical text undercounts.
+- All open items are multi-lobe or dream-cycle work, while five of the six example brains are single-lobe. The open notes in this log about create's intake and check have not been checked against the current procedures.
