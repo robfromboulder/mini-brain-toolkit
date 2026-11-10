@@ -64,7 +64,7 @@ Match a question's terms against **Routes on** to choose a lobe *before* reading
 
 **Working and archive.** A lobe's `working/` inherits that lobe's lobespace, so in-flight documents stay as parseable as canonical ones. A lobe's `archive/` does not: retired files keep the basename they were retired under and need not be markdown.
 
-**Append-only logs.** A canonical LOG file is never archived, and no LOG file is edited after the fact. Append-only governs an entry's content, not its position: once written, an entry is never revised, split, or merged. New entries go at the end. The one exception is folding another log into this one, which places that log's entries whole and in date order among the existing ones, so the last separator still holds the most recently written entry.
+**Append-only logs.** A canonical LOG file is never archived, and no LOG file is edited after the fact. Append-only governs an entry's content, not its position: once written, an entry is never revised, split, or merged. New entries go at the end. The one exception is folding another log into this one, which places that log's entries whole and in date order among the existing ones, so the last separator still holds the most recently written entry. A fold may rewrite an entry's references to work-item files that are retiring and drop its pending-closeout block; it changes nothing else in the entry.
 
 **Maintenance documents live at the hub.** Session closeout — and work setup, work closeout and the dream cycle when the brain grows them — govern the whole brain, so one of each serves every lobe and none is namespaced to a child. The in-flight documents those procedures scaffold land in the `working/` of whichever lobe owns the work.
 
