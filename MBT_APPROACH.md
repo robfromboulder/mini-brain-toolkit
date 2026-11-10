@@ -1,6 +1,6 @@
 # Mini-Brain Toolkit: Technical Approach
 
-> V21, 2026-11-04.
+> V22, 2026-11-09.
 
 This document describes the approach for addressing the problems defined in `MBT_SCOPE.md`. It covers the strategic approach and key design decisions — not delivery sequence.
 
@@ -42,7 +42,7 @@ The definition and the two procedures are split into separate documents rather t
 
 ### 1.5 Templates as the single source of truth
 
-Establishment is a copy-and-substitute operation against `templates/` (answering *starting needs no expertise and inherits no drift* in `MBT_SCOPE.md`), never a copy from whichever neighbor was nearest. Centralizing the base files in one directory is what turns "propagate the pattern" from imitation-with-drift into a mechanical, repeatable step — and it gives the template/reference sync problem (§2.9) a single place to be solved when it's solved.
+Establishment is a copy-and-substitute operation against `templates/` (answering *starting needs no expertise and inherits no drift* in `MBT_SCOPE.md`), never a copy from whichever neighbor was nearest. Centralizing the base files in one directory is what turns "propagate the pattern" from imitation-with-drift into a mechanical, repeatable step — and it gives the template/reference sync problem (§2.11) a single place to be solved when it's solved.
 
 ---
 
@@ -76,38 +76,56 @@ Where a developer works migrates over a project's life: before project code exis
 
 The agent loads the entrypoint every session, and it carries a read index mapping each kind of question to the one file that answers it, which the orthogonal file set makes possible. Logs are read from their last separator, not whole, and a brain whose knowledge divides into lobes routes a question to its lobe before its file. An agent therefore loads the index and the files its question names and nothing else (*an agent loads only what its question needs*). Retrieval by search over a larger knowledge store was the alternative; it returns fragments ranked by similarity rather than the one account the question needs, and it requires an index or service installed beside each project, a dependency the toolkit chooses not to add.
 
-### 2.8 Open: universal vs. exemplar-specific machinery
+### 2.8 A brain takes toolkit changes through check
+
+A brain's procedure files are copies of the toolkit's templates: session closeout, work setup, work closeout, the dream cycle, the enforced-terms rules, the entrypoint's conventions, the README and the project hook. A fix to a template therefore leaves every existing brain on the old text. Check carries the fix (*any knowledge store can be assessed*, *upkeep asks little of the owner*). Upgrading a brain is one act, running check and following its recommendations, and no owner reads release notes to bring a brain current.
+
+Check compares each procedure file a brain holds with the current template, paragraph by paragraph, and labels each difference from the toolkit's own history. A template paragraph the brain holds no version of is missing, and check recommends adding it. A brain's version that an earlier version of the template held word for word is behind, a toolkit change the brain has not taken, and check recommends the current text. A brain paragraph the toolkit has since removed from the template is dropped, and check recommends removing it. A version that appears in no version of the template is the owner's own edit. An owner may change a procedure for their own purpose, so an own edit is shown with both texts and is never a recommendation. Each change is applied only where the owner approves, because `MBT_SCOPE.md` puts migrating a knowledge store automatically out of scope. Nothing records a decision, so every check reports each own edit and each declined change again, which gives the owner a recurring prompt to ask whether an edit is still needed. Knowledge files are never compared with a template.
+
+The install lines pin a toolkit install to the newest release, and a brain's dream cycle raises an item when the toolkit's install sits on a release and a newer one is published, so an owner learns that a check is due without watching the toolkit. A multi-lobe brain's dream cycle adapts the single-lobe template whole, so it is not compared, and its owner adapts the template's changes by hand, the one upgrade check does not carry.
+
+### 2.9 A release is tested by running the instructions
+
+A review checks the instructions against their own rules. Running them finds what review does not: whether an agent holding only a procedure reaches the right result on a brain, and where it had to improvise. Before a release, an agent runs a battery of acceptance scenarios covering install, create, check, the dream cycle, work items and session closeout.
+
+The battery is a recipe, not a script. Each scenario states its setup and the outcome it expects, and the running agent works out the steps on the machine at hand. Coverage is whatever that machine's harnesses, shells and reachable brains allow, within a token budget the runner states, and each skip is reported with its reason. Only the two scenarios that test against real brains need an example. The rest need at most a fixture, a brain seeded as the toolkit would have seeded it at a given release, so a contributor who holds no example brain can run them. Results are graded on disk, and a script labels template drift independently of the tested agent, so no agent's summary is taken as the result. A transcript that shows an agent improvising yields a note on the procedure, not a failure.
+
+A release is ready when the runs report no major problem. That is the releaser's judgment, apart from three failures that always block: the upgrade from the last release, a write to the toolkit's install, and a report-only run that changes a repository. A defect fixed in the toolkit adds a scenario that would have caught it.
+
+This settles what was an open question, whether to keep a fixed set of synthetic brains with planted defects and run them blind after each change to the instructions. Fixtures are built for each run from the toolkit's own history rather than kept, and the battery runs before a release, within the runner's budget.
+
+### 2.10 Open: universal vs. exemplar-specific machinery
 
 The mature-lifecycle templates are generalized from one mature brain. How much of that machinery is intrinsic to the pattern versus incidental to that project's shape (multi-platform, heavy test suites, eval numbers)? Until more brains reach maturity from these templates, the line between "part of the pattern" and "one project's local practice" is an estimate.
 
-### 2.9 Open: keeping templates and reference brains in sync
+### 2.11 Open: keeping templates and reference brains in sync
 
 The templates are distilled from live brains that keep evolving, and an improvement a reference brain makes to a convention reaches the templates only if someone carries it back — the same divergence-by-copy problem the toolkit exists to solve, now between the toolkit and its exemplars. What mechanism (a periodic reconciliation, a designated source-of-truth brain) should keep them aligned is unresolved.
 
-### 2.10 Open: the maturity floor for a new brain
+### 2.12 Open: the maturity floor for a new brain
 
 Establishment produces a seed and defers machinery until the work justifies it (§2.5), leaving that judgment to the operator. Whether some projects should start further along, or whether a lighter-than-seed brain is legitimate for very small projects, is not settled. One external result bears on it: inline comments recording each instruction's reason halted instruction-file growth in controlled tests (Chakrabarti, 2026), so for a small project a recorded reason may do much of a seed's work.
 
-### 2.11 Open: coordination between co-loaded brains
+### 2.13 Open: coordination between co-loaded brains
 
 The lobespace convention lets several brains load into one session without collision, but the pattern does not coordinate them. Whether co-loaded brains need references between them, a shared index, or recall that reads each through the role it plays is not settled.
 
-### 2.12 Open: a check's proportion on a large scope
+### 2.14 Open: a check's proportion on a large scope
 
 The check reports a section once as a rewrite when issues cover most of it, and a scope once as one to re-gather when most sections need that. Whether this keeps a report proportionate on a large scope is unsettled: a blind check of a mid-sized scope still reported its 33 issues item by item.
 
-### 2.13 Open: ordering goals by impact
+### 2.15 Open: ordering goals by impact
 
 The create procedure orders goals by their impact on whoever has the problem, as far as the evidence ranks them. Whether that ordering earns its place when the evidence cannot rank them is undecided.
 
-### 2.14 Open: the create procedure on a multi-lobe intake
+### 2.16 Open: the create procedure on a multi-lobe intake
 
 One single-lobe test intake, answered by a simulated owner, produced a neutral SCOPE on the first pass. Whether the first pass holds for a multi-lobe intake and a real owner is untested.
 
-### 2.15 Open: one home for the definitions
+### 2.17 Open: one home for the definitions
 
 Premise, choice, alternative and second approach are defined in the create and check procedures, the dream cycle and three templates, and the copies differ: create decides whether something the problem holder has is a premise by whether every approach must use it, while check lets the owner's answer decide. Whether each definition should live once, in the pattern's reference document, for the procedures to cite, is undecided.
 
-### 2.16 Open: testing the instructions by running them
+### 2.18 Open: sending an own edit upstream
 
-A review checks the instructions against their own rules. A dry run, in which an agent holding only a procedure runs it on a real brain, checks whether it reaches the owner's verdict, and it found what review did not. Whether to keep a fixed set of synthetic brains with planted defects and expected results, run blind after each change to the instructions, is undecided.
+Check reports an own edit on every run and offers no way to send it upstream. Whether check should offer to file a toolkit issue for an edit the owner keeps because the template failed them is undecided.

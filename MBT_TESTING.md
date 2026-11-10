@@ -1,6 +1,6 @@
 # Mini-Brain Toolkit: Acceptance Testing
 
-> V13, 2026-11-09.
+> V14, 2026-11-09.
 
 The acceptance scenarios to run before a release, and how to run them on whatever machine is at hand. It takes its example brains from `MBT_EXAMPLES.md`, seeds fixtures with `tests/MBT_SEED_FIXTURE.py`, grades drift with `tests/MBT_DRIFT_COMPARE.py`, snapshots repositories with `tests/MBT_SNAPSHOT.sh`, and runs the shell-sensitive script scenarios with `tests/MBT_SHELL_CHECKS.sh`. This is a recipe: each scenario states its setup and the outcome it expects, and the running agent works out the steps.
 
@@ -139,3 +139,9 @@ Each scenario states observable outcomes, never a procedure's wording, so an edi
 ### Judgment
 
 17. **Blind check against an owner's revision.** *Harness: any. Brain: an example with a known owner revision. Cost: headless.* The runner names a revision, such as a merged PR that reworked SCOPE or APPROACH. Check the brain as it stood just before it, with an answers file drawn from the revision's description. Report how much of the revision the check reproduced, where it placed content differently, and what it removed that the owner kept. No score passes or fails; the releaser judges.
+
+### The run itself
+
+18. **Probe matches the machine.** *Harness: none. Brain: none. Cost: script.* The runner's step, not the agent's: the runner compares the report's header with `command -v` and `--version` for each supported harness, and with the brains they know are on the machine. Every installed harness and reachable brain is listed, and each one missing appears among the skips with its reason.
+19. **Examples carry provenance only.** *Harness: none. Brain: none. Cost: script.* The runner's step, not the agent's: the runner reads every entry in `MBT_EXAMPLES.md`. Each gives only a brain's name, where it is published or who holds it, its author, its seeding release, its shape, its names for the grader and its project repos' names.
+20. **Nothing left behind.** *Harness: none. Brain: none. Cost: script.* Before the first scenario runs, snapshot each of the runner's own installs that exists, at the README's install paths, with `tests/MBT_SNAPSHOT.sh`. Run this last of the agent's scenarios, once the test installs are removed and before the report. Each snapshot is as it was, neither test install path exists, and `git status` in this checkout and in every reachable example brain shows no change and no report.

@@ -2020,6 +2020,234 @@ Rob's session, with Claude as co-author. Rob asked for the SKILL_INSTALL status,
 
 ---
 
+# Plan reviewed against the current toolkit, and the drift check redesigned as a three-way merge (2026-11-05)
+
+**Session ID**: `ee2c2ade-b187-4574-8c63-6ac120cef31c`
+
+Rob's session, with Claude as co-author. Rob asked for a review of this item's plan and findings against the latest toolkit, since the item is the main fix planned for 0.73. The review found the plan stale against SKILL_INSTALL part 2, and Claude corrected it. Rob then asked for enough research to put every implementation part above 80 confidence. Claude ran the comparison by script against three real brains, and the evidence replaced the plan's two-way comparison with a three-way merge from a per-file base stamp. Rob accepted the design, and the plan, findings and experiment script were committed and pushed to `main` as `925e2a6`.
+
+## Turn by turn
+
+- **Review.** Claude read the PLAN and FINDINGS, then the current `MBT_CHECK_BRAIN.md`, `MBT_CREATE_BRAIN.md`, `SKILL.md`, the procedure templates, the archived SKILL_INSTALL plan, the other open work items, the published 0.71 and 0.72 release notes and this repo's log. Most of the plan predated PR #19:
+  - Its 0.72 acceptance test passed on the hook move to `AGENTS.md` and the brain-side `AGENTS.md`, which check 8 (loading reach) already does and explicitly reserves for itself, so the test exercised no drift check.
+  - The procedure files were named `<LOBESPACE>_*` rather than `<HUB>_*`.
+  - The `CLAUDE.md` row's "conventions sections only" missed the retire-move paragraph from PR #20, which sits in the Read Index section.
+  - Work setup's inlined `templates/work/` scaffolds were wrongly excluded.
+  - The FINDINGS problem statement said every release carried upgrade steps, which contradicted its own alternatives and the published notes.
+- **Codex's three wording issues were checked against the templates.** Two hold in `templates/DREAM_CYCLE.md`: Phase 5 cites an enforced-terms rule a brain without the file doesn't have, and Phase 4 routes problem-reframing discoveries to FINDINGS. The third, "LOG files are never archived", lives in both `CLAUDE.md` templates and this repo's `CLAUDE.md`, not the dream cycle. Claude also found that check 3 in `MBT_CHECK_BRAIN.md` shares the dream cycle's commented-row defect.
+- Rob had the mechanical corrections applied. The enforced-terms preamble and the multi-lobe dream cycle went to open issues as his calls.
+- **Research, at Rob's direction.**
+  - Claude read the PR #19 comments for Codex's wording and the retest's `seed.sh`.
+  - Rob supplied mini-subtitle-wizard-brain's Codeberg URL. Claude cloned it into the scratchpad and found it was seeded from the toolkit's templates, with deviations its first log entry records. The plan had cast it as a brain grown without the toolkit.
+  - lamarr-brain's history showed its procedure copies were never hand-updated, contrary to the plan.
+  - Both brains were seeded on 2026-10-21, and the last template commit before then is the 0.71 tip.
+  - Claude scripted a three-way comparison: the template at the seed version, the template now, and the brain's copy, merged with `git merge-file`. The first run raised false conflicts from inconsistent placeholder filling. Folding the lobespace back to `<LOBESPACE>` removed them. Work setup's scaffolds turned up in three inline shapes, and once the script split them out by content, they matched `templates/work/`.
+  - virtual-view-brain, the pre-0.70 exemplar, kept every adaptation and raised conflicts in four files.
+  - Scoring each tagged release recovered lamarr's base as 0.71.
+  - The hook's text is unchanged since 0.71 apart from its merge comment. lamarr's hook is split across sections of its project `CLAUDE.md`.
+  - A reworded check 6 exemption, run through `create`'s substitution, still exempts `<WORK>` placeholders and flags real names.
+- Claude rewrote the PLAN and FINDINGS around the three-way design. It kept the script in `working/`, the tests' reference output.
+- Rob accepted the design and asked for a commit and push. Claude dropped the confirmation open issue and recorded the acceptance in FINDINGS. It committed to `main` as the item's earlier plan edits were, with no attribution trailer, and pushed.
+
+## Decisions
+
+- **The drift check is a three-way merge from a per-file base stamp**, with a declined change becoming the brain's adaptation once the stamp advances — Claude proposed it from the evidence; Rob accepted it.
+- **Check 8 keeps the whole `AGENTS.md` loading path, and in a template-seeded brain its fix takes the current template's wording**, so the drift check finds those paragraphs current — Claude.
+- **Placeholder normalization replaces restating `create`'s substitution rules in `check`** — Claude, from the evidence that normalizing needs only the brain's lobespace and names.
+- **The enforced-terms preamble, multi-lobe dream cycles, `create`'s `archive/` `.gitkeep` and check 8's move of a split hook stay open** — Claude raised them; Rob left them open.
+- **This session's commit went straight to `main`** — Claude, matching the item's earlier plan edits, on Rob's instruction to commit and push.
+
+## What didn't work
+
+- Comparing without normalizing placeholders. Real brains fill `<LOBESPACE>` inconsistently, and the raw comparison reported that as conflicts and local changes.
+- Splitting work setup's scaffolds by one heading convention. Each brain inlined them differently, so the split has to work by content.
+
+## Lessons
+
+- **A plan written before a sibling item lands needs re-reading against what landed**, especially its tests. A test written for a future change can pass on code that already exists, and so test nothing.
+- **Check a test brain's history before assigning it a role.** Two of the plan's three test brains had been cast wrongly from memory.
+- **A merge needs a base, so a comparison that must tell adaptation from drift needs one too.** Recording the base per file is what lets a declined change stay declined.
+
+---
+
+# Drift check implemented and tested, stamps dropped for inference, PR #22 opened (2026-11-06)
+
+**Session ID**: `ee2c2ade-b187-4574-8c63-6ac120cef31c`
+
+Rob's session, with Claude as co-author, continuing the review session above. Rob had all four implementation steps run on branch `template-drift`. Along the way he set the rule for every open choice: upgrades take no manual step. He also overturned three of Claude's design choices: per-file version stamps, a pin decided without him, and HTML-comment skips. Headless tests on two fixtures and three real brains passed after two defects they exposed were fixed. The branch went up as one squashed commit in PR #22. The PLAN and FINDINGS stayed off the branch, at Rob's request, so the PR carries only the change under review.
+
+## Turn by turn
+
+- **Step 1.** Claude fixed the template dream cycle's leakage exemption, its Phase 4 routing (this brain's own dream cycle too) and its Phase 5 rule for proposing a term. It also narrowed the log convention to canonical logs, and added skips for HTML-commented rows to check 3, the dream cycle and work closeout. Rob set the no-manual-step rule. Under it Claude resolved three open issues: follow renamed templates, compare the enforced-terms rules, and keep `archive/` tracked.
+- Rob asked that PLAN and FINDINGS changes stay out of feature-branch commits, so a PR reviews only the change, and land on `main` at session end.
+- **Step 2.** Claude added a per-file stamp line naming the toolkit version and template to every procedure template, and the `.gitkeep` and check 9.
+- **Step 3.** Claude asked how an owner learns a `check` is due. Rob pointed out that the install lines tracked `main`, so any toolkit-version comparison would fire on every merged PR. He chose to pin installs to the newest release, and to have the dream cycle prompt for a `check`. Claude wrote check 10, check 8's split-hook move, the release pin, the dream cycle's release check and the pattern's two file kinds.
+- **Step 4, first round.** Claude built two fixtures and scratch copies of the three brains, and ran Claude Code headless on each. The 0.72 fixture, the 0.70 fixture and lamarr passed on disk.
+- **Stamps dropped.** Rob objected to the stamps: a version line in every file, every file rewritten on each check, an implied linearity, and `check` turned from a reader into a bookkeeper. Claude offered three options: inference, one brain-wide stamp, or keeping per-file stamps. Rob chose inference. He wanted logic based on the state of the file, not on version numbers, and the dream cycle limited to checking whether the installed toolkit has a newer published release.
+- **HTML-comment skips dropped.** Rob asked for a review of the comment-handling lines. Claude found them too broad and blind to comments spanning several lines. Rob said the branch should never have added rules for docs a brain may add later, and kept the staged comment blocks, accepting that a seeded brain's dream cycle flags them. Claude reverted all five skips.
+- **Step 4, retest.** A usage limit killed the first batch of retests; they ran again after the reset. The 0.72 fixture passed, along with a report-only second check. Subwiz's and lamarr's hooks inferred 0.70 and raised false conflicts. Settled in the template's favor, as the test prompt directed, they overwrote subwiz's fixed clone path and lamarr's clone name. Claude found the cause: counting differing lines rewards an older, shorter template once a paragraph is rewritten. It switched inference to counting paragraphs matched word for word, which picked the right base on every file it tested, and made the walk-through keep a brain's own values. Reruns of lamarr and subwiz passed, and so did lamarr's second check. Virtual-view-brain passed on the old rule; its hooks were re-scored by script.
+- Rob had the branch squashed into one commit and PR #22 opened, then this entry written and the working docs committed to `main`.
+
+## Decisions
+
+- **No upgrade takes a manual step, and that rule decides every open choice in this item** — Rob.
+- **Working docs stay off the feature branch and land on `main` at session end** — Rob.
+- **Installs pin to the newest release tag** — Rob, after spotting that tracking `main` would make every merged PR look like a release.
+- **No version stamps; each file's base is inferred from its text on every run** — Rob, over one brain-wide stamp and per-file stamps.
+- **The dream cycle prompts a `check` only when the toolkit's remote has a newer release than the installed one** — Rob.
+- **No HTML-comment skips; staged comment blocks stay, and a seeded brain's dream cycle may flag them** — Rob.
+- **Infer the base by paragraphs matched word for word, not lines differing** — Claude, from the retest evidence.
+- **Keep a brain's own values, such as its clone's name, in applied template text** — Claude.
+- **One squashed commit for the PR** — Rob.
+
+## What didn't work
+
+- Per-file stamps: built, then removed as the wrong contract for `check`.
+- HTML-comment skips: built, then removed as rules for docs a brain may add later.
+- Counting differing lines to infer a base: it misread two adapted hooks, and the false conflicts destroyed adaptations when settled in the template's favor.
+- A report-only run feeding the merge through pipes: `git merge-file` misreads them on macOS and reports false conflicts.
+- Launching four headless runs at once ran into the usage limit, and the batch had to be rerun.
+
+## Lessons
+
+- **Choose how to measure fit by how adaptation happens.** Brains rewrite whole paragraphs, so count the paragraphs that match, not the lines that differ.
+- **A test prompt that settles every conflict for the template turns a false conflict into lost work.** That made the defect visible, and it is also the cost a real owner would pay for the same mistake.
+- **Bookkeeping a procedure writes into the files it checks changes what the procedure promises.** Infer from state where the evidence allows.
+- **Run expensive headless tests in small batches**, grading each before launching the next.
+
+---
+
+# PR #22 review addressed: bounded base inference, declines, and headless tests (2026-11-07)
+
+**Session ID**: `29f05522-fc6f-4cc4-9b42-a0d41b06d7c1`
+
+Rob's session, with Claude as co-author. Rob had Claude read his review comment on PR #22 and address all eight items on branch `template-drift`. He kept inference over a recorded base for the blocking item. Claude rewrote check 10's base rule so a release's added paragraphs and the missed half of a hand update are both recommended. Headless tests of the review's two cases passed, as did a declined-change walk-through. The walk-through exposed an agent second-guessing the merge, which a wording fix closed. The fixes went up as `bb2f6b9`.
+
+## Turn by turn
+
+- Rob asked for the work item's status, then for the latest PR #22 review comment and a switch to the branch. Claude summarized the comment: one blocking item (newest-on-tie inference misses an added paragraph and a partly applied update), two items to settle before `check` carries upgrades (the report names no release; a multi-lobe dream cycle compared with the single-lobe template), and five minor ones. It flagged the blocking item as Rob's call between changing the scoring and recording a base.
+- Rob ruled out stamping each file and keying off it, and asked for the scoring to cover both cases. Claude bounded the base by the oldest release whose dropped text the file still holds, broke ties toward the fewest paragraphs the file lacks, and pointed out the cost: without a record, a declined rewrite reads like a missed one and comes back.
+- Claude scripted the rule against the review's two cases and the real brains. Counting every lacked paragraph made 0.70 win for lamarr's adapted hook, the false conflict from the previous session. Counting a rewritten paragraph as present fixed it. The same run showed virtual-view-brain's hooks are 0.70 text, so the new rule recommends a worktree fix the old rule had missed.
+- The minor items went in alongside: the release and remote's newest in the report, the multi-lobe dream-cycle skip, check 9 and `create` staging the `.gitkeep`, `fi &&` in the install lines (tested against an unreachable remote), the findings sentence narrowed to uncommitted edits rather than a `merge-base` guard that would refuse every fresh clone, and check 10 reordered to define normalization before use.
+- Rob asked for headless tests of the two review cases. Claude seeded both fixtures in its scratchpad against a scratch clone of the branch. Both report-only runs inferred the expected base, recommended the expected paragraphs, raised no conflicts and changed nothing.
+- Rob asked for check 9's fix and a walk-through that declines a change. The scripted walk-through applied every decision exactly and staged the `.gitkeep`. The second check passed check 9 and asked again about the declined rewrite. The merge left out the declined added paragraph, but the agent read the brain's git history and recommended it anyway as "a gap in check 10". The run also showed that a declined addition goes quiet after a later release's change, not only the same release's.
+- Rob approved both wording fixes. Check 10 now treats a paragraph the brain lacks as its own whatever its history, and the decline sentence names "that release or a later one". A rerun of the second check did not mention the paragraph.
+- Rob had the branch committed and pushed to PR #22 as `bb2f6b9`, then this entry and the working-doc updates written on `main`.
+
+## Decisions
+
+- **Cover added and partly applied changes by scoring, not by recording a base** — Rob.
+- **Bound the base by dropped text, then break ties by paragraphs the file has no version of, then newest** — Claude, from the scripted evidence.
+- **Accept that a declined rewrite comes back on every check** — Claude proposed it as the cost of no record; Rob proceeded without a record.
+- **Narrow the install-line finding to uncommitted edits rather than guard with `merge-base`** — Claude.
+- **Skip a multi-lobe brain's dream cycle and say so** — Claude, from the review's question.
+- **Tell check 10 not to second-guess an absent paragraph from history** — Rob approved Claude's proposed wording.
+- **Push the review fixes as a second commit, not squashed** — Claude; offered to squash.
+
+## What didn't work
+
+- Counting every template paragraph the file lacks as the tie-break: it rewarded an older, shorter hook template over lamarr's adapted one.
+- A `merge-base --is-ancestor` guard on the install line: it would refuse a fresh clone and any install that had tracked `main`.
+- Leaving an absent paragraph to the merge alone: the agent searched history and recommended it.
+- A shell loop under zsh, which doesn't word-split an unquoted variable, so the first regression run read directories instead of files.
+
+## Lessons
+
+- **Test a tie-break against an adapted copy, not only a pristine one.** The fixture cases passed with the rule that broke lamarr's hook.
+- **Say what a procedure must not do when an agent can see evidence the procedure ignores.** The headless agent overruled check 10 from git history until the procedure ruled that out.
+- **A rule that infers state can't tell a decline from a miss.** Name which one comes back, so owners aren't surprised.
+
+---
+
+# Drift check reset to a two-way comparison against the current template (2026-11-07)
+
+**Session ID**: `29f05522-fc6f-4cc4-9b42-a0d41b06d7c1`
+
+A continuation of Rob's session above, with Claude as co-author. Retesting the bounded base rule against mini-subtitle-wizard-brain and lamarr turned up two more false conflicts. Rob asked why check looks for the release a file most resembles at all, rather than comparing it with the current template, and gave his reason for refusing version stamps: an owner may edit a procedure file on purpose, so no version identifies what the file holds. Check 10 became a two-way comparison with a per-paragraph label from the release history, and every test passed headless and by script.
+
+## Turn by turn
+
+- Rob asked for the remaining tests and a rewritten PR description. Claude cloned subwiz and its project repo from Codeberg into its scratchpad. By script, subwiz's brain files behaved as before, but its hook took 0.70 under the bounded rule and raised a false conflict over its fixed clone path: its rewrite of 0.71's worktree paragraph was too short to count as a version.
+- Claude prototyped a resemblance tie-break, which fixed subwiz's hook. A simulated walk-through declining one of lamarr's README changes then showed `git merge-file` joining the declined change with lamarr's own description line into a false conflict. Claude stopped and put both defects to Rob, proposing the resemblance tie-break and a paragraph-level merge.
+- Rob questioned the premise: compare the brain's file with the current template, offer to add a missing paragraph, and offer to update a changed one or keep it knowingly. Claude measured that on the real brains. The release history labels each changed paragraph on its own as behind (a release's text) or an own edit (in no release), so no base is needed, and every item stays a proposal.
+- Rob had Claude rewrite check 10 that way, update this item and rerun the tests. He said he welcomes own edits reappearing on every check, as a prompt to revisit them or suggest them upstream, and deferred offering to file a toolkit issue to a later release.
+- Claude added a dropped label for a paragraph the toolkit removed. The first scripted pass showed three kinds of noise, all from text `create` resolves: staged comments, read-index and registry rows, and work setup's pointer to `templates/work/`. Claude left them out of the comparison.
+- The 0.72 fixture, with a project repo and inlined scaffolds, came out fully current after an approve-everything walk-through, and a second check reported nothing. Both review cases and the decline walk-through passed headless; lamarr, subwiz, virtual-view and the lamarr README declines passed by script.
+
+## Decisions
+
+- **No version stamps, because an owner's edits mean a version doesn't identify a file's contents** — Rob, stating the reason behind his earlier refusals.
+- **Compare each procedure file with the current template, two ways, and drop base inference and `git merge-file`** — Rob, over Claude's resemblance tie-break and paragraph-level merge.
+- **Report own edits and declined changes on every check, as a recurring review** — Rob.
+- **Label a paragraph behind when the brain's text is any release's, and dropped when the toolkit removed it** — Claude.
+- **Leave what `create` resolves out of the comparison** — Claude, from the scripted noise.
+- **Defer offering to file a toolkit issue for a kept edit** — Rob.
+
+## What didn't work
+
+- The bounded base rule's tie-break by paragraphs with no version: a short rewrite falls under any similarity line, and subwiz's hook took the wrong base.
+- `git merge-file` for a paragraph-level merge: it joins changes on nearby lines into one conflict region.
+- Running test loops in zsh, which doesn't word-split an unquoted variable; the loops moved into bash scripts.
+
+## Lessons
+
+- **When a rule keeps needing tie-breaks, question what it is choosing between.** Each fix to base inference handled one brain and broke another; the two-way comparison needs no choice.
+- **Ask what the owner's edits mean before designing around them.** Stamps, bases and merges each tried to hide edits that the owner is entitled to make and should see again.
+
+---
+
+# Install pin split out, PR #22 review addressed, plan retired, and every test rerun (2026-11-07)
+
+**Session ID**: `7852c504-efdb-4b1b-b31f-74f45aea2acb`
+
+Rob's session, with Claude as co-author. Rob asked for this item's status and wanted PR #22 mergeable, counting only his last review comment on `8090a94`, since the three-way design it replaced was squashed away. Claude addressed every point of that review except the release tag. Rob moved the release-pinned install lines out to their own PR, #24, rather than tag a release to make #22 safe. He retired the PLAN early in favor of a burndown that tracks both PRs. All nine tests passed against the pushed head, `08d8012`.
+
+## Turn by turn
+
+- **Status.** Claude found the local `main` behind `origin/main`, where the two-way switch was recorded, and read the work item from there. Implementation steps 1–7 were done. Test 2 hadn't run since the switch to two-way.
+- **Review triage.** Claude checked the review's claims against the repo and found all twelve held. The blocking one besides the tag was that check 10 compared only tagged releases. Installs had tracked `main`, so a brain seeded between tags would see toolkit text as own edits. One example, a work setup copied after #19, didn't actually show the defect, because work setup didn't change between `0.70` and #20. A dream cycle copied at the same point did.
+- **The tag.** Claude first held that merging #22 without a new tag would roll every install back to `0.72`. Rob countered that the README didn't advertise Codex or OpenCode 2. Claude showed that `main`'s README does, from #19, and that `main`-tracking Claude Code installs would lose #19, #20 and #22 as well. Rob objected that tagging `0.73` to merge #22 was exactly the pressure he wanted to avoid, and asked about a release-candidate tag. Claude tested git's version sort: by default it ranks `0.73-rc1` above `0.73`, so the line would need `versionsort.suffix`. Rob then asked whether the install-line change could move to its own PR. Claude listed what moves with it, including the dream cycle's toolkit-release check, which never fires on a `main`-tracking install. With installs still tracking `main`, the off-release fix and the full-history fix become required in #22.
+- **Split and fixes.** On Rob's go-ahead, Claude reverted the pin on `template-drift` and applied the review fixes:
+  - earlier template versions read from every commit that changed a template, each distinct blob once;
+  - `--exact-match` for the installed release, with any other install reported as off-release;
+  - the brain's own text left out of the comparison: exemptions-table rows, the hook's lobe paragraph, and a multi-lobe README's namespace sentence;
+  - check 8 no longer replacing paragraphs itself, with check 10's approved change still applying to a paragraph check 8 edited;
+  - the toolkit recognized by `SKILL.md` and `MBT_CHECK_BRAIN.md`;
+  - a multi-lobe dream cycle's skip listing the template's changes, and the README's "whole upgrade" qualified to match;
+  - check 9's separate outcomes for an empty directory, untracked files and a non-git brain;
+  - `create` leaving `<LOBESPACE>` intact where it names the owning lobe at runtime;
+  - the pattern naming its four procedures.
+
+  `install-pin` took the reverted pin back, with `--exact-match` in the dream cycle's check and the "update is a `git pull`" finding corrected.
+- **Script.** Claude gave the comparison script the full-history rule. Its first parse paired the lines of `git log --name-only` two by two, which misaligns on a commit that lists no file, so it now keys on commit hashes. Claude then ran the case the review suggested, procedure files copied at `8ad8deb`: every difference came out behind, missing or dropped. Against lamarr, subwiz and virtual-view, virtual-view's four pre-0.70 own edits became behind.
+- **Plan retired.** Claude walked Rob through the PLAN's unaddressed items: the retests, the review's new case, the deferred offer to file a toolkit issue, and the overlaps with other items. It left the accepted risks out. Rob had the PLAN moved to `archive/` and a burndown tracking both PRs written in its place. The MAT plan's pointer to the test expectations moved to the archived path.
+- **Push.** Rob asked for a separate commit on the PR branch, so Claude squashed the split and the fixes into `08d8012` on top of `8090a94` and moved `install-pin` onto it. At Rob's request Claude rewrote #22's description.
+- **Retests.** Claude rebuilt the previous session's fixtures from its scratchpad scripts against a scratch install of `08d8012`. It ran three headless batches in Claude Code 2.1.319 and graded each on disk. Tests 1, 2 and 6–8 passed. Each report-only run left every repository unchanged, and every run reported the install as off-release at `0.72-18-g08d8012`. Test 7 now shows six behind and no missing paragraph, since the missing one had been the dream cycle's release check. Tests 3–5 and 9 passed by script. Two mismatches between agent and script were the script's own. It counted a multi-lobe README's unchanged namespace sentence as dropped, which Claude fixed. It also treats Phase 1's numbered list as one paragraph, so its four behind paragraphs are the agent's six items.
+- **PR #24.** Claude reran the pinned install line on a scratch path: a fresh install and a rerun land on `0.72`, a bad URL exits 128, and check 7's commands behave on and off a tag. It then pushed `install-pin` and opened #24, based on `template-drift`, with its merge order stated.
+
+## Decisions
+
+- **Ship the install pin in its own PR rather than tag a release to merge #22** — Rob, over Claude's proposal to tag `0.73` at merge and the release-candidate option, so no release is cut under pressure.
+- **Merge #24 only after #22, and only once a release tag exists at or after #22's merge** — Claude, from the rollback to `0.72` that an earlier merge would cause; Rob accepted it with the split.
+- **Move the dream cycle's toolkit-release check with the pin** — Claude, since it never fires on a `main`-tracking install.
+- **Read every commit's version of a template, not only releases** — the review's fix, which Claude adopted, with distinct blobs read once.
+- **Track both PRs under TEMPLATE_DRIFT, with no new work item, and retire the PLAN early for a focused burndown** — Rob.
+- **Push the review round as one new commit, not an amendment** — Rob.
+
+## What didn't work
+
+- An RC tag with the line's default version sort: `0.73-rc1` outranks `0.73`, so installs would stay on the last candidate.
+- Parsing `git log --name-only` in fixed pairs, which a commit listing no file throws out of step.
+- `echo` lines starting with `=` in zsh, which expands them as a command lookup and fails.
+
+## Lessons
+
+- **Check a reviewer's premise against what the repo publishes before conceding or rebutting.** Both the reviewer's work-setup example and Rob's claim about the README were partly wrong, and each was settled by one grep.
+- **When an inert feature depends on a later change, ship them together.** The dream cycle's release check only means something once installs are pinned.
+- **Grade a headless run's counts against what the script calls a paragraph.** A numbered list is one paragraph to the script and several items to the agent.
+
+---
+
 # The drift-grading script ships in `tests/` (2026-11-08)
 
 **Session ID**: `9dd62b33-2b95-4dd2-b2de-07c645e0d576`
@@ -2033,6 +2261,135 @@ Rob's session, with Claude as co-author, replanning MAT. The decision spans MAT 
 
 ---
 
+# MAT replanned as a recipe that fits each machine (2026-11-08)
+
+**Session ID**: `9dd62b33-2b95-4dd2-b2de-07c645e0d576`
+
+Rob's session, with Claude as co-author. With 0.73 close, Rob gave feedback on the scaffolded plan. Contributors won't all have a Mac, every harness, every example brain or unlimited tokens. The battery should run what each machine allows, keep no record of results, print a short report that is loud on failure, and be a recipe rather than a script. Claude rewrote the PLAN, FINDINGS and TESTING docs to match, and Rob refined them over several turns. The docs were committed to `main`.
+
+## Turn by turn
+
+- **Research.** Claude read the scaffolded docs, the 0.72 preflight entries in `MBT_LOG.md`, and the testing sections of PRs #19, #20, #22, #23 and #24. It also read the testing approaches of the four other open items in `working/`. The machine has Claude Code but not Codex or OpenCode, and holds lamarr-brain and virtual-view-brain.
+- **Rewrite.** The plan became a five-part recipe: probe, select, run, grade and report. Selection follows a budget the runner states, and a scenario needing any one harness rotates across the harnesses found. The nine TEMPLATE_DRIFT tests became seed scenarios covering install, create, check, the dream cycle, work items and session closeout. Every scenario runs on fixtures seeded from release tags, so a contributor with no examples can still run the battery. FINDINGS gained the rejected full matrix, the rejected per-release record, and a deferred golden machine. Most of the old open issues were settled in the plan.
+- **Rob's answers.** Rob treated the clash with `CLAUDE.md`'s no-testing-doc binding, which PR #23 had flagged, as housekeeping: the binding goes, and `_TESTING` docs fold into `MBT_TESTING.md`. He asked where the drift-grading script would live if it didn't ship, since the battery has to run on several machines, and it moved to `tests/`. He accepted the three fixed release blockers. He added lamarr-brain and `starburstdata/mini-alien-brain` to the examples.
+- **`tests/` or `archive/`.** Rob asked whether a new top-level directory would need excluding from other instructions, and whether `archive/` would be simpler. Claude found that `archive/` conflicts with the cross-reference rule and with the dream cycle's leakage check, which would try to inline the script into `MBT_TESTING.md`. Rob kept `tests/`.
+- **Comparison with 0.72.** Asked how the plan compares with 0.72's testing, Claude found the plan covers far more of the toolkit. It also found that most of 0.72's fixes came from transcripts showing agents improvising, which a fixed expectation would pass. It had no equivalent for the blind check of virtual-view-brain judged against Rob's own PR. Rob had both added: transcript notes in grading, reported as notes rather than failures, and an optional judgment scenario.
+- **Read-back.** Rob asked for a read-back of the PLAN for accuracy. Claude corrected its earlier claim that `tests/` needs no exclusion: the dream cycle's cross-reference check would flag `MBT_TESTING.md` naming the script, so `MBT_DREAM_CYCLE.md` joined the changes. It also corrected "the 0.72 fixes" to "most of", and fixed several scenario details against the procedures. Two gaps went into open issues. PR #24's pinned lines and release check merge only after the 0.73 tag, and installing the commit under test would overwrite the runner's own install.
+- **Scratch `HOME`.** Rob chose a scratch `HOME` for the install. Claude added the model login as a caveat, which Rob questioned, since the testing is local. Claude explained that agent scenarios call hosted models through each harness's own login, which a scratch `HOME` can hide. The wording became "model login", and where each harness keeps it is left to verify on the first run.
+
+## Decisions
+
+- **Coverage fits each machine, with no full matrix, no recorded results and a short local report** — Rob.
+- **`_TESTING` docs fold into `MBT_TESTING.md` once it exists** — Rob, as housekeeping.
+- **The drift-grading script ships in `tests/`, not `archive/`** — Rob, on Claude's analysis.
+- **Three fixed release blockers: a failed upgrade from the last release, a write to the install, and a report-only run that changes a repository** — Rob, accepting Claude's proposal.
+- **Grade transcripts for improvisation as notes, and add an optional judgment scenario** — Rob, on Claude's recommendation.
+- **Agent scenarios run under a scratch `HOME`** — Rob.
+
+## What didn't work
+
+- Claude's first answer on `tests/` said none of the dream cycle's mechanical checks would touch it. Only the read-back against the cycle's text caught that the cross-reference check would.
+
+## Lessons
+
+- Fixed expectations test mechanics, while the 0.72 preflight's fixes came from reading how agents got there. A battery needs both.
+- A claim about what an instruction ignores should come from reading every rule in it, not from the rules that look relevant.
+
+---
+
+# The comparison script moves to `tests/` for MAT (2026-11-08)
+
+**Session ID**: `9dd62b33-2b95-4dd2-b2de-07c645e0d576`
+
+Rob's session, with Claude as co-author, recorded in full in `MBT_LOG.md`. The consequence for this item: The comparison script doesn't retire to `archive/` at closeout. It moves to `tests/MBT_DRIFT_COMPARE.py` as MAT's drift grader, and whichever item closes first makes the move.
+
+---
+
+# MAT's examples, recipe, fixture seeder and grader land on the work branch (2026-11-08)
+
+**Session ID**: `9dd62b33-2b95-4dd2-b2de-07c645e0d576`
+
+Rob's session, with Claude as co-author, continuing after the replan above. Rob had plan steps 1–4 and 7 carried out: `MBT_EXAMPLES.md`, the move of the drift grader to `tests/`, its check against check 10, `MBT_TESTING.md`, and a fixture seeding script. Rob directed the split: plan and log changes go to `main`, and the toolkit changes go to branch `minimum-acceptance-testing`.
+
+## Turn by turn
+
+- **`tests/` again.** Rob asked whether a hidden `.tests` would mean fewer exclusions. Claude found it would remove none: the cross-reference check is triggered by the path written in `MBT_TESTING.md`, not by the directory's visibility. A hidden directory would also hide the grader from `ls` and from search tools. Rob kept `tests/`.
+- **`MBT_EXAMPLES.md`.** Claude gathered provenance from the local clones, the Codeberg repo and the toolkit's logs. A seeding release is the newest tag at a brain's first commit. Claude found `mini-okx-brain` as well, and Rob left it out. Claude widened the plan's "name and holder only" rule for private brains, since author, release and shape say nothing about a project and scenario selection needs the shape. Claude first left the read-index row for plan step 7, and Rob pointed out that this breaks the pattern. The row and a declared-exemptions row went in with the file.
+- **Moving the grader.** A failed `git checkout` inside a chained command left the plan edit unrun and a stray commit on the branch. Claude redid both before anything was pushed.
+- **Checking the grader against check 10.** Claude found three divergences and confirmed each with a test: tables outside `CLAUDE.md` went unpaired, a literal hub name in a multi-lobe runtime slot matched, and pre-0.70 `<PREFIX>` copies showed false own edits. Rob asked for fixes and reruns. Claude then compared the old and new grader on every example brain. That showed the multi-lobe fix had turned a correctly behind paragraph in virtual-view into an own edit, because `create` at `d66dddf` filled `<LOBESPACE>` with the hub's name. Claude made earlier template versions accept that fill too.
+- **`MBT_TESTING.md`.** Claude wrote the recipe, with fixtures as a part of their own. It also wired the doc into `CLAUDE.md` and the dream cycle in the same commit, applying Rob's read-index point to step 7.
+- **Fixtures.** Claude generalized the single-tag seeding scripts TEMPLATE_DRIFT left in an earlier scratchpad into `tests/MBT_SEED_FIXTURE.py`, following each ref's own create rules. Seeding 0.70, 0.71, 0.72, `8ad8deb` and HEAD in both shapes, and grading every procedure file, found one more grader gap. Create at 0.70–0.72 filled every `<LOBESPACE>` in a multi-lobe hub's procedure files, work-item slots included. With that fixed, HEAD fixtures came out fully current, and no fixture showed an own edit.
+- **Whole-brain grading.** Rob had the caller's preparation folded into the grader as `--brain`. Real brains showed that virtual-view, which predates 0.70, labels each scaffold with a bare doc name, and the scaffold cutter was widened to match.
+- **Nebula.** Claude's summary blamed nebula's many own edits on a compound prefix. Rob questioned it. Nebula's work files are plain `NEBULA_<WORK>_*`, and word-level diffs showed the own edits are owner adaptations over older template text. Claude corrected the claim in the plan.
+
+## Decisions
+
+- **Keep `tests/` visible** — Rob.
+- **Leave `mini-okx-brain` out of the examples** — Rob.
+- **A top-level doc gets its read-index row in the commit that adds it** — Rob.
+- **Plan and log on `main`, and `CLAUDE.md`, `MBT_EXAMPLES.md` and the rest of the toolkit change on the work branch** — Rob.
+- **Fold the caller's preparation into the grader** — Rob, on Claude's offer.
+
+## What didn't work
+
+- A shell command chained across a heredoc kept running after a failed `git checkout`, and committed the plan edit to the wrong branch.
+- Claude's first multi-lobe grader fix was checked only against the targeted test, and regressed a real brain.
+- Claude passed on the old log's compound-prefix line about nebula without checking it against the brain.
+
+## Lessons
+
+- Run a grader change against every example brain before and after, and diff the two runs. The targeted tests passed on the change that regressed virtual-view.
+- Seeding fixtures at every ref and grading them tests the grader and the seeder together. A HEAD fixture must come out fully current, and no fixture may show an own edit.
+- A claim about a brain's shape should come from the brain, not from a log entry about it.
+
+---
+
+# MAT's first run, its reintroduced defects, and draft PR #25 (2026-11-09)
+
+**Session ID**: `9dd62b33-2b95-4dd2-b2de-07c645e0d576`
+
+Rob's session, with Claude as co-author, continuing from the entry above. Rob had Claude check the scratch `HOME`, which failed and was replaced by a test-named install. Claude then ran the recipe for the first time on this machine and fixed what the run found. It ran four reintroduced defects against controls, reworked the scenarios that couldn't catch them, and opened draft PR #25.
+
+## Turn by turn
+
+- **Scratch `HOME`.** A one-line headless prompt under an empty scratch `HOME` reported "Not logged in". Claude's next command would have listed keychain item names. The auto-mode classifier blocked it, and Claude stopped and gave Rob three options instead. Rob chose to install the commit under test as `mini-brain-toolkit-mat` beside his own install. His reasons: it leaves every harness's sign-in alone, and nobody knows what Codex or OpenCode do with a moved `HOME`. The renamed skill loaded and asked whether to run create or check. Its sign-in warning showed that Rob's Claude Code sign-in ends between 2026-11-13 and 2026-11-16, so the probe now reports such warnings.
+- **First run**, against `7048ac3` on a small budget, with Claude as the running agent. Claude Code was the only harness found. The install line passed in all eight runs across zsh and bash. In the upgrade from 0.72, an approve-all check fixed every file, and a report-only second check found no drift and changed nothing. The two runs cost $4.91 and took 13 minutes. Drift edge cases a–c and all six example brains passed by script. The transcripts gave five notes:
+  - the tested agent found the grader inside the test install and tried to run it for check 10;
+  - check 10's temp directory and `python3` were outside the run's permissions;
+  - the agent and the grader counted a list differently;
+  - the seeder named the brain `fix-brain`, where the hook expects `mini-fix-brain`;
+  - the grader showed only the template's side of an own edit.
+- **Fixes.** Rob had all five made. Testing them showed that Claude had called scenario 8 a pass by pairing paragraphs by hand from the wrong file. The grader had missed subwiz's fixed-path hook paragraph, a 28-word rewrite of a 67-word template paragraph. At Rob's direction the grader now pairs a rewrite in place: the one unpaired paragraph between its neighbours' versions that opens with the same four words.
+- **Reintroduced defects.** Claude first worked out which scenario would catch each defect. Two had no scenario.
+  - The install line checking out a tag after a failed fetch: caught by scenario 1, at no cost.
+  - Check 10 reporting create's staged comments as missing, reintroduced by deleting the sentence that guards against it: the agent behaved correctly anyway. The run also showed agents splitting lists differently from one run to the next.
+  - Rob had three changes made. The grader now compares list items one by one. Scenario 6 plants an own edit. Scenario 12 plants a `working/` citation.
+  - In a second round, against controls: the own-edit defect was caught. The staged-comment defect reproduced on a stage-1 fixture with the comments deleted, so that fixture joined scenario 7. The template dream cycle's exemption defect didn't reproduce, because both runs flagged the citation. The runs cost about $8.
+- **PR.** Rob had Claude open draft PR #25 from `minimum-acceptance-testing`, then close out the session.
+
+## Decisions
+
+- **Install the commit under test under a test name, not under a scratch `HOME`** — Rob.
+- **Fix all five of the first run's notes** — Rob, on Claude's proposals.
+- **Pair heavy rewrites in place in the grader** — Rob, choosing between Claude's two options.
+- **Compare list items one by one, plant an own edit in scenario 6 and a `working/` citation in scenario 12, and pay for the additional runs** — Rob.
+
+## What didn't work
+
+- A scratch `HOME`: Claude Code's sign-in doesn't follow it.
+- Claude's first check of scenario 8's known own edits searched the grader's template-side output. Its next check paired paragraphs from the wrong file and reported a pass that wasn't one.
+- Two reintroduced defects didn't reproduce from a one-sentence deletion. Agents fell back on the template's own comments, or on whether a file actually exists.
+- A setup script edit that assumed the hook's paragraph order matched nothing, and the setup had to be rebuilt.
+
+## Lessons
+
+- A grader in reach of the tested agent gets used. Isolation has to be enforced by what's installed, not by what the procedures cite.
+- Reintroduce a defect only after naming the scenario that should catch it. Two of four had none.
+- A defect that doesn't reproduce from its sentence alone needs the fixture that triggered it originally, not a weaker test.
+- A known own edit has to be checked on the brain's side of the pair, on the file that holds it.
+
+---
+
 # The drift grader is copied to `tests/`, not moved, so a PR carries no working file (2026-11-09)
 
 **Session ID**: `9dd62b33-2b95-4dd2-b2de-07c645e0d576`
@@ -2042,7 +2399,31 @@ Rob's session, with Claude as co-author. This reverses the decision recorded abo
 ## Decisions
 
 - **A PR never carries a working file** — Rob. When a work item produces something the toolkit keeps, the PR adds a copy at its canonical home. The original stays in `working/` and retires to `archive/` with its item.
-- **`tests/MBT_DRIFT_COMPARE.py` is a new file built from TEMPLATE_DRIFT's script, and `working/MBT_TEMPLATE_DRIFT_COMPARE.py` is left untouched** — Rob, applied by Claude by amending PR #25's commit.
+- **`tests/MBT_DRIFT_COMPARE.py` is a new file built from TEMPLATE_DRIFT's script, and TEMPLATE_DRIFT's working copy is left untouched** — Rob, applied by Claude by amending PR #25's commit.
+
+---
+
+# PR #25 squashed, and its working file taken out (2026-11-09)
+
+**Session ID**: `9dd62b33-2b95-4dd2-b2de-07c645e0d576`
+
+Rob's session, with Claude as co-author, continuing after the entry above. Rob had PR #25's branch squashed to one commit. Claude checked that the tree was unchanged and force-pushed with lease. Rob then asked what becomes of TEMPLATE_DRIFT's comparison script. Claude first answered that it would be promoted rather than archived, and suggested a burndown note to keep TEMPLATE_DRIFT's closeout from archiving it. Rob said a review would treat the deleted working file as load-bearing, and that working files don't go in PRs. The decision is recorded in full in `MBT_LOG.md`.
+
+## Turn by turn
+
+- **The consequence for this item.** Claude restored TEMPLATE_DRIFT's comparison script in `working/` on the branch, amended the squashed commit as `abce7be`, and force-pushed with lease. PR #25 now changes six files, none in `working/` or `archive/`. The commit message, the PR description, the plan and FINDINGS now say the grader is a copy, not a move.
+
+## Lessons
+
+- A move out of `working/` puts the working file in the PR's diff. Copying keeps it out, and leaves the original to retire with its item.
+
+---
+
+# The comparison script retires with this item after all (2026-11-09)
+
+**Session ID**: `9dd62b33-2b95-4dd2-b2de-07c645e0d576`
+
+Rob's session, with Claude as co-author, recorded in full in `MBT_LOG.md`. The consequence for this item reverses the entry above, "The comparison script moves to `tests/` for MAT". MAT copied the script to `tests/MBT_DRIFT_COMPARE.py` instead of moving it. The comparison script stays in `working/` and retires to `archive/` at closeout, like this item's other working files.
 
 ---
 
@@ -2086,6 +2467,14 @@ Rob's session, with Claude as co-author, continuing after the entry above. This 
 
 ---
 
+# PR #25 rebased onto #26 at V33 (2026-11-09)
+
+**Session ID**: `9dd62b33-2b95-4dd2-b2de-07c645e0d576`
+
+Rob's session, with Claude as co-author. The merge order and the rebase-only rule are recorded in `MBT_LOG.md`. The consequence for this item: once #26 merged, Claude rebased #25's single commit onto `main` as `b293660`. The only conflict was `CLAUDE.md`'s version line, which Rob had resolved to V33, one bump for one commit. #25 still changes the same six files, with nothing in `working/` or `archive/`.
+
+---
+
 # Four procedure fixes from MAT's second-machine run ride in PR #25 (2026-11-09)
 
 **Session ID**: `1f667913-3aba-4e55-9e66-626a2c41a789`
@@ -2108,6 +2497,144 @@ Rob's session, with Claude as co-author. Running MAT's battery on a second machi
 ## Lessons
 
 - **Wording one harness follows is not wording every harness follows.** Each defect here passed in at least one harness, so a fix to a shared procedure is verified in every harness that failed.
+
+---
+
+# MAT's second-machine run, the recipe's improvised steps written in, and a Linux platform (2026-11-09)
+
+**Session ID**: `1f667913-3aba-4e55-9e66-626a2c41a789`
+
+Rob's session, with Claude as co-author, on a machine with Claude Code, Codex and OpenCode 2 and three of the six example brains. Rob asked for the second-machine test, which turned out to be this item's step 6 rather than TEMPLATE_DRIFT's. Claude ran the battery from PR #25's branch on a medium budget, then Rob redirected: the point was to verify the battery, so what mattered was where the runner had to improvise. Those gaps went into `MBT_TESTING.md`, `MBT_EXAMPLES.md` and two new scripts, Linux runs in Docker were added, a fresh-agent dry run found four more gaps, and #25 was squashed to one commit and marked ready for review. The run also found procedure defects, recorded in `MBT_LOG.md` and fixed in #25.
+
+## Turn by turn
+
+- **Which test.** Rob asked to read TEMPLATE_DRIFT and run "the second test" on a second machine. Claude found the matching step in this item's plan, "run it on a second machine", and ran that, saying so.
+- **The run.** Rob chose a medium budget and only the brains already on the machine. Claude probed three harnesses, three shells and three brains, then ran scenarios 1, 2, 6, 7a–c, 8, 10 and 16 and the script half of 14. Scenario 6 in Codex reverted a planted own edit, scenario 10b failed in Claude Code, and Codex and OpenCode 2 doubled the log's separator in 16.
+- **Rob's redirect.** Rob said the run's purpose was to verify MAT, so Claude listed every place it had improvised or changed the instructions. That list had 17 items, four of which decided whether a run means anything: scenario 6's unfixed prompt and planted paragraph, what a label match means, and Codex's read-only `.git`. Rob asked for drafts, and for item 6 had the grader's names recorded in `MBT_EXAMPLES.md` rather than inferred. Checking those names showed that the run's guessed `<project>` for mini-alien-brain had turned a README paragraph into a false own edit.
+- **Scenario 6, rerun.** At Rob's request Claude reran scenario 6 in Codex with the fixed prompt. It reverted the edit again. Rob asked whether OpenCode was the only harness with the defect, and Claude corrected that: Codex was, with OpenCode untested. Rob had both other harnesses run. OpenCode 2 also reverted the edit, and Claude Code kept it.
+- **Bundling the fix.** Rob asked how large the check 10 fix was. At one sentence, Rob chose to carry it in #25 rather than review two PRs. Against the fix all three harnesses kept the edit. In the same run OpenCode 2 also applied its own resolution of a template conflict, so Rob had scenario 6 allow changes outside procedure drift that the agent's report names.
+- **A stray write.** A Claude Code tested agent mistyped a path and wrote a file beside the scratch directory, outside its allowed directories. Claude deleted it after checking the directory held nothing else. The recipe now checks every run for such writes, and counts a hit only when the agent's transcript shows it, since a broad sweep also caught another session's log.
+- **Docker.** Rob asked whether Docker figured in the plans. It didn't, though PR #20 had used it for a macOS-versus-Linux check that retired with its item. Claude added a platform dimension for script scenarios only, since each harness's sign-in lives in the runner's `HOME`. Scenarios 1 and 14 then passed in a Debian container with output identical to the host's. Claude's first script would have written Rob's global git config; the classifier blocked the run, and the script now sets git config for its own process only. At Rob's request it moved to `tests/MBT_SHELL_CHECKS.sh`.
+- **How to approve.** Rob asked what would give enough confidence to merge, with multireview or more dry runs as options. Claude recommended two cheap checks over a code review: the other direction of the check 10 fix, and a fresh agent dry-running the recipe, which gives a read not anchored on Claude's. Both passed. The dry run listed 13 guesses, and Rob had the four that would change a run fixed: the brain search, selection by changed files, split-cost scenarios, and scenario 16's wording.
+- **Procedure fixes and squashes.** Rob had #25 squashed to one commit, then asked that other procedure defects the run found be fixed now rather than later. Claude fixed them, reran the affected scenarios, and squashed again. Commit hashes in the PR description and this item's plan that a squash removed were replaced with descriptions.
+- **What the results verify.** Asked, Claude said the results verify MAT, not 0.73. Scenario 6 last ran before the final procedure changes, #24 isn't included, and much of the battery never ran. 0.73 is verified by a full run after #25 and #24 merge.
+
+## Decisions
+
+- **Second-machine run on local brains only** — Rob.
+- **Record each example's grader names in `MBT_EXAMPLES.md`** — Rob, over inferring them.
+- **Carry the check 10 fix in #25** — Rob, on Claude's sizing.
+- **Scenario 6 allows changes outside procedure drift that the report names** — Rob, from Claude's two options.
+- **Linux for script scenarios only, through Docker** — Claude, on Rob's question; Rob had the script shipped in `tests/`.
+- **Two cheap checks before merge, instead of a full review** — Claude's recommendation, which Rob took.
+- **Fix the dry run's four run-changing gaps now, and leave the other nine for the 0.73 run** — Rob.
+- **One commit for #25** — Rob, twice.
+
+## What didn't work
+
+- `timeout`, which macOS lacks, in the sign-in probe.
+- Variables expanded in zsh, which doesn't word-split them.
+- A scenario 1 script that ran the bad-URL case before the moved-remote case, leaving no install to test.
+- A scratchpad script whose `git config --global` would have changed Rob's own config.
+- A sweep for stray writes that counted any new file under the temp root.
+
+## Lessons
+
+- **When a run exists to test a test, the improvisations are the result.** Rob's redirect turned a pass/fail report into the list of fixes the recipe needed.
+- **A pinned prompt is part of the scenario.** Until scenario 6's prompt was fixed, a failure couldn't be told apart from the wording.
+- **A fresh agent finds the gaps the author's context hides.** The dry run found four run-changing gaps after Claude had written every fix.
+
+---
+
+# Check 10's own-edit and listing rules tightened through MAT (2026-11-09)
+
+**Session ID**: `1f667913-3aba-4e55-9e66-626a2c41a789`
+
+Rob's session, with Claude as co-author, recorded in full in `MBT_LOG.md`. The consequence for this item: check 10, which this item built, changed in PR #25. An own edit is never a recommendation, and changes only when the owner names that paragraph. A skipped multi-lobe dream cycle's history is listed line by line, and every label comes from the template texts as read. This item's tests that approve every change now expect own edits to survive.
+
+---
+
+# lamarr-brain's project repo filled in `MBT_EXAMPLES.md`, as PR #27 (2026-11-09)
+
+**Session ID**: `7aa1697a-4c4f-451d-95d1-829c52e64e8e`
+
+Rob's session, with Claude as co-author, run beside the second-machine session above. Rob asked Claude to read this item's status and to prepare the fields missing from `MBT_EXAMPLES.md` without committing, since the other session was still running. One field could be filled, and it landed as PR #27 after #25 merged.
+
+## Turn by turn
+
+- **Status.** Claude found `MBT_EXAMPLES.md` only on #25's branch, and the local branch a squash behind origin. Its project repos column had dashes for lamarr-brain, mini-alien-brain and mini-guardrails-brain.
+- **Filling the dashes.** Claude searched the clones on this machine for each brain's hook. The `lamarr` clone carries lamarr-brain's in its `CLAUDE.md`. No clone on hand carries mini-alien-brain's or mini-guardrails-brain's. mini-alien-brain names the codebase it describes, but Claude left it out as unconfirmed and as possibly private project detail. Claude prepared the change as a patch in its scratchpad, with the file at V3, and Rob kept the other two dashes.
+- **Applying it.** Rob reset the local branch to origin, and Claude applied the patch. Rob asked for an amend into #25's commit and a force-push. The lease rejected the push: the other session had merged #25 and deleted its branch, and the merged file still had the dash.
+- **PR #27.** Rob had Claude carry the change on a new branch from `main` as its own PR, and drop the local #25 branch.
+
+## Decisions
+
+- **Leave mini-alien-brain's and mini-guardrails-brain's project repos as dashes** — Rob.
+- **Carry the fix as its own PR once #25 had merged** — Rob, on Claude's proposal.
+- **Leave this item's plan citing `MBT_EXAMPLES.md` V2**, since it records what the second-machine run produced — Claude; Rob didn't ask otherwise.
+
+## What didn't work
+
+- An amend for a PR that had merged while the change waited. Only the lease stopped the force-push.
+
+## Lessons
+
+- Fetch and check a PR's state right before amending into it while another session works on it, not just when preparing the change.
+
+---
+
+# PR #25 merged, its branches deleted, and the burndown cut to what remains (2026-11-09)
+
+**Session ID**: `1f667913-3aba-4e55-9e66-626a2c41a789`
+
+Rob's session, with Claude as co-author, continuing after the second-machine entry above. Claude brought #25's description in line with the final commit, and Rob merged it. Claude then deleted the item's branches and rewrote the unfilled burndown. At Rob's direction it was cut to the work that remains, and later dropped the examples item that #27 and Rob's call had settled.
+
+## Turn by turn
+
+- **Description.** Rob asked whether #25's description needed updates. The change list matched the final commit. "Not yet" lacked two gaps: scenario 6 hadn't run since the last procedure changes, and the fold rule hadn't run at all. The description also didn't say the results verify the battery rather than 0.73. Claude added both, updated the cost, and tidied the second-machine list. Rob then merged #25.
+- **Branches.** Claude confirmed the merged commit held exactly the branch's content, then deleted `minimum-acceptance-testing` on GitHub and locally, along with two local backup branches made before the squashes.
+- **Burndown.** The burndown was still the unfilled scaffold. Claude rewrote it with the PR's completed stages and the open work. Rob said a burndown holds no history, so the completed stages came out. Claude had dated two stages wrongly before checking them against the PR and this log.
+- **Examples.** A pull brought in #27 from a parallel session. It filled lamarr-brain's project repo, and recorded Rob's call to leave mini-alien-brain's and mini-guardrails-brain's as dashes. That settled the burndown's examples item, so Claude removed it and deleted #27's branch. Rob reviewed each burndown edit before Claude committed it.
+
+## Decisions
+
+- **A burndown holds only open work** — Rob.
+- **Review burndown edits before they're committed** — Rob.
+
+## Lessons
+
+- **Check what a pull brings in against the open burndown.** A parallel session had already settled one of its items.
+
+---
+
+# Scenario 12's first run, against #24 (2026-11-09)
+
+**Session ID**: `1f667913-3aba-4e55-9e66-626a2c41a789`
+
+Rob's session, with Claude as co-author, retesting TEMPLATE_DRIFT's #24 and recorded in full in that item's log. The consequence for this item: scenario 12 ran for the first time, in Codex, and passed in both release cases. Its run surfaced three things for the recipe.
+
+- **The release check reads the runner's install.** It looks at the standard install paths, so a run that leaves `HOME` alone compares the runner's own clone. The run pointed `HOME` at a scratch home holding a controlled clone at `~/mini-brain-toolkit`, and kept Codex's sign-in through `CODEX_HOME`. Claude Code's sign-in doesn't survive a moved `HOME`, so this way of running scenario 12 is Codex's until another is found.
+- **The planted `working/` file needs reasoning in it.** The fixture's plan held none, so neither run could inline it, and each flagged the reference instead. With reasoning in the file, the leakage check's fix can be graded too.
+- **Phase 3 can't research from Codex's sandbox.** Both runs left checkable SCOPE claims unverified and called external research inapplicable.
+
+---
+
+# #24 rebased onto `main` and retested, and the burndown cut to its merge (2026-11-09)
+
+**Session ID**: `1f667913-3aba-4e55-9e66-626a2c41a789`
+
+Rob's session, with Claude as co-author, after MAT's PR #25 merged. Rob asked whether this item's burndown needed updating. It did: #22 had merged and its section was stale, and Claude cut the burndown to open work. Claude then rebased #24 onto `main` and retested it with MAT's battery, which passed. Only #24's merge and the 0.73 tag remain before closeout.
+
+## Turn by turn
+
+- **Burndown.** The burndown still tracked #22's review and merge, though #22 merged on 2026-11-08. Its last open test, a brain that isn't a git repository, had passed earlier the same day as MAT's scenario 10c. Claude removed the #22 section and kept #24's items. The merge item now follows the order recorded in `MBT_LOG.md`, with #24 as the last commit before 0.73. A new item retests #24 with MAT's scenarios 1 and 12, the second of which needed #24's branch.
+- **Rebase.** Rob asked Claude to rebase #24. #22 had been squash-merged, so Claude rebased #24's one commit off `template-drift` onto `main`. It applied cleanly, with a patch identical to the original. Comparing the branches had suggested #24 also changed `MBT_CHECK_BRAIN.md`. That came from `template-drift`'s later commits, not from #24. Claude force-pushed with lease, then set #24's base to `main`, which has to come before deleting `template-drift`, since deleting a PR's base closes it. The classifier blocked the deletion because Rob had asked only for the rebase, so Claude stopped and gave Rob the command, which Rob ran.
+- **Retest.** Scenario 1 passed on the macOS host and in Docker. A fresh install lands on the newest tag, and a moved remote or a bad URL checks nothing out. Scenario 12 ran the template dream cycle twice in Codex, with `HOME` pointed at a scratch home holding a controlled clone at `~/mini-brain-toolkit`, so Rob's own install was never read. With the clone on `0.72` and its remote publishing a newer tag, the cycle raised the update-and-check item. With the clone off-release, it skipped the check and said why. In both runs the clone was unchanged, no premise was edited, and the planted `working/` citation was flagged.
+
+## Decisions
+
+- **#24 merges last, then 0.73 is tagged on it straight away** — Rob's merge order, restated in the burndown.
+- **Run scenario 12 with a scratch `HOME`, never against the runner's install** — Claude.
 
 ---
 
@@ -2158,6 +2685,55 @@ Work closeout is also silent on a brain with no canonical testing doc.
 
 ---
 
+# The battery's first release run, on the 0.73 candidate, and the recipe fixes it led to (2026-11-09)
+
+**Session ID**: `f6893cc4-c438-446f-a2f4-9bb6be9b4761`
+
+Rob's session, with Claude as co-author. Rob asked for MAT before tagging 0.73, at an "everything" budget. Claude ran it on `2409c9b`, `main` with #24, in Claude Code, Codex and OpenCode 2, on macOS and Linux, against fixtures and five example brains. Nothing major failed: scenario 6 passed from 0.72 and from 0.70, no agent wrote to an install, and no report-only run changed a repository. At Rob's direction everything else the run found was fixed before the tag rather than left to the burndown. The recipe and grader fixes are #29, and this entry covers them. The procedure fixes are #28, which `MBT_LOG.md` records. Claude Code cost about $13.70 across the run, the reruns and the dry runs, on Sonnet 5.5 through an inherited `ANTHROPIC_MODEL`.
+
+## Turn by turn
+
+- **Probe.** #24 was still open, and scenarios 1 and 12 test it. Claude asked whether to wait, and Rob merged it. Three of the six examples were on the machine. Rob had the two public ones cloned into scratch, left lamarr-brain out, chose "everything", and named mini-alien-brain for scenario 17.
+- **Scripts.** Scenarios 1, 7a–c and 8, and the script half of 14, passed on the host and in Debian. Scenario 1's scratch tag sat on HEAD, so it couldn't tell a pinned install line from one that pulls `main`. Claude checked pinning by hand, and the line held in zsh, bash and sh.
+- **Harness commands.** Codex wouldn't start outside a git repository without `--skip-git-repo-check`. Claude Code couldn't list a target outside its allowed directories, so scenario 2's missing brain came back as "can't tell". With the flag and the parent directory added, scenario 2 passed in all three harnesses.
+- **Forks.** Claude split the headless scenarios across six forks of itself, each running one tested agent at a time, at most three at once. Scenario 11's plant in the Claude Code test install showed in other forks' snapshots of it, so Claude had them read the transcript before counting an install write.
+- **Codex writes `/tmp`.** In three runs Codex wrote reports and scripts to `/private/tmp` regardless of `TMPDIR`, and the recipe's sweep never looked there. Claude widened the runner's sweep partway through, and at the end moved the nine files into scratch.
+- **Grader against agents.** In scenario 8, agents on mini-guardrails-brain, mini-nebula-brain and virtual-view-brain labelled about 47 paragraphs as own edits that the grader called missing. These are heavy rewrites of a paragraph that keep its bold lead-in, or rewrites with no shared opening at all.
+- **Judgment.** Check reproduced every decision in the commit message of mini-alien-brain's `560ef3c`. It put a new goal and decision beside the ones the owner rewrote, and renamed terms the owner kept. Rob hasn't judged it.
+- **Rob's redirect.** Claude wrote this run's recipe gaps into the burndown as later work. Rob asked why issues that needed resolving weren't being resolved now, since he wants work items closed at the end of 0.73. Claude agreed and proposed a plan: the recipe gaps in their own PR, the procedure defects in #28, a fresh agent's dry run of the recipe, and reruns of what the fixes touched. The earlier dry run's nine deferred gaps had never been written down, so the fresh dry run stood in for them. Rob took the plan and kept closeout for another session.
+- **Grader pairing.** Claude first checked check 10's wording. It pairs a template paragraph with "the brain's version of it, word for word or rewritten", which supports the agents. The grader now also pairs on a shared bold lead-in. Its first version paired "**Do not** add…" with an unrelated "**Do not** change…", so a lead-in now has to end in `.` or `:`, or be followed by a dash. Every fixture graded as before, and 16 paragraphs in guardrails and nebula moved from missing to own edit. The rest have no shared opening at all, and only a reader can say whether an agent paired them right. The recipe now has the runner read both texts there.
+- **virtual-view-brain's hook.** The grader's "missing" for the hook's clone-path paragraph was right, since the hook predates it. Its fixed `../virtual-view-brain/` path is an own edit, like mini-subtitle-wizard-brain's, so it joined scenario 8's known own edits instead of becoming a grader change.
+- **Codex's sandbox.** A probe showed `-c sandbox_workspace_write.exclude_slash_tmp=true` blocks `/private/tmp` while the scratch `TMPDIR` stays writable, so the recipe's Codex command carries it.
+- **Recipe dry run.** A fresh Claude Code agent dry-ran the recipe with both PRs applied. Most of what it raised came from reading the recipe as a sandboxed run with nobody to answer, which isn't how it runs. Three points were real. If a README line changes shape, the install-line script's substitution fails silently, and the line would install from GitHub into the runner's own install. The script also needed zsh, and the recipe never gave a fixture's grader names. A first guard stopped only the loop's subshell, so the script went on to scenario 14. It now stops the whole run, and a scratch README pointing elsewhere confirmed it.
+
+## Decisions
+
+- **Merge #24 before the run** — Rob.
+- **Clone the two public examples and leave lamarr-brain out** — Rob.
+- **Spend the "everything" budget** — Rob.
+- **Run scenario 17 on mini-alien-brain** — Rob.
+- **Run the headless scenarios in forks, three tested agents at a time** — Claude.
+- **Resolve the run's findings before the 0.73 tag, not after** — Rob.
+- **Pair on the lead-in** — Claude's recommendation, which Rob took.
+- **Have the runner read both texts where the grader can't pair** — Claude.
+- **Scenario 13 passes when nothing would stop a Claude Code run, and its ambiguities are notes** — Claude's recommendation, which Rob took.
+- **A fresh dry run in place of reconstructing the nine unrecorded gaps** — Claude's recommendation, which Rob took.
+- **Leave closeout for another session** — Rob.
+
+## What didn't work
+
+- A guard that called `exit` inside a piped `while` loop, which left only the subshell.
+- A lead-in rule that counted any bold opening, which paired unrelated "Do not" paragraphs.
+- Claude Code's `json` output, which returns only the final message, so a transcript can't be read for improvisation.
+
+## Lessons
+
+- **A sandbox's temp directory is not the scratch directory.** Isolation from `/tmp` has to come from the sandbox's own settings.
+- **A dry run reads a recipe as if it were the runner it imagines.** One that imagines no human and a closed sandbox reports every question and install step as a blocker, so its findings need checking against how the recipe actually runs.
+- **A deferred list nobody writes down is lost.** The earlier dry run's nine gaps survive only as a count.
+
+---
+
 # 0.73 released: #28 and #29 merged, and the tag pushed (2026-11-09)
 
 **Session ID**: `f6893cc4-c438-446f-a2f4-9bb6be9b4761`
@@ -2173,6 +2749,41 @@ Rob's session, with Claude as co-author, closing the 0.73 release that the accep
 
 - **Merge #28 and #29 as they stood, without squashing #28's history** — Rob.
 - **Tag 0.73 on the post-merge commit, lightweight like its two predecessors** — Rob named the commit, and Claude matched the tag type.
+
+---
+
+# MAT's burndown cut to closeout after the 0.73 merges (2026-11-09)
+
+**Session ID**: `f6893cc4-c438-446f-a2f4-9bb6be9b4761`
+
+Rob's session, with Claude as co-author. The merges and the 0.73 tag are in `MBT_LOG.md`. For this item, once #28 and #29 merged, the burndown's last open item was done, so Claude cut it and left only the closeout section. The battery's first release run is complete, and Rob will close the item out in another session.
+
+---
+
+# Cleanup after the 0.73 run, and the sweep fix in PR #30 (2026-11-09)
+
+**Session ID**: `f6893cc4-c438-446f-a2f4-9bb6be9b4761`
+
+Rob's session, with Claude as co-author. After the release, Rob asked what was left before closing. Claude found three working directories in `/private/tmp` that tested Codex agents had left during the run, which the recipe's stray-write sweep never saw. Rob had them deleted, the scratch copies of the private example brains removed, and the sweep fixed in PR #30, which merged.
+
+## Turn by turn
+
+- **Leftovers.** Claude listed the run's traces without changing anything. Three directories in `/private/tmp` dated from the Codex runs in scenarios 7d and 8. They held template-history copies and paragraph extracts, one from the private mini-guardrails-brain. Scratch held 1.7G, including full copies of the private starburstdata brains and the Codex runs' stray reports. Two remote-tracking refs for the merged PR branches were stale, and Rob's own install sat off-release at a commit after 0.72.
+- **Cleanup.** At Rob's direction Claude deleted the three directories, cut scratch to the run's report and per-scenario results, and pruned the refs. Rob's install and the Docker image the Linux runs use were left alone.
+- **Sweep fix.** The recipe's temp-root sweep used `-type f`, so it listed new files and never a new directory, and an agent's working copies tend to land in one. The sweep now lists both. A directory made after a marker file showed up under the new command and not the old one.
+- **Routing.** Claude first wrote this entry in `MBT_LOG.md`, reading its own offer of that log as an explicit direction. Rob pointed out that the work belongs to this item, and chose to revert that entry over leaving it and adding one here.
+
+## Decisions
+
+- **Delete the stray directories and the scratch copies of private brains now, not at session expiry** — Rob, on Claude's recommendation.
+- **Fix the sweep in its own PR rather than leave it to closeout** — Rob.
+- **Leave Rob's own install for him to update** — Claude.
+- **Revert the misrouted entry in `MBT_LOG.md` and write it here** — Rob, over leaving it in place.
+
+## Lessons
+
+- **A sweep that looks only for files misses directories.** All three stray writes the run's own checks missed were directories.
+- **An explicit direction is one the user gives.** A target Claude proposed and the user didn't name leaves routing to the content signal.
 
 ---
 
@@ -2199,3 +2810,44 @@ Rob's session, with Claude as co-author. With 0.73 tagged, Rob asked for release
 - **Put the acceptance-test battery under Toolkit's own brain** — Claude.
 - **Create the release as a draft first** — Rob.
 - **Publish the notes as drafted and mark 0.73 Latest** — Rob.
+
+---
+
+# MAT and TEMPLATE_DRIFT closed out, and the folded text corrected over six read-backs (2026-11-09)
+
+**Session ID**: `e0d98c31-c2d7-412c-aa31-e4798483a0c5`
+
+Rob's session, with Claude as co-author. Rob asked for both work items to be closed out. Claude folded their working docs into this log, `MBT_APPROACH.md`, `MBT_FINDINGS.md` and `MBT_TESTING.md`, and moved their twelve working files to `archive/`. Rob then had each of the three folded docs read back for accuracy, twice each. The read-backs found 26 problems in the text Claude had just written, and Rob had every one fixed before the closeout was committed.
+
+## Turn by turn
+
+- **Closeout.** Both items had merged in full, and no incoming filename was already in `archive/`. Claude merged the two working logs' 21 entries into this log whole, in date order, ordering same-day entries by the commit that first wrote each and leaving this log's own entries in the order they had. APPROACH gained the drift check and the acceptance battery as decisions, and its open question on testing the instructions by running them was rewritten as the second of those. FINDINGS gained eight entries, and its install-line entry's PR anchor was corrected to the PR that shipped the pin. Three of the four cases in MAT's manual test plan became scenarios, and the fourth, a one-time check of the report's format, was left out. SCOPE was checked and left alone.
+- **Retiring references.** Five references to retiring files sat in the folded entries, and one sat in an entry this log already held. Claude rewrote all six, reading the fold exception as covering the sixth, and told Rob, who let it stand.
+- **APPROACH, read back twice.** The first read-back found six problems: a wrong list of procedure files, two of check's four reported labels missing, the dream cycle's release prompt stated without its conditions, a claim that every scenario but one runs on fixtures, and a reason for testing before a release that no record gives. The second found three more. One was in a sentence the first round had rewritten: "most scenarios run on fixtures", where eight of twenty do.
+- **FINDINGS, read back twice.** The first read-back found six problems. The normalization entry described a design that hadn't shipped, the stamp and merge history was told out of order, and the pin was said to be the last commit before the release, which had been the plan. The second found four more, among them that the pin entry warned against merging ahead of a tag without saying that this is what happened, and that one reintroduced defect was never caught.
+- **TESTING, read back twice.** The first read-back found that Claude had declared two by-hand checks as scenarios the running agent grades, so the agent would have checked its own probe. The second found that the last scenario named neither where the runner's installs are nor the right moment to snapshot them.
+
+## Decisions
+
+- **Close out both items in one pass** — Rob.
+- **Rewrite the one retiring reference in an existing entry of this log** — Claude, reported to Rob.
+- **Leave both burndowns' overlap notes in `archive/`, not carried into the other open items' plans** — Claude, reported to Rob.
+- **Read back each folded doc twice, and apply every fix** — Rob.
+- **Keep each doc at one version bump through the corrections** — Claude, since each corrected text added the same day.
+- **Leave out of FINDINGS that one scenario does run under a scratch `HOME`, and leave stray temp directories out of the last scenario** — Claude offered both, and Rob didn't take them up.
+
+## What didn't work
+
+- Folding from the items' decision records without checking them against what shipped. Each record was last edited before its item's final review round, and four false claims came straight from them.
+- Turning checks written to be run by hand into scenarios, without asking who grades them.
+- Writing "most" without counting.
+
+## Lessons
+
+- **A work item's decision record is as old as its last edit, not its merge.** Fold the reasons from the record, and the facts from the shipped procedures and the commit history.
+- **A second read-back checks different things from the first.** The first compared each claim with the procedures. The second compared it with what happened, and with the first round's own fixes.
+
+## Open
+
+- Check's normalization says to fill `<LOBESPACE>` in a single-lobe brain's template copy, and the drift grader folds the brain's lobespace back to the placeholder instead. For a brain that keeps `<LOBESPACE>` in some slots, the two may disagree. A headless report-only check of lamarr-brain, graded against the script, would show it.
+- WORK_PLACEMENT and REHOMING both change `templates/WORK_SETUP.md`, and MULTI_LOBE_DREAM replaces the multi-lobe dream-cycle skip that the skips scenario tests. Each of the four open items adds scenarios when it lands.
