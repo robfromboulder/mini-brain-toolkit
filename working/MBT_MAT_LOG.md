@@ -316,3 +316,30 @@ Rob's session, with Claude as co-author. Rob asked for MAT before tagging 0.73, 
 **Session ID**: `f6893cc4-c438-446f-a2f4-9bb6be9b4761`
 
 Rob's session, with Claude as co-author. The merges and the 0.73 tag are in `MBT_LOG.md`. For this item, once #28 and #29 merged, the burndown's last open item was done, so Claude cut it and left only the closeout section. The battery's first release run is complete, and Rob will close the item out in another session.
+
+---
+
+# Cleanup after the 0.73 run, and the sweep fix in PR #30 (2026-11-09)
+
+**Session ID**: `f6893cc4-c438-446f-a2f4-9bb6be9b4761`
+
+Rob's session, with Claude as co-author. After the release, Rob asked what was left before closing. Claude found three working directories in `/private/tmp` that tested Codex agents had left during the run, which the recipe's stray-write sweep never saw. Rob had them deleted, the scratch copies of the private example brains removed, and the sweep fixed in PR #30, which merged.
+
+## Turn by turn
+
+- **Leftovers.** Claude listed the run's traces without changing anything. Three directories in `/private/tmp` dated from the Codex runs in scenarios 7d and 8. They held template-history copies and paragraph extracts, one from the private mini-guardrails-brain. Scratch held 1.7G, including full copies of the private starburstdata brains and the Codex runs' stray reports. Two remote-tracking refs for the merged PR branches were stale, and Rob's own install sat off-release at a commit after 0.72.
+- **Cleanup.** At Rob's direction Claude deleted the three directories, cut scratch to the run's report and per-scenario results, and pruned the refs. Rob's install and the Docker image the Linux runs use were left alone.
+- **Sweep fix.** The recipe's temp-root sweep used `-type f`, so it listed new files and never a new directory, and an agent's working copies tend to land in one. The sweep now lists both. A directory made after a marker file showed up under the new command and not the old one.
+- **Routing.** Claude first wrote this entry in `MBT_LOG.md`, reading its own offer of that log as an explicit direction. Rob pointed out that the work belongs to this item, and chose to revert that entry over leaving it and adding one here.
+
+## Decisions
+
+- **Delete the stray directories and the scratch copies of private brains now, not at session expiry** — Rob, on Claude's recommendation.
+- **Fix the sweep in its own PR rather than leave it to closeout** — Rob.
+- **Leave Rob's own install for him to update** — Claude.
+- **Revert the misrouted entry in `MBT_LOG.md` and write it here** — Rob, over leaving it in place.
+
+## Lessons
+
+- **A sweep that looks only for files misses directories.** All three stray writes the run's own checks missed were directories.
+- **An explicit direction is one the user gives.** A target Claude proposed and the user didn't name leaves routing to the content signal.
