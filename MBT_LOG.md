@@ -2889,3 +2889,35 @@ Rob's session, with Claude as co-author, continuing after the closeout entry abo
 - Check's normalization for a single-lobe brain still says the reverse of what the grader and this agent did. Rewording it to match would close the question without another run.
 - The grader does not compare staged text that a brain uncommented and then changed.
 - Whether a filled-in clone name is an own edit, reported on every check, or the brain's own value. The acceptance recipe expects the first, and check's fix step reads as the second. Rob's call.
+
+---
+
+# Check's normalization reworded to match the drift grader (2026-11-09)
+
+**Session ID**: `e0d98c31-c2d7-412c-aa31-e4798483a0c5`
+
+Rob's session, with Claude as co-author, continuing after the lamarr-brain entry above. Rob asked for the procedure-drift check's normalization to be reworded to match the grader, which closes the first item that entry left open. Claude reworded the step in `MBT_CHECK_BRAIN.md`, Rob had it read back twice, and the change went to `main` with one added sentence in `MBT_FINDINGS.md`. No check has been run against the new wording.
+
+## Turn by turn
+
+- **The rewording.** The step told check to fill `<LOBESPACE>` in a single-lobe brain's template copy. It now says the placeholder and the brain's lobespace name the same thing there, and to replace the lobespace with the placeholder in every text, the brain's included, which is the grader's rule. The sentence Claude removed was also the only one telling the fix step to write the lobespace into applied text, so that clause moved to the fix step. The comparison changes, and what gets written to a brain does not.
+- **First read-back.** The rule held against the grader's code. Claude's new sentence "leave the brain's text as it stands" was too broad, since the same step drops version lines. The read-back also brought out a cost of the change: a single-lobe brain that left a placeholder unfilled where create should have filled it now compares as current, and no other check looks for one. Claude told Rob, who had the fixes applied. The cost is now stated in the normalization entry of `MBT_FINDINGS.md`.
+- **Second read-back.** Claude's replacement sentence, "fill nothing in the brain's text, with one exception", led into an exception that is not a fill, and was deleted. The change had also left the report showing template text with the placeholder in it while the fix step writes the lobespace, so the report step now shows each recommended text as it would be applied.
+
+## Decisions
+
+- **Match check to the grader, not the grader to check** — Rob.
+- **Keep the fix step writing the lobespace in a single-lobe brain** — Claude.
+- **Accept that an unfilled placeholder compares as current** — Rob, by applying the change after Claude reported the cost.
+- **Commit the procedure change to `main` without a PR** — Rob asked for a commit and push; Claude had offered a branch and PR as the other route.
+- **Leave out a scenario for the new wording until its fixture has been built and graded** — Claude.
+
+## What didn't work
+
+- Each of Claude's two connecting sentences for the brain's text was wrong, and the step reads correctly with neither.
+
+## Open
+
+- A headless check of lamarr-brain against the new wording has not been run.
+- No acceptance scenario would catch this wording regressing. A single-lobe fixture with `<LOBESPACE>` left in one slot, expected to show no drift, would.
+- The grader's staged-text gap and the clone-name question, from the entry above, are unchanged.
