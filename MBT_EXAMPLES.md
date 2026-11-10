@@ -1,6 +1,6 @@
 # Mini-Brain Toolkit: Example Brains
 
-> V2, 2026-11-09.
+> V3, 2026-11-09.
 
 Known mini-brains outside this repository, with their provenance and shape. No entry describes the project its brain holds knowledge of. A private brain gives its holder in place of a link.
 
@@ -19,7 +19,7 @@ Each brain's names, in the order a comparison against the templates takes them: 
 
 | Brain | Names | Project repos |
 |---|---|---|
-| lamarr-brain | `LAMARR Lamarr lamarr` | — |
+| lamarr-brain | `LAMARR Lamarr lamarr` | `lamarr` |
 | mini-alien-brain | `ALIEN Aliens alien` | — |
 | mini-guardrails-brain | `GUARDRAILS Guardrails guardrails` | — |
 | mini-nebula-brain | `NEBULA Nebula nebula` | `nebula` |
