@@ -3028,3 +3028,24 @@ Rob's session, with Claude as co-author, continuing after the entry above. Rob a
 
 - PR #31 is unmerged. Its check change was not run against an acceptance scenario, and its dream-cycle changes are not ported to `templates/DREAM_CYCLE.md`.
 - Two of the cycle's items were not taken up: the new evidence on two open decisions in `MBT_APPROACH.md`, and the three biology decisions.
+
+---
+
+# PR #31 merged by rebase, and its branch deleted (2026-11-10)
+
+**Session ID**: `5cea7fa4-6534-49ad-a83a-7085e17825d4`
+
+Rob's session, with Claude as co-author, continuing after the entry above. Rob asked for PR #31 merged. Claude merged it by rebase and deleted the branch, so the review's four commits are on `main` after the commit that logged the review.
+
+## Turn by turn
+
+- **The merge.** GitHub reported the PR mergeable and clean. Its branch had been cut before the log commit landed on `main`, and the two touch different files, so GitHub's rebase merge replayed the four commits onto `main` without a local rebase first. Claude deleted the branch on both sides and fast-forwarded the local `main`.
+- **A wider prune than asked.** To confirm the remote branch was gone, Claude ran a fetch with `--prune`, which drops every stale remote-tracking ref in the clone, not only this PR's. It told Rob. No local branch was touched.
+
+## Decisions
+
+- **Merge PR #31 as it stood** — Rob. The check change went in without an acceptance scenario rerun, which the PR description states.
+
+## Open
+
+- The two cycle items the review did not take up, as the entry above lists.
