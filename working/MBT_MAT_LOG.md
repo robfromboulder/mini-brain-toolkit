@@ -308,3 +308,11 @@ Rob's session, with Claude as co-author. Rob asked for MAT before tagging 0.73, 
 - **A sandbox's temp directory is not the scratch directory.** Isolation from `/tmp` has to come from the sandbox's own settings.
 - **A dry run reads a recipe as if it were the runner it imagines.** One that imagines no human and a closed sandbox reports every question and install step as a blocker, so its findings need checking against how the recipe actually runs.
 - **A deferred list nobody writes down is lost.** The earlier dry run's nine gaps survive only as a count.
+
+---
+
+# MAT's burndown cut to closeout after the 0.73 merges (2026-11-09)
+
+**Session ID**: `f6893cc4-c438-446f-a2f4-9bb6be9b4761`
+
+Rob's session, with Claude as co-author. The merges and the 0.73 tag are in `MBT_LOG.md`. For this item, once #28 and #29 merged, the burndown's last open item was done, so Claude cut it and left only the closeout section. The battery's first release run is complete, and Rob will close the item out in another session.

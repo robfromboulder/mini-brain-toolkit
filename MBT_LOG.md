@@ -2155,3 +2155,21 @@ Work closeout is also silent on a brain with no canonical testing doc.
 
 - **A dry run of a long procedure always finds the next ambiguity.** Its bar has to be what stops a run, or it never passes.
 - **Removing a check can orphan the decision it guarded.** The blocks check was wrongly worded, but it was the only thing holding APPROACH's grouping true.
+
+---
+
+# 0.73 released: #28 and #29 merged, and the tag pushed (2026-11-09)
+
+**Session ID**: `f6893cc4-c438-446f-a2f4-9bb6be9b4761`
+
+Rob's session, with Claude as co-author, closing the 0.73 release that the acceptance run and its fixes prepared. Rob had both PRs merged and 0.73 tagged.
+
+## Turn by turn
+
+- **Merges.** Claude rebase-merged #28, then #29, and deleted both branches. The two touch disjoint files, so the second applied cleanly, and `main` took all 17 commits as written, including #28's removal of the read-index block checks before the labelled tables restored one.
+- **Tag.** Claude placed the tag on the commit after the merges and MAT's burndown cut, the code the acceptance run and its reruns tested. 0.71 and 0.72 are lightweight tags, so 0.73 is too. The remote now lists 0.73 as its newest release, so the README's install lines install it, and a dream cycle on a 0.72 install raises an update item.
+
+## Decisions
+
+- **Merge #28 and #29 as they stood, without squashing #28's history** — Rob.
+- **Tag 0.73 on the post-merge commit, lightweight like its two predecessors** — Rob named the commit, and Claude matched the tag type.
