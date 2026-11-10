@@ -1,6 +1,6 @@
 # Mini-Brain Toolkit: Dream Cycle
 
-> V36, 2026-11-09.
+> V37, 2026-11-09.
 
 Follow these instructions when the user asks the toolkit to dream and improve itself — the periodic reflection pass that keeps this brain true and small (principle 10).
 
@@ -133,7 +133,7 @@ If a phase found nothing, say so in one line — don't pad.
 
 **Needs-human-decision list.** The dream log entry must include a standalone `## Needs human decision` section — a numbered list where each item states the context, what changed, and the specific decision to make. It is the primary output readers act on, and exactly what the next cycle's orientation step reads — each item must be self-contained, understandable without the rest of the entry. An empty list is fine — write "None" and move on.
 
-**Cycle log.** Append an entry to `MBT_DREAM_LOG.md` using the LOG-entry format from `MBT_SESSION_CLOSEOUT.md`. Keep the entry even for a run that found nothing or was stopped — the orientation step and self-evaluation only work against a kept log. A dry run the user asks for — reviewing these instructions without running the phases — edits nothing, this log included. Cover the standard signal — which phases ran/were skipped and why, what broke or surprised, how many agents were spawned and whether their results were useful, what you'd change about these instructions. Two additions specific to this brain: (1) record the **disconfirmation searches** run in Phase 3, so the adversarial stance is auditable; (2) note anything about *this cycle's structure* that worked or didn't **relative to a product brain's cycle** — that contrast is the raw signal for evolving `templates/DREAM_CYCLE.md`.
+**Cycle log.** Append an entry to `MBT_DREAM_LOG.md` using the LOG-entry format from `MBT_SESSION_CLOSEOUT.md`. Where that format asks for something the run can't find, such as the session ID or the human author's name, record it as unknown rather than asking. Keep the entry even for a run that found nothing or was stopped — the orientation step and self-evaluation only work against a kept log. A dry run the user asks for — reviewing these instructions without running the phases — edits nothing, this log included. Cover the standard signal — which phases ran/were skipped and why, what broke or surprised, how many agents were spawned and whether their results were useful, what you'd change about these instructions. Two additions specific to this brain: (1) record the **disconfirmation searches** run in Phase 3, so the adversarial stance is auditable; (2) note anything about *this cycle's structure* that worked or didn't **relative to a product brain's cycle** — that contrast is the raw signal for evolving `templates/DREAM_CYCLE.md`.
 
 **Model and effort.** Record the model and effort level used for the cycle in the dream log entry header (after the session-ID line). The model name is stated in the system environment context ("You are powered by the model named…"); the effort level may appear in session command output. If either cannot be determined, record it as unknown. This is what makes runs comparable on depth and cost — a low-effort small-model run and a high-effort large-model run are not the same cycle.
 
