@@ -1,12 +1,14 @@
 # Mini-Brain Toolkit: Entrypoint
 
-> V34, 2026-11-09.
+> V35, 2026-11-09.
 
 ---
 
 ## Read Index
 
 All paths are relative to this repo root (`CLAUDE.md`'s directory). Before reading, state which files in one line and read them the same turn (not a permission request). Read only what the question needs.
+
+**Product** — the pattern this toolkit ships: its definition, procedures and skill, and the research that extends it.
 
 | Purpose | File |
 |---|---|
@@ -20,6 +22,11 @@ All paths are relative to this repo root (`CLAUDE.md`'s directory). Before readi
 | Research agenda — where the pattern could go, and how it compares to related work | `MBT_RESEARCH.md` |
 | Comparable systems — the second-brain / agent-memory landscape (read during the dream cycle's competitive-landscape pass) | `MBT_COMPARABLES.md` |
 | Cognitive-science grounding — biological models the pattern draws on (read during the dream cycle's biological-grounding pass) | `MBT_BIOLOGY.md` |
+
+**Own brain** — the toolkit's own problem, design, findings and maintenance.
+
+| Purpose | File |
+|---|---|
 | Problem definition, the world it exists in, goals | `MBT_SCOPE.md` |
 | Technical approach, key design decisions | `MBT_APPROACH.md` |
 | Key implementation findings (invisible from the files) | `MBT_FINDINGS.md` |
@@ -31,7 +38,7 @@ All paths are relative to this repo root (`CLAUDE.md`'s directory). Before readi
 | Dream cycle — periodic self-improvement pass | `MBT_DREAM_CYCLE.md` (read when asked to dream) |
 | Dream cycle session log | `MBT_DREAM_LOG.md` |
 
-Only files in this table are current. `templates/` holds the base files `MBT_CREATE_BRAIN.md` copies; `archive/` holds source material and retired docs — ignore both unless asked or routed by the table. `tests/` holds the scripts `MBT_TESTING.md` runs; they are current, and no procedure writes to them.
+Only files in these tables are current. `templates/` holds the base files `MBT_CREATE_BRAIN.md` copies; `archive/` holds source material and retired docs — ignore both unless asked or routed by the tables. `tests/` holds the scripts `MBT_TESTING.md` runs; they are current, and no procedure writes to them.
 
 `working/` holds experiments and a work item's in-flight `MBT_<WORK>_*` docs, where `<WORK>` is the item's slug. When a work item concludes, fold them into the canonical docs and **move** (not delete) them to `archive/`. A move never overwrites. `git mv` enforces this for tracked files; for an untracked file, check the destination before moving. If `archive/` already holds a file of an incoming file's name, stop and ask the developer for a new slug. Before moving any file, rename all of the item's files still in `working/` to that slug and rewrite their references to each other. The item's PLAN, once consumed (converted to code), may move there early at the developer's request — walk its significant unaddressed items with the developer first.
 
