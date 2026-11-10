@@ -259,3 +259,52 @@ Rob's session, with Claude as co-author, retesting TEMPLATE_DRIFT's #24 and reco
 - **The release check reads the runner's install.** It looks at the standard install paths, so a run that leaves `HOME` alone compares the runner's own clone. The run pointed `HOME` at a scratch home holding a controlled clone at `~/mini-brain-toolkit`, and kept Codex's sign-in through `CODEX_HOME`. Claude Code's sign-in doesn't survive a moved `HOME`, so this way of running scenario 12 is Codex's until another is found.
 - **The planted `working/` file needs reasoning in it.** The fixture's plan held none, so neither run could inline it, and each flagged the reference instead. With reasoning in the file, the leakage check's fix can be graded too.
 - **Phase 3 can't research from Codex's sandbox.** Both runs left checkable SCOPE claims unverified and called external research inapplicable.
+
+---
+
+# The battery's first release run, on the 0.73 candidate, and the recipe fixes it led to (2026-11-09)
+
+**Session ID**: `f6893cc4-c438-446f-a2f4-9bb6be9b4761`
+
+Rob's session, with Claude as co-author. Rob asked for MAT before tagging 0.73, at an "everything" budget. Claude ran it on `2409c9b`, `main` with #24, in Claude Code, Codex and OpenCode 2, on macOS and Linux, against fixtures and five example brains. Nothing major failed: scenario 6 passed from 0.72 and from 0.70, no agent wrote to an install, and no report-only run changed a repository. At Rob's direction everything else the run found was fixed before the tag rather than left to the burndown. The recipe and grader fixes are #29, and this entry covers them. The procedure fixes are #28, which `MBT_LOG.md` records. Claude Code cost about $13.70 across the run, the reruns and the dry runs, on Sonnet 5.5 through an inherited `ANTHROPIC_MODEL`.
+
+## Turn by turn
+
+- **Probe.** #24 was still open, and scenarios 1 and 12 test it. Claude asked whether to wait, and Rob merged it. Three of the six examples were on the machine. Rob had the two public ones cloned into scratch, left lamarr-brain out, chose "everything", and named mini-alien-brain for scenario 17.
+- **Scripts.** Scenarios 1, 7a–c and 8, and the script half of 14, passed on the host and in Debian. Scenario 1's scratch tag sat on HEAD, so it couldn't tell a pinned install line from one that pulls `main`. Claude checked pinning by hand, and the line held in zsh, bash and sh.
+- **Harness commands.** Codex wouldn't start outside a git repository without `--skip-git-repo-check`. Claude Code couldn't list a target outside its allowed directories, so scenario 2's missing brain came back as "can't tell". With the flag and the parent directory added, scenario 2 passed in all three harnesses.
+- **Forks.** Claude split the headless scenarios across six forks of itself, each running one tested agent at a time, at most three at once. Scenario 11's plant in the Claude Code test install showed in other forks' snapshots of it, so Claude had them read the transcript before counting an install write.
+- **Codex writes `/tmp`.** In three runs Codex wrote reports and scripts to `/private/tmp` regardless of `TMPDIR`, and the recipe's sweep never looked there. Claude widened the runner's sweep partway through, and at the end moved the nine files into scratch.
+- **Grader against agents.** In scenario 8, agents on mini-guardrails-brain, mini-nebula-brain and virtual-view-brain labelled about 47 paragraphs as own edits that the grader called missing. These are heavy rewrites of a paragraph that keep its bold lead-in, or rewrites with no shared opening at all.
+- **Judgment.** Check reproduced every decision in the commit message of mini-alien-brain's `560ef3c`. It put a new goal and decision beside the ones the owner rewrote, and renamed terms the owner kept. Rob hasn't judged it.
+- **Rob's redirect.** Claude wrote this run's recipe gaps into the burndown as later work. Rob asked why issues that needed resolving weren't being resolved now, since he wants work items closed at the end of 0.73. Claude agreed and proposed a plan: the recipe gaps in their own PR, the procedure defects in #28, a fresh agent's dry run of the recipe, and reruns of what the fixes touched. The earlier dry run's nine deferred gaps had never been written down, so the fresh dry run stood in for them. Rob took the plan and kept closeout for another session.
+- **Grader pairing.** Claude first checked check 10's wording. It pairs a template paragraph with "the brain's version of it, word for word or rewritten", which supports the agents. The grader now also pairs on a shared bold lead-in. Its first version paired "**Do not** add…" with an unrelated "**Do not** change…", so a lead-in now has to end in `.` or `:`, or be followed by a dash. Every fixture graded as before, and 16 paragraphs in guardrails and nebula moved from missing to own edit. The rest have no shared opening at all, and only a reader can say whether an agent paired them right. The recipe now has the runner read both texts there.
+- **virtual-view-brain's hook.** The grader's "missing" for the hook's clone-path paragraph was right, since the hook predates it. Its fixed `../virtual-view-brain/` path is an own edit, like mini-subtitle-wizard-brain's, so it joined scenario 8's known own edits instead of becoming a grader change.
+- **Codex's sandbox.** A probe showed `-c sandbox_workspace_write.exclude_slash_tmp=true` blocks `/private/tmp` while the scratch `TMPDIR` stays writable, so the recipe's Codex command carries it.
+- **Recipe dry run.** A fresh Claude Code agent dry-ran the recipe with both PRs applied. Most of what it raised came from reading the recipe as a sandboxed run with nobody to answer, which isn't how it runs. Three points were real. If a README line changes shape, the install-line script's substitution fails silently, and the line would install from GitHub into the runner's own install. The script also needed zsh, and the recipe never gave a fixture's grader names. A first guard stopped only the loop's subshell, so the script went on to scenario 14. It now stops the whole run, and a scratch README pointing elsewhere confirmed it.
+
+## Decisions
+
+- **Merge #24 before the run** — Rob.
+- **Clone the two public examples and leave lamarr-brain out** — Rob.
+- **Spend the "everything" budget** — Rob.
+- **Run scenario 17 on mini-alien-brain** — Rob.
+- **Run the headless scenarios in forks, three tested agents at a time** — Claude.
+- **Resolve the run's findings before the 0.73 tag, not after** — Rob.
+- **Pair on the lead-in** — Claude's recommendation, which Rob took.
+- **Have the runner read both texts where the grader can't pair** — Claude.
+- **Scenario 13 passes when nothing would stop a Claude Code run, and its ambiguities are notes** — Claude's recommendation, which Rob took.
+- **A fresh dry run in place of reconstructing the nine unrecorded gaps** — Claude's recommendation, which Rob took.
+- **Leave closeout for another session** — Rob.
+
+## What didn't work
+
+- A guard that called `exit` inside a piped `while` loop, which left only the subshell.
+- A lead-in rule that counted any bold opening, which paired unrelated "Do not" paragraphs.
+- Claude Code's `json` output, which returns only the final message, so a transcript can't be read for improvisation.
+
+## Lessons
+
+- **A sandbox's temp directory is not the scratch directory.** Isolation from `/tmp` has to come from the sandbox's own settings.
+- **A dry run reads a recipe as if it were the runner it imagines.** One that imagines no human and a closed sandbox reports every question and install step as a blocker, so its findings need checking against how the recipe actually runs.
+- **A deferred list nobody writes down is lost.** The earlier dry run's nine gaps survive only as a count.

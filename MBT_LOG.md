@@ -2108,3 +2108,50 @@ Rob's session, with Claude as co-author. Running MAT's battery on a second machi
 ## Lessons
 
 - **Wording one harness follows is not wording every harness follows.** Each defect here passed in at least one harness, so a fix to a shared procedure is verified in every harness that failed.
+
+---
+
+# Procedure fixes from the 0.73 acceptance run, in PR #28 (2026-11-09)
+
+**Session ID**: `f6893cc4-c438-446f-a2f4-9bb6be9b4761`
+
+Rob's session, with Claude as co-author. The MAT run on `2409c9b` found no major failure, but it turned up defects in check, the template dream cycle, both closeout templates and the toolkit's own dream cycle. Rob had all of them fixed before the 0.73 tag, in PR #28, and each fix was verified by rerunning the scenario that found it. The run itself is in MAT's log.
+
+## Turn by turn
+
+- **Check's update advice.** Check had every report say that the README's install line updates the install, and four runs told an install ahead of 0.72 to update to it. It now names the line only when the remote publishes a newer release.
+- **Template dream cycle stops.** Without web search, one run stopped at Phase 3 and another carried on. A run on a 0.71 install stopped because its README has no install line for the release item to name. Phase 3 now lists its claims as unverified and continues, and the item names the newest release's README. Reruns at three install positions passed.
+- **Unattended log entries.** Every dream run asked how to attribute its entry, and session closeout says to ask for a missing session ID. Rob asked how large the fix was, and at one sentence in each dream cycle had it added: what the run can't find, it records as unknown.
+- **Read-index blocks.** The toolkit dream cycle said the read index is grouped in two blocks, and nothing marked them, so a dry run judged the step impossible. Claude removed the check and missed a second mention until a rerun found it. The auto-mode classifier blocked the force-push meant to squash that, so it landed as its own commit. The next dry run showed APPROACH's dogfooding decision, product and own-brain files grouped rather than interleaved, now had no check. Rob asked whether APPROACH claimed something other brains don't implement. Claude found the decision scoped to the toolkit and held by row order alone. On Claude's recommendation Rob had the index split into labelled Product and Own brain tables, with the check restored against the labels. Rob later asked whether the split had been phased out, and Claude walked the PR's history: the removals came first, then the labels.
+- **Closeout templates.** Work closeout found a slug collision only at the move, after merging the item's docs. It now settles the slug first, and a rerun with a collision stopped before any edit. It also stopped narrating the dream cycle, against the bookends' boundary rule. Session closeout says "discoveries" where it meant the generic sense of the enforced term Finding.
+- **Toolkit dream-cycle ambiguities.** Five dry runs of `MBT_DREAM_CYCLE.md` each stopped on a different ambiguity. In turn they settled:
+  - the logs, template paths, and example and external names in the reference checks;
+  - Phase 3 with no web access, and the score of a skipped Phase 3;
+  - the nap gate's flags, the Phase 4 slice, and the delegation threshold.
+  Treating generic brain filenames as not sibling references wrote down the reading the last cycle's owner review had taken. The final dry run found nothing that would stop a Claude Code run.
+
+## Decisions
+
+- **Fix check's advice and the template dream cycle's stops before the tag** — Rob.
+- **Record what an unattended run can't find as unknown** — Rob, on Claude's sizing.
+- **Label the read index's two tables rather than leave the grouping implicit or drop it** — Rob, on Claude's recommendation.
+- **Fix the closeout templates and the toolkit dream cycle's ambiguities in #28** — Claude's recommendation, which Rob took.
+- **A new commit rather than a force-push** — Claude, after the classifier blocked it.
+
+## Still open
+
+The final dry run's minor items, for a dream cycle to weigh:
+- step 6 flags invented and filled-placeholder `working/` paths;
+- step 3's "every top-level file" takes in `LICENSE`;
+- step 4 doesn't settle bare doc-type names such as SCOPE;
+- Phase 2's file-set check and its Update rule overlap, and "the maintenance templates" is undefined;
+- "Expect all ten principles present" meets principle 9's standing partial;
+- the Phase 4 slice re-reads same-day entries;
+- Phase 3 wording matches nothing in the registries: a candidate list, a fast-moving flag, an agent cap against per-field searches.
+
+Work closeout is also silent on a brain with no canonical testing doc.
+
+## Lessons
+
+- **A dry run of a long procedure always finds the next ambiguity.** Its bar has to be what stops a run, or it never passes.
+- **Removing a check can orphan the decision it guarded.** The blocks check was wrongly worded, but it was the only thing holding APPROACH's grouping true.
