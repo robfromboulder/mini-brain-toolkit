@@ -66,6 +66,13 @@ def compare(tmpl, text):
         hi = min((pos(match[x]) for x in now[i+1:] if x in match), default=len(brain))
         cand = [q for q in brain[lo+1:hi] if q not in ns and q not in paired and not owned(q) and opening(q) == opening(p)]
         if len(cand) == 1: paired.add(cand[0]); match[p] = cand[0]
+    # a rewrite that keeps its bold lead-in is still the brain's version of it, wherever it sits: pair it when exactly one unpaired brain paragraph carries that lead-in.
+    # A lead-in is bold text that ends in . or :, or is followed by a dash; bold emphasis such as "**Do not** add" is not one.
+    lead = lambda s: (m := re.match(r"(?:[-*] |\d+\. )?\*\*(.+?)\*\*( —)?", s)) and (m.group(1)[-1] in ".:" or m.group(2)) and m.group(1)
+    for p in now:
+        if p in match or not lead(p): continue
+        cand = [q for q in brain if q not in ns and q not in paired and not owned(q) and lead(q) == lead(p)]
+        if len(cand) == 1: paired.add(cand[0]); match[p] = cand[0]
     for p in now:
         if p not in match: out["missing"].append(p)
         elif match[p] != p: out["behind" if match[p] in old else "own-edit"].append(p); out["brain-side"][p] = match[p]
