@@ -1,6 +1,6 @@
 # Mini-Brain Toolkit: Entrypoint
 
-> V32, 2026-11-09.
+> V34, 2026-11-09.
 
 ---
 
@@ -26,10 +26,12 @@ All paths are relative to this repo root (`CLAUDE.md`'s directory). Before readi
 | Session log — why we chose what we chose | `MBT_LOG.md` (read from last `---`; large) |
 | Session log update format and rules | `MBT_SESSION_CLOSEOUT.md` (read when asked to update the session log) |
 | Enforced terms — the brain's reserved vocabulary | `MBT_ENFORCED_TERMS.md` |
+| Acceptance testing — the scenarios to run before a release, and how to run them | `MBT_TESTING.md` (read when asked to run the acceptance tests) |
+| Example brains outside this repo — provenance and shape, for testing against | `MBT_EXAMPLES.md` |
 | Dream cycle — periodic self-improvement pass | `MBT_DREAM_CYCLE.md` (read when asked to dream) |
 | Dream cycle session log | `MBT_DREAM_LOG.md` |
 
-Only files in this table are current. `templates/` holds the base files `MBT_CREATE_BRAIN.md` copies; `archive/` holds source material and retired docs — ignore both unless asked or routed by the table.
+Only files in this table are current. `templates/` holds the base files `MBT_CREATE_BRAIN.md` copies; `archive/` holds source material and retired docs — ignore both unless asked or routed by the table. `tests/` holds the scripts `MBT_TESTING.md` runs; they are current, and no procedure writes to them.
 
 `working/` holds experiments and a work item's in-flight `MBT_<WORK>_*` docs, where `<WORK>` is the item's slug. When a work item concludes, fold them into the canonical docs and **move** (not delete) them to `archive/`. A move never overwrites. `git mv` enforces this for tracked files; for an untracked file, check the destination before moving. If `archive/` already holds a file of an incoming file's name, stop and ask the developer for a new slug. Before moving any file, rename all of the item's files still in `working/` to that slug and rewrite their references to each other. The item's PLAN, once consumed (converted to code), may move there early at the developer's request — walk its significant unaddressed items with the developer first.
 
@@ -41,8 +43,7 @@ Only files in this table are current. `templates/` holds the base files `MBT_CRE
 - A work item's code is this toolkit's docs and templates, so doc-only work is code-changing work.
 - Closeout's target walk covers the read index, the rest of `templates/`, and `README.md`.
 - A substantively edited file in `templates/` keeps its `> V1, <date>.` line if it carries one. Closeout's version-header check does not apply to files in `templates/`.
-- This brain has no canonical testing doc, so an item's `_TESTING` and `_CLAUDE` docs retire to `archive/` unfolded.
-- In generated `_TESTING` docs, replace "At closeout these fold into the canonical testing doc." with "At closeout this doc retires to `archive/` unfolded."
+- `MBT_TESTING.md` is the canonical testing doc: at closeout an item's `_TESTING` doc folds into it, as scenarios, the cases worth repeating at each release. This brain has no canonical runbook, so an item's `_CLAUDE` doc retires to `archive/` unfolded.
 
 ---
 
@@ -50,7 +51,7 @@ Only files in this table are current. `templates/` holds the base files `MBT_CRE
 
 **Top-level vs archive.** A top-level file is the canonical current version; its history lives in version control. `archive/` is a stash for source material and retired/absorbed docs — not in-tree version snapshots.
 
-**Append-only logs.** A canonical LOG file is never archived, and no LOG file is edited after the fact. Append-only governs an entry's content, not its position: once written, an entry is never revised, split, or merged. New entries go at the end. The one exception is folding another log into this one, which places that log's entries whole and in date order among the existing ones, so the last separator still holds the most recently written entry.
+**Append-only logs.** A canonical LOG file is never archived, and no LOG file is edited after the fact. Append-only governs an entry's content, not its position: once written, an entry is never revised, split, or merged. New entries go at the end. The one exception is folding another log into this one, which places that log's entries whole and in date order among the existing ones, so the last separator still holds the most recently written entry. A fold may rewrite an entry's references to work-item files that are retiring and drop its pending-closeout block; it changes nothing else in the entry.
 
 **File naming.** Every mini-brain filename carries the `MBT` lobespace — shared docs as `MBT_*`. Five files are exempt: `CLAUDE.md` (entrypoint), `AGENTS.md` (sends agents that read only it to the entrypoint), `SKILL.md` (skill entrypoint, a name the agents that load skills fix), and the repo artifacts `README.md` and `CONTRIBUTING.md`. New top-level knowledge files must include the lobespace; files in `archive/` keep whatever basename they were retired under.
 
@@ -70,6 +71,7 @@ Only files in this table are current. `templates/` holds the base files `MBT_CRE
 | `MBT_APPROACH.md` | `MBT_SCOPE.md` only | A design legitimately responds to the problem it addresses — never reaching down into implementation. |
 | `MBT_FINDINGS.md` | *none* | Implementation decisions that did *not* shape the approach — downstream of it, so nothing upstream to cite. |
 | `MBT_ENFORCED_TERMS.md` | *none* | Each entry stands alone; it disambiguates without referencing the term's home document. |
+| `MBT_EXAMPLES.md` | *none* | A list of brains and their provenance stands alone; it needs no procedure to be read. |
 | `MBT_PATTERN.md` | *none* | The canonical definition stands alone; it precedes the procedures that enact it and the research that extends it, and reaches down to neither. |
 | `MBT_LOBES.md` | `MBT_PATTERN.md` only | An optional layout layer serves the definition it extends — upstream — and reaches down to no procedure. |
 | `MBT_RESEARCH.md` | *none* | The conclusions the two registries feed upward into; naming them would reach *downstream*, and it needs nothing else. |
@@ -78,7 +80,7 @@ Only files in this table are current. `templates/` holds the base files `MBT_CRE
 
 Absent a declared exemption, full orthogonality holds; a different project would declare its own set. A permitted reference still follows the Cross-references rule above — cited by name, never by section number.
 
-**Maintenance-doc boundaries.** `MBT_DREAM_CYCLE.md` and the procedure docs `MBT_CREATE_BRAIN.md` / `MBT_CHECK_BRAIN.md` enact the pattern, so each may cite `MBT_PATTERN.md` and `MBT_LOBES.md` as the definitions it implements. Any procedure that appends a log entry cites `MBT_SESSION_CLOSEOUT.md` as the entry-format authority; beyond that they do not reference one another, and naming the knowledge files they operate on is inherent to being a procedure, not a cross-reference. `MBT_SESSION_CLOSEOUT.md` governs the session logs — `MBT_LOG.md` and any open work item's working log — and references nothing else. `SKILL.md` dispatches to `MBT_CREATE_BRAIN.md` and `MBT_CHECK_BRAIN.md`, sets where their toolkit paths resolve, and references nothing else. `AGENTS.md` references only `CLAUDE.md`.
+**Maintenance-doc boundaries.** `MBT_DREAM_CYCLE.md` and the procedure docs `MBT_CREATE_BRAIN.md` / `MBT_CHECK_BRAIN.md` enact the pattern, so each may cite `MBT_PATTERN.md` and `MBT_LOBES.md` as the definitions it implements. Any procedure that appends a log entry cites `MBT_SESSION_CLOSEOUT.md` as the entry-format authority; beyond that they do not reference one another, and naming the knowledge files they operate on is inherent to being a procedure, not a cross-reference. `MBT_SESSION_CLOSEOUT.md` governs the session logs — `MBT_LOG.md` and any open work item's working log — and references nothing else. `SKILL.md` dispatches to `MBT_CREATE_BRAIN.md` and `MBT_CHECK_BRAIN.md`, sets where their toolkit paths resolve, and references nothing else. `AGENTS.md` references only `CLAUDE.md`. `MBT_TESTING.md` runs the toolkit's procedures as tests, so naming the files under test is inherent to it; beyond them it references only `MBT_EXAMPLES.md` and the scripts in `tests/`.
 
 **No harness memory.** Don't use the persistent memory feature. All persistent project information belongs in the markdown files in this directory.
 

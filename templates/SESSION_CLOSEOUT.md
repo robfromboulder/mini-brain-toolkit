@@ -23,7 +23,7 @@ When a part belongs to a single work item but the content and branch signals poi
 
 **Appending:**
 1. Determine the target log files using the routing rule above; steps 2–4 apply to each entry.
-2. Add a `---` at the end of that file, then the entry below it. **Append only — never revise or correct prior sessions.**
+2. End the file with a `---` line, adding one only if it doesn't already end with one, then add the entry below it. **Append only — never revise or correct prior sessions.**
 3. Entry shape: an H1 with a short title and date (`# <title> (YYYY-MM-DD)`); a `` **Session ID**: `<session-id>` `` line; a one-paragraph lead (what the session set out to do and what landed); then `##` subsections for the turn-by-turn lineage, decisions, what didn't work, and lessons — chosen per session, not a fixed template.
 4. Session ID = the current session's ID, which the harness sets in its shell environment: `$CLAUDE_CODE_SESSION_ID` in Claude Code, `$CODEX_THREAD_ID` in Codex, `$OPENCODE_SESSION_ID` in OpenCode. Read only the variable of the harness running this session, since a harness started from another's session inherits that one's variable. Ask if it isn't set.
 
