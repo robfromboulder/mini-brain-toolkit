@@ -1,6 +1,6 @@
 # Mini-Brain Toolkit: Acceptance Testing
 
-> V12, 2026-11-09.
+> V13, 2026-11-09.
 
 The acceptance scenarios to run before a release, and how to run them on whatever machine is at hand. It takes its example brains from `MBT_EXAMPLES.md`, seeds fixtures with `tests/MBT_SEED_FIXTURE.py`, grades drift with `tests/MBT_DRIFT_COMPARE.py`, snapshots repositories with `tests/MBT_SNAPSHOT.sh`, and runs the shell-sensitive script scenarios with `tests/MBT_SHELL_CHECKS.sh`. This is a recipe: each scenario states its setup and the outcome it expects, and the running agent works out the steps.
 
@@ -53,7 +53,7 @@ Tell the runner what was picked and what the budget left out, and wait for their
 - **Linux.** Run a scenario's Linux half in a `debian:stable-slim` container, as `tests/MBT_SHELL_CHECKS.sh`'s header shows, with the toolkit checkout mounted read-only and an empty scratch directory mounted for its work. The container's `sh` is dash. Agent scenarios run on the host only, because each harness's sign-in lives in the runner's `HOME`.
 - **Batches.** Run headless jobs two or three at a time. Usage limits stop larger batches partway.
 - **Scripts.** Run every command that uses a variable through `bash -c`, and write any loop in bash. Under zsh an unquoted variable isn't word-split, and a line starting with `=` is a command lookup.
-- **Before and after.** Before each scenario that runs an agent, run `tests/MBT_SNAPSHOT.sh` on every directory it can reach and on the test install, naming no directory that holds another one named, and save the output. §5 compares it with a second snapshot after. A harness's permissions don't reliably confine writes to the directories it was given, so after each run, also look for files written since it started in the directory holding the scratch directory and at the top of the system temp directory: `find <that directory> -newer <the first snapshot's file> -type f -not -path '<scratch directory>/*'`, and `find /tmp /private/tmp -maxdepth 1 -newer <the first snapshot's file> -type f`. Other sessions write there too, so count a hit only when the agent's transcript shows it wrote that path.
+- **Before and after.** Before each scenario that runs an agent, run `tests/MBT_SNAPSHOT.sh` on every directory it can reach and on the test install, naming no directory that holds another one named, and save the output. §5 compares it with a second snapshot after. A harness's permissions don't reliably confine writes to the directories it was given, so after each run, also look for files written since it started in the directory holding the scratch directory and at the top of the system temp directory: `find <that directory> -newer <the first snapshot's file> -type f -not -path '<scratch directory>/*'`, and `find /tmp /private/tmp -mindepth 1 -maxdepth 1 -newer <the first snapshot's file>`, which lists a new directory as well as a new file, since an agent's working copies often land in one. Other sessions write there too, so count a hit only when the agent's transcript shows it wrote that path.
 
 ## 4. Fixtures
 
