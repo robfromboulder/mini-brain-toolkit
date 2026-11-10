@@ -261,3 +261,18 @@ Rob's session, with Claude as co-author. Rob asked for the dream cycle with no c
 - **New ground vs. re-tread:** **incremental.** New: three findings, an unreferenced template, a second candidate term, and open issues stranded by two closeouts. Re-tread: Phase 1, the principles and lobes comparisons, and the design check all repeated the last cycle's result.
 - **Depth achieved:** Phases 1, 2, 4 and 5 ran to intent. Phase 2's self-check ran check's logic by reading, without the web-dependent factual-drift claims, as the cycle prescribes. Phase 3 did not run.
 - **Diminishing returns:** none yet. This is the first napped run after two high-yield ones, and it still produced edits.
+
+## Owner review (2026-11-10)
+
+Rob reviewed the cycle in the same session, after its commit, by walking the decision items with Claude rather than reading this entry. Rob chose to record the review here although the entry was already committed, so the dispositions sit where the next cycle's orientation reads. Changes to the toolkit's docs are in PR #31; nothing below is merged yet.
+
+**Dispositions:**
+- **Items 1, 2 and 13: confirmed.** This cycle's four edits to `MBT_FINDINGS.md`, its edit to `MBT_CREATE_BRAIN.md`, and the last cycle's three FINDINGS edits all stand.
+- **Item 3: settled in part.** (a) A clone name or path that differs from the template's is an own edit, reported on every check. Rob asked which answer was simpler and took Claude's recommendation: it follows from the comparison rule check already has and from what the drift grader and the acceptance recipe expect, where the other answer needs a new exclusion in both check and the grader. `MBT_CHECK_BRAIN.md` says so in PR #31. (b) and (c) get no work item. Rob first chose one, then questioned opening an item so soon after closing MAT, and Claude withdrew the recommendation after reading the grader: the staged-text gap is a false mismatch in the test tooling on two lamarr-brain paragraphs, and check's own report is right. `MBT_TESTING.md` names it as a known mismatch in the example-brains scenario, in PR #31. The scenario for the reworded normalization waits until that normalization is next changed.
+- **Item 4: reworded.** `MBT_APPROACH.md` states the rejected alternative without the history, in PR #31.
+- **Item 7: no new enforced terms.** Rob declined both "curate" and "canonical document". The stale "differentiator" sentence in `MBT_RESEARCH.md` is reworded in PR #31. The smaller wording points ("establishment", "upstream") are left.
+- **Item 9: left as practice.** The entrypoint does not state the commit boundary, and no routing-correction allowance is written.
+- **Item 10: all six adopted**, in `MBT_DREAM_CYCLE.md` in PR #31. They are not ported to `templates/DREAM_CYCLE.md`.
+- **Items 6, 8 and 11: left as they are**, on Claude's recommendation, which Rob accepted with the rest of the plan: the lobes collapse wording, the held-back extraction candidates and the minor Phase 2 candidates.
+
+Items 5 and 12 were not taken up and remain open: the new evidence on two open decisions in `MBT_APPROACH.md`, and the three biology decisions.
