@@ -1,6 +1,6 @@
 # Mini-Brain Toolkit: Dream Cycle
 
-> V35, 2026-11-08.
+> V36, 2026-11-09.
 
 Follow these instructions when the user asks the toolkit to dream and improve itself — the periodic reflection pass that keeps this brain true and small (principle 10).
 
@@ -27,7 +27,7 @@ Follow these instructions when the user asks the toolkit to dream and improve it
 Mechanical checks over top-level `MBT_*` docs and `working/`. Run all first; fix failures before the content phases. `templates/` and `archive/` are excluded — template files are bare-named and un-namespaced by design.
 
 1. **Read index → disk.** Every file in the `CLAUDE.md` read index exists on disk.
-2. **Disk → read index.** Every top-level `.md` file (excluding `CLAUDE.md`, `AGENTS.md`, `README.md`, and `CONTRIBUTING.md`) appears in the read index. The index is grouped in two blocks (product, then own-brain) — check both. Flag orphans.
+2. **Disk → read index.** Every top-level `.md` file (excluding `CLAUDE.md`, `AGENTS.md`, `README.md`, and `CONTRIBUTING.md`) appears in the read index. Flag orphans.
 3. **Version headers.** Every top-level file except the version-exempt ones `CLAUDE.md` declares carries a well-formed `> V<N>, YYYY-MM-DD.` line — version and date only. Flag any that smuggled a change note into the header.
 4. **Cross-references.** Grep all top-level `.md` files for references to other mini-brain filenames. Every reference must resolve to an existing top-level file or a script in `tests/` — not an `archive/` copy, not a deleted file. Within the docs covered by `CLAUDE.md`'s declared-exemptions table, also hold each reference to that table and to the cross-reference form: a permitted direction only, cited by name, not section number. A stray section number in an otherwise-permitted reference is a mechanical fix; a forbidden-direction reference usually means content bled across a boundary — flag it for the user rather than just deleting the pointer.
 5. **Namespace prefix.** `find . working -maxdepth 1 -name '*.md' 2>/dev/null | grep -vE '/(CLAUDE|AGENTS|SKILL|README|CONTRIBUTING)\.md$' | grep -v '/MBT_'` should print nothing — it tolerates a missing or empty `working/` and anchors the lobespace to the start of the filename. Flag any hit.
