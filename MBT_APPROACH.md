@@ -1,6 +1,6 @@
 # Mini-Brain Toolkit: Technical Approach
 
-> V22, 2026-11-09.
+> V23, 2026-11-10.
 
 This document describes the approach for addressing the problems defined in `MBT_SCOPE.md`. It covers the strategic approach and key design decisions — not delivery sequence.
 
@@ -92,7 +92,7 @@ The battery is a recipe, not a script. Each scenario states its setup and the ou
 
 A release is ready when the runs report no major problem. That is the releaser's judgment, apart from three failures that always block: the upgrade from the last release, a write to the toolkit's install, and a report-only run that changes a repository. A defect fixed in the toolkit adds a scenario that would have caught it.
 
-This settles what was an open question, whether to keep a fixed set of synthetic brains with planted defects and run them blind after each change to the instructions. Fixtures are built for each run from the toolkit's own history rather than kept, and the battery runs before a release, within the runner's budget.
+A fixed set of synthetic brains with planted defects, run blind after each change to the instructions, was the alternative. Fixtures are instead built for each run from the toolkit's own history, and the battery runs before a release, within the runner's budget.
 
 ### 2.10 Open: universal vs. exemplar-specific machinery
 
