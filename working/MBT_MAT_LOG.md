@@ -247,3 +247,15 @@ Rob's session, with Claude as co-author, continuing after the second-machine ent
 ## Lessons
 
 - **Check what a pull brings in against the open burndown.** A parallel session had already settled one of its items.
+
+---
+
+# Scenario 12's first run, against #24 (2026-11-09)
+
+**Session ID**: `1f667913-3aba-4e55-9e66-626a2c41a789`
+
+Rob's session, with Claude as co-author, retesting TEMPLATE_DRIFT's #24 and recorded in full in that item's log. The consequence for this item: scenario 12 ran for the first time, in Codex, and passed in both release cases. Its run surfaced three things for the recipe.
+
+- **The release check reads the runner's install.** It looks at the standard install paths, so a run that leaves `HOME` alone compares the runner's own clone. The run pointed `HOME` at a scratch home holding a controlled clone at `~/mini-brain-toolkit`, and kept Codex's sign-in through `CODEX_HOME`. Claude Code's sign-in doesn't survive a moved `HOME`, so this way of running scenario 12 is Codex's until another is found.
+- **The planted `working/` file needs reasoning in it.** The fixture's plan held none, so neither run could inline it, and each flagged the reference instead. With reasoning in the file, the leakage check's fix can be graded too.
+- **Phase 3 can't research from Codex's sandbox.** Both runs left checkable SCOPE claims unverified and called external research inapplicable.

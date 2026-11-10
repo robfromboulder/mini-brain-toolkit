@@ -255,3 +255,22 @@ Rob's session, with Claude as co-author, recorded in full in `MBT_LOG.md`. The c
 **Session ID**: `1f667913-3aba-4e55-9e66-626a2c41a789`
 
 Rob's session, with Claude as co-author, recorded in full in `MBT_LOG.md`. The consequence for this item: check 10, which this item built, changed in PR #25. An own edit is never a recommendation, and changes only when the owner names that paragraph. A skipped multi-lobe dream cycle's history is listed line by line, and every label comes from the template texts as read. This item's tests that approve every change now expect own edits to survive.
+
+---
+
+# #24 rebased onto `main` and retested, and the burndown cut to its merge (2026-11-09)
+
+**Session ID**: `1f667913-3aba-4e55-9e66-626a2c41a789`
+
+Rob's session, with Claude as co-author, after MAT's PR #25 merged. Rob asked whether this item's burndown needed updating. It did: #22 had merged and its section was stale, and Claude cut the burndown to open work. Claude then rebased #24 onto `main` and retested it with MAT's battery, which passed. Only #24's merge and the 0.73 tag remain before closeout.
+
+## Turn by turn
+
+- **Burndown.** The burndown still tracked #22's review and merge, though #22 merged on 2026-11-08. Its last open test, a brain that isn't a git repository, had passed earlier the same day as MAT's scenario 10c. Claude removed the #22 section and kept #24's items. The merge item now follows the order recorded in `MBT_LOG.md`, with #24 as the last commit before 0.73. A new item retests #24 with MAT's scenarios 1 and 12, the second of which needed #24's branch.
+- **Rebase.** Rob asked Claude to rebase #24. #22 had been squash-merged, so Claude rebased #24's one commit off `template-drift` onto `main`. It applied cleanly, with a patch identical to the original. Comparing the branches had suggested #24 also changed `MBT_CHECK_BRAIN.md`. That came from `template-drift`'s later commits, not from #24. Claude force-pushed with lease, then set #24's base to `main`, which has to come before deleting `template-drift`, since deleting a PR's base closes it. The classifier blocked the deletion because Rob had asked only for the rebase, so Claude stopped and gave Rob the command, which Rob ran.
+- **Retest.** Scenario 1 passed on the macOS host and in Docker. A fresh install lands on the newest tag, and a moved remote or a bad URL checks nothing out. Scenario 12 ran the template dream cycle twice in Codex, with `HOME` pointed at a scratch home holding a controlled clone at `~/mini-brain-toolkit`, so Rob's own install was never read. With the clone on `0.72` and its remote publishing a newer tag, the cycle raised the update-and-check item. With the clone off-release, it skipped the check and said why. In both runs the clone was unchanged, no premise was edited, and the planted `working/` citation was flagged.
+
+## Decisions
+
+- **#24 merges last, then 0.73 is tagged on it straight away** — Rob's merge order, restated in the burndown.
+- **Run scenario 12 with a scratch `HOME`, never against the runner's install** — Claude.
