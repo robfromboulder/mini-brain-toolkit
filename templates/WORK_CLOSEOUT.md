@@ -10,11 +10,13 @@ When a work item developed in `working/` concludes, its `<LOBESPACE>_<WORK>_*` d
 
 In a multi-lobe brain, a work item lives in its owning lobe's `working/` and carries that lobe's lobespace. Most of what it holds folds into that same lobe's canonical docs — but not all of it, so place each piece of knowledge on its own merits rather than sweeping the lot into the owner. §1 says how.
 
-Closeout is the additive-and-reconciling integration of one work item's known body of new knowledge, triggered by the work concluding (usually a merge). It is distinct from the brain's time-triggered, mini-brain-wide drift review — the dream cycle — which detects staleness across all docs on its own schedule. The two share machinery (the version-header bump, the reconcile step) but run at different times for different reasons. Done well, closeout is the front line and leaves little for the later periodic review to extract for that work item.
+Closeout is the additive-and-reconciling integration of one work item's known body of new knowledge, triggered by the work concluding (usually a merge). Done well, it leaves little of that item's knowledge for any later review to extract.
 
 ---
 
 ## 1. Enumerate the targets
+
+First, before any edit, look in the owning lobe's `archive/` for a file named as each of the item's files. If one exists, settle the new slug and rename per `CLAUDE.md` now, so every merge below cites the names the files retire under.
 
 Do not work from a hand-written task list alone — it is easy to name the obvious targets (LOG, FINDINGS) and miss the ones a work item quietly changes. Walk the full canonical set and decide, for each, whether this work item touches it:
 
@@ -56,7 +58,7 @@ Follow `CLAUDE.md` for every edit: classify editorial vs. substantive, bump the 
 
 ## 4. Retire the working files
 
-Once the content is integrated, move each `working/<LOBESPACE>_<WORK>_*` file into the **owning lobe's** `archive/` with no version suffix, since working files are not versioned, and renamed only on a collision, per `CLAUDE.md`; create that `archive/` if the lobe does not have one yet. A work item retires where it lived, even when some of its knowledge folded upward. Move, don't delete: the content is preserved in the canonical docs, but the original is cheap to keep and occasionally worth consulting. Drop any now-dangling cross-references left behind by the merge.
+Once the content is integrated, move each `working/<LOBESPACE>_<WORK>_*` file into the **owning lobe's** `archive/` with no version suffix, since working files are not versioned; create that `archive/` if the lobe does not have one yet. A work item retires where it lived, even when some of its knowledge folded upward. Move, don't delete: the content is preserved in the canonical docs, but the original is cheap to keep and occasionally worth consulting. Drop any now-dangling cross-references left behind by the merge.
 
 ---
 
