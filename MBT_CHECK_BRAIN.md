@@ -1,6 +1,6 @@
 # Mini-Brain Toolkit: Check an Existing Mini-Brain
 
-> V47, 2026-11-09.
+> V48, 2026-11-10.
 
 This document is the procedure for evaluating an existing mini-brain against the pattern and surfacing where it could improve — whether the brain was built from this toolkit or grew on its own.
 
@@ -120,7 +120,7 @@ Also run the structural checks below; they're mechanical and catch the cheap, co
       - **Current** — the brain holds it word for word. Not reported.
       - **Missing** — the brain holds no version of it. Recommend adding it where the template places it.
       - **Behind** — the brain's version appears word for word in an earlier version of the template, so it is a toolkit change the brain has not taken. Recommend the current text.
-      - **Own edit** — the brain's version appears in no version of the template, so the owner changed it. Report both texts. An own edit is never a recommendation, and no general approval covers it: change it only when the owner names that paragraph.
+      - **Own edit** — the brain's version appears in no version of the template, so the owner changed it. Report both texts. An own edit is never a recommendation, and no general approval covers it: change it only when the owner names that paragraph. A clone name or path that differs from the template's is an own edit like any other, reported with both texts.
 
       A brain paragraph that is a version of no current template paragraph is **dropped** if it appears word for word in an earlier version of the template, since the toolkit removed it: recommend removing it. Any other such paragraph is the brain's own addition and is not reported.
     - **No history.** If `<install>` is not a git clone, or is a shallow one, nothing tells a behind paragraph from an own edit: report every changed paragraph as an own edit.
