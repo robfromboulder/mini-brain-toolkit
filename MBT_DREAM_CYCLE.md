@@ -1,6 +1,6 @@
 # Mini-Brain Toolkit: Dream Cycle
 
-> V39, 2026-11-09.
+> V40, 2026-11-09.
 
 Follow these instructions when the user asks the toolkit to dream and improve itself — the periodic reflection pass that keeps this brain true and small (principle 10).
 
@@ -39,7 +39,7 @@ Fix any failures. Report what was found and fixed.
 
 ## Phase 2: Dogfooding & self-consistency
 
-A product brain verifies `SCOPE`'s claims about the systems its code puts in reach. This brain has no product code — its "code" is its own teaching artifacts, and its `APPROACH` commits it to *being* the pattern it defines. So Phase 2 has three checks. All are internal (no web); the cross-doc read covers `MBT_PATTERN`, `MBT_LOBES`, `MBT_CREATE_BRAIN`, `MBT_CHECK_BRAIN`, a listing of `templates/` (and `templates/work/`), and the full text of `templates/LOBES_CLAUDE.md` and the maintenance templates — the multi-lobe-layer check compares rule statements, which a filename listing cannot supply — one Explore agent or a direct read per the context-management size rule — and reports divergences for the active context to fix or flag.
+A product brain verifies `SCOPE`'s claims about the systems its code puts in reach. This brain has no product code — its "code" is its own teaching artifacts, and its `APPROACH` commits it to *being* the pattern it defines. So Phase 2 has three checks. All are internal (no web); the cross-doc read covers `MBT_PATTERN`, `MBT_LOBES`, `MBT_CREATE_BRAIN`, `MBT_CHECK_BRAIN`, a listing of `templates/` (and `templates/work/`), and the full text of `templates/LOBES_CLAUDE.md` and the maintenance templates — the multi-lobe-layer check compares rule statements, which a filename listing cannot supply — one Explore agent or a direct read per the context-management size rule — and reports candidate divergences for the active context to judge, then fix or flag.
 
 **(a) Teaching-artifact consistency.** `MBT_PATTERN.md` and `MBT_LOBES.md` are the spec — the base pattern and its multi-lobe layer; `MBT_CREATE_BRAIN.md` builds it, `MBT_CHECK_BRAIN.md` scores it, `templates/` supplies it. These five must agree. This bears on the open templates-and-reference-sync decision in `MBT_APPROACH.md` and operationalizes the roadmap's *instruction-drift detection*. Check:
 
@@ -60,7 +60,7 @@ A product brain verifies `SCOPE`'s claims about the systems its code puts in rea
 
 This brain's subject is the pattern, so the standard follow-on research over APPROACH's external assumptions widens to (3a) the competitive/research landscape and (3b) the pattern's grounding in how minds actually work. The **data** lands in the registries — `MBT_COMPARABLES.md` (3a) and `MBT_BIOLOGY.md` (3b), whose content is explicitly uncommitted, so refreshing state and dates there is in-bounds editing; the **conclusions** land in `MBT_RESEARCH.md`. Thesis-level consequences (`MBT_PATTERN` principles, the `MBT_APPROACH` positioning and its bet) are **flagged**, never auto-applied.
 
-**Nap gate.** If every living entry's `verified` date in `MBT_COMPARABLES.md` and every field's `reviewed` date in `MBT_BIOLOGY.md` is fresher than ~30 days, and the last cycle left open no Phase 3 flag that new research could settle, skip Phase 3 and say so in the report — the registry dates *are* the "is anything stale?" check. A user-requested full re-baseline overrides the gate.
+**Nap gate.** If every living entry's `verified` date in `MBT_COMPARABLES.md` and every field's `reviewed` date in `MBT_BIOLOGY.md` is fresher than ~30 days, and every Phase 3 flag the last cycle left open waits only on the user's decision, skip Phase 3 and say so in the report — the registry dates *are* the "is anything stale?" check. A user-requested full re-baseline overrides the gate.
 
 **No web access.** With no web search or fetch available, skip the change-checks and hunts below, leave every `verified` and `reviewed` date as it is, and report Phase 3 as not run for that reason, then continue to Phase 4.
 
@@ -140,7 +140,7 @@ If a phase found nothing, say so in one line — don't pad.
 **Model and effort.** Record the model and effort level used for the cycle in the dream log entry header (after the session-ID line). The model name is stated in the system environment context ("You are powered by the model named…"); the effort level may appear in session command output. If either cannot be determined, record it as unknown. This is what makes runs comparable on depth and cost — a low-effort small-model run and a high-effort large-model run are not the same cycle.
 
 **Self-evaluation.** Close the entry by scoring the *cycle's own performance*, not only its output — this is the signal for whether dreaming is converging or spinning, and what makes runs comparable across cycles and over time:
-- **Confidence per headline conclusion (1–100)** — Phase 2 "the teaching artifacts are self-consistent, the toolkit still obeys its own pattern, and no open question has been overtaken unnoticed"; Phase 3a "the thesis holds, and the toolkit still differs where it claims to"; Phase 3b "the biological grounding is load-bearing, not flattering"; and each **finding extracted this run** (Phase 4), or one for the extraction/reflow pass if none; Phase 5 "the enforced terms match how they are used, and any drifting unlisted term has been surfaced". Each Phase 3 score must cite the disconfirmation search that earned it. For any score below ~70, name the unknowns that cap it.
+- **Confidence per headline conclusion (1–100)** — Phase 2 "the teaching artifacts are self-consistent, the toolkit still obeys its own pattern, and no open question has been overtaken unnoticed"; Phase 3a "the thesis holds, and the toolkit still differs where it claims to"; Phase 3b "the biological grounding is load-bearing, not flattering"; and each **finding extracted this run** (Phase 4), or one for the extraction/reflow pass if none; Phase 5 "the enforced terms match how they are used, and any drifting unlisted term has been surfaced". Each Phase 3 score must cite the disconfirmation search that earned it. A skipped Phase 3 gets no score: say instead why it was skipped. For any score below ~70, name the unknowns that cap it.
 - **New ground vs. re-tread** — classify this run against the last: *net-new* (surfaced issues/changes the last run didn't), *incremental*, or *re-tread* (same ground, no movement), with one line of evidence. For a research brain, a re-tread run that merely re-confirms the thesis is a specific warning sign — say so.
 - **Depth achieved** — did each phase run to its intent, or run shallow (agent inconclusive, source unavailable, halted)? Name any that did.
 - **Diminishing returns** — if this is the Nth consecutive *re-tread* run with nothing surfaced and no edits, say so and recommend either dreaming less often or that the brain has reached a fixed point on current inputs (a real result, not a failure).
