@@ -4,8 +4,6 @@ Everything between working code and this item's last merged PR, #24 (branch `ins
 
 ## PR #24
 
-* rebase it onto `main` (`git rebase --onto main template-drift install-pin`), set its base to `main`, and delete the `template-drift` branch; #22 was squash-merged, so that branch's commits aren't on `main`
-* retest the rebased branch with `MBT_TESTING.md`: scenario 1 for the pinned install lines, and scenario 12 for the dream cycle's release check
 * merge it as the last commit before the 0.73 release, and tag 0.73 on it straight away, since until a tag exists at or after #22's merge the install line checks out `0.72`, which predates #19, #20 and #22
 
 ## Closeout
