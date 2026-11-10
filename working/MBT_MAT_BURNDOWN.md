@@ -4,7 +4,6 @@ Everything between the merged battery and this item's closeout.
 
 ## Before closeout
 
-* give `MBT_EXAMPLES.md` the project repos of lamarr-brain, mini-alien-brain and mini-guardrails-brain
 * run the battery against 0.73 once #24 merges and the release is tagged, at a budget that covers what neither run reached: scenarios 3–5, 11–13 and 15, 6 on the final code and from 0.70, and 7d–e
 * fold that run's findings into the recipe, including the nine smaller gaps the dry run listed
 
