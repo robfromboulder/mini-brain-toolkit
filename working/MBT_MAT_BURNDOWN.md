@@ -2,10 +2,6 @@
 
 Everything between the merged battery and this item's closeout.
 
-## Before closeout
-
-* merge #28, the procedure fixes from the 0.73 run, and #29, its recipe and grader fixes
-
 ## Closeout
 
 * closeout notes — the battery shipped before its first release run, and #25 also carried four procedure fixes, by Rob's call, rather than leaving them to their own changes
