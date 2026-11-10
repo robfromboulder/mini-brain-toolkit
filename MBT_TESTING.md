@@ -57,7 +57,7 @@ Tell the runner what was picked and what the budget left out, and wait for their
 
 ## 4. Fixtures
 
-A fixture is a brain seeded as the toolkit's create would have seeded it at a given ref, so every machine can build one without spending tokens. `tests/MBT_SEED_FIXTURE.py <toolkit> <ref> <outdir>` writes a committed brain, with every procedure file adopted and work setup's scaffolds inline. Beside it, it writes a committed project repo, with its own instructions and the hook placed where that ref's create put it. `--lobes` seeds a multi-lobe fixture, with a hub and two child lobes. At the commit under test, every procedure file in a fresh fixture is current. Build each fixture once per run, and copy it for each scenario that uses it. A scenario that needs a fixture changed by hand, such as a half-applied update, makes the change in its own copy.
+A fixture is a brain seeded as the toolkit's create would have seeded it at a given ref, so every machine can build one without spending tokens. `tests/MBT_SEED_FIXTURE.py <toolkit> <ref> <outdir>` writes a committed brain, with every procedure file adopted and work setup's scaffolds inline. Beside it, it writes a committed project repo, with its own instructions and the hook placed where that ref's create put it. `--lobes` seeds a multi-lobe fixture, with a hub and two child lobes. A fixture's names, for the grader, are `FIX Fix fix`, with `--lobes` for a multi-lobe one. At the commit under test, every procedure file in a fresh fixture is current. Build each fixture once per run, and copy it for each scenario that uses it. A scenario that needs a fixture changed by hand, such as a half-applied update, makes the change in its own copy.
 
 ## 5. Grade and report
 
@@ -101,7 +101,7 @@ Each scenario states observable outcomes, never a procedure's wording, so an edi
 
 3. **Blind create.** *Harness: any. Brain: none. Cost: headless.* Use an invented project with a few design notes and an existing `CLAUDE.md` of its own, and an empty brain repo beside it. Drive create through stage 2 from an answers file. It asks about each premise on its own. SCOPE keeps the design's choices out and assesses them only as alternatives. The hook is merged into the project's `AGENTS.md`, and the project's `CLAUDE.md` gains `@AGENTS.md` with its own content kept. Each of `archive/` and `working/` that holds nothing else gets a staged `.gitkeep`. The first log entry names the session ID from the running harness's own variable. Nothing is committed unless the answers say so.
 4. **Create and check agree.** *Harness: any. Brain: scenario 3's. Cost: headless.* A fresh check of scenario 3's brain, committed, with the same answers, gives no verdict opposite to create's on premises, the second approach or SCOPE's neutrality.
-5. **Loading.** *Harness: each. Brain: scenario 3's. Cost: headless.* From the project repo, the hook's trigger phrase makes the agent read the brain's `CLAUDE.md`. From inside the brain repo, the agent reaches `CLAUDE.md` through `AGENTS.md`.
+5. **Loading.** *Harness: each. Brain: scenario 3's. Cost: headless.* From the project repo, the hook's trigger phrase makes the agent read the brain's `CLAUDE.md`. From inside the brain repo, the agent reaches `CLAUDE.md` through `AGENTS.md`. Loading leaves nothing on disk, so grade it from the file reads in the transcript.
 
 ### Check
 
