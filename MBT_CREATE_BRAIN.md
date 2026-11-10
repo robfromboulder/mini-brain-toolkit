@@ -1,6 +1,6 @@
 # Mini-Brain Toolkit: Create a New Mini-Brain
 
-> V36, 2026-11-07.
+> V37, 2026-11-09.
 
 This document is the procedure for standing up a new mini-brain from `templates/`.
 
@@ -113,7 +113,7 @@ Record the reasoning and course-corrections of this authoring work in the LOG at
 Add these **only when the work justifies them** (the stage model in `MBT_PATTERN.md`) — typically when the brain starts tracking work items across many sessions. Each is copied from `templates/` with the §4 substitutions, namespaced, added to the read index, and bumps `CLAUDE.md`.
 
 - `templates/WORK_SETUP.md` → `<HUB>_WORK_SETUP.md` and `templates/WORK_CLOSEOUT.md` → `<HUB>_WORK_CLOSEOUT.md` — the open/close bookends for work items (a feature, bug fix, or hardening effort). They reference the per-work-item working set in `templates/work/` — inline those six scaffolds into `<HUB>_WORK_SETUP.md` where it points at them, so the brain stands alone without the toolkit.
-- `templates/DREAM_CYCLE.md` → `<HUB>_DREAM_CYCLE.md` plus a `<HUB>_DREAM_LOG.md` (header only) — the periodic reflection pass. The template assumes a single lobe; don't instantiate it unadapted into a multi-lobe brain.
+- `templates/DREAM_CYCLE.md` → `<HUB>_DREAM_CYCLE.md` and `templates/DREAM_LOG.md` → `<HUB>_DREAM_LOG.md` (header only) — the periodic reflection pass and its log. The template assumes a single lobe; don't instantiate it unadapted into a multi-lobe brain.
 - `templates/ENFORCED_TERMS.md` → `<HUB>_ENFORCED_TERMS.md` — the brain's reserved vocabulary. Add it the first time a term collision is found, not before — a brain with no collisions has no enforced terms, and seeding a vocabulary up front is the authoring failure the mechanism's first rule prevents.
 
 When the brain gains work items, also uncomment the work-item block in each project repo's hook (the maturity comment inside `templates/PROJECT_HOOK.md`).
