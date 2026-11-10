@@ -12,21 +12,25 @@ export GIT_AUTHOR_NAME=MAT GIT_AUTHOR_EMAIL=mat@example.invalid GIT_COMMITTER_NA
 findv=$(find --version 2>/dev/null | head -1); [ -n "$findv" ] || findv="BSD find"
 echo "PLATFORM $(uname -sm), git $(git --version | cut -d' ' -f3), bash $BASH_VERSION, zsh $(zsh --version | cut -d' ' -f2), $findv"
 
-# Scenario 1: a bare clone of the checkout, tagged above any release, stands in for the remote.
-git clone -q --bare "$TK" "$W/remote.git"; git -C "$W/remote.git" tag 0.99-mat HEAD; HEADC=$(git -C "$W/remote.git" rev-parse HEAD)
+# Scenario 1: a bare clone of the checkout stands in for the remote, its HEAD's parent tagged above any release, so a pinned line is told apart from one that pulls main.
+git clone -q --bare "$TK" "$W/remote.git"; git -C "$W/remote.git" tag 0.98-mat HEAD~1
+HEADC=$(git -C "$W/remote.git" rev-parse HEAD); TAGC=$(git -C "$W/remote.git" rev-parse HEAD~1)
 grep -n 'git clone' "$TK/README.md" | while IFS= read -r row; do
   n=${row%%:*}; line=${row#*:}
-  for sh in zsh bash sh; do for case in fresh rerun moved badurl; do   # moved runs on an existing install, before badurl removes it
+  for sh in zsh bash sh; do for case in fresh rerun update moved badurl; do   # update tags HEAD higher for its run; moved runs on an existing install, before badurl removes it
     d=$W/inst-$n-$sh; [ $case = fresh ] && rm -rf "$d"
     url=$W/remote.git; [ $case = badurl ] && { url=$W/nope.git; rm -rf "$d"; }
     [ $case = moved ] && mv "$W/remote.git" "$W/remote.moved"
+    [ $case = update ] && git -C "$W/remote.git" tag 0.99-mat HEAD
     before=$( [ -d "$d" ] && { git -C "$d" rev-parse HEAD; git -C "$d" status --porcelain; } 2>/dev/null )
     l=$(printf '%s' "$line" | sed -E "s#^d=[^;]*;#d=$d;#; s#https://github.com/robfromboulder/mini-brain-toolkit#$url#")
     $sh -c "$l" >/dev/null 2>&1; rc=$?
     after=$( [ -d "$d" ] && { git -C "$d" rev-parse HEAD; git -C "$d" status --porcelain; } 2>/dev/null )
     [ $case = moved ] && mv "$W/remote.moved" "$W/remote.git"
+    [ $case = update ] && git -C "$W/remote.git" tag -d 0.99-mat >/dev/null
     case $case in
-      fresh)  ok=$([ $rc = 0 ] && [ "$(git -C "$d" rev-parse HEAD)" = "$HEADC" ] && echo PASS);;
+      fresh)  ok=$([ $rc = 0 ] && [ "$(git -C "$d" rev-parse HEAD)" = "$TAGC" ] && echo PASS);;
+      update) ok=$([ $rc = 0 ] && [ "$(git -C "$d" rev-parse HEAD)" = "$HEADC" ] && echo PASS);;
       rerun)  ok=$([ $rc = 0 ] && [ "$before" = "$after" ] && echo PASS);;
       moved)  ok=$([ $rc != 0 ] && [ -n "$before" ] && [ "$before" = "$after" ] && echo PASS);;
       badurl) ok=$([ $rc != 0 ] && [ ! -e "$d" ] && echo PASS);;
