@@ -2851,3 +2851,41 @@ Rob's session, with Claude as co-author. Rob asked for both work items to be clo
 
 - Check's normalization says to fill `<LOBESPACE>` in a single-lobe brain's template copy, and the drift grader folds the brain's lobespace back to the placeholder instead. For a brain that keeps `<LOBESPACE>` in some slots, the two may disagree. A headless report-only check of lamarr-brain, graded against the script, would show it.
 - WORK_PLACEMENT and REHOMING both change `templates/WORK_SETUP.md`, and MULTI_LOBE_DREAM replaces the multi-lobe dream-cycle skip that the skips scenario tests. Each of the four open items adds scenarios when it lands.
+
+---
+
+# A headless check of lamarr-brain leaves the `<LOBESPACE>` question open, and finds a grader gap (2026-11-09)
+
+**Session ID**: `e0d98c31-c2d7-412c-aa31-e4798483a0c5`
+
+Rob's session, with Claude as co-author, continuing after the closeout entry above. Rob asked for the test that entry left open: whether check's normalization and the drift grader disagree on a single-lobe brain that keeps `<LOBESPACE>` in some slots. Claude ran a headless report-only check of a scratch copy of lamarr-brain and graded it against the script. No disagreement showed on those paragraphs, but the tested agent got there without following the normalization as written, so the wording is still untested. The run found three other mismatches. Nothing in the toolkit was changed.
+
+## Turn by turn
+
+- **Setup.** Claude followed the acceptance recipe's headless example-brain scenario at `7a2f880`, in Claude Code 2.1.322. It ran the tested agent on Sonnet 5.5, the model the 0.73 run used, rather than the session's default. The scratch project repo held only the project's `CLAUDE.md`, which carries the hook, since the repo is 53M. The request added one line to the recipe's report-only wording, asking for every procedure-drift paragraph listed with its label.
+- **Baseline.** By script, lamarr-brain shows 28 behind, 5 missing and 1 dropped paragraph and 7 own edits. No paragraph that keeps `<LOBESPACE>` is among the own edits.
+- **The run.** It cost $1.06 and took about five minutes. The snapshots of the brain, the project copy and the test install were unchanged. The agent ran only the procedure-drift check and said so, which the added line in the request likely caused.
+- **The placeholder.** Agent and grader gave session closeout, work setup and work closeout the same labels. The agent folded the brain's lobespace back to the placeholder before searching the template's history, which is what the grader does and the reverse of what check says. It also labelled from `git log -S` searches on the brain's paragraphs, without reading each template version as check requires.
+- **Mismatches.** The grader compares a template's staged comment only where the brain holds it word for word, so it missed two paragraphs the brain had uncommented and changed: the entrypoint's maintenance-doc boundaries, which the agent called an own edit, and the hook's active-work-item paragraph, which it called behind. In the other direction, the agent did not report lamarr-brain's clone name as an own edit in any of the four places the grader does, calling it the brain's own value. The grader also labels a hook heading's changed capitals an own edit, which the agent passed over.
+- **Cleanup.** Claude removed the test install and the scratch copies. The run's report, transcript and grader output stay in the session's scratch directory until Rob says otherwise.
+
+## Decisions
+
+- **Run the tested agent on Sonnet 5.5** — Claude, to match the 0.73 run.
+- **Copy only the project's `CLAUDE.md` into scratch** — Claude.
+- **Change nothing on this evidence** — Claude, reported to Rob with the three candidate fixes.
+
+## What didn't work
+
+- The added line in the request. It made the report gradeable paragraph by paragraph, and the agent then skipped every other check.
+- The tested agent's report names scratch files in a temp directory that did not exist after the run.
+
+## Lessons
+
+- **A test of a procedure's wording fails quietly when the agent doesn't follow the wording.** The labels matched, and only the transcript showed that the agent had normalized the other way round.
+
+## Open
+
+- Check's normalization for a single-lobe brain still says the reverse of what the grader and this agent did. Rewording it to match would close the question without another run.
+- The grader does not compare staged text that a brain uncommented and then changed.
+- Whether a filled-in clone name is an own edit, reported on every check, or the brain's own value. The acceptance recipe expects the first, and check's fix step reads as the second. Rob's call.
