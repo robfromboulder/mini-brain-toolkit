@@ -2083,3 +2083,28 @@ Rob's session, with Claude as co-author, continuing after the entry above. This 
 - **#26 first, then #25, then #24 as the last commit before the release** — Rob.
 - **A PR description carries no merge plan** — Rob.
 - **PRs merge by rebase only, and `CLAUDE.md` says what that requires of a branch** — Rob, on Claude's analysis.
+
+---
+
+# Four procedure fixes from MAT's second-machine run ride in PR #25 (2026-11-09)
+
+**Session ID**: `1f667913-3aba-4e55-9e66-626a2c41a789`
+
+Rob's session, with Claude as co-author. Running MAT's battery on a second machine turned up defects in check 10, session closeout and the append-only rule, the procedures every brain copies. Rob chose to fix them in PR #25 rather than in their own PRs, and Claude verified each fix by rerunning the scenario that found it. The run itself is in MAT's log.
+
+## Turn by turn
+
+- **Own edits reverted.** In scenario 6, Codex (twice) and OpenCode 2 each labelled a planted own edit correctly, then made reverting it a recommended next step, which an approve-all walk-through applied. Claude Code kept it. Codex promoted it outright, and OpenCode 2 argued the narrower wording was worse. Check 10 said to report an own edit "for the owner to bring up to date or keep", which left both routes open. Check 10 now says an own edit is never a recommendation, and changes only when the owner names that paragraph. Against the fix all three harnesses kept the edit. Asked for the paragraph by name, Claude Code and Codex each changed exactly that paragraph.
+- **Doubled separator.** The log template ends with `---`, and session closeout's step 2 said to add one before each entry, so Codex and OpenCode 2 left an empty section. Step 2 now adds one only when the log lacks it, in the template and this repo's copy. Both harnesses then wrote a single separator.
+- **Fold rule against work closeout.** All three harnesses flagged that the append-only rule's fold exception places entries "whole", while work closeout rewrites their references to retiring files and strips the pending-closeout block as it merges them. Claude offered two directions. One allows the rewrite in the fold exception, three copies of one sentence. The other keeps entries whole and exempts logs from the reference checks, which touches five or more files and overlaps REHOMING. Rob chose the first, which records what closeout already does. No scenario has exercised it yet.
+- **Skipped history summarized.** In a multi-lobe brain's check, Claude Code twice summarized the skipped dream cycle's template history and assumed labels for files it hadn't compared. Codex followed the same wording fully. After one failing run Claude held off rewording, then tightened it after the second: the history is listed line by line, and every label comes from the template texts as read. Claude Code then listed all 24 lines and named no false own edit.
+
+## Decisions
+
+- **Fix the procedures in #25, each verified by its scenario** — Rob, so that one review covers them.
+- **The fold exception allows closeout's reference rewrite** — Rob, from Claude's two options.
+- **Reword check 10 for a harness only after a second failing run** — Claude.
+
+## Lessons
+
+- **Wording one harness follows is not wording every harness follows.** Each defect here passed in at least one harness, so a fix to a shared procedure is verified in every harness that failed.

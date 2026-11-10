@@ -148,3 +148,49 @@ Rob's session, with Claude as co-author, continuing after the entry above. Rob h
 **Session ID**: `9dd62b33-2b95-4dd2-b2de-07c645e0d576`
 
 Rob's session, with Claude as co-author. The merge order and the rebase-only rule are recorded in `MBT_LOG.md`. The consequence for this item: once #26 merged, Claude rebased #25's single commit onto `main` as `b293660`. The only conflict was `CLAUDE.md`'s version line, which Rob had resolved to V33, one bump for one commit. #25 still changes the same six files, with nothing in `working/` or `archive/`.
+
+---
+
+# MAT's second-machine run, the recipe's improvised steps written in, and a Linux platform (2026-11-09)
+
+**Session ID**: `1f667913-3aba-4e55-9e66-626a2c41a789`
+
+Rob's session, with Claude as co-author, on a machine with Claude Code, Codex and OpenCode 2 and three of the six example brains. Rob asked for the second-machine test, which turned out to be this item's step 6 rather than TEMPLATE_DRIFT's. Claude ran the battery from PR #25's branch on a medium budget, then Rob redirected: the point was to verify the battery, so what mattered was where the runner had to improvise. Those gaps went into `MBT_TESTING.md`, `MBT_EXAMPLES.md` and two new scripts, Linux runs in Docker were added, a fresh-agent dry run found four more gaps, and #25 was squashed to one commit and marked ready for review. The run also found procedure defects, recorded in `MBT_LOG.md` and fixed in #25.
+
+## Turn by turn
+
+- **Which test.** Rob asked to read TEMPLATE_DRIFT and run "the second test" on a second machine. Claude found the matching step in this item's plan, "run it on a second machine", and ran that, saying so.
+- **The run.** Rob chose a medium budget and only the brains already on the machine. Claude probed three harnesses, three shells and three brains, then ran scenarios 1, 2, 6, 7a–c, 8, 10 and 16 and the script half of 14. Scenario 6 in Codex reverted a planted own edit, scenario 10b failed in Claude Code, and Codex and OpenCode 2 doubled the log's separator in 16.
+- **Rob's redirect.** Rob said the run's purpose was to verify MAT, so Claude listed every place it had improvised or changed the instructions. That list had 17 items, four of which decided whether a run means anything: scenario 6's unfixed prompt and planted paragraph, what a label match means, and Codex's read-only `.git`. Rob asked for drafts, and for item 6 had the grader's names recorded in `MBT_EXAMPLES.md` rather than inferred. Checking those names showed that the run's guessed `<project>` for mini-alien-brain had turned a README paragraph into a false own edit.
+- **Scenario 6, rerun.** At Rob's request Claude reran scenario 6 in Codex with the fixed prompt. It reverted the edit again. Rob asked whether OpenCode was the only harness with the defect, and Claude corrected that: Codex was, with OpenCode untested. Rob had both other harnesses run. OpenCode 2 also reverted the edit, and Claude Code kept it.
+- **Bundling the fix.** Rob asked how large the check 10 fix was. At one sentence, Rob chose to carry it in #25 rather than review two PRs. Against the fix all three harnesses kept the edit. In the same run OpenCode 2 also applied its own resolution of a template conflict, so Rob had scenario 6 allow changes outside procedure drift that the agent's report names.
+- **A stray write.** A Claude Code tested agent mistyped a path and wrote a file beside the scratch directory, outside its allowed directories. Claude deleted it after checking the directory held nothing else. The recipe now checks every run for such writes, and counts a hit only when the agent's transcript shows it, since a broad sweep also caught another session's log.
+- **Docker.** Rob asked whether Docker figured in the plans. It didn't, though PR #20 had used it for a macOS-versus-Linux check that retired with its item. Claude added a platform dimension for script scenarios only, since each harness's sign-in lives in the runner's `HOME`. Scenarios 1 and 14 then passed in a Debian container with output identical to the host's. Claude's first script would have written Rob's global git config; the classifier blocked the run, and the script now sets git config for its own process only. At Rob's request it moved to `tests/MBT_SHELL_CHECKS.sh`.
+- **How to approve.** Rob asked what would give enough confidence to merge, with multireview or more dry runs as options. Claude recommended two cheap checks over a code review: the other direction of the check 10 fix, and a fresh agent dry-running the recipe, which gives a read not anchored on Claude's. Both passed. The dry run listed 13 guesses, and Rob had the four that would change a run fixed: the brain search, selection by changed files, split-cost scenarios, and scenario 16's wording.
+- **Procedure fixes and squashes.** Rob had #25 squashed to one commit, then asked that other procedure defects the run found be fixed now rather than later. Claude fixed them, reran the affected scenarios, and squashed again. Commit hashes in the PR description and this item's plan that a squash removed were replaced with descriptions.
+- **What the results verify.** Asked, Claude said the results verify MAT, not 0.73. Scenario 6 last ran before the final procedure changes, #24 isn't included, and much of the battery never ran. 0.73 is verified by a full run after #25 and #24 merge.
+
+## Decisions
+
+- **Second-machine run on local brains only** — Rob.
+- **Record each example's grader names in `MBT_EXAMPLES.md`** — Rob, over inferring them.
+- **Carry the check 10 fix in #25** — Rob, on Claude's sizing.
+- **Scenario 6 allows changes outside procedure drift that the report names** — Rob, from Claude's two options.
+- **Linux for script scenarios only, through Docker** — Claude, on Rob's question; Rob had the script shipped in `tests/`.
+- **Two cheap checks before merge, instead of a full review** — Claude's recommendation, which Rob took.
+- **Fix the dry run's four run-changing gaps now, and leave the other nine for the 0.73 run** — Rob.
+- **One commit for #25** — Rob, twice.
+
+## What didn't work
+
+- `timeout`, which macOS lacks, in the sign-in probe.
+- Variables expanded in zsh, which doesn't word-split them.
+- A scenario 1 script that ran the bad-URL case before the moved-remote case, leaving no install to test.
+- A scratchpad script whose `git config --global` would have changed Rob's own config.
+- A sweep for stray writes that counted any new file under the temp root.
+
+## Lessons
+
+- **When a run exists to test a test, the improvisations are the result.** Rob's redirect turned a pass/fail report into the list of fixes the recipe needed.
+- **A pinned prompt is part of the scenario.** Until scenario 6's prompt was fixed, a failure couldn't be told apart from the wording.
+- **A fresh agent finds the gaps the author's context hides.** The dry run found four run-changing gaps after Claude had written every fix.

@@ -247,3 +247,11 @@ Rob's session, with Claude as co-author, recorded in full in `MBT_LOG.md`. The c
 **Session ID**: `9dd62b33-2b95-4dd2-b2de-07c645e0d576`
 
 Rob's session, with Claude as co-author, recorded in full in `MBT_LOG.md`. The consequence for this item reverses the entry above, "The comparison script moves to `tests/` for MAT". MAT copied the script to `tests/MBT_DRIFT_COMPARE.py` instead of moving it. `MBT_TEMPLATE_DRIFT_COMPARE.py` stays in `working/` and retires to `archive/` at closeout, like this item's other working files.
+
+---
+
+# Check 10's own-edit and listing rules tightened through MAT (2026-11-09)
+
+**Session ID**: `1f667913-3aba-4e55-9e66-626a2c41a789`
+
+Rob's session, with Claude as co-author, recorded in full in `MBT_LOG.md`. The consequence for this item: check 10, which this item built, changed in PR #25. An own edit is never a recommendation, and changes only when the owner names that paragraph. A skipped multi-lobe dream cycle's history is listed line by line, and every label comes from the template texts as read. This item's tests that approve every change now expect own edits to survive.
