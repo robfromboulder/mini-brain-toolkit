@@ -2,13 +2,13 @@
 
 ## Problem
 
-Three of the four restructuring moves in `MBT_LOBES.md` reshape a brain within its own repository. One crosses a repository boundary — a child lobe leaving to become its own brain — and the table marks it incomplete: it names what the departing subtree lacks without saying how to supply it. The subtree lacks an entrypoint and a maintenance set, both hub property; its SCOPE and APPROACH carry the upstream parent references the exemption table sanctioned, which dangle once the parent is a different repository; and "replace its registry row with a pointer" has no semantics — neither what the row holds nor how routing treats a child that has left.
+Three of the four restructuring moves in `MBT_LOBES.md` reshape a brain within its own repository. One crosses a repository boundary — a child lobe leaving to become its own brain — and the table marks it incomplete: it names what the departing subtree lacks without saying how to supply it. The subtree lacks an entrypoint, the `AGENTS.md` that sends agents to it, a README and a maintenance set, all hub property; the hook in its project repo, where it has one, still names the brain it left; its SCOPE and APPROACH carry the upstream parent references the exemption table sanctioned, which dangle once the parent is a different repository; and "replace its registry row with a pointer" has no semantics — neither what the row holds nor how routing treats a child that has left.
 
 The inverse motion has no row at all. An existing standalone brain becoming a child lobe of another is a move the table cannot express.
 
 **Absorption is not extraction reversed**, which is why it is work rather than a symmetry that comes free:
 
-- Extraction **mints** what the subtree lacks. Absorption **sheds** what the incoming brain has too much of — its own entrypoint and its full maintenance set both yield to the absorbing hub's, since maintenance documents live at the hub.
+- Extraction **mints** what the subtree lacks. Absorption **sheds** what the incoming brain has too much of — its own entrypoint, `AGENTS.md`, README and full maintenance set all yield to the absorbing hub's, since maintenance documents live at the hub. The hook in each of its project repos names the absorbed brain's clone, and must name the absorbing brain's and the lobe the repo now maps to.
 - Its lobespace was brain-wide and becomes a child's, re-declared in the registry and checked against the lobespace-ownership rule in both directions: the incoming lobespace must not sit as a longer prefix over an existing lobe's documents, nor an existing lobespace over its own.
 - Its SCOPE was authored as a hub SCOPE, referencing nothing because it had no parent. As a child's SCOPE it may now reference its parent's, and the absorbing hub's SCOPE must name the new part without elaborating it.
 - Its `archive/` arrives populated, against the convention that a child's `archive/` begins with its own first retirement.
@@ -16,8 +16,8 @@ The inverse motion has no row at all. An existing standalone brain becoming a ch
 
 ## Preferred approach: one kit, both directions
 
-- **Extraction kit** — mint the new brain's entrypoint and maintenance set, resolve the parent references its SCOPE and APPROACH carried, and define the pointer row.
-- **Absorption row** — the move the table lacks: shed the incoming entrypoint and maintenance set, re-declare the lobespace as a child's under the ownership rule, re-home the SCOPE and APPROACH references onto the new parent, and merge the logs.
+- **Extraction kit** — mint the new brain's entrypoint, `AGENTS.md`, README and maintenance set, repoint its project repo's hook at the new brain, resolve the parent references its SCOPE and APPROACH carried, and define the pointer row.
+- **Absorption row** — the move the table lacks: shed the incoming entrypoint, `AGENTS.md`, README and maintenance set, repoint its project repos' hooks at the absorbing brain, re-declare the lobespace as a child's under the ownership rule, re-home the SCOPE and APPROACH references onto the new parent, and merge the logs.
 - **Pointer semantics** — settled once and used by both: what the registry row holds for a departed child, and how routing treats it.
 
 ## Alternatives considered

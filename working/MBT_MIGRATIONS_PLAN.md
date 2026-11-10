@@ -24,15 +24,19 @@ Key references in the mini-brain:
 
 | Existing doc | Interaction | Risk |
 |---|---|---|
-| `MBT_CHECK_BRAIN.md` | Its checks must pass on every brain either move leaves behind — the diminished parent, the newly independent child, the enlarged absorber | A sanctioned move produces a brain that the brain's own checker flags |
+| `MBT_CHECK_BRAIN.md` | Its checks must pass on every brain either move leaves behind — the diminished parent, the newly independent child, the enlarged absorber, including loading reach and procedure drift, which read the files both moves mint or shed | A sanctioned move produces a brain that the brain's own checker flags |
+| `templates/PROJECT_HOOK.md` | The hook in a project repo names its brain's clone, and in a multi-lobe brain its lobe paragraph names the lobe the repo maps to, so both moves change what a moved lobe's hook must say | A project repo keeps loading the brain its lobe left |
+| `templates/AGENTS.md`, `templates/README.md` | Extraction mints both for the new brain; absorption sheds the incoming brain's | An extracted brain that harnesses reading only `AGENTS.md` cannot load |
 | `templates/LOBES_CLAUDE.md` | The registry's row shape has to express a pointer to a departed child | A pointer row the entrypoint grammar cannot state |
 | `templates/SESSION_CLOSEOUT.md` | Log routing must resolve while a child is leaving and after it has gone | Sessions route to a lobe no longer in the tree |
 
 ## Testing approach
 
-Dry-run the round trip on disposable copies, since the two moves are each other's undo and the round trip tests both at once: extract a child lobe from the multi-lobe prototype into a fresh repository, then absorb it back. Run the check procedure on every brain each step produces — the diminished parent and the new standalone brain after extraction, the reassembled brain after absorption.
+Dry-run the round trip on disposable copies, since the two moves are each other's undo and the round trip tests both at once: extract a child lobe from the multi-lobe fixture `tests/MBT_SEED_FIXTURE.py --lobes` seeds into a fresh repository, then absorb it back. The fixture comes with a project repo carrying the hook, so the round trip exercises the hook's repointing too. Run the check procedure on every brain each step produces — the diminished parent and the new standalone brain after extraction, the reassembled brain after absorption.
 
 Acceptance is two things: a clean structural pass at every step, and a reassembled brain whose shape matches where the round trip started, logs included.
+
+At closeout the round trip joins `MBT_TESTING.md` as a scenario.
 
 ## Implementation sequence
 
@@ -44,7 +48,7 @@ Acceptance is two things: a clean structural pass at every step, and a reassembl
 
 - The three moves that reshape a brain inside its own repository.
 - Log-merge semantics — already settled in the restructuring table; absorption inherits the rule rather than re-opening it.
-- Work-item relocation and the multi-lobe dream cycle, which are their own work items.
+- Work-item placement and the multi-lobe dream cycle, which are their own work items.
 
 ## Open issues
 
