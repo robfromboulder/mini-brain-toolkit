@@ -2173,3 +2173,27 @@ Rob's session, with Claude as co-author, closing the 0.73 release that the accep
 
 - **Merge #28 and #29 as they stood, without squashing #28's history** — Rob.
 - **Tag 0.73 on the post-merge commit, lightweight like its two predecessors** — Rob named the commit, and Claude matched the tag type.
+
+---
+
+# Cleanup after the 0.73 run, and the sweep fix in PR #30 (2026-11-09)
+
+**Session ID**: `f6893cc4-c438-446f-a2f4-9bb6be9b4761`
+
+Rob's session, with Claude as co-author. After the release, Rob asked what was left before closing. Claude's look for leftovers found that tested Codex agents had left three working directories in `/private/tmp` that the stray-write sweep never saw. Rob had them deleted, the scratch copies of the private example brains removed, and the sweep fixed in PR #30, which merged.
+
+## Turn by turn
+
+- **Leftovers.** Claude listed the session's traces without changing anything. Three directories in `/private/tmp` dated from the Codex runs in scenarios 7d and 8. They held template-history copies and paragraph extracts, one from the private mini-guardrails-brain. Scratch held 1.7G, including full copies of the private starburstdata brains and the Codex runs' stray reports. Two remote-tracking refs for the merged PR branches were stale. Rob's own install sat off-release at a commit after 0.72, from before the pinned install line.
+- **Cleanup.** At Rob's direction Claude deleted the three directories, cut scratch to the run's report and per-scenario results, and pruned the refs. Rob's install and the Docker image the Linux runs use were left alone.
+- **Sweep fix.** The recipe's temp-root sweep used `-type f`, so it listed new files and never a new directory, and an agent's working copies tend to land in one. The sweep now lists both. A directory made after a marker file showed up under the new command and not the old one.
+
+## Decisions
+
+- **Delete the stray directories and the scratch copies of private brains now, not at session expiry** — Rob, on Claude's recommendation.
+- **Fix the sweep in its own PR rather than leave it to MAT's closeout** — Rob.
+- **Leave Rob's own install for him to update** — Claude.
+
+## Lessons
+
+- **A sweep that looks only for files misses directories.** All three stray writes the run's own checks missed were directories.
