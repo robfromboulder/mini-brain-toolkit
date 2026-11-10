@@ -223,3 +223,27 @@ Rob's session, with Claude as co-author, run beside the second-machine session a
 ## Lessons
 
 - Fetch and check a PR's state right before amending into it while another session works on it, not just when preparing the change.
+
+---
+
+# PR #25 merged, its branches deleted, and the burndown cut to what remains (2026-11-09)
+
+**Session ID**: `1f667913-3aba-4e55-9e66-626a2c41a789`
+
+Rob's session, with Claude as co-author, continuing after the second-machine entry above. Claude brought #25's description in line with the final commit, and Rob merged it. Claude then deleted the item's branches and rewrote the unfilled burndown. At Rob's direction it was cut to the work that remains, and later dropped the examples item that #27 and Rob's call had settled.
+
+## Turn by turn
+
+- **Description.** Rob asked whether #25's description needed updates. The change list matched the final commit. "Not yet" lacked two gaps: scenario 6 hadn't run since the last procedure changes, and the fold rule hadn't run at all. The description also didn't say the results verify the battery rather than 0.73. Claude added both, updated the cost, and tidied the second-machine list. Rob then merged #25.
+- **Branches.** Claude confirmed the merged commit held exactly the branch's content, then deleted `minimum-acceptance-testing` on GitHub and locally, along with two local backup branches made before the squashes.
+- **Burndown.** The burndown was still the unfilled scaffold. Claude rewrote it with the PR's completed stages and the open work. Rob said a burndown holds no history, so the completed stages came out. Claude had dated two stages wrongly before checking them against the PR and this log.
+- **Examples.** A pull brought in #27 from a parallel session. It filled lamarr-brain's project repo, and recorded Rob's call to leave mini-alien-brain's and mini-guardrails-brain's as dashes. That settled the burndown's examples item, so Claude removed it and deleted #27's branch. Rob reviewed each burndown edit before Claude committed it.
+
+## Decisions
+
+- **A burndown holds only open work** — Rob.
+- **Review burndown edits before they're committed** — Rob.
+
+## Lessons
+
+- **Check what a pull brings in against the open burndown.** A parallel session had already settled one of its items.
