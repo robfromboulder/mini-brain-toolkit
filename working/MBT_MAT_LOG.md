@@ -194,3 +194,32 @@ Rob's session, with Claude as co-author, on a machine with Claude Code, Codex an
 - **When a run exists to test a test, the improvisations are the result.** Rob's redirect turned a pass/fail report into the list of fixes the recipe needed.
 - **A pinned prompt is part of the scenario.** Until scenario 6's prompt was fixed, a failure couldn't be told apart from the wording.
 - **A fresh agent finds the gaps the author's context hides.** The dry run found four run-changing gaps after Claude had written every fix.
+
+---
+
+# lamarr-brain's project repo filled in `MBT_EXAMPLES.md`, as PR #27 (2026-11-09)
+
+**Session ID**: `7aa1697a-4c4f-451d-95d1-829c52e64e8e`
+
+Rob's session, with Claude as co-author, run beside the second-machine session above. Rob asked Claude to read this item's status and to prepare the fields missing from `MBT_EXAMPLES.md` without committing, since the other session was still running. One field could be filled, and it landed as PR #27 after #25 merged.
+
+## Turn by turn
+
+- **Status.** Claude found `MBT_EXAMPLES.md` only on #25's branch, and the local branch a squash behind origin. Its project repos column had dashes for lamarr-brain, mini-alien-brain and mini-guardrails-brain.
+- **Filling the dashes.** Claude searched the clones on this machine for each brain's hook. The `lamarr` clone carries lamarr-brain's in its `CLAUDE.md`. No clone on hand carries mini-alien-brain's or mini-guardrails-brain's. mini-alien-brain names the codebase it describes, but Claude left it out as unconfirmed and as possibly private project detail. Claude prepared the change as a patch in its scratchpad, with the file at V3, and Rob kept the other two dashes.
+- **Applying it.** Rob reset the local branch to origin, and Claude applied the patch. Rob asked for an amend into #25's commit and a force-push. The lease rejected the push: the other session had merged #25 and deleted its branch, and the merged file still had the dash.
+- **PR #27.** Rob had Claude carry the change on a new branch from `main` as its own PR, and drop the local #25 branch.
+
+## Decisions
+
+- **Leave mini-alien-brain's and mini-guardrails-brain's project repos as dashes** — Rob.
+- **Carry the fix as its own PR once #25 had merged** — Rob, on Claude's proposal.
+- **Leave this item's plan citing `MBT_EXAMPLES.md` V2**, since it records what the second-machine run produced — Claude; Rob didn't ask otherwise.
+
+## What didn't work
+
+- An amend for a PR that had merged while the change waited. Only the lease stopped the force-push.
+
+## Lessons
+
+- Fetch and check a PR's state right before amending into it while another session works on it, not just when preparing the change.
