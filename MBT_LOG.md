@@ -2173,3 +2173,29 @@ Rob's session, with Claude as co-author, closing the 0.73 release that the accep
 
 - **Merge #28 and #29 as they stood, without squashing #28's history** — Rob.
 - **Tag 0.73 on the post-merge commit, lightweight like its two predecessors** — Rob named the commit, and Claude matched the tag type.
+
+---
+
+# 0.73 release notes drafted and published (2026-11-09)
+
+**Session ID**: `2251b624-f0c7-40ab-a3f2-97fcb594757e`
+
+Rob's session, with Claude as co-author. With 0.73 tagged, Rob asked for release notes in the shape of 0.72's and 0.71's, covering everything since 0.72. Claude drafted them, created a draft release on the `0.73` tag, and at Rob's word published it as the Latest release.
+
+## Turn by turn
+
+- **Sources.** Claude read the 0.72 and 0.71 notes with `gh release view`, the commits between the two tags, the descriptions of PRs #19–#29, and the acceptance-run entry in MAT's log for the Testing section. It kept 0.72's sections: a lead paragraph, then New, Changed, Fixed, Toolkit's own brain, Testing and Known limitations, ending with the full-changelog link.
+- **Scope.** #30 merged after the tag, so the notes leave it out.
+- **New against Fixed.** Defects that arose and were fixed within the release, such as check 10 recommending an own edit's template text and the report's unconditional pointer to the install line, aren't listed as fixes, since no 0.72 user met them. The corrected behaviour is described under New. Fixed lists only bugs that 0.72 shipped.
+- **The battery.** `MBT_TESTING.md`, `tests/` and `MBT_EXAMPLES.md` went under Toolkit's own brain, since they serve contributors rather than brain owners.
+- **Known limitations.** Claude walked 0.72's list against 0.73. Codex and OpenCode 2 have install lines now, so that item went. The toolkit-copy misfire became a plain statement that checking a copy isn't supported. The single-lobe dream cycle, the child-lobe move and the restated definitions stay open. Two harness limits from #19 and #25 joined: OpenCode 2 attaches the skill only from its `@` menu, and Codex's sandbox keeps `.git` read-only.
+- **Flagged for Rob.** Claude raised these choices and one unconfirmed figure, the five example brains in the acceptance run, counted from MAT's log as three on the machine plus two cloned public ones. Rob published without changes, so the figure stands as written.
+- **Draft, then publish.** Claude created the draft with `--verify-tag` so it attached to the existing tag rather than creating one. GitHub gave the draft an `untagged-…` URL, which is normal for drafts. Rob reviewed it and said to publish, and Claude published it and marked it Latest.
+
+## Decisions
+
+- **Exclude #30, merged after the tag** — Claude.
+- **List only bugs 0.72 shipped under Fixed, and fold in-release fixes into New** — Claude.
+- **Put the acceptance-test battery under Toolkit's own brain** — Claude.
+- **Create the release as a draft first** — Rob.
+- **Publish the notes as drafted and mark 0.73 Latest** — Rob.
