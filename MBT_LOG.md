@@ -2921,3 +2921,38 @@ Rob's session, with Claude as co-author, continuing after the lamarr-brain entry
 - A headless check of lamarr-brain against the new wording has not been run.
 - No acceptance scenario would catch this wording regressing. A single-lobe fixture with `<LOBESPACE>` left in one slot, expected to show no drift, would.
 - The grader's staged-text gap and the clone-name question, from the entry above, are unchanged.
+
+---
+
+# The lamarr-brain check rerun against the reworded normalization (2026-11-09)
+
+**Session ID**: `e0d98c31-c2d7-412c-aa31-e4798483a0c5`
+
+Rob's session, with Claude as co-author, continuing after the entry above. Rob asked for the headless check of lamarr-brain to be rerun against the reworded normalization. Claude ran it at `76cd371` with the first run's setup and request. The tested agent normalized as the step now says, and its labels agree with the grader everywhere except the two paragraphs of staged text the grader does not compare. Nothing in the toolkit was changed.
+
+## Turn by turn
+
+- **Setup.** The same scratch copies, test install, model and pinned request as the first run, so the two are comparable. The grader's labels for lamarr-brain were identical to the first run's.
+- **The run.** It cost $1.07 and took about five and a half minutes. The snapshots were unchanged, and the agent wrote nothing outside scratch.
+- **Method.** The agent's comparison script filled the creation-time placeholders and then replaced the brain's lobespace with the placeholder in every text, as the step now says. It dumped every version of each template into its temp directory and compared against those, where the first run's agent had searched the history for the brain's paragraphs. Its recommendations showed the template's text with the lobespace filled in.
+- **Labels.** Session closeout, work setup, work closeout, the scaffolds, the enforced-terms rules and the README matched the grader. This time the agent reported the clone name as an own edit in all four places the grader does. The reworded step says nothing about clone names, so the change may be run-to-run variation. The agent's two extra own edits were the same two paragraphs as before: staged text the brain uncommented and changed.
+- **The first run's mislabel.** The two runs disagreed on the hook's active-work-item paragraph: behind in the first, an own edit in the second. Claude compared the brain's text with all five versions the template has held, and it matches none word for word, so it is an own edit. The first run's history search had found a commit that touched part of the sentence and taken that for a match.
+- **Cleanup.** Claude removed the test install and the scratch copies. Both runs' outputs stay in the session's scratch directory.
+
+## Decisions
+
+- **Keep the first run's pinned request, though it narrows the agent to the procedure-drift check** — Claude, so the two runs differ only in the wording under test.
+
+## What didn't work
+
+- The tested agent's totals table gave 27 behind paragraphs where its own lists add up to 30.
+
+## Lessons
+
+- **A history search finds a commit that touched a string, not a version that held a paragraph.** The first run's label came from a search and was wrong. The second run's came from reading each version and was right.
+
+## Open
+
+- The grader does not compare staged text that a brain uncommented and then changed. Both runs show it on the same two paragraphs, and it is now the only disagreement between agent and grader on this brain.
+- Whether check's fix-step wording invites treating a clone name as the brain's own value, as the first run's agent did. One clean run doesn't settle it.
+- No acceptance scenario covers the reworded normalization.
