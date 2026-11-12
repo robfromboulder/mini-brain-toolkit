@@ -39,8 +39,8 @@ A mini-brain makes the opposite bet: **store only what the code can't tell you, 
 
 If you're curious about the design:
 - [MBT_PATTERN.md](MBT_PATTERN.md) — the principles, file set, and lifecycle
-- [MBT_RESEARCH.md](MBT_RESEARCH.md) — how mini-brains compare to related approaches
-- [MBT_BIOLOGY.md](MBT_BIOLOGY.md) — the cognitive-science models the pattern draws on
+- [MBT_RESEARCH.md](https://github.com/robfromboulder/mbt-brain/blob/main/MBT_RESEARCH.md) — how mini-brains compare to related approaches
+- [MBT_BIOLOGY.md](https://github.com/robfromboulder/mbt-brain/blob/main/MBT_BIOLOGY.md) — the cognitive-science models the pattern draws on
 
 ## Installing the toolkit
 

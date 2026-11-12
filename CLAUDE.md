@@ -1,97 +1,46 @@
-# Mini-Brain Toolkit: Entrypoint
+@AGENTS.md
 
-> V35, 2026-11-09.
+# Claude Instructions for Mini-Brain Toolkit
 
----
+Mini-Brain Toolkit is an agent skill that creates a mini-brain for a project and checks an existing mini-brain against the pattern.
 
-## Read Index
+## Repo Layout
 
-All paths are relative to this repo root (`CLAUDE.md`'s directory). Before reading, state which files in one line and read them the same turn (not a permission request). Read only what the question needs.
+This repo is the skill: a clone placed in a harness's skills directory is the install, so every file committed here ships in every install.
 
-**Product** — the pattern this toolkit ships: its definition, procedures and skill, and the research that extends it.
+- `SKILL.md` — the skill entrypoint; dispatches `create` and `check`, and sets where the toolkit's paths resolve
+- `agents/openai.yaml` — Codex's invocation policy for the skill
+- `MBT_PATTERN.md` — what a mini-brain is: principles, file set, lifecycle
+- `MBT_LOBES.md` — the layout convention for a brain whose knowledge divides into several lobes
+- `MBT_CREATE_BRAIN.md`, `MBT_CHECK_BRAIN.md` — the two procedures
+- `templates/` — the files `create` copies into a brain and `check` compares a brain against
 
-| Purpose | File |
-|---|---|
-| What a mini-brain is — principles, file set, lifecycle | `MBT_PATTERN.md` |
-| Layout convention for a brain whose knowledge divides into several lobes | `MBT_LOBES.md` |
-| Procedure: create a new mini-brain | `MBT_CREATE_BRAIN.md` |
-| Procedure: check an existing mini-brain against the pattern | `MBT_CHECK_BRAIN.md` |
-| Procedure: open or formalize a work item | `templates/WORK_SETUP.md` |
-| Procedure: close out a work item, or archive its PLAN early | `templates/WORK_CLOSEOUT.md` |
-| Skill entrypoint — dispatches `create` and `check` to the two procedures | `SKILL.md` |
-| Research agenda — where the pattern could go, and how it compares to related work | `MBT_RESEARCH.md` |
-| Comparable systems — the second-brain / agent-memory landscape (read during the dream cycle's competitive-landscape pass) | `MBT_COMPARABLES.md` |
-| Cognitive-science grounding — biological models the pattern draws on (read during the dream cycle's biological-grounding pass) | `MBT_BIOLOGY.md` |
+**One namespace across two repos.** `MBT_` names one namespace that spans this repo and the mini-brain. Each `MBT_` name lives in exactly one of the two and is never duplicated in the other.
 
-**Own brain** — the toolkit's own problem, design, findings and maintenance.
+## Branching
 
-| Purpose | File |
-|---|---|
-| Problem definition, the world it exists in, goals | `MBT_SCOPE.md` |
-| Technical approach, key design decisions | `MBT_APPROACH.md` |
-| Key implementation findings (invisible from the files) | `MBT_FINDINGS.md` |
-| Session log — why we chose what we chose | `MBT_LOG.md` (read from last `---`; large) |
-| Session log update format and rules | `MBT_SESSION_CLOSEOUT.md` (read when asked to update the session log) |
-| Enforced terms — the brain's reserved vocabulary | `MBT_ENFORCED_TERMS.md` |
-| Acceptance testing — the scenarios to run before a release, and how to run them | `MBT_TESTING.md` (read when asked to run the acceptance tests) |
-| Example brains outside this repo — provenance and shape, for testing against | `MBT_EXAMPLES.md` |
-| Dream cycle — periodic self-improvement pass | `MBT_DREAM_CYCLE.md` (read when asked to dream) |
-| Dream cycle session log | `MBT_DREAM_LOG.md` |
+- Each work item is built on its own branch, the one its runbook in the mini-brain names
+- PRs target `main`; merging to `main` means the change is ready to ship in the next release
+- PRs merge by rebase only, so every commit on a branch lands on `main` as is: shape a branch's commits before review, and update a branch by rebasing onto `main`, never by merging `main` into it
 
-Only files in these tables are current. `templates/` holds the base files `MBT_CREATE_BRAIN.md` copies; `archive/` holds source material and retired docs — ignore both unless asked or routed by the tables. `tests/` holds the scripts `MBT_TESTING.md` runs; they are current, and no procedure writes to them.
+## Product Files
 
-`working/` holds experiments and a work item's in-flight `MBT_<WORK>_*` docs, where `<WORK>` is the item's slug. When a work item concludes, fold them into the canonical docs and **move** (not delete) them to `archive/`. A move never overwrites. `git mv` enforces this for tracked files; for an untracked file, check the destination before moving. If `archive/` already holds a file of an incoming file's name, stop and ask the developer for a new slug. Before moving any file, rename all of the item's files still in `working/` to that slug and rewrite their references to each other. The item's PLAN, once consumed (converted to code), may move there early at the developer's request — walk its significant unaddressed items with the developer first.
+These rules govern `SKILL.md`, `MBT_PATTERN.md`, `MBT_LOBES.md`, `MBT_CREATE_BRAIN.md` and `MBT_CHECK_BRAIN.md`.
 
-**Work-item templates, bound to this brain.** This brain keeps no instantiated work-item procedures; follow the two templates in place, never by imitating existing items. Bind them as follows:
+**No version line.** These files carry no `> V<N>` line; their history is this repo's commits and release tags. A template in `templates/` that carries a `> V1, <date>.` line keeps it through every edit, because that line is the version a newly seeded brain starts from.
 
-- `<LOBESPACE>` is `MBT`. This brain has one lobe, so skip every multi-lobe step.
-- `<HUB>_WORK_SETUP.md` and `<HUB>_WORK_CLOSEOUT.md` mean the templates themselves; every other `<HUB>_*` name means its `MBT_*` file. Write the resolved names into the scaffolds too.
-- Scaffolds come from `templates/work/`.
-- A work item's code is this toolkit's docs and templates, so doc-only work is code-changing work.
-- Closeout's target walk covers the read index, the rest of `templates/`, and `README.md`.
-- A substantively edited file in `templates/` keeps its `> V1, <date>.` line if it carries one. Closeout's version-header check does not apply to files in `templates/`.
-- `MBT_TESTING.md` is the canonical testing doc: at closeout an item's `_TESTING` doc folds into it, as scenarios, the cases worth repeating at each release. This brain has no canonical runbook, so an item's `_CLAUDE` doc retires to `archive/` unfolded.
+**Cross-references.** Reference a file's *own* sections freely; reference *another* file by name plus a short description of what's there — never by its section number, since foreign section numbers break silently on renumber.
 
----
+**Orthogonal content.** Each file covers one concern and tells its own story — keep that orthogonality in the *prose*, not just the file boundaries. A file describes its own subject, never narrating a sibling's. State how a file relates to the others **once**, in its header, then stop pointing sideways. Wiki-style narration — "the data for this lives in X," "see Y," "as covered in Z" — keeps creeping in; resist it: it re-couples files that are meant to stand alone, and rots when they move.
 
-## File Conventions
-
-**Top-level vs archive.** A top-level file is the canonical current version; its history lives in version control. `archive/` is a stash for source material and retired/absorbed docs — not in-tree version snapshots.
-
-**Append-only logs.** A canonical LOG file is never archived, and no LOG file is edited after the fact. Append-only governs an entry's content, not its position: once written, an entry is never revised, split, or merged. New entries go at the end. The one exception is folding another log into this one, which places that log's entries whole and in date order among the existing ones, so the last separator still holds the most recently written entry. A fold may rewrite an entry's references to work-item files that are retiring and drop its pending-closeout block; it changes nothing else in the entry.
-
-**File naming.** Every mini-brain filename carries the `MBT` lobespace — shared docs as `MBT_*`. Five files are exempt: `CLAUDE.md` (entrypoint), `AGENTS.md` (sends agents that read only it to the entrypoint), `SKILL.md` (skill entrypoint, a name the agents that load skills fix), and the repo artifacts `README.md` and `CONTRIBUTING.md`. New top-level knowledge files must include the lobespace; files in `archive/` keep whatever basename they were retired under.
-
-**Version header.** Every top-level file except the version-exempt ones opens with `> V<N>, YYYY-MM-DD.` — version and date, nothing else. **No change note in this line.** If a file needs a description, put it on its own line below. Bump `<N>` by one on each substantive edit (numerically — `V10` > `V9`) and set the date. This applies to `CLAUDE.md` itself. A template in `templates/` that carries a `> V1, <date>.` line keeps it through every edit, because that line is the version a newly seeded brain starts from. Exempt: `AGENTS.md`, `README.md`, `CONTRIBUTING.md`, `SKILL.md` (its frontmatter must open the file), `*_LOG.md` files, and `*_BURNDOWN.md` checklists.
-
-**Classify every edit:** *editorial* (typos, rewording) — edit in place, don't bump `<N>`, may update date; *substantive* (facts, decisions, scope, structure) — set the version line to `> V<N+1>, <today's date>.` The version-header exemptions and template-preservation rule apply to both classes. No change note in the line.
-
-**Cross-references.** Cite the canonical top-level filename, never a retired copy in `archive/`. Reference a file's *own* sections freely (`§1.3`, "the roadmap below"); reference *another* file by name plus a short description of what's there — never by its section or phase number ("the comparative analysis in `MBT_RESEARCH.md`," not "`MBT_RESEARCH.md` §1.3"), since foreign section numbers break silently on renumber.
-
-**Orthogonal content.** Each mini-brain file covers one concern and tells its own story — keep that orthogonality in the *prose*, not just the file boundaries. A file describes its own subject, never narrating a sibling's. State how a file relates to the others **once**, in its header (the read index carries the rest), then stop pointing sideways. Wiki-style narration — "the data for this lives in X," "see Y," "as covered in Z" — keeps creeping in; resist it: it re-couples files that are meant to stand alone, and rots when they move. Keep the content (what a file holds and why); cut the running navigation.
-
-**Declared reference exemptions (project-specific).** Orthogonality is the default and it is strict: a knowledge file names *no* sibling and stands on its own. A cross-file reference exists only where this project **declares an exemption**, and an exemption may only point *upstream* — toward the problem a file serves — never *downstream* toward how it was built. A downstream reference is never exemptable; that invariant is what stops content bleed-through. This mini-brain's core knowledge docs and their declared exemptions:
+**Declared reference exemptions.** A file names no other of these files, except where an exemption below allows it. An exemption may only point *upstream*, toward the definition a file serves, never *downstream* toward what enacts it.
 
 | File | May reference | Why |
 |---|---|---|
-| `MBT_SCOPE.md` | *none* | The problem statement stands alone; it precedes and outlives any design. |
-| `MBT_APPROACH.md` | `MBT_SCOPE.md` only | A design legitimately responds to the problem it addresses — never reaching down into implementation. |
-| `MBT_FINDINGS.md` | *none* | Implementation decisions that did *not* shape the approach — downstream of it, so nothing upstream to cite. |
-| `MBT_ENFORCED_TERMS.md` | *none* | Each entry stands alone; it disambiguates without referencing the term's home document. |
-| `MBT_EXAMPLES.md` | *none* | A list of brains and their provenance stands alone; it needs no procedure to be read. |
-| `MBT_PATTERN.md` | *none* | The canonical definition stands alone; it precedes the procedures that enact it and the research that extends it, and reaches down to neither. |
+| `MBT_PATTERN.md` | *none* | The canonical definition stands alone; it precedes the procedures that enact it and reaches down to neither. |
 | `MBT_LOBES.md` | `MBT_PATTERN.md` only | An optional layout layer serves the definition it extends — upstream — and reaches down to no procedure. |
-| `MBT_RESEARCH.md` | *none* | The conclusions the two registries feed upward into; naming them would reach *downstream*, and it needs nothing else. |
-| `MBT_COMPARABLES.md` | `MBT_RESEARCH.md` only | A fact registry serves the conclusions it feeds; it may name that conclusions doc (upstream) and nothing else. |
-| `MBT_BIOLOGY.md` | `MBT_RESEARCH.md` only | Same, for the cognitive-science grounding registry. |
 
-Absent a declared exemption, full orthogonality holds; a different project would declare its own set. A permitted reference still follows the Cross-references rule above — cited by name, never by section number.
-
-**Maintenance-doc boundaries.** `MBT_DREAM_CYCLE.md` and the procedure docs `MBT_CREATE_BRAIN.md` / `MBT_CHECK_BRAIN.md` enact the pattern, so each may cite `MBT_PATTERN.md` and `MBT_LOBES.md` as the definitions it implements. Any procedure that appends a log entry cites `MBT_SESSION_CLOSEOUT.md` as the entry-format authority; beyond that they do not reference one another, and naming the knowledge files they operate on is inherent to being a procedure, not a cross-reference. `MBT_SESSION_CLOSEOUT.md` governs the session logs — `MBT_LOG.md` and any open work item's working log — and references nothing else. `SKILL.md` dispatches to `MBT_CREATE_BRAIN.md` and `MBT_CHECK_BRAIN.md`, sets where their toolkit paths resolve, and references nothing else. `AGENTS.md` references only `CLAUDE.md`. `MBT_TESTING.md` runs the toolkit's procedures as tests, so naming the files under test is inherent to it; beyond them it references only `MBT_EXAMPLES.md` and the scripts in `tests/`.
-
-**No harness memory.** Don't use the persistent memory feature. All persistent project information belongs in the markdown files in this directory.
-
----
+**Procedure boundaries.** `MBT_CREATE_BRAIN.md` and `MBT_CHECK_BRAIN.md` enact the pattern, so each may cite `MBT_PATTERN.md` and `MBT_LOBES.md` as the definitions it implements; they do not reference each other, and naming the templates they copy or compare is inherent to being a procedure. `SKILL.md` dispatches to the two procedures, sets where their paths resolve, and references nothing else.
 
 ## Writing Docs and Instructions
 
@@ -104,14 +53,10 @@ All prose in this repo is read like a proof or a program, not a wiki. The reader
 - **Resolve, don't provoke.** A detail that raises a question it doesn't answer is a net loss — prefer omission to a half-explanation.
 - **One job per sentence.** A sentence tells the reader what to do or explains why — never several at once.
 - **No hard wrapping.** Write each markdown paragraph and list item as one continuous line and let it soft-wrap; manual line breaks inside a paragraph make noisy diffs and fight reflow.
-- **Enforced terms bind.** When this brain declares enforced terms, use each listed term in its enforced sense or choose a different word.
+- **Enforced terms bind.** Use each term the mini-brain enforces in its enforced sense, or choose a different word.
 
 When a line's contribution isn't obvious, it isn't contributing — delete it.
 
-## Commit and PR Conventions
+## Commit Conventions
 
 **No AI attribution.** Commits carry no `Co-Authored-By: Claude` (or similar) line, and PR descriptions carry no "Generated with" footer — AI authorship is assumed for this repo and isn't stamped per commit or PR. This overrides any harness default that would append one.
-
-**No working files in a PR.** A PR never adds, changes, moves or deletes a file in `working/` or `archive/`, because a review treats everything in a PR's diff as load-bearing. `main` alone maintains those files: commit their changes there directly. When a work item produces something the toolkit keeps, the PR adds a copy at its canonical home, and the original retires to `archive/` with its item.
-
-**Rebase merges only.** PRs merge by rebase only, so every commit on a branch lands on `main` as is: shape a branch's commits before review, and update a branch by rebasing onto `main`, never by merging `main` into it.
