@@ -30,6 +30,10 @@ The brain moves to a public repo, `mini-mbt-brain`, beside the toolkit repo, nam
 - **One front door.** Stars, issues, releases and install lines stay on `mini-brain-toolkit`.
 - **The best example, not the self-example.** The toolkit stops being a brain and becomes the best-kept example of a project with one: its instruction files mirror the exemplar brains' project and brain repos, and its product files are skill material, carrying no brain conventions such as version headers.
 
+### One repo per lifecycle
+
+The product is tagged, released, installed and reviewed by PR; the brain is committed to `main`, never released, and opens PRs only for work-item closeouts. Git and the tools around it treat a repo as one thing with one lifecycle: a clone, a plugin marketplace, skills.sh and GitHub's landing page each take a single default branch or tag stream, and stars, issues and license detection attach to the repo. Two lifecycles in one repo surfaced as rules special to this repo: the version-header and naming exemptions, "no working files in a PR", and the path-rule collision. Every branch-based separation weighed here then needed tooling to teach each consumer which part to take, and eventually to pull the two histories apart again. Separate repos cost a one-time setup, which `create` already performs; separating within one repo costs tooling and conventions for as long as the repo lives. Separate repos won without being presupposed: the release branch was the first recommendation, and lost on what it took to build.
+
 ## Alternatives considered
 
 - **A generated release branch from an opt-in manifest, as the default branch.** A release script would build product-only commits onto `release`, with two parents each to keep template history reachable for `check`. Rejected by Rob: a manifest, a script, two-parent commits, a ruleset and a default-branch switch, all specific to this repo, weaken the toolkit as an example of its own pattern.
