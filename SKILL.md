@@ -16,6 +16,6 @@ Read the procedure for the command the user asked for, and follow it:
 
 If the user named neither, ask which to run.
 
-Resolve every `MBT_*.md` file and every `templates/` path against the directory that holds this file. Every other path names a file in the brain or project the procedure is working on.
+Resolve `MBT_PATTERN.md`, `MBT_LOBES.md`, `MBT_CREATE_BRAIN.md`, `MBT_CHECK_BRAIN.md` and every `templates/` path against the directory that holds this file. Every other path names a file in the brain or project the procedure is working on.
 
 Never write to a file under the directory that holds this file.
