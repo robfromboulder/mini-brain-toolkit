@@ -1,4 +1,4 @@
-<!-- Mini-brain hook: merge the section below into each project repo's AGENTS.md, which every supported harness reads, and give the repo's CLAUDE.md an `@AGENTS.md` line, which Claude Code needs to read it. Create either file if the repo has none — never overwrite an existing one — and if the repo's CLAUDE.md already holds this section, move it to AGENTS.md rather than adding a second copy. Substitute <project> and <HUB>, and adjust the clone's name or location if it sits elsewhere or under another name. If the brain is multi-lobe, also uncomment the lobe paragraph and fill `<Lobe>`, `<dir>`, and `<LOBESPACE>` for the lobe this repo maps to. -->
+<!-- Mini-brain hook: merge the section below into each project repo's AGENTS.md, which every supported harness reads, and give the repo's CLAUDE.md an `@AGENTS.md` line, which Claude Code needs to read it. Create either file if the repo has none — never overwrite an existing one — and if the repo's CLAUDE.md already holds this section, move it to AGENTS.md rather than adding a second copy. Substitute <project>, and adjust the clone's name or location if it sits elsewhere or under another name. If the brain is multi-lobe, also uncomment the lobe paragraph and fill `<Lobe>`, `<dir>`, and `<LOBESPACE>` for the lobe this repo maps to. -->
 
 ## Working in the mini-brain
 
@@ -15,7 +15,7 @@ Mini-brain edits accumulate uncommitted during a session; **closeout is the sync
 
 **Proactively offer a session closeout at natural stopping points** (PR opened, branch merged, work paused, user signals wrapping up) — only in a session that loaded the brain. Offer once and briefly; run the procedure only after the user agrees; skip trivial sessions (a lone question, a typo).
 
-**Never cite mini-brain docs (`<HUB>_*`, or any lobe's lobespace) from code.** Information flows one way — down from the mini-brain into code — so a back-reference is circular. Roadmap, history, and rationale that isn't about operating *this* code belong in the mini-brain, not in code comments.
+**Never cite mini-brain docs from code** — no file that lives in the mini-brain repo, whatever its name. Information flows one way — down from the mini-brain into code — so a back-reference is circular. Roadmap, history, and rationale that isn't about operating *this* code belong in the mini-brain, not in code comments.
 
 <!-- As the brain matures and gains work items (stage 3), add:
 
