@@ -20,7 +20,7 @@ The brain moves to the public repo `mbt-brain`, beside the toolkit repo. The too
 | `templates/` | `MBT_EXAMPLES.md`, `MBT_TESTING.md`, `tests/` |
 | `README.md`, `LICENSE`, `CONTRIBUTING.md`, `.github/images/`, `.gitignore` | `MBT_RESEARCH.md`, `MBT_COMPARABLES.md`, `MBT_BIOLOGY.md` |
 | `CLAUDE.md`, `AGENTS.md`, rewritten as a project repo's, with the hook in `AGENTS.md` | `working/`, `archive/` |
-| | `CLAUDE.md` (the entrypoint, minus the product rows), `AGENTS.md` |
+| | `CLAUDE.md` (the entrypoint, rewritten for the brain alone), `AGENTS.md` |
 | | New: `README.md` from the template, merged into the repo's existing one; `MBT_WORK_SETUP.md` and `MBT_WORK_CLOSEOUT.md` instantiated from the templates |
 
 - **No new tooling.** No manifest, release script, branch or ruleset; the separation is the pattern's own.
@@ -28,7 +28,7 @@ The brain moves to the public repo `mbt-brain`, beside the toolkit repo. The too
 - **`check` keeps its history.** `templates/` stays in the product repo with its full history, which the drift check reads from the install.
 - **The toolkit dogfoods the product as users do.** The brain is loaded through the hook, kept by instantiated procedures, and checked by `check`; whatever is awkward about that is felt here first.
 - **One front door.** Stars, issues, releases and install lines stay on `mini-brain-toolkit`.
-- **The best example, not the self-example.** The toolkit stops being a brain and becomes the best-kept example of a project with one: its instruction files mirror the exemplar brains' project and brain repos, and its product files are skill material, carrying no brain conventions such as version headers.
+- **The best example, not the self-example.** The toolkit stops being a brain and becomes the best-kept example of a project with one: its instruction files mirror the exemplar brains' project and brain repos, and its product files are skill material, carrying no version headers.
 
 ### Evidence
 
@@ -36,7 +36,7 @@ Tested on 2026-11-11 against scratch copies, not the real repos.
 
 - **The install line moves an install unaided.** A scratch remote held 0.73 and a 0.74 cut from it without the brain. The README's line, unchanged, took a clean 0.73 install to 0.74: 102 tracked files became 39, nothing of the brain remained, and 17 commits changing `templates/SESSION_CLOSEOUT.md` stayed reachable for check 10. An install with a local edit to a deleted file stopped on 0.73 with git's "would be overwritten" error and exit 1, as `MBT_FINDINGS.md` records for any edited install. An untracked file in `working/` survived the update, harmlessly.
 - **The narrowed path rule works in an agent run.** A headless, report-only `check` in Claude Code ran on a scratch copy of the brain from a scratch product carrying decision 2's path rule. Every read of a brain `MBT_*.md` went to the brain and every product read to the install, and neither repo changed.
-- **Check 10 compares the brain's procedures once it lacks `SKILL.md`.** The same run labelled `MBT_SESSION_CLOSEOUT.md`'s seven departures from its template as own edits, among them the dropped current-branch signal. It found `MBT_DREAM_CYCLE.md` missing two template parts that apply once the brain consumes the product: the Toolkit release check and the Scope accuracy phase. Its labels are approximate, because the run's tool list denied the temporary copies check 10 makes.
+- **Check 10 compares the brain's procedures once it lacks `SKILL.md`.** The same run labelled `MBT_SESSION_CLOSEOUT.md`'s seven departures from its template as own edits, among them the missing current-branch signal. It found `MBT_DREAM_CYCLE.md` missing two template parts that apply once the brain consumes the product: the Toolkit release check and the Scope accuracy phase. Its labels are approximate, because the run's tool list denied the temporary copies check 10 makes.
 - **The hook template's back-reference rule collides with decision 5.** The same run flagged "Never cite mini-brain docs (`<HUB>_*`…) from code" against product files citing product `MBT_` files.
 
 ### One repo per lifecycle

@@ -22,39 +22,40 @@ Key references in the owning lobe:
   - `MBT_APPROACH.md` — "Dogfood the pattern" rewritten.
   - `MBT_TESTING.md` — the commit under test is `../mini-brain-toolkit`'s `HEAD`; scenario 11 plants a defect other than a missing version header; scenario 10's toolkit-target case; the change-detection list.
   - `tests/` — the usage comments that assume the scripts sit inside the toolkit checkout; the scripts already take its path as an argument.
-  - `MBT_SESSION_CLOSEOUT.md` — only if open issue 3 takes back the branch signal.
+  - `MBT_SESSION_CLOSEOUT.md` — the template's current-branch signal taken back (decision 9).
 - Rewritten:
-  - `CLAUDE.md` — the entrypoint, in the exemplar brains' shape (decision 1): the read index without the Product block, the file conventions that govern brain files, the writing rules, the one-namespace rule (decision 5), commit conventions per decision 4, and how product names (`MBT_PATTERN.md`, `templates/`) resolve in the sibling checkout. Removed: the template binding for work items; `SKILL.md` from the naming and version-header exemptions; the `MBT_PATTERN.md` and `MBT_LOBES.md` rows of the declared reference exemptions; `SKILL.md` and the two procedures from the maintenance-doc boundaries.
-  - `MBT_DREAM_CYCLE.md` — per open issue 2.
+  - `CLAUDE.md` — the entrypoint, in the exemplar brains' shape (decision 1): the read index without the Product block, the file conventions that govern brain files, the writing rules, the one-namespace rule (decision 5), commit conventions per decision 4, and how product names (`MBT_PATTERN.md`, `templates/`) resolve in the sibling checkout. Removed: the template binding for work items; `SKILL.md` from the naming and version-header exemptions; the reference rules for product files, which move to the toolkit (decision 10): the `MBT_PATTERN.md` and `MBT_LOBES.md` rows of the declared reference exemptions, and `SKILL.md` and the two procedures in the maintenance-doc boundaries.
+  - `MBT_DREAM_CYCLE.md` — rebuilt from `templates/DREAM_CYCLE.md` (decision 8).
 - New:
   - `README.md` — `templates/README.md` merged into the existing README.
   - `MBT_WORK_SETUP.md`, `MBT_WORK_CLOSEOUT.md` — instantiated from the templates.
 
 **`mini-brain-toolkit` (PR)**
-- Unchanged: `agents/openai.yaml`, `templates/` (unless open issue 1 fixes the hook template), `LICENSE`, `.github/images/`, `.gitignore`.
+- Unchanged: `agents/openai.yaml`, `templates/` apart from the hook, `LICENSE`, `.github/images/`, `.gitignore`.
 - Deleted: every file that moved.
 - Minor:
+  - `templates/PROJECT_HOOK.md` — the back-reference rule keyed to the brain repo's files rather than their prefix (decision 7).
   - `SKILL.md` — the path rule names the files the install holds (decision 2).
   - `MBT_PATTERN.md`, `MBT_LOBES.md`, `MBT_CREATE_BRAIN.md`, `MBT_CHECK_BRAIN.md` — the version line only (decision 3).
   - `README.md` — the RESEARCH and BIOLOGY links point into `mbt-brain`.
   - `CONTRIBUTING.md` — two of its four paragraphs, which describe the read index and the session log, now in the brain.
 - Rewritten:
-  - `AGENTS.md` — the hook's "Working in the mini-brain" section from `templates/PROJECT_HOOK.md`, with the clone name `mbt-brain` and the back-reference rule per open issue 1.
-  - `CLAUDE.md` — an `@AGENTS.md` line, then the exemplar project repos' sections (decision 1): a one-line description, branching and rebase-only merges, the writing rules, no AI attribution, and the one-namespace rule (decision 5).
+  - `AGENTS.md` — the hook's "Working in the mini-brain" section from `templates/PROJECT_HOOK.md` as decision 7 leaves it, filled as `create` fills it (`<HUB>` as `MBT`, the multi-lobe paragraph left out), with the clone name `mbt-brain`.
+  - `CLAUDE.md` — an `@AGENTS.md` line, then the exemplar project repos' sections (decision 1): a one-line description, branching and rebase-only merges, the writing rules, the reference rules for product files (decision 10), no AI attribution, and the one-namespace rule (decision 5).
 
 **Off-PR**
-- Tag the first product release after the merge.
+- Tag the first product release after the merge. Its release notes say that `check` will report each existing brain's hook one paragraph behind (decision 7).
 
 ## Interaction with existing code
 
 | Existing code | Interaction | Risk |
 |---|---|---|
 | `SKILL.md` path rule, at 0.73 | Resolves every `MBT_*.md` against the install | `check` on `mbt-brain` from a 0.73 install reads the brain's own procedures from the install; run it from an install of the PR branch |
-| `templates/PROJECT_HOOK.md` back-reference rule | "Never cite mini-brain docs (`<HUB>_*`…) from code" | Under decision 5, product files citing product `MBT_` files match the rule's wording (open issue 1) |
+| `templates/PROJECT_HOOK.md` back-reference rule | "Never cite mini-brain docs (`<HUB>_*`…) from code" | Decision 7 rewords it, so `check` reports every existing brain's hook one paragraph behind until its owner updates it |
 | `MBT_CHECK_BRAIN.md` check 10 | Skips only a target holding `SKILL.md` and `MBT_CHECK_BRAIN.md` | Runs on `mbt-brain`, comparing its `CLAUDE.md`, session closeout and dream cycle with the templates and reporting each departure as an own edit or a missing part |
 | `MBT_CHECK_BRAIN.md` drift history | Reads template history from the install | None: confirmed reachable from a post-split tag |
 | `README.md` install line | Checks out the newest tag | An install with a local edit to a deleted file stops on 0.73 with git's error, as for any edited install |
-| `MBT_DREAM_CYCLE.md` Phases 1, 2 and 5 | Fix product files directly | The product repo takes changes only by PR (open issue 2) |
+| `MBT_DREAM_CYCLE.md` Phases 1, 2 and 5 | Fix product files directly | The product repo takes changes only by PR; the rebuilt cycle flags them (decision 8) |
 | Open items in `working/` | Move with the brain | MULTI_LOBE_DREAM edits `MBT_TESTING.md` and product files, so its change splits across both repos |
 | Brain edits on `main` during the split | The import is a snapshot | An edit to a moving file after the import commit is lost |
 
@@ -68,16 +69,15 @@ Manual steps live in `MBT_BRAIN_SPLIT_TESTING.md`.
 
 ## Implementation sequence
 
-1. Compare the drafted instruction files with lamarr, lamarr-brain, nebula and mini-nebula-brain section by section.
-2. Settle open issues 1–4.
-3. Rehearse the split, and gate on its report.
-4. Freeze brain edits on `main`; commit the open working docs.
-5. Import into `mbt-brain` at a named commit; write its entrypoint and pointer; merge its README; make the minor edits.
-6. Open the product PR.
-7. Run `check` on `mbt-brain` from an install of the PR branch; apply what it recommends.
-8. Run the acceptance tests from the brain against the PR branch; merge; tag.
-9. Rewrite the dream cycle in `mbt-brain`; it needs no product change, so it can follow the merge.
-10. Update a real 0.73 install with the unchanged README line.
+1. Draft both repos' `CLAUDE.md`, the toolkit's `AGENTS.md` and the hook template's reworded rule; compare the instruction files with lamarr, lamarr-brain, nebula and mini-nebula-brain section by section.
+2. Rehearse the split, and gate on its report.
+3. Freeze brain edits on `main`; commit the open working docs.
+4. Import into `mbt-brain` at a named commit; write its entrypoint; merge its README; make the minor edits.
+5. Open the product PR.
+6. Run `check` on `mbt-brain` from an install of the PR branch; apply what it recommends.
+7. Run the acceptance tests from the brain against the PR branch; merge; tag.
+8. Rebuild the dream cycle in `mbt-brain` (decision 8); it needs no product change, so it can follow the merge.
+9. Update a real 0.73 install with the unchanged README line.
 
 ## Scope boundary — what this does NOT include
 
@@ -97,11 +97,11 @@ Settled by Rob on 2026-11-11. Consequences Claude drew from them are marked *(Cl
 4. **The brain commits to `main`; work-item closeouts go through PRs.** Session closeouts push straight to `mbt-brain`'s `main`, as in lamarr's hook. *(Claude)* "No working files in a PR" retires: the product repo has no `working/`, and the brain's closeout PRs move working files by design.
 5. **`MBT_` is one namespace across both repos.** Product files keep their `MBT_` names, for continuity and because the prefix marks a single namespace however the files are split. Each `MBT_` name lives in exactly one repo and is never duplicated in the other. *(Claude)* Both repos' `CLAUDE.md` state the rule, and it is what keeps decision 2's path rule unambiguous: no brain file can share a product file's name.
 6. **The brain repo is `mbt-brain`.** Not `create`'s `mini-<project>-brain`; the hook template allows a clone under another name.
+7. **The hook template's back-reference rule is fixed, not edited locally.** Under decision 5, `SKILL.md` citing `MBT_CHECK_BRAIN.md` matched "Never cite mini-brain docs (`<HUB>_*`…) from code", though it is product citing product. The template's rule is keyed to the files that live in the brain repo rather than their prefix, so the toolkit's hook matches the template exactly and any brain whose code shares its prefix reads the rule correctly.
+8. **The dream cycle is rebuilt from the template.** It starts from `templates/DREAM_CYCLE.md`, which brings the Toolkit release check and the Scope accuracy phase that apply once the brain consumes the product, and keeps the toolkit's research phases 3a and 3b. A problem it finds in a product file goes on the needs-human-decision list rather than being fixed, because the product repo takes changes only by PR.
+9. **Session closeout takes back the current-branch signal.** After the split, sessions run on the toolkit's feature branches, which the template's signal matches to work items.
+10. **The reference rules for product files move to the toolkit's `CLAUDE.md`.** Orthogonal content, the declared reference exemptions (`MBT_LOBES.md` may cite `MBT_PATTERN.md`) and the maintenance-doc boundaries keep governing the four `MBT_` product files and `SKILL.md`, narrowed to them.
 
 ## Open issues
 
-1. **The hook's back-reference rule.** Under decision 5, `SKILL.md` citing `MBT_CHECK_BRAIN.md` matches the rule's wording, though it is product citing product. Adjust it as an own edit in the toolkit's `AGENTS.md`, or fix the template for any brain whose code shares the brain's prefix.
-2. **The dream cycle.** Rebuild it from `templates/DREAM_CYCLE.md`, which gains the Toolkit release check and the Scope accuracy phase that now apply, and keep the research phases 3a and 3b; or repoint it, about 16 places plus Phase 2's framing. Either way Phases 1, 2 and 5 can no longer fix product files directly: they flag, or leave a branch and PR for review.
-3. **Session closeout's branch signal.** The brain's copy lacks the template's current-branch signal. After the split, sessions run on the toolkit's feature branches, which the signal matches to work items.
-4. **Reference rules for product files.** Orthogonal content, the declared exemptions (`MBT_LOBES.md` may cite `MBT_PATTERN.md`) and the maintenance-doc boundaries govern the product files today from the brain's `CLAUDE.md`. They move to the toolkit's `CLAUDE.md`, or lapse.
-5. **Alignment.** DISTRIBUTION depends on this item: its open issue on `MBT_LOG.md` and the plugin's per-file limit resolves here. MULTI_LOBE_DREAM's change spans both repos after the split. WORK_PLACEMENT edits `templates/WORK_SETUP.md` and `templates/WORK_CLOSEOUT.md`, which the brain will instantiate rather than follow in place, so it lands in the brain through `check`. MIGRATIONS touches only product files.
+1. **Alignment.** DISTRIBUTION depends on this item: its open issue on `MBT_LOG.md` and the plugin's per-file limit resolves here. MULTI_LOBE_DREAM's change spans both repos after the split. WORK_PLACEMENT edits `templates/WORK_SETUP.md` and `templates/WORK_CLOSEOUT.md`, which the brain will instantiate rather than follow in place, so it lands in the brain through `check`. MIGRATIONS touches only product files.
