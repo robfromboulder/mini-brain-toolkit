@@ -1,7 +1,5 @@
 # Mini-Brain Toolkit: Create a New Mini-Brain
 
-> V37, 2026-11-09.
-
 This document is the procedure for standing up a new mini-brain from `templates/`.
 
 The output of a first run is a **stage-1 seed** (the first of the stages defined in `MBT_PATTERN.md`): a working brain with an entrypoint, empty canonical docs, and the working/archive structure — ready to be filled. Filling SCOPE and APPROACH (stage 2) and adding lifecycle machinery (stage 3) are later steps in this same document.

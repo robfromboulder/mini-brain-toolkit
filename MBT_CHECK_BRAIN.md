@@ -1,7 +1,5 @@
 # Mini-Brain Toolkit: Check an Existing Mini-Brain
 
-> V48, 2026-11-10.
-
 This document is the procedure for evaluating an existing mini-brain against the pattern and surfacing where it could improve — whether the brain was built from this toolkit or grew on its own.
 
 **Stance.** This is a diagnostic that produces *opportunities*, not a grade. Most repos match some principles and not others; partial adherence is normal and fine. A repo can be a healthy mini-brain without doing everything here, and doing everything mechanically without the underlying value misses the point. Lead with what's working, then what would help most. A check is a conversation with the user who asked for it: put judgment calls to them as they arise, and change the target only where they direct.

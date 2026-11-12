@@ -1,7 +1,5 @@
 # Mini-Brain Toolkit: The Multi-Lobe Layer
 
-> V15, 2026-10-30.
-
 This document is the layout convention for a mini-brain whose knowledge divides into several lobes. It is opt-in: a brain with one problem never uses it, and the file set in `MBT_PATTERN.md` applies unchanged.
 
 ---
