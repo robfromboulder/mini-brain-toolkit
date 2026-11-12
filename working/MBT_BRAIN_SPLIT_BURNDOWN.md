@@ -17,7 +17,8 @@ Everything between working code and a merged PR.
 
 ## Custom
 
-* create the public `mini-mbt-brain` repo and push the import
+* rehearse the split with the drafted files; gate the product PR on the report
+* push the import to `mbt-brain`
 * docs — README and CONTRIBUTING in both repos
 * tag the first product release after the merge
 * update a real 0.73 install with the unchanged README line

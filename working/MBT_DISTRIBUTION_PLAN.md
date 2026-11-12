@@ -62,7 +62,7 @@ Automated: `claude plugin validate . --strict` if a manifest lands; the scripts 
 ## Open issues
 
 1. **Plugin decision (Rob).** Docs settle layout, coexistence and pinning in the plugin's favor; command syntax is the remaining cost. Test what a root-`SKILL.md` plugin's command reads, bare and namespaced, before deciding.
-2. **`MBT_LOG.md` over the directory's 256 KiB limit.** Resolved by BRAIN_SPLIT, which moves the brain to `mini-mbt-brain` so installs carry only the product. This item depends on it: submissions follow the first release after the split.
+2. **`MBT_LOG.md` over the directory's 256 KiB limit.** Resolved by BRAIN_SPLIT, which moves the brain to `mbt-brain` so installs carry only the product. This item depends on it: submissions follow the first release after the split.
 3. **Skill directory at runtime.** `SKILL.md` resolves paths against "the directory that holds this file"; confirm the agent knows that directory in the plugin cache and in a skills.sh install, or switch to `${CLAUDE_SKILL_DIR}` where the harness supports it.
 4. **Plugin version source.** A `version` in `plugin.json` must be bumped each release, beside the tag; a marketplace `ref` pins only `github`, `url` and `git-subdir` sources, not `"./"`.
 5. **skills.sh contents and updates.** Confirm a `@<tag>` install copies the whole repo, keeps `agents/openai.yaml` for Codex, and what `skills update` does to a tag-pinned install. Then decide whether the README offers it as an install line.
