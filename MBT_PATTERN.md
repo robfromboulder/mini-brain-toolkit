@@ -1,7 +1,5 @@
 # Mini-Brain Toolkit: The Mini-Brain Pattern
 
-> V31, 2026-11-07.
-
 This document is the operational definition of a mini-brain: what it *is*, the file set it's made of, and the lifecycle that keeps it true and small.
 
 ---
