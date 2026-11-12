@@ -1,1 +1,15 @@
-Read `CLAUDE.md` in this directory and follow it.
+## Working in the mini-brain
+
+The mini-brain is the `mbt-brain` clone beside this repo's main checkout. Resolve the main checkout, not the working directory: in a git worktree, `../` lands beside the worktree instead. The main checkout is the parent of `git rev-parse --path-format=absolute --git-common-dir` when that parent is a work tree reporting the same common dir; otherwise (a submodule, a separate git dir, a bare repo) it is `git rev-parse --show-toplevel`.
+
+**When the user says "mini brain", "mini-brain", or "work item"** — pull the mini-brain to latest (it's a shared repo), then read its `CLAUDE.md` and follow it (if the clone is absent, tell the user to clone it beside the main checkout). Drive the whole workflow from *this* session — never make the user switch repos — and resolve its instructions' relative paths against the clone. Nothing else loads the brain.
+
+Mini-brain edits accumulate uncommitted during a session; **closeout is the sync point that lands them** — don't commit/push on every file write. The user can't see that tree, so a closeout must actually commit and push, not just write files. A session closeout commits the session's changes (edits, the new log entry) and pushes to the mini-brain's `main`, reporting both; if the push fails, resolve or surface it rather than leaving the change unpushed.
+
+**Proactively offer a session closeout at natural stopping points** (PR opened, branch merged, work paused, user signals wrapping up) — only in a session that loaded the brain. Offer once and briefly; run the procedure only after the user agrees; skip trivial sessions (a lone question, a typo).
+
+**Never cite mini-brain docs from code** — no file that lives in the mini-brain repo, whatever its name. Information flows one way — down from the mini-brain into code — so a back-reference is circular. Roadmap, history, and rationale that isn't about operating *this* code belong in the mini-brain, not in code comments.
+
+**Work-item closeout** is not a direct push — branch, commit, push, and open a PR against the mini-brain's `main`; report the link and leave it unmerged for review.
+
+**Active work item** = the one whose `working/MBT_<WORK>_*` docs name your current git branch, where `MBT` is the owning lobe's lobespace and `working/` that lobe's own directory — both the brain's own in a single-lobe brain; none on `main` or an unclaimed branch. It resolves any "my work item" reference; ask if ambiguous. In a multi-lobe brain, search this repo's lobe first, then its ancestors.
