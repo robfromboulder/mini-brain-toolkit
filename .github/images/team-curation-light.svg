@@ -1,0 +1,48 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 320" width="800" height="320" role="img" aria-labelledby="title desc">
+  <title id="title">Team curation</title>
+  <desc id="desc">Three developers each research their own work item at the same time: a new feature, a bug fix, and a support case. As each work item closes out, what it learned flows up into the shared team mini-brain that every session loads.</desc>
+  <style>
+    .t { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; fill: #1f2328; }
+    .muted { fill: #59636e; }
+    .accent { fill: #4f46e5; }
+    .name { font-size: 16px; font-weight: 600; }
+    .desc { font-size: 13px; }
+    .tag { font-size: 11px; font-weight: 600; letter-spacing: 0.08em; }
+    .card { fill: #f6f8fa; stroke: #d0d7de; stroke-width: 1.5; }
+    .brain { fill: #eef0ff; stroke: #6366f1; stroke-width: 1.5; }
+    .loop { fill: none; stroke: #6366f1; stroke-width: 2; }
+    .lhead { fill: #6366f1; }
+  </style>
+
+  <!-- Team brain -->
+  <text class="t tag accent" x="400" y="28" text-anchor="middle">PROJECT KNOWLEDGE</text>
+  <rect class="brain" x="220" y="40" width="360" height="80" rx="12"/>
+  <text class="t name" x="400" y="74" text-anchor="middle">Team mini-brain 🧠</text>
+  <text class="t desc muted" x="400" y="98" text-anchor="middle">shared knowledge every session loads</text>
+
+  <!-- Closeouts flowing up -->
+  <path class="loop" d="M120 198 V178 Q120 160 138 160 H282 Q300 160 300 142 V134"/>
+  <path class="lhead" d="M300 122 l-6 12 h12 z"/>
+  <path class="loop" d="M400 198 V134"/>
+  <path class="lhead" d="M400 122 l-6 12 h12 z"/>
+  <path class="loop" d="M680 198 V178 Q680 160 662 160 H518 Q500 160 500 142 V134"/>
+  <path class="lhead" d="M500 122 l-6 12 h12 z"/>
+  <text class="t desc accent" x="412" y="186">each work item closes out on its own</text>
+
+  <!-- Developers -->
+  <rect class="card" x="40" y="200" width="160" height="100" rx="12"/>
+  <text class="t name" x="120" y="236" text-anchor="middle">Developer 1</text>
+  <text class="t desc muted" x="120" y="260" text-anchor="middle">work item:</text>
+  <text class="t desc muted" x="120" y="278" text-anchor="middle">new feature</text>
+
+  <rect class="card" x="320" y="200" width="160" height="100" rx="12"/>
+  <text class="t name" x="400" y="236" text-anchor="middle">Developer 2</text>
+  <text class="t desc muted" x="400" y="260" text-anchor="middle">work item:</text>
+  <text class="t desc muted" x="400" y="278" text-anchor="middle">bug fix</text>
+
+  <rect class="card" x="600" y="200" width="160" height="100" rx="12"/>
+  <text class="t name" x="680" y="236" text-anchor="middle">Developer 3</text>
+  <text class="t desc muted" x="680" y="260" text-anchor="middle">work item:</text>
+  <text class="t desc muted" x="680" y="278" text-anchor="middle">support case</text>
+
+</svg>
