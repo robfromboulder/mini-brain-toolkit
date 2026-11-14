@@ -4,7 +4,7 @@ This project requires [Claude Code](https://claude.ai/code) for all development.
 
 ## Development Workflow
 
-Clone [mbt-brain](https://github.com/robfromboulder/mbt-brain), this project's mini-brain, beside this repo, and open Claude Code at this repo's root. Say "mini brain" to load it: its read index tells Claude which files to read for each question.
+This project's mini-brain is `mbt-brain`, a private repo for contributors. To request access, [open an issue](https://github.com/robfromboulder/mini-brain-toolkit/issues/new). Once you have access, clone `mbt-brain` beside this repo, and open Claude Code at this repo's root. Say "mini brain" to load it: its read index tells Claude which files to read for each question.
 
 At each natural stopping point, ask Claude to close out the session. Decisions that aren't captured in the mini-brain's logs are lost to future sessions.
 
