@@ -1,0 +1,162 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 1086" width="800" height="1086" role="img" aria-labelledby="title desc">
+  <title id="title">Inside a mini-brain</title>
+  <desc id="desc">Every fact has exactly one home. An entrypoint, CLAUDE.md, carries a read index, so an agent loads only the documents a question needs. SCOPE holds the problem and its goals with no solutions in it; APPROACH holds the chosen design and the decisions behind it; FINDINGS holds what building it revealed that the code doesn't show; LOG records what each session did, appended and never edited. Content a reasonable designer could decide otherwise goes to APPROACH, and the rest to SCOPE. A work item keeps its in-flight documents in working/, where nothing is authoritative. Its closeout classifies each piece: a claim proved false updates SCOPE, a changed design decision updates APPROACH, a non-obvious decision goes to FINDINGS, and anything the code now states is omitted. The working files then move to archive/. When one SCOPE can't state a project's problem honestly, the brain splits into lobes, each with the full document set; a fact about two lobes lives in their nearest common ancestor, and siblings never reference each other.</desc>
+  <style>
+    .t { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; fill: #1f2328; }
+    .mono { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: 11px; fill: #59636e; }
+    .muted { fill: #59636e; }
+    .accent { fill: #4f46e5; }
+    .h { font-size: 18px; font-weight: 600; }
+    .name { font-size: 14px; font-weight: 600; }
+    .big { font-size: 16px; font-weight: 600; }
+    .desc { font-size: 13px; }
+    .tag { font-size: 11px; font-weight: 600; letter-spacing: 0.08em; }
+    .card { fill: #f6f8fa; stroke: #d0d7de; stroke-width: 1.5; }
+    .brain { fill: #eef0ff; stroke: #6366f1; stroke-width: 1.5; }
+    .rule { fill: none; stroke: #d0d7de; stroke-width: 1; }
+    .wire { fill: none; stroke: #8c959f; stroke-width: 1.5; }
+    .head { fill: #8c959f; }
+    .loop { fill: none; stroke: #6366f1; stroke-width: 2; }
+    .lhead { fill: #6366f1; }
+    .bdot { fill: #6366f1; }
+  </style>
+
+  <!-- ============ 1. The schema ============ -->
+  <text class="t tag accent" x="20" y="28">THE SCHEMA IS BUILT IN</text>
+  <text class="t h" x="20" y="54">Every fact has exactly one home</text>
+
+  <rect class="card" x="20" y="72" width="760" height="56" rx="12"/>
+  <text class="t name" x="40" y="96">CLAUDE.md</text>
+  <text class="t desc muted" x="40" y="116">the read index: opened first, so an agent loads only the documents a question needs</text>
+
+  <path class="wire" d="M109 130 V142"/><path class="head" d="M109 150 l-5 -9 h10 z"/>
+  <path class="wire" d="M303 130 V142"/><path class="head" d="M303 150 l-5 -9 h10 z"/>
+  <path class="wire" d="M497 130 V142"/><path class="head" d="M497 150 l-5 -9 h10 z"/>
+  <path class="wire" d="M691 130 V142"/><path class="head" d="M691 150 l-5 -9 h10 z"/>
+
+  <rect class="brain" x="20" y="152" width="178" height="118" rx="12"/>
+  <text class="t big" x="109" y="180" text-anchor="middle">SCOPE</text>
+  <text class="mono" x="109" y="198" text-anchor="middle">STORE_SCOPE.md</text>
+  <text class="t desc muted" x="109" y="224" text-anchor="middle">the problem and its</text>
+  <text class="t desc muted" x="109" y="242" text-anchor="middle">goals, with no</text>
+  <text class="t desc muted" x="109" y="260" text-anchor="middle">solutions in it</text>
+
+  <rect class="brain" x="214" y="152" width="178" height="118" rx="12"/>
+  <text class="t big" x="303" y="180" text-anchor="middle">APPROACH</text>
+  <text class="mono" x="303" y="198" text-anchor="middle">STORE_APPROACH.md</text>
+  <text class="t desc muted" x="303" y="224" text-anchor="middle">the chosen design</text>
+  <text class="t desc muted" x="303" y="242" text-anchor="middle">and the decisions</text>
+  <text class="t desc muted" x="303" y="260" text-anchor="middle">behind it</text>
+
+  <rect class="brain" x="408" y="152" width="178" height="118" rx="12"/>
+  <text class="t big" x="497" y="180" text-anchor="middle">FINDINGS</text>
+  <text class="mono" x="497" y="198" text-anchor="middle">STORE_FINDINGS.md</text>
+  <text class="t desc muted" x="497" y="224" text-anchor="middle">what building it</text>
+  <text class="t desc muted" x="497" y="242" text-anchor="middle">revealed that the</text>
+  <text class="t desc muted" x="497" y="260" text-anchor="middle">code doesn't show</text>
+
+  <rect class="brain" x="602" y="152" width="178" height="118" rx="12"/>
+  <text class="t big" x="691" y="180" text-anchor="middle">LOG</text>
+  <text class="mono" x="691" y="198" text-anchor="middle">STORE_LOG.md</text>
+  <text class="t desc muted" x="691" y="224" text-anchor="middle">what each session</text>
+  <text class="t desc muted" x="691" y="242" text-anchor="middle">did, appended and</text>
+  <text class="t desc muted" x="691" y="260" text-anchor="middle">never edited</text>
+
+  <rect class="card" x="20" y="284" width="372" height="52" rx="12"/>
+  <text class="t desc" x="206" y="305" text-anchor="middle">Could a reasonable designer decide it otherwise?</text>
+  <text class="t desc accent" x="206" y="325" text-anchor="middle">no → SCOPE  ·  yes → APPROACH</text>
+
+  <rect class="card" x="408" y="284" width="372" height="52" rx="12"/>
+  <text class="t desc" x="594" y="305" text-anchor="middle">Lineage stays in LOG; conclusions are</text>
+  <text class="t desc accent" x="594" y="325" text-anchor="middle">distilled into the other three</text>
+
+  <path class="rule" d="M20 380 H780"/>
+
+  <g transform="translate(0 32)">
+  <!-- ============ 2. How work merges ============ -->
+  <text class="t tag accent" x="20" y="396">HOW WORK MERGES</text>
+  <text class="t h" x="20" y="422">Closeout sorts every piece of a work item</text>
+
+  <rect class="card" stroke-dasharray="5 4" x="20" y="440" width="220" height="196" rx="12"/>
+  <text class="t big" x="40" y="468">working/</text>
+  <text class="t desc muted" x="40" y="488">in flight, not authoritative</text>
+  <text class="mono" x="40" y="518">STORE_REFUNDS_PLAN.md</text>
+  <text class="mono" x="40" y="540">STORE_REFUNDS_FINDINGS.md</text>
+  <text class="mono" x="40" y="562">STORE_REFUNDS_LOG.md</text>
+  <text class="mono" x="40" y="584">STORE_REFUNDS_TESTING.md</text>
+  <text class="t desc muted" x="40" y="616">one work item's documents</text>
+
+  <path class="wire" d="M242 538 H262"/><path class="head" d="M272 538 l-10 -5 v10 z"/>
+
+  <rect class="brain" x="282" y="440" width="150" height="196" rx="12"/>
+  <text class="t big" x="357" y="522" text-anchor="middle">Closeout</text>
+  <text class="t desc muted" x="357" y="546" text-anchor="middle">classifies each</text>
+  <text class="t desc muted" x="357" y="564" text-anchor="middle">piece of knowledge</text>
+
+  <path class="loop" d="M434 538 C452 538 450 460 462 460"/><path class="lhead" d="M472 460 l-10 -5 v10 z"/>
+  <path class="loop" d="M434 538 C452 538 450 512 462 512"/><path class="lhead" d="M472 512 l-10 -5 v10 z"/>
+  <path class="loop" d="M434 538 C452 538 450 564 462 564"/><path class="lhead" d="M472 564 l-10 -5 v10 z"/>
+  <path class="wire" stroke-dasharray="4 4" d="M434 538 C452 538 450 616 462 616"/><path class="head" d="M472 616 l-10 -5 v10 z"/>
+
+  <rect class="brain" x="476" y="440" width="304" height="40" rx="10"/>
+  <text class="t name" x="492" y="465">SCOPE</text>
+  <text class="t desc muted" x="590" y="465">a claim proved false</text>
+
+  <rect class="brain" x="476" y="492" width="304" height="40" rx="10"/>
+  <text class="t name" x="492" y="517">APPROACH</text>
+  <text class="t desc muted" x="590" y="517">a design decision changed</text>
+
+  <rect class="brain" x="476" y="544" width="304" height="40" rx="10"/>
+  <text class="t name" x="492" y="569">FINDINGS</text>
+  <text class="t desc muted" x="590" y="569">a non-obvious decision</text>
+
+  <rect class="card" stroke-dasharray="5 4" x="476" y="596" width="304" height="40" rx="10"/>
+  <text class="t name muted" x="492" y="621">omitted</text>
+  <text class="t desc muted" x="590" y="621">the code now states it</text>
+
+  <text class="t desc muted" x="20" y="668">The working files then retire to archive/: moved, never deleted.</text>
+  <text class="t desc accent" x="20" y="688">Omitting what the code now states is how a mini-brain shrinks.</text>
+  </g>
+
+  <path class="rule" d="M20 764 H780"/>
+
+  <g transform="translate(0 64)">
+  <!-- ============ 3. Lobes ============ -->
+  <text class="t tag accent" x="20" y="748">WHEN ONE PROBLEM BECOMES SEVERAL</text>
+  <text class="t h" x="20" y="774">Lobes divide a brain without blurring it</text>
+
+  <rect class="brain" x="145" y="796" width="200" height="74" rx="12"/>
+  <text class="t big" x="245" y="822" text-anchor="middle">Hub lobe</text>
+  <text class="mono" x="245" y="840" text-anchor="middle">STORE_*.md</text>
+  <text class="t desc muted" x="245" y="858" text-anchor="middle">full document set</text>
+
+  <path class="wire" d="M245 872 V892 H120 V918"/><path class="head" d="M120 926 l-5 -9 h10 z"/>
+  <path class="wire" d="M245 892 H370 V918"/><path class="head" d="M370 926 l-5 -9 h10 z"/>
+
+  <rect class="brain" x="20" y="928" width="200" height="74" rx="12"/>
+  <text class="t big" x="120" y="954" text-anchor="middle">catalog/</text>
+  <text class="mono" x="120" y="972" text-anchor="middle">CATALOG_*.md</text>
+  <text class="t desc muted" x="120" y="990" text-anchor="middle">full document set</text>
+
+  <rect class="brain" x="270" y="928" width="200" height="74" rx="12"/>
+  <text class="t big" x="370" y="954" text-anchor="middle">checkout/</text>
+  <text class="mono" x="370" y="972" text-anchor="middle">CHECKOUT_*.md</text>
+  <text class="t desc muted" x="370" y="990" text-anchor="middle">full document set</text>
+
+  <path class="wire" stroke-dasharray="3 4" d="M224 965 H266"/>
+  <text class="t name muted" x="245" y="958" text-anchor="middle">✕</text>
+
+  <circle class="bdot" cx="510" cy="811" r="4"/>
+  <text class="t name" x="524" y="816">Split when one SCOPE can't hold it</text>
+  <text class="t desc muted" x="524" y="836">one child lobe per coexisting problem</text>
+
+  <circle class="bdot" cx="510" cy="877" r="4"/>
+  <text class="t name" x="524" y="882">Shared facts go up</text>
+  <text class="t desc muted" x="524" y="902">a fact about two lobes lives in their</text>
+  <text class="t desc muted" x="524" y="920">nearest common ancestor</text>
+
+  <circle class="bdot" cx="510" cy="961" r="4"/>
+  <text class="t name" x="524" y="966">Siblings never cite each other</text>
+  <text class="t desc muted" x="524" y="986">so no fact has two homes to drift apart</text>
+  </g>
+</svg>
